@@ -122,6 +122,42 @@
       </ul>
     </nav>
   </div>
-</footer> 
+</footer>
+<script>
+(function(){
+  const wrap = document.querySelector('.hscroll-wrap.one');
+  if(!wrap) return;
+  const scroller = wrap.querySelector('.hscroll.one');
+  const dots = Array.from(wrap.querySelectorAll('.dots .dot'));
+  const cards = Array.from(scroller.querySelectorAll('.hcard'));
+  if(!scroller || !dots.length || !cards.length) return;
+  const pageSize = Math.max(1, Math.round(cards.length / 3));
+  function scrollToGroup(g){
+    const idx = Math.min(cards.length - 1, g * pageSize);
+    const card = cards[idx];
+    if(card){ card.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); activate(g); }
+  }
+  function activeGroup(){
+    const mid = scroller.getBoundingClientRect().left + scroller.clientWidth/2;
+    let activeIdx = 0, minDist = Infinity;
+    cards.forEach((el, i)=>{
+      const rect = el.getBoundingClientRect();
+      const center = rect.left + rect.width/2;
+      const dist = Math.abs(center - mid);
+      if(dist < minDist){ minDist = dist; activeIdx = i; }
+    });
+    return Math.min(2, Math.floor(activeIdx / pageSize));
+  }
+  function activate(g){ dots.forEach((d,i)=>{
+    d.classList.toggle('active', i===g);
+    d.disabled = (i !== g && !d.hasAttribute('aria-hidden')) ? false : d.disabled;
+  }); }
+  dots.forEach((btn,i)=>{ if(!btn.disabled){ btn.addEventListener('click', ()=>scrollToGroup(i)); } });
+  const onScroll = ()=> activate(activeGroup());
+  scroller.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script> 
   </body>
 </html> 

@@ -102,6 +102,7 @@
       <a class="btn secondary" href="/projects/">Projects</a>
     </div>
   </div>
+  <img class="hero-visual" src="/assets/images/placeholders/hero-visual.svg" alt="" aria-hidden="true" />
 </section>
 
 <section class="container audience" style="margin-top:12px;">
@@ -136,89 +137,47 @@
     <h2>Research Themes</h2>
     <a class="link" href="/themes/">View all</a>
   </div>
-  <div class="grid">
-    
-      <article class="card">
-        <h3><a href="/themes/edge-compute/">端侧部署与系统优化</a></h3>
-        <p class="meta">edge computing, on-device, scheduling, and runtime</p>
-        <p>面向低时延与高可靠的边缘端系统协同优化，覆盖算力感知调度、编译优化与运行时管理（占位）。</p>
-      </article>
-    
-      <article class="card">
-        <h3><a href="/themes/model-compression/">模型压缩与量化</a></h3>
-        <p class="meta">compression, quantization, pruning, and distillation</p>
-        <p>面向边缘端的轻量化模型设计与自动化压缩，包括剪枝、蒸馏、量化与NAS（占位）。</p>
-      </article>
-    
-      <article class="card">
-        <h3><a href="/themes/tiny-ml/">TinyML 与硬件感知共设计</a></h3>
-        <p class="meta">tinyml, co-design, mcu, and accelerator</p>
-        <p>软硬件一体化方法，针对微控制器与专用加速器进行算法-架构共设计（占位）。</p>
-      </article>
-    
-  </div>
-</section>
-
-<section class="container" style="margin-top:24px;">
-  <div class="section-head">
-    <h2>Featured Projects</h2>
-    <a class="link" href="/projects/">View all</a>
-  </div>
-  <div class="grid">
-    
-    
-      <article class="card badge-card">
-        <div class="badges">
-          <span class="badge">12.0 ms</span>
-          <span class="badge">1.8 W</span>
-          <span class="badge">72.1 mAP</span>
-        </div>
-        <h3><a href="/projects/project-orion/">Project Orion：超低时延边缘视觉</a></h3>
-        <p>面向摄像头端的实时目标检测与跟踪系统，端到端时延低至 12 ms（占位）。</p>
-        <div class="tags">
-          <span class="tag">端侧部署与系统优化</span><span class="tag">模型压缩与量化</span>
-        </div>
-      </article>
-    
-  </div>
-</section>
-
-<section class="container" style="margin-top:24px;">
-  <div class="section-head">
-    <h2>Recent Publications</h2>
-    <a class="link" href="/publications/">View all</a>
-  </div>
-  <div class="list">
-    
-    
-      <article class="card badge-card">
-        <div class="badges">
-          
-          
-          
-        </div>
-        <h3><a href="/publications/2025/2024-edgevision-detector/"></a></h3>
-        <p class="meta"></p>
-        <p>
-          
-          
-        </p>
-      </article>
-    
-      <article class="card badge-card">
-        <div class="badges">
-          
-          
-          
-        </div>
-        <h3><a href="/publications/2025/2023-tinyml-quantization/"></a></h3>
-        <p class="meta"></p>
-        <p>
-          
-          
-        </p>
-      </article>
-    
+  <div class="hscroll-wrap one">
+    <div class="hscroll one" id="themes-hs">
+      
+        <article class="hcard card" data-i="0">
+          <img class="cover" src="/assets/images/placeholders/card-16x9.svg" alt="" aria-hidden="true" />
+          <h3><a href="/themes/edge-compute/">端侧部署与系统优化</a></h3>
+          <p class="meta">edge computing, on-device, scheduling, and runtime</p>
+          <p>面向低时延与高可靠的边缘端系统协同优化，覆盖算力感知调度、编译优化与运行时管理（占位）。</p>
+        </article>
+      
+        <article class="hcard card" data-i="1">
+          <img class="cover" src="/assets/images/placeholders/card-16x9.svg" alt="" aria-hidden="true" />
+          <h3><a href="/themes/model-compression/">模型压缩与量化</a></h3>
+          <p class="meta">compression, quantization, pruning, and distillation</p>
+          <p>面向边缘端的轻量化模型设计与自动化压缩，包括剪枝、蒸馏、量化与NAS（占位）。</p>
+        </article>
+      
+        <article class="hcard card" data-i="2">
+          <img class="cover" src="/assets/images/placeholders/card-16x9.svg" alt="" aria-hidden="true" />
+          <h3><a href="/themes/tiny-ml/">TinyML 与硬件感知共设计</a></h3>
+          <p class="meta">tinyml, co-design, mcu, and accelerator</p>
+          <p>软硬件一体化方法，针对微控制器与专用加速器进行算法-架构共设计（占位）。</p>
+        </article>
+      
+    </div>
+    <div class="dots" data-for="themes-hs">
+      
+      
+        
+          <button class="dot" data-g="0" aria-label="page 0"></button>
+        
+      
+        
+          <button class="dot" data-g="1" aria-label="page 1"></button>
+        
+      
+        
+          <button class="dot" data-g="2" aria-label="page 2"></button>
+        
+      
+    </div>
   </div>
 </section>
 
@@ -227,22 +186,15 @@
     <h2>Latest News</h2>
     <a class="link" href="/news/">View all</a>
   </div>
-  <div class="list">
+  <ul class="news-list">
     
     
-      <article class="card news-card">
-        <div class="date-badge">
-          <div class="day">01</div>
-          <div class="mon">Sep</div>
-        </div>
-        <div class="news-body">
-          <h3><a href="/news/2025-09-01-lab-founded/">实验室成立（占位）</a></h3>
-          <p class="meta">2025-09-01</p>
-          <p>边缘智能实验室正式成立，聚焦端侧 AI 的系统与算法研究（占位）。</p>
-        </div>
-      </article>
+      <li>
+        <span class="date">2025-09-01</span>
+        <a href="/news/2025-09-01-lab-founded/">实验室成立（占位）</a>
+      </li>
     
-  </div>
+  </ul>
 </section>
 
 <section class="container team-mosaic" style="margin-top:24px;">
@@ -299,6 +251,42 @@
       </ul>
     </nav>
   </div>
-</footer> 
+</footer>
+<script>
+(function(){
+  const wrap = document.querySelector('.hscroll-wrap.one');
+  if(!wrap) return;
+  const scroller = wrap.querySelector('.hscroll.one');
+  const dots = Array.from(wrap.querySelectorAll('.dots .dot'));
+  const cards = Array.from(scroller.querySelectorAll('.hcard'));
+  if(!scroller || !dots.length || !cards.length) return;
+  const pageSize = Math.max(1, Math.round(cards.length / 3));
+  function scrollToGroup(g){
+    const idx = Math.min(cards.length - 1, g * pageSize);
+    const card = cards[idx];
+    if(card){ card.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); activate(g); }
+  }
+  function activeGroup(){
+    const mid = scroller.getBoundingClientRect().left + scroller.clientWidth/2;
+    let activeIdx = 0, minDist = Infinity;
+    cards.forEach((el, i)=>{
+      const rect = el.getBoundingClientRect();
+      const center = rect.left + rect.width/2;
+      const dist = Math.abs(center - mid);
+      if(dist < minDist){ minDist = dist; activeIdx = i; }
+    });
+    return Math.min(2, Math.floor(activeIdx / pageSize));
+  }
+  function activate(g){ dots.forEach((d,i)=>{
+    d.classList.toggle('active', i===g);
+    d.disabled = (i !== g && !d.hasAttribute('aria-hidden')) ? false : d.disabled;
+  }); }
+  dots.forEach((btn,i)=>{ if(!btn.disabled){ btn.addEventListener('click', ()=>scrollToGroup(i)); } });
+  const onScroll = ()=> activate(activeGroup());
+  scroller.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script> 
   </body>
 </html> 

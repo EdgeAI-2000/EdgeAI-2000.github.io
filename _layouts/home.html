@@ -19,6 +19,7 @@ layout: default
       <a class="btn secondary" href="{{ '/projects/' | relative_url }}">{% if page.lang == 'en' %}Projects{% else %}项目{% endif %}</a>
     </div>
   </div>
+  <img class="hero-visual" src="{{ '/assets/images/placeholders/hero-visual.svg' | relative_url }}" alt="" aria-hidden="true" />
 </section>
 
 <section class="container audience" style="margin-top:12px;">
@@ -53,63 +54,27 @@ layout: default
     <h2>{% if page.lang == 'en' %}Research Themes{% else %}研究方向{% endif %}</h2>
     <a class="link" href="{{ '/themes/' | relative_url }}">{% if page.lang == 'en' %}View all{% else %}查看全部{% endif %}</a>
   </div>
-  <div class="grid">
-    {% for theme in site.themes limit:6 %}
-      <article class="card">
-        <h3><a href="{{ theme.url | relative_url }}">{{ theme.title }}</a></h3>
-        <p class="meta">{{ theme.keywords | array_to_sentence_string }}</p>
-        <p>{{ theme.intro | strip_html | truncate: 120 }}</p>
-      </article>
-    {% endfor %}
-  </div>
-</section>
-
-<section class="container" style="margin-top:24px;">
-  <div class="section-head">
-    <h2>{% if page.lang == 'en' %}Featured Projects{% else %}精选项目{% endif %}</h2>
-    <a class="link" href="{{ '/projects/' | relative_url }}">{% if page.lang == 'en' %}View all{% else %}查看全部{% endif %}</a>
-  </div>
-  <div class="grid">
-    {% assign projects = site.projects | sort: 'date' | reverse %}
-    {% for project in projects limit:3 %}
-      <article class="card badge-card">
-        <div class="badges">
-          {% if project.metrics and project.metrics.latency %}<span class="badge">{{ project.metrics.latency }}</span>{% endif %}
-          {% if project.metrics and project.metrics.power %}<span class="badge">{{ project.metrics.power }}</span>{% endif %}
-          {% if project.metrics and project.metrics.accuracy %}<span class="badge">{{ project.metrics.accuracy }}</span>{% endif %}
-        </div>
-        <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
-        <p>{{ project.summary_zh | default: project.summary_en | truncate: 140 }}</p>
-        <div class="tags">
-          {% for tag in project.themes limit: 4 %}<span class="tag">{{ tag }}</span>{% endfor %}
-        </div>
-      </article>
-    {% endfor %}
-  </div>
-</section>
-
-<section class="container" style="margin-top:24px;">
-  <div class="section-head">
-    <h2>{% if page.lang == 'en' %}Recent Publications{% else %}最新论文{% endif %}</h2>
-    <a class="link" href="{{ '/publications/' | relative_url }}">{% if page.lang == 'en' %}View all{% else %}查看全部{% endif %}</a>
-  </div>
-  <div class="list">
-    {% assign pubs = site.publications | sort: 'year' | reverse %}
-    {% for pub in pubs limit:5 %}
-      <article class="card badge-card">
-        <div class="badges">
-          {% if pub.venue %}<span class="badge">{{ pub.venue }}</span>{% endif %}
-          {% if pub.year %}<span class="badge">{{ pub.year }}</span>{% endif %}
-          {% if pub.type %}<span class="badge">{{ pub.type }}</span>{% endif %}
-        </div>
-        <h3><a href="{{ pub.url | relative_url }}">{{ pub.title }}</a></h3>
-        <p class="meta">{{ pub.authors | join: ', ' }}</p>
-        <p>
-          {% if pub.pdf %}<a class="link" href="{{ pub.pdf }}" target="_blank">PDF</a>{% endif %}
-          {% if pub.code %} · <a class="link" href="{{ pub.code }}" target="_blank">Code</a>{% endif %}
-        </p>
-      </article>
-    {% endfor %}
+  <div class="hscroll-wrap one">
+    <div class="hscroll one" id="themes-hs">
+      {% for theme in site.themes limit:12 %}
+        <article class="hcard card" data-i="{{ forloop.index0 }}">
+          <img class="cover" src="{{ theme.cover | default: '/assets/images/placeholders/card-16x9.svg' | relative_url }}" alt="" aria-hidden="true" />
+          <h3><a href="{{ theme.url | relative_url }}">{{ theme.title }}</a></h3>
+          <p class="meta">{{ theme.keywords | array_to_sentence_string }}</p>
+          <p>{{ theme.intro | strip_html | truncate: 120 }}</p>
+        </article>
+      {% endfor %}
+    </div>
+    <div class="dots" data-for="themes-hs">
+      {% assign total = site.themes | size %}
+      {% for g in (0..2) %}
+        {% if g < total %}
+          <button class="dot" data-g="{{ g }}" aria-label="{{ 'page ' | append: g }}"></button>
+        {% else %}
+          <button class="dot" data-g="{{ g }}" disabled aria-hidden="true"></button>
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 </section>
 
@@ -118,22 +83,15 @@ layout: default
     <h2>{% if page.lang == 'en' %}Latest News{% else %}最新新闻{% endif %}</h2>
     <a class="link" href="{{ '/news/' | relative_url }}">{% if page.lang == 'en' %}View all{% else %}查看全部{% endif %}</a>
   </div>
-  <div class="list">
+  <ul class="news-list">
     {% assign items = site.news | sort: 'date' | reverse %}
-    {% for item in items limit:3 %}
-      <article class="card news-card">
-        <div class="date-badge">
-          <div class="day">{{ item.date | date: '%d' }}</div>
-          <div class="mon">{{ item.date | date: '%b' }}</div>
-        </div>
-        <div class="news-body">
-          <h3><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h3>
-          <p class="meta">{{ item.date | date: '%Y-%m-%d' }}</p>
-          <p>{{ item.summary | default: item.excerpt | strip_html | truncate: 120 }}</p>
-        </div>
-      </article>
+    {% for item in items limit:8 %}
+      <li>
+        <span class="date">{{ item.date | date: '%Y-%m-%d' }}</span>
+        <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+      </li>
     {% endfor %}
-  </div>
+  </ul>
 </section>
 
 <section class="container team-mosaic" style="margin-top:24px;">
