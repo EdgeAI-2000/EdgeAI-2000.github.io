@@ -1,0 +1,22 @@
+main:
+  - label: Home
+    url: /en/
+  - label: Research
+    url: /en/themes/
+  - label: Projects
+    url: /en/projects/
+  - label: Publications
+    url: /en/publications/
+  - label: People
+    url: /en/people/
+  - label: News
+    url: /en/news/
+  - label: Openings
+    url: /en/openings/
+  - label: Contact
+    url: /en/contact/
+footer:
+  - label: Privacy
+    url: /en/privacy/
+  - label: Sitemap
+    url: /sitemap.xml 

@@ -1,0 +1,22 @@
+main:
+  - label: 首页
+    url: /
+  - label: 研究方向
+    url: /themes/
+  - label: 项目
+    url: /projects/
+  - label: 论文
+    url: /publications/
+  - label: 团队
+    url: /people/
+  - label: 新闻
+    url: /news/
+  - label: 招生与招聘
+    url: /openings/
+  - label: 联系我们
+    url: /contact/
+footer:
+  - label: 隐私
+    url: /privacy/
+  - label: 站点地图
+    url: /sitemap.xml 

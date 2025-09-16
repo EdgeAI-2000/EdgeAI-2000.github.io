@@ -1,0 +1,38 @@
+:root {
+  --bg: #ffffff;
+  --fg: #111111;
+  --muted: #666666;
+  --primary: #155eef;
+  --surface: #f6f7fb;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; color: var(--fg); background: var(--bg); }
+.container { width: 100%; max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+.site-header { background: var(--bg); border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 10; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; }
+.site-title { font-weight: 700; color: var(--fg); text-decoration: none; }
+.site-nav ul { list-style: none; display: flex; gap: 12px; margin: 0; padding: 0; }
+.site-nav a { text-decoration: none; color: var(--fg); padding: 6px 10px; border-radius: 6px; }
+.site-nav a:hover { background: var(--surface); }
+.lang-switch a { text-decoration: none; color: var(--primary); }
+.site-footer { border-top: 1px solid #eee; margin-top: 48px; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 24px 0; }
+.footer-inner ul { display: flex; list-style: none; gap: 12px; margin: 0; padding: 0; }
+
+.hero { padding: 48px 0 24px; }
+.hero h1 { margin: 0 0 8px; font-size: 40px; }
+.hero p { margin: 0; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.card { background: var(--bg); border: 1px solid #eee; border-radius: 10px; padding: 16px; }
+.card h3 { margin-top: 0; }
+.list { display: grid; gap: 12px; }
+.meta { color: var(--muted); font-size: 14px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { background: var(--surface); border-radius: 999px; padding: 2px 8px; font-size: 12px; }
+.btn { display: inline-block; background: var(--primary); color: #fff; text-decoration: none; padding: 8px 14px; border-radius: 8px; }
+.btn.secondary { background: #222; }
+
+@media (max-width: 800px) {
+  .grid { grid-template-columns: 1fr; }
+  .header-inner { flex-wrap: wrap; }
+} 

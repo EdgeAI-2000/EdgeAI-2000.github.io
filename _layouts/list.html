@@ -1,0 +1,32 @@
+---
+layout: default
+---
+<div class="container" style="margin:24px 0;">
+  <h1>{{ page.title }}</h1>
+  {% if page.description %}<p class="meta">{{ page.description }}</p>{% endif %}
+
+  {% assign coll_name = page.collection | default: page.items %}
+  {% if coll_name %}
+    {% assign items = site[coll_name] %}
+  {% endif %}
+
+  {% if page.sort_by %}
+    {% assign items = items | sort: page.sort_by %}
+    {% if page.reverse %}{% assign items = items | reverse %}{% endif %}
+  {% endif %}
+
+  <div class="list">
+    {% for item in items %}
+      <article class="card">
+        <h3><a href="{{ item.url | relative_url }}">{{ item.title | default: item.name }}</a></h3>
+        {% if item.summary_zh or item.summary_en %}
+          <p>{{ item.summary_zh | default: item.summary_en | truncate: 160 }}</p>
+        {% elsif item.abstract_zh or item.abstract_en %}
+          <p>{{ item.abstract_zh | default: item.abstract_en | truncate: 160 }}</p>
+        {% else %}
+          <p class="meta">{{ item.date | default: item.year }}</p>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+</div> 

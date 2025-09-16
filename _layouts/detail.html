@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<article class="container" style="margin:24px 0;">
+  <h1>{{ page.title | default: page.name }}</h1>
+  <p class="meta">
+    {% if page.venue %}{{ page.venue }} {{ page.year }}{% endif %}
+    {% if page.role %}{{ page.role | capitalize }}{% endif %}
+  </p>
+  <div class="content">
+    {{ content }}
+  </div>
+  <div class="meta" style="margin-top:12px;">
+    {% if page.pdf %}<a href="{{ page.pdf }}" target="_blank">PDF</a>{% endif %}
+    {% if page.code %} · <a href="{{ page.code }}" target="_blank">Code</a>{% endif %}
+    {% if page.demo_video %} · <a href="{{ page.demo_video }}" target="_blank">Video</a>{% endif %}
+  </div>
+</article> 

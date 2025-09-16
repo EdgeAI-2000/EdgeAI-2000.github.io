@@ -1,0 +1,96 @@
+title: Edge AI Lab
+description: 边缘智能实验室官网（占位数据） | Edge AI Laboratory Website (Placeholder)
+url: https://edgeai-2000.github.io
+baseurl: ""
+lang: zh
+
+# GitHub Pages-supported plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-titles-from-headings
+
+# Theme (use minima for a simple baseline)
+theme: minima
+
+# Collections
+collections:
+  people:
+    output: true
+    permalink: /people/:name/
+  publications:
+    output: true
+    permalink: /publications/:year/:name/
+  projects:
+    output: true
+    permalink: /projects/:name/
+  news:
+    output: true
+    permalink: /news/:path/
+  openings:
+    output: true
+    permalink: /openings/:name/
+  themes:
+    output: true
+    permalink: /themes/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "publications"
+    values:
+      layout: detail
+      lang: zh
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: detail
+      lang: zh
+  - scope:
+      path: ""
+      type: "people"
+    values:
+      layout: detail
+      lang: zh
+  - scope:
+      path: ""
+      type: "news"
+    values:
+      layout: detail
+      lang: zh
+  - scope:
+      path: ""
+      type: "openings"
+    values:
+      layout: detail
+      lang: zh
+  - scope:
+      path: ""
+      type: "themes"
+    values:
+      layout: detail
+      lang: zh
+
+# Pagination (used by news list if needed)
+paginate: 10
+paginate_path: "/news/page:num/"
+
+# Permalink defaults
+permalink: pretty
+
+# Social/meta for seo-tag
+social:
+  name: Edge AI Lab
+  links:
+    - https://github.com/EdgeAI-2000
+
+# Excludes
+exclude:
+  - README.md
+  - node_modules
+  - vendor
+  - scripts 

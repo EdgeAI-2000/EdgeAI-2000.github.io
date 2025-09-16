@@ -1,0 +1,10 @@
+<div class="lang-switch">
+  {% assign current_lang = page.lang | default: site.lang | default: 'zh' %}
+  {% if current_lang == 'zh' %}
+    {% assign alt_url = '/en' | append: page.url %}
+    <a href="{{ alt_url | replace: '//', '/' | relative_url }}">EN</a>
+  {% else %}
+    {% assign alt_url = page.url | remove_first: '/en' %}
+    <a href="{{ alt_url | replace: '//', '/' | relative_url }}">中文</a>
+  {% endif %}
+</div> 

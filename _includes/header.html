@@ -1,0 +1,16 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        {% assign current_lang = page.lang | default: site.lang | default: 'zh' %}
+        {% assign navkey = 'nav.' | append: current_lang %}
+        {% assign nav = site.data[navkey] %}
+        {% for item in nav.main %}
+          <li><a href="{{ item.url | relative_url }}">{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    {% include lang_switch.html %}
+  </div>
+</header> 
