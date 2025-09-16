@@ -1,16 +1,25 @@
 <header class="site-header">
   <div class="container header-inner">
-    <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    <nav class="site-nav" aria-label="Main">
-      <ul>
-        {% assign current_lang = page.lang | default: site.lang | default: 'zh' %}
-        {% assign navkey = 'nav.' | append: current_lang %}
-        {% assign nav = site.data[navkey] %}
-        {% for item in nav.main %}
-          <li><a href="{{ item.url | relative_url }}">{{ item.label }}</a></li>
-        {% endfor %}
-      </ul>
-    </nav>
-    {% include lang_switch.html %}
+    <div class="brand">
+      <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    </div>
+    <div class="nav-center">
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          {% assign current_lang = page.lang | default: site.lang | default: 'zh' %}
+          {% assign nav = site.data.nav[current_lang] %}
+          {% for item in nav.main %}
+            {% assign is_active = false %}
+            {% if page.url == item.url or page.url == item.url | append: 'index.html' %}
+              {% assign is_active = true %}
+            {% endif %}
+            <li><a href="{{ item.url | relative_url }}" class="{% if is_active %}active{% endif %}">{{ item.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+    <div class="actions">
+      {% include lang_switch.html %}
+    </div>
   </div>
 </header> 

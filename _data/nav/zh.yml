@@ -11,7 +11,7 @@ main:
     url: /people/
   - label: 新闻
     url: /news/
-  - label: 招生与招聘
+  - label: 招生
     url: /openings/
   - label: 联系我们
     url: /contact/

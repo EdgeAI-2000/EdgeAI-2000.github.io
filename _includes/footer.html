@@ -6,8 +6,7 @@
     <nav aria-label="Footer">
       <ul>
         {% assign current_lang = page.lang | default: site.lang | default: 'zh' %}
-        {% assign navkey = 'nav.' | append: current_lang %}
-        {% assign nav = site.data[navkey] %}
+        {% assign nav = site.data.nav[current_lang] %}
         {% for item in nav.footer %}
           <li><a href="{{ item.url | relative_url }}">{{ item.label }}</a></li>
         {% endfor %}
