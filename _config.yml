@@ -38,6 +38,9 @@ collections:
   themes:
     output: true
     permalink: /themes/:name/
+  patents:
+    output: true
+    permalink: /patents/:name/
 
 # Defaults
 defaults:
@@ -74,6 +77,12 @@ defaults:
   - scope:
       path: ""
       type: "themes"
+    values:
+      layout: detail
+      lang: zh
+  - scope:
+      path: ""
+      type: "patents"
     values:
       layout: detail
       lang: zh

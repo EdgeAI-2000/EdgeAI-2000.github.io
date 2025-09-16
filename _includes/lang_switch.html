@@ -1,10 +1,27 @@
 <div class="lang-switch">
   {% assign current_lang = page.lang | default: site.lang | default: 'zh' %}
+  {% assign pages_urls = site.pages | map: 'url' %}
   {% if current_lang == 'zh' %}
-    {% assign alt_url = '/en' | append: page.url %}
-    <a href="{{ alt_url | replace: '//', '/' | relative_url }}">EN</a>
+    {% assign cand = '/en/' %}
+    {% if page.url == '/zh/' %}
+      {% assign cand = '/en/' %}
+    {% elsif page.url contains '/zh/' %}
+      {% assign cand = page.url | replace_first: '/zh/', '/en/' %}
+    {% endif %}
+    {% if pages_urls contains cand %}
+      <a href="{{ cand | relative_url }}">EN</a>
+    {% else %}
+      <a href="{{ '/en/' | relative_url }}">EN</a>
+    {% endif %}
   {% else %}
-    {% assign alt_url = page.url | remove_first: '/en' %}
-    <a href="{{ alt_url | replace: '//', '/' | relative_url }}">中文</a>
+    {% assign cand = '/zh/' %}
+    {% if page.url contains '/en/' %}
+      {% assign cand = page.url | replace_first: '/en/', '/zh/' %}
+    {% endif %}
+    {% if pages_urls contains cand %}
+      <a href="{{ cand | relative_url }}">中文</a>
+    {% else %}
+      <a href="{{ '/zh/' | relative_url }}">中文</a>
+    {% endif %}
   {% endif %}
 </div> 

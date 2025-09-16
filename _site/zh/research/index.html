@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>研究 Research | Edge AI Lab</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="研究 Research" />
+<meta property="og:locale" content="zh" />
+<meta name="description" content="边缘智能实验室官网（占位数据） Edge AI Laboratory Website (Placeholder)" />
+<meta property="og:description" content="边缘智能实验室官网（占位数据） Edge AI Laboratory Website (Placeholder)" />
+<link rel="canonical" href="http://localhost:4000/zh/research/" />
+<meta property="og:url" content="http://localhost:4000/zh/research/" />
+<meta property="og:site_name" content="Edge AI Lab" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="研究 Research" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"边缘智能实验室官网（占位数据） Edge AI Laboratory Website (Placeholder)","headline":"研究 Research","url":"http://localhost:4000/zh/research/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="/assets/css/style.css"> 
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <a class="site-title" href="/">Edge AI Lab</a>
+    </div>
+    <div class="nav-center">
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          
+          
+          
+            
+            
+            <li class="nav-item">
+              <a href="/zh/" class="">主页</a>
+              
+            </li>
+          
+            
+            
+            <li class="nav-item has-children">
+              <a href="/zh/about/" class="">关于</a>
+              
+                <ul class="dropdown">
+                  
+                    <li><a href="/zh/vision/">愿景</a></li>
+                  
+                    <li><a href="/zh/contact/">位置与联系方式</a></li>
+                  
+                    <li><a href="/zh/admissions/">招生</a></li>
+                  
+                </ul>
+              
+            </li>
+          
+            
+            
+            <li class="nav-item has-children">
+              <a href="/zh/themes/" class="">研究</a>
+              
+                <ul class="dropdown">
+                  
+                    <li><a href="/zh/projects/">项目</a></li>
+                  
+                    <li><a href="/zh/publications/">论文</a></li>
+                  
+                    <li><a href="/zh/patents/">专利</a></li>
+                  
+                </ul>
+              
+            </li>
+          
+            
+            
+            <li class="nav-item">
+              <a href="/zh/people/" class="">团队</a>
+              
+            </li>
+          
+            
+            
+            <li class="nav-item">
+              <a href="/zh/news/" class="">新闻</a>
+              
+            </li>
+          
+        </ul>
+      </nav>
+    </div>
+    <div class="actions">
+      <div class="lang-switch">
+  
+  
+  
+    
+    
+    
+      <a href="/en/research/">EN</a>
+    
+  
+</div> 
+    </div>
+  </div>
+</header> 
+    <main id="main" class="container">
+      <div class="container" style="margin:24px 0;">
+  <h1>研究 Research</h1>
+  <section style="margin-top:12px;">
+    <h2>研究方向 Themes</h2>
+    <p class="meta">查看实验室的主要研究方向。</p>
+    <p><a class="link" href="/themes/">进入研究方向</a></p>
+  </section>
+
+  <section style="margin-top:12px;">
+    <h2>项目 Projects</h2>
+    <p class="meta">工程与原型系统。</p>
+    <p><a class="link" href="/projects/">进入项目</a></p>
+  </section>
+
+  <section style="margin-top:12px;">
+    <h2>论文 Publications</h2>
+    <p class="meta">学术成果与材料。</p>
+    <p><a class="link" href="/publications/">进入论文</a></p>
+  </section>
+
+  <section style="margin-top:12px;">
+    <h2>专利 Patents</h2>
+    <p class="meta">技术发明与转化。</p>
+    <p><a class="link" href="/patents/">进入专利</a></p>
+  </section>
+</div>
+
+    </main>
+    <footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-meta">
+      <p>© 2025 Edge AI Lab. All rights reserved.</p>
+    </div>
+    <nav aria-label="Footer">
+      <ul>
+        
+        
+        
+          <li><a href="/zh/privacy/">隐私</a></li>
+        
+          <li><a href="/sitemap.xml">站点地图</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+<script>
+(function(){
+  const wrap = document.querySelector('.hscroll-wrap.one');
+  if(!wrap) return;
+  const scroller = wrap.querySelector('.hscroll.one');
+  const dots = Array.from(wrap.querySelectorAll('.dots .dot'));
+  const cards = Array.from(scroller.querySelectorAll('.hcard'));
+  if(!scroller || !dots.length || !cards.length) return;
+  const pageSize = Math.max(1, Math.round(cards.length / 3));
+  function scrollToGroup(g){
+    const idx = Math.min(cards.length - 1, g * pageSize);
+    const card = cards[idx];
+    if(card){ card.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); activate(g); }
+  }
+  function activeGroup(){
+    const mid = scroller.getBoundingClientRect().left + scroller.clientWidth/2;
+    let activeIdx = 0, minDist = Infinity;
+    cards.forEach((el, i)=>{
+      const rect = el.getBoundingClientRect();
+      const center = rect.left + rect.width/2;
+      const dist = Math.abs(center - mid);
+      if(dist < minDist){ minDist = dist; activeIdx = i; }
+    });
+    return Math.min(2, Math.floor(activeIdx / pageSize));
+  }
+  function activate(g){ dots.forEach((d,i)=>{
+    d.classList.toggle('active', i===g);
+    d.disabled = (i !== g && !d.hasAttribute('aria-hidden')) ? false : d.disabled;
+  }); }
+  dots.forEach((btn,i)=>{ if(!btn.disabled){ btn.addEventListener('click', ()=>scrollToGroup(i)); } });
+  const onScroll = ()=> activate(activeGroup());
+  scroller.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script> 
+  </body>
+</html> 

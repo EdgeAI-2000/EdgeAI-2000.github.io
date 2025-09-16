@@ -1,20 +1,30 @@
 main:
   - label: Home
     url: /en/
+  - label: About
+    url: /en/about/
+    children:
+      - label: Vision
+        url: /en/vision/
+      - label: Contact
+        url: /en/contact/
+      - label: Admissions
+        url: /en/admissions/
   - label: Research
     url: /en/themes/
-  - label: Projects
-    url: /en/projects/
-  - label: Publications
-    url: /en/publications/
+    children:
+      - label: Themes
+        url: /en/themes/
+      - label: Projects
+        url: /en/projects/
+      - label: Publications
+        url: /en/publications/
+      - label: Patents
+        url: /patents/
   - label: People
     url: /en/people/
   - label: News
     url: /en/news/
-  - label: Admissions
-    url: /en/openings/
-  - label: Contact
-    url: /en/contact/
 footer:
   - label: Privacy
     url: /en/privacy/

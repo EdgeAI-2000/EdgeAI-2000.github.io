@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>About | Edge AI Lab</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="About" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="边缘智能实验室官网（占位数据） Edge AI Laboratory Website (Placeholder)" />
+<meta property="og:description" content="边缘智能实验室官网（占位数据） Edge AI Laboratory Website (Placeholder)" />
+<link rel="canonical" href="http://localhost:4000/en/about/" />
+<meta property="og:url" content="http://localhost:4000/en/about/" />
+<meta property="og:site_name" content="Edge AI Lab" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="About" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"边缘智能实验室官网（占位数据） Edge AI Laboratory Website (Placeholder)","headline":"About","url":"http://localhost:4000/en/about/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="/assets/css/style.css"> 
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <a class="site-title" href="/">Edge AI Lab</a>
+    </div>
+    <div class="nav-center">
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          
+          
+          
+            
+            
+            <li class="nav-item">
+              <a href="/en/" class="">Home</a>
+              
+            </li>
+          
+            
+            
+            <li class="nav-item has-children">
+              <a href="/en/about/" class="active">About</a>
+              
+                <ul class="dropdown">
+                  
+                    <li><a href="/en/vision/">Vision</a></li>
+                  
+                    <li><a href="/en/contact/">Contact</a></li>
+                  
+                    <li><a href="/en/admissions/">Admissions</a></li>
+                  
+                </ul>
+              
+            </li>
+          
+            
+            
+            <li class="nav-item has-children">
+              <a href="/en/themes/" class="">Research</a>
+              
+                <ul class="dropdown">
+                  
+                    <li><a href="/en/themes/">Themes</a></li>
+                  
+                    <li><a href="/en/projects/">Projects</a></li>
+                  
+                    <li><a href="/en/publications/">Publications</a></li>
+                  
+                    <li><a href="/patents/">Patents</a></li>
+                  
+                </ul>
+              
+            </li>
+          
+            
+            
+            <li class="nav-item">
+              <a href="/en/people/" class="">People</a>
+              
+            </li>
+          
+            
+            
+            <li class="nav-item">
+              <a href="/en/news/" class="">News</a>
+              
+            </li>
+          
+        </ul>
+      </nav>
+    </div>
+    <div class="actions">
+      <div class="lang-switch">
+  
+  
+  
+    
+    
+    
+      <a href="/zh/about/">中文</a>
+    
+  
+</div> 
+    </div>
+  </div>
+</header> 
+    <main id="main" class="container">
+      <div class="container" style="margin:24px 0;">
+  <h1>About the Lab</h1>
+  <p class="lead">We focus on Edge AI with system–algorithm co-design, aiming for low latency, low power, and high reliability in real-world deployments (placeholder).</p>
+  <p>Our research spans on-device inference and systems optimization, model compression and quantization, TinyML and hardware-aware co-design. We build an end-to-end pipeline from algorithms to systems and from prototypes to applications (placeholder).</p>
+  <p>The lab is based at the School of Computer Science, collaborating with multiple partners. For collaboration or inquiries, please email contact@example.edu (placeholder).</p>
+</div>
+
+    </main>
+    <footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-meta">
+      <p>© 2025 Edge AI Lab. All rights reserved.</p>
+    </div>
+    <nav aria-label="Footer">
+      <ul>
+        
+        
+        
+          <li><a href="/en/privacy/">Privacy</a></li>
+        
+          <li><a href="/sitemap.xml">Sitemap</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+<script>
+(function(){
+  const wrap = document.querySelector('.hscroll-wrap.one');
+  if(!wrap) return;
+  const scroller = wrap.querySelector('.hscroll.one');
+  const dots = Array.from(wrap.querySelectorAll('.dots .dot'));
+  const cards = Array.from(scroller.querySelectorAll('.hcard'));
+  if(!scroller || !dots.length || !cards.length) return;
+  const pageSize = Math.max(1, Math.round(cards.length / 3));
+  function scrollToGroup(g){
+    const idx = Math.min(cards.length - 1, g * pageSize);
+    const card = cards[idx];
+    if(card){ card.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); activate(g); }
+  }
+  function activeGroup(){
+    const mid = scroller.getBoundingClientRect().left + scroller.clientWidth/2;
+    let activeIdx = 0, minDist = Infinity;
+    cards.forEach((el, i)=>{
+      const rect = el.getBoundingClientRect();
+      const center = rect.left + rect.width/2;
+      const dist = Math.abs(center - mid);
+      if(dist < minDist){ minDist = dist; activeIdx = i; }
+    });
+    return Math.min(2, Math.floor(activeIdx / pageSize));
+  }
+  function activate(g){ dots.forEach((d,i)=>{
+    d.classList.toggle('active', i===g);
+    d.disabled = (i !== g && !d.hasAttribute('aria-hidden')) ? false : d.disabled;
+  }); }
+  dots.forEach((btn,i)=>{ if(!btn.disabled){ btn.addEventListener('click', ()=>scrollToGroup(i)); } });
+  const onScroll = ()=> activate(activeGroup());
+  scroller.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script> 
+  </body>
+</html> 

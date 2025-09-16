@@ -1,22 +1,30 @@
 main:
-  - label: 首页
-    url: /
-  - label: 研究方向
-    url: /themes/
-  - label: 项目
-    url: /projects/
-  - label: 论文
-    url: /publications/
+  - label: 主页
+    url: /zh/
+  - label: 关于
+    url: /zh/about/
+    children:
+      - label: 愿景
+        url: /zh/vision/
+      - label: 位置与联系方式
+        url: /zh/contact/
+      - label: 招生
+        url: /zh/admissions/
+  - label: 研究
+    url: /zh/themes/
+    children:
+      - label: 项目
+        url: /zh/projects/
+      - label: 论文
+        url: /zh/publications/
+      - label: 专利
+        url: /zh/patents/
   - label: 团队
-    url: /people/
+    url: /zh/people/
   - label: 新闻
-    url: /news/
-  - label: 招生
-    url: /openings/
-  - label: 联系我们
-    url: /contact/
+    url: /zh/news/
 footer:
   - label: 隐私
-    url: /privacy/
+    url: /zh/privacy/
   - label: 站点地图
     url: /sitemap.xml 

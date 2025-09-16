@@ -1,5 +1,10 @@
 ---
-layout: home
+layout: default
 lang: zh
-title: 边缘智能实验室 Edge AI Lab（占位）
---- 
+title: Redirect
+permalink: /
+---
+
+<meta http-equiv="refresh" content="0; url={{ '/zh/' | relative_url }}" />
+<a href="{{ '/zh/' | relative_url }}">进入中文首页</a>
+ 
