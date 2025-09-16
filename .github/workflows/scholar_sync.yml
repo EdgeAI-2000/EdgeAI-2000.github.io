@@ -32,6 +32,20 @@ jobs:
         run: |
           python scripts/scholar_sync.py
 
+      - name: Verify generated publications
+        run: |
+          if [ ! -d _publications/auto ]; then
+            echo "_publications/auto directory not created."
+            exit 1
+          fi
+          ls -la _publications/auto || true
+          COUNT=$(ls -1 _publications/auto/*.md 2>/dev/null | wc -l | tr -d ' ')
+          echo "Generated $COUNT publication files"
+          if [ "$COUNT" = "0" ]; then
+            echo "No publications generated. Make sure SERPAPI_API_KEY is set, otherwise scholarly may be blocked in CI."
+            exit 1
+          fi
+
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"

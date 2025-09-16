@@ -3,6 +3,12 @@ layout: default
 ---
 <div class="container" style="margin:24px 0;">
   <h1>{{ page.title }}</h1>
+  {% assign pubs = site.publications %}
+  {% if pubs == nil or pubs.size == 0 %}
+    {% assign pubs = site.collections | where: 'label', 'publications' | first | default: nil %}
+    {% if pubs %}{% assign pubs = pubs.docs %}{% endif %}
+  {% endif %}
+  <p class="meta">Total: {{ pubs | size }}</p>
   <div class="pub-filters">
     <label>
       <span>Type</span>
@@ -17,35 +23,35 @@ layout: default
       <span>Year</span>
       <select id="pub-year">
         <option value="all">All</option>
-        {% assign years = site.publications | map: 'year' | uniq | sort | reverse %}
-        {% for y in years %}<option value="{{ y }}">{{ y }}</option>{% endfor %}
+        {% assign years = pubs | map: 'year' | uniq | sort | reverse %}
+        {% for y in years %}{% if y %}<option value="{{ y }}">{{ y }}</option>{% endif %}{% endfor %}
       </select>
     </label>
   </div>
+</div>
 
-  {% assign pubs = site.publications | sort: 'year' | reverse %}
-  {% assign grouped = pubs | group_by: 'year' %}
-  <div id="pub-list">
-    {% for group in grouped %}
-      <h2 class="year">{{ group.name }}</h2>
-      <div class="pubs">
-        {% for pub in group.items %}
-          <article class="pub-card" data-type="{{ pub.type | default: 'conference' }}" data-year="{{ pub.year }}">
-            <div class="venue">{{ pub.venue }}</div>
-            <h3 class="title"><a href="{{ pub.url | relative_url }}">{{ pub.title }}</a></h3>
-            <div class="authors">{{ pub.authors | join: ', ' }}</div>
-            <div class="actions">
-              {% if pub.pdf %}<a class="chip" href="{{ pub.pdf }}" target="_blank">PDF</a>{% endif %}
-              {% if pub.code %}<a class="chip" href="{{ pub.code }}" target="_blank">Code</a>{% endif %}
-              {% if pub.poster %}<a class="chip" href="{{ pub.poster }}" target="_blank">Poster</a>{% endif %}
-              {% if pub.slides %}<a class="chip" href="{{ pub.slides }}" target="_blank">Slides</a>{% endif %}
-              {% if pub.bibtex %}<a class="chip" href="{{ pub.bibtex }}" target="_blank">BibTeX</a>{% endif %}
-            </div>
-          </article>
-        {% endfor %}
-      </div>
-    {% endfor %}
-  </div>
+{% assign pubs_sorted = pubs | sort: 'year' | reverse %}
+{% assign grouped = pubs_sorted | group_by: 'year' %}
+<div id="pub-list">
+  {% for group in grouped %}
+    {% if group.name %}<h2 class="year">{{ group.name }}</h2>{% endif %}
+    <div class="container pubs">
+      {% for pub in group.items %}
+        <article class="pub-card" data-type="{{ pub.type | default: 'conference' }}" data-year="{{ pub.year }}">
+          {% if pub.venue %}<div class="venue">{{ pub.venue }}</div>{% endif %}
+          <h3 class="title"><a href="{{ pub.url | relative_url }}">{{ pub.title }}</a></h3>
+          {% if pub.authors %}<div class="authors">{{ pub.authors | join: ', ' }}</div>{% endif %}
+          <div class="actions">
+            {% if pub.pdf %}<a class="chip" href="{{ pub.pdf }}" target="_blank">PDF</a>{% endif %}
+            {% if pub.code %}<a class="chip" href="{{ pub.code }}" target="_blank">Code</a>{% endif %}
+            {% if pub.poster %}<a class="chip" href="{{ pub.poster }}" target="_blank">Poster</a>{% endif %}
+            {% if pub.slides %}<a class="chip" href="{{ pub.slides }}" target="_blank">Slides</a>{% endif %}
+            {% if pub.bibtex %}<a class="chip" href="{{ pub.bibtex }}" target="_blank">BibTeX</a>{% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  {% endfor %}
 </div>
 <script>
 (function(){
