@@ -41,7 +41,6 @@ def read_config():
 
 def ensure_output():
 	OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-	# Clean previous auto files to avoid duplicates
 	for p in OUTPUT_DIR.glob("*.md"):
 		p.unlink()
 
@@ -82,7 +81,6 @@ def fetch_serpapi(author_id: str, hl: str = "en", max_results: int = 100):
 		next_link = (data.get("serpapi_pagination") or {}).get("next")
 		if not next_link:
 			break
-		# Parse next link into params
 		next_params = dict([part.split("=") for part in next_link.split("?")[-1].split("&")])
 		next_params.setdefault("api_key", SERPAPI_KEY)
 		time.sleep(0.8)
@@ -129,6 +127,10 @@ def decide_type(venue: str) -> str:
 	return "conference"
 
 
+def yaml_escape(s: str) -> str:
+	return s.replace('"', '\\"')
+
+
 def write_publication(pub: dict):
 	title = pub.get('title') or 'Untitled'
 	year = pub.get('year') or '0000'
@@ -141,22 +143,28 @@ def write_publication(pub: dict):
 	doi = ''
 	slug = f"{year}-{slugify(title)}"
 	path = OUTPUT_DIR / f"{slug}.md"
-	fm = {
-		"title": title,
-		"authors": authors,
-		"venue": venue,
-		"year": int(year) if year.isdigit() else year,
-		"type": ptype,
-		"pdf": pdf or None,
-		"code": code or None,
-		"arxiv": arxiv or None,
-		"doi": doi or None,
-		"source": "scholar",
-	}
-	# Clean None values
-	fm = {k:v for k,v in fm.items() if v}
-	body = ""
-	content = "---\n" + yaml.safe_dump(fm, allow_unicode=True, sort_keys=False) + "---\n" + body
+	lines = [
+		"---",
+		f"title: \"{yaml_escape(title)}\"",
+		"authors:",
+	]
+	for a in authors:
+		lines.append(f"- {a}")
+	if venue:
+		lines.append(f"venue: \"{yaml_escape(venue)}\"")
+	lines.append(f"year: {year}")
+	lines.append(f"type: {ptype}")
+	if pdf:
+		lines.append(f"pdf: {pdf}")
+	if code:
+		lines.append(f"code: {code}")
+	if arxiv:
+		lines.append(f"arxiv: {arxiv}")
+	if doi:
+		lines.append(f"doi: {doi}")
+	lines.append("source: scholar")
+	lines.append("---")
+	content = "\n".join(lines) + "\n"
 	path.write_text(content, encoding="utf-8")
 	return path
 
