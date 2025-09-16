@@ -15,6 +15,9 @@ plugins:
 # Theme (use minima for a simple baseline)
 theme: minima
 
+markdown: kramdown
+highlighter: rouge
+
 # Collections
 collections:
   people:
