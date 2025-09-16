@@ -1,0 +1,8 @@
+profiles:
+  - id: xtXbq_AAAAAJ
+    lang: en
+  - id: DK5avZUAAAAJ
+    lang: en
+options:
+  max_per_author: 100
+  prefer_serpapi: true 

@@ -86,31 +86,82 @@
     <main id="main" class="container">
       <div class="container" style="margin:24px 0;">
   <h1>Publications</h1>
-  
+  <div class="pub-filters">
+    <label>
+      <span>Type</span>
+      <select id="pub-type">
+        <option value="all">All</option>
+        <option value="conference">Conference</option>
+        <option value="journal">Journal</option>
+        <option value="preprint">Preprint</option>
+      </select>
+    </label>
+    <label>
+      <span>Year</span>
+      <select id="pub-year">
+        <option value="all">All</option>
+        
+        <option value=""></option>
+      </select>
+    </label>
+  </div>
 
   
   
-
-  
-
-  <div class="list">
+  <div id="pub-list">
     
-      <article class="card">
-        <h3><a href="/publications/2025/2024-edgevision-detector/"></a></h3>
+      <h2 class="year"></h2>
+      <div class="pubs">
         
-          <p class="meta">2025-09-16 14:17:56 +0800</p>
+          <article class="pub-card" data-type="conference" data-year="">
+            <div class="venue"></div>
+            <h3 class="title"><a href="/publications/2025/2024-edgevision-detector/"></a></h3>
+            <div class="authors"></div>
+            <div class="actions">
+              
+              
+              
+              
+              
+            </div>
+          </article>
         
-      </article>
-    
-      <article class="card">
-        <h3><a href="/publications/2025/2023-tinyml-quantization/"></a></h3>
+          <article class="pub-card" data-type="conference" data-year="">
+            <div class="venue"></div>
+            <h3 class="title"><a href="/publications/2025/2023-tinyml-quantization/"></a></h3>
+            <div class="authors"></div>
+            <div class="actions">
+              
+              
+              
+              
+              
+            </div>
+          </article>
         
-          <p class="meta">2025-09-16 14:17:56 +0800</p>
-        
-      </article>
+      </div>
     
   </div>
-</div> 
+</div>
+<script>
+(function(){
+  const typeSel = document.getElementById('pub-type');
+  const yearSel = document.getElementById('pub-year');
+  const list = document.getElementById('pub-list');
+  if(!typeSel || !yearSel || !list) return;
+  function apply(){
+    const t = typeSel.value; const y = yearSel.value;
+    list.querySelectorAll('.pub-card').forEach(card=>{
+      const mt = card.getAttribute('data-type')||'conference';
+      const my = card.getAttribute('data-year')||'0000';
+      const show = (t==='all'||t===mt) && (y==='all'||y===my);
+      card.style.display = show ? '' : 'none';
+    });
+  }
+  typeSel.addEventListener('change', apply);
+  yearSel.addEventListener('change', apply);
+})();
+</script> 
     </main>
     <footer class="site-footer">
   <div class="container footer-inner">

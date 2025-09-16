@@ -1,5 +1,5 @@
 ---
-layout: list
+layout: publications
 lang: zh
 title: 论文
 collection: publications

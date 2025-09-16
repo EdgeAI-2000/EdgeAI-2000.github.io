@@ -1,5 +1,5 @@
 ---
-layout: list
+layout: sections
 lang: en
 title: Projects
 collection: projects

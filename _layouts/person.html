@@ -1,0 +1,40 @@
+---
+layout: default
+---
+<article class="container" style="margin:24px 0;">
+  <div class="person-hero">
+    <img class="avatar-lg" src="{{ page.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url }}" alt="{{ page.name }}"/>
+    <div class="info">
+      <h1>{{ page.name }}</h1>
+      <p class="meta">{{ page.role | upcase }}{% if page.affiliation %} · {{ page.affiliation }}{% endif %}</p>
+      <div class="links">
+        {% if page.email %}<a href="mailto:{{ page.email }}">Email</a>{% endif %}
+        {% if page.homepage %} · <a href="{{ page.homepage }}" target="_blank">Homepage</a>{% endif %}
+        {% if page.scholar %} · <a href="{{ page.scholar }}" target="_blank">Scholar</a>{% endif %}
+        {% if page.dblp %} · <a href="{{ page.dblp }}" target="_blank">DBLP</a>{% endif %}
+        {% if page.github %} · <a href="{{ page.github }}" target="_blank">GitHub</a>{% endif %}
+      </div>
+    </div>
+  </div>
+  {% if page.bio_zh or page.bio_en %}
+    <section class="content" style="margin-top:16px;">
+      <h2>{% if page.lang == 'en' %}Bio{% else %}简介{% endif %}</h2>
+      <p>{{ page.bio_zh | default: page.bio_en }}</p>
+    </section>
+  {% endif %}
+
+  {% assign authored = site.publications | where_exp: 'p', 'p.authors contains page.name' %}
+  {% if authored and authored.size > 0 %}
+    <section style="margin-top:16px;">
+      <h2>{% if page.lang == 'en' %}Publications{% else %}论文{% endif %}</h2>
+      <div class="list">
+        {% for pub in authored %}
+          <article class="card">
+            <h3><a href="{{ pub.url | relative_url }}">{{ pub.title }}</a></h3>
+            <p class="meta">{{ pub.venue }} {{ pub.year }}</p>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+</article> 

@@ -10,27 +10,48 @@ layout: default
   {% for r in roles %}
     {% assign group = current | where: 'role', r %}
     {% if group and group.size > 0 %}
-      <h2 style="margin-top:16px;">{{ r | upcase }}</h2>
-      <div class="grid">
+      {% assign role_label = r | upcase %}
+      {% if page.lang == 'zh' %}
+        {% if r == 'phd' %}{% assign role_label = '博士研究生' %}{% endif %}
+        {% if r == 'master' %}{% assign role_label = '硕士研究生' %}{% endif %}
+        {% if r == 'undergrad' %}{% assign role_label = '本科生' %}{% endif %}
+        {% if r == 'postdoc' %}{% assign role_label = '博士后' %}{% endif %}
+        {% if r == 'pi' %}{% assign role_label = 'PI' %}{% endif %}
+        {% if r == 'faculty' %}{% assign role_label = '教师' %}{% endif %}
+        {% if r == 'engineer' %}{% assign role_label = '工程师' %}{% endif %}
+      {% else %}
+        {% if r == 'phd' %}{% assign role_label = 'PhD Students' %}{% endif %}
+        {% if r == 'master' %}{% assign role_label = 'Master Students' %}{% endif %}
+        {% if r == 'undergrad' %}{% assign role_label = 'Undergraduate Students' %}{% endif %}
+        {% if r == 'postdoc' %}{% assign role_label = 'Postdoctoral Researchers' %}{% endif %}
+        {% if r == 'pi' %}{% assign role_label = 'PI' %}{% endif %}
+        {% if r == 'faculty' %}{% assign role_label = 'Faculty' %}{% endif %}
+        {% if r == 'engineer' %}{% assign role_label = 'Engineers' %}{% endif %}
+      {% endif %}
+      <h2 style="margin:18px 0 10px;">{{ role_label }}</h2>
+      <div class="people-grid">
         {% for p in group %}
-          <article class="card">
-            <h3><a href="{{ p.url | relative_url }}">{{ p.name }}</a></h3>
-            <p class="meta">{{ p.research_areas | array_to_sentence_string }}</p>
-            <p>{{ p.bio_zh | default: p.bio_en | truncate: 120 }}</p>
-          </article>
+          <a class="person-card" href="{{ p.url | relative_url }}">
+            <img class="avatar-img" src="{{ p.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url }}" alt="{{ p.name }}" loading="lazy"/>
+            <h3>{{ p.name }}</h3>
+            {% if p.research_areas %}<p class="meta">{{ p.research_areas | array_to_sentence_string }}</p>{% endif %}
+            <p class="intro">{{ p.bio_zh | default: p.bio_en | truncate: 80 }}</p>
+          </a>
         {% endfor %}
       </div>
     {% endif %}
   {% endfor %}
 
   {% if alumni and alumni.size > 0 %}
-    <h2 style="margin-top:16px;">{{ page.lang == 'en' ? 'Alumni' : '校友' }}</h2>
-    <div class="grid">
+    <h2 style="margin:18px 0 10px;">{% if page.lang == 'en' %}Alumni{% else %}校友{% endif %}</h2>
+    <div class="people-grid">
       {% for p in alumni %}
-        <article class="card">
-          <h3><a href="{{ p.url | relative_url }}">{{ p.name }}</a></h3>
-          <p class="meta">{{ p.destination }}</p>
-        </article>
+        <a class="person-card" href="{{ p.url | relative_url }}">
+          <img class="avatar-img" src="{{ p.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url }}" alt="{{ p.name }}" loading="lazy"/>
+          <h3>{{ p.name }}</h3>
+          {% if p.destination %}<p class="meta">{{ p.destination }}</p>{% endif %}
+          <p class="intro">{{ p.bio_zh | default: p.bio_en | truncate: 80 }}</p>
+        </a>
       {% endfor %}
     </div>
   {% endif %}

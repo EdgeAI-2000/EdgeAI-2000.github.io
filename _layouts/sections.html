@@ -1,0 +1,58 @@
+---
+layout: default
+---
+<div class="container" style="margin:24px 0;">
+  <h1>{{ page.title }}</h1>
+  {% if page.description %}<p class="meta">{{ page.description }}</p>{% endif %}
+</div>
+
+{% assign coll_name = page.collection %}
+{% assign items = site[coll_name] %}
+{% if page.sort_by %}
+  {% assign items = items | sort: page.sort_by %}
+  {% if page.reverse %}{% assign items = items | reverse %}{% endif %}
+{% endif %}
+
+<div class="features">
+  {% for it in items %}
+    <section class="feature-section {% if forloop.index0 % 2 == 1 %}alt{% endif %}">
+      <div class="container feature-inner">
+        <div class="media">
+          <img src="{{ it.cover | default: '/assets/images/placeholders/card-16x9.svg' | relative_url }}" alt="" loading="lazy"/>
+        </div>
+        <div class="content">
+          <h2>{{ it.title }}</h2>
+          {% if it.summary_zh or it.summary_en %}
+            <p class="lead">{{ it.summary_zh | default: it.summary_en }}</p>
+          {% elsif it.intro %}
+            <p class="lead">{{ it.intro }}</p>
+          {% endif %}
+
+          {% if it.metrics %}
+            <div class="metrics">
+              {% if it.metrics.latency %}<div class="metric"><span class="k">Latency</span><span class="v">{{ it.metrics.latency }}</span></div>{% endif %}
+              {% if it.metrics.power %}<div class="metric"><span class="k">Power</span><span class="v">{{ it.metrics.power }}</span></div>{% endif %}
+              {% if it.metrics.accuracy %}<div class="metric"><span class="k">Accuracy</span><span class="v">{{ it.metrics.accuracy }}</span></div>{% endif %}
+            </div>
+          {% endif %}
+
+          {% if it.themes %}
+            <div class="tags" style="margin-top:8px;">
+              {% for t in it.themes %}<span class="tag">{{ t }}</span>{% endfor %}
+            </div>
+          {% endif %}
+
+          {% if it.content %}
+            <div class="body">{{ it.content }}</div>
+          {% endif %}
+
+          <div class="links" style="margin-top:10px;">
+            {% if it.pdf %}<a class="link" href="{{ it.pdf }}" target="_blank">PDF</a>{% endif %}
+            {% if it.code %}{% if it.pdf %} · {% endif %}<a class="link" href="{{ it.code }}" target="_blank">Code</a>{% endif %}
+            {% if it.demo_video %}{% if it.pdf or it.code %} · {% endif %}<a class="link" href="{{ it.demo_video }}" target="_blank">Video</a>{% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endfor %}
+</div> 

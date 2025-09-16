@@ -1,5 +1,5 @@
 ---
-layout: list
+layout: publications
 lang: en
 title: Publications
 collection: publications

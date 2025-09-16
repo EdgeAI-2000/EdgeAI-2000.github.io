@@ -54,7 +54,7 @@ defaults:
       path: ""
       type: "people"
     values:
-      layout: detail
+      layout: person
       lang: zh
   - scope:
       path: ""
