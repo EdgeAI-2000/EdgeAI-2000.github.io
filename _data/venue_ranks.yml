@@ -1,0 +1,64 @@
+# Journal
+ieee transactions on mobile computing:
+  cas: Q1
+  ccf: A
+ieee transactions on services computing:
+  cas: Q1
+  ccf: A
+ieee transactions on parallel and distributed systems:
+  cas: Q1
+  ccf: A
+ieee transactions on intelligent transportation systems:
+  cas: Q1
+  ccf: B
+ieee transactions on network science and engineering:
+  cas: Q1
+ieee transactions on consumer electronics:
+  cas: Q2
+ieee transactions on emerging topics in computational intelligence:
+  cas: Q2
+ieee transactions on vehicular technology:
+  cas: Q2
+ieee internet of things journal:
+  cas: Q1
+  ccf: C
+ieee communications magazine:
+  cas: Q2
+information sciences:
+  cas: Q2
+applied soft computing:
+  cas: Q2
+chaos, solitons & fractals:
+  cas: Q1
+swarm and evolutionary computation:
+  cas: Q1
+neural networks:
+  cas: Q2
+journal of systems architecture:
+  cas: Q3
+  ccf: B
+mobile networks and applications:
+  ccf: C
+future generation computer systems:
+  cas: Q2
+  ccf: C
+international journal of intelligent systems:
+  cas: Q3
+电子学报:
+  ccf: A
+
+# Conference
+proceedings of the aaai conference on artificial intelligence:
+  ccf: A
+ieee infocom:
+  ccf: A
+international conference on wireless artificial intelligent computing:
+  ccf: C
+international conference on wireless algorithms, systems, and applications:
+  ccf: C
+international conference on mobility, sensing and networking:
+  ccf: C
+icc:
+  ccf: C
+globecom:
+  ccf: C

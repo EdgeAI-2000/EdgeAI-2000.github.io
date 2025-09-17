@@ -335,6 +335,11 @@ h3 { font-size: 18px; font-weight: 700; }
 /* Publications badges and highlights */
 .pub-badges { display: flex; gap: 6px; margin-bottom: 6px; }
 .highlights { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+/* Distinct styles for CAS/CCF tags */
+.tag-ccf { background: #fff3f3; border-color: #ffb3b3; color: #b00020; }
+.tag-cas { background: #f0fff4; border-color: #9ae6b4; color: #0f7a3a; }
+.tag-ccf.is-top { background: #ffe8e8; border-color: #ff8a8a; color: #a00000; font-weight: 800; }
+.tag-cas.is-top { background: #e6ffef; border-color: #7bdcb5; color: #0a6330; font-weight: 800; }
 
 /* Patents grid */
 .patent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }

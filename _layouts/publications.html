@@ -8,7 +8,8 @@ layout: default
     {% assign pubs = site.collections | where: 'label', 'publications' | first | default: nil %}
     {% if pubs %}{% assign pubs = pubs.docs %}{% endif %}
   {% endif %}
-  <p class="meta">Total: {{ pubs | size }}</p>
+  {% assign pubs_recent = pubs | where_exp:'p','p.year >= 2020' %}
+  <p class="meta">Total: {{ pubs_recent | size }}</p>
 
   {%- assign years = pubs | map: 'year' | uniq | sort | reverse -%}
   
@@ -18,15 +19,55 @@ layout: default
     {%- if pub.venue -%}
       {%- assign venue_raw = pub.venue -%}
       {%- comment -%} Remove year patterns like "2024", "(2024)", "2024:", etc. {%- endcomment -%}
-      {%- assign venue_norm = venue_raw | replace: '2024', '' | replace: '2023', '' | replace: '2022', '' | replace: '2021', '' | replace: '2020', '' | replace: '2019', '' | replace: '2018', '' | replace: '2017', '' | replace: '2016', '' | replace: '2015', '' -%}
-      {%- assign venue_norm = venue_norm | replace: '(2024)', '' | replace: '(2023)', '' | replace: '(2022)', '' | replace: '(2021)', '' | replace: '(2020)', '' | replace: '(2019)', '' | replace: '(2018)', '' | replace: '(2017)', '' | replace: '(2016)', '' | replace: '(2015)', '' -%}
-      {%- assign venue_norm = venue_norm | replace: '2024:', '' | replace: '2023:', '' | replace: '2022:', '' | replace: '2021:', '' | replace: '2020:', '' | replace: '2019:', '' | replace: '2018:', '' | replace: '2017:', '' | replace: '2016:', '' | replace: '2015:', '' -%}
+      {%- assign venue_norm = venue_raw | replace: '2025', '' | replace: '2024', '' | replace: '2023', '' | replace: '2022', '' | replace: '2021', '' | replace: '2020', '' | replace: '2019', '' | replace: '2018', '' | replace: '2017', '' | replace: '2016', '' | replace: '2015', '' -%}
+      {%- assign venue_norm = venue_norm | replace: '(2025)', '' | replace: '(2024)', '' | replace: '(2023)', '' | replace: '(2022)', '' | replace: '(2021)', '' | replace: '(2020)', '' | replace: '(2019)', '' | replace: '(2018)', '' | replace: '(2017)', '' | replace: '(2016)', '' | replace: '(2015)', '' -%}
+      {%- assign venue_norm = venue_norm | replace: '2025:', '' | replace: '2024:', '' | replace: '2023:', '' | replace: '2022:', '' | replace: '2021:', '' | replace: '2020:', '' | replace: '2019:', '' | replace: '2018:', '' | replace: '2017:', '' | replace: '2016:', '' | replace: '2015:', '' -%}
       {%- comment -%} Remove common conference suffixes {%- endcomment -%}
       {%- assign venue_norm = venue_norm | replace: ' Conference', '' | replace: ' Symposium', '' | replace: ' Workshop', '' | replace: ' (CONF)', '' | replace: ' (WKS)', '' -%}
       {%- comment -%} Remove common journal suffixes {%- endcomment -%}
       {%- assign venue_norm = venue_norm | replace: ' Journal', '' | replace: ' Transactions', '' | replace: ' (J)', '' | replace: ' (T)', '' -%}
-      {%- comment -%} Clean up extra spaces and punctuation {%- endcomment -%}
-      {%- assign venue_norm = venue_norm | strip | replace: '  ', ' ' | replace: ',,', ',' | replace: ',,', ',' -%}
+      {%- comment -%} Remove parenthetical acronyms and truncate journal volume/issue/pages {%- endcomment -%}
+      {%- assign venue_base = venue_norm | split: ' (' | first -%}
+      {%- assign vn_lower = venue_norm | downcase -%}
+      {%- assign is_journal = false -%}
+      {%- if vn_lower contains 'journal' or vn_lower contains 'transactions' or vn_lower contains 'magazine' or vn_lower contains 'letters' -%}
+        {%- assign is_journal = true -%}
+      {%- endif -%}
+      {%- if is_journal -%}
+        {%- assign words = venue_base | split: ' ' -%}
+        {%- assign keep = '' -%}
+        {%- assign hit_digit = false -%}
+        {%- for w in words -%}
+          {%- if hit_digit == false and (w contains '0' or w contains '1' or w contains '2' or w contains '3' or w contains '4' or w contains '5' or w contains '6' or w contains '7' or w contains '8' or w contains '9') -%}
+            {%- assign hit_digit = true -%}
+          {%- endif -%}
+          {%- if hit_digit == false -%}
+            {%- assign keep = keep | append: w | append: ' ' -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- assign venue_norm = keep | strip -%}
+      {%- else -%}
+        {%- assign venue_norm = venue_base | strip -%}
+      {%- endif -%}
+      {%- comment -%} Apply venue alias mapping {%- endcomment -%}
+      {%- assign vnorm_lc = venue_norm | downcase -%}
+      {%- for kv in site.data.venue_aliases -%}
+        {%- assign key = kv[0] | downcase -%}
+        {%- assign val = kv[1] -%}
+        {%- assign venue_raw_lc = venue_raw | downcase -%}
+        {%- if vnorm_lc contains key or venue_raw_lc contains key -%}
+          {%- assign venue_norm = val.alias -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- comment -%} Clean up extra spaces {%- endcomment -%}
+      {%- assign venue_norm = venue_norm | strip | replace: '  ', ' ' -%}
+      {%- comment -%} Drop trailing punctuation like comma/colon/dash {%- endcomment -%}
+      {%- assign last = venue_norm | slice: -1, 1 -%}
+      {%- if last == ',' or last == ':' or last == ';' or last == '-' -%}
+        {%- assign len = venue_norm | size -%}
+        {%- assign len2 = len | minus: 1 -%}
+        {%- assign venue_norm = venue_norm | slice: 0, len2 | strip -%}
+      {%- endif -%}
       {%- comment -%} If normalization resulted in empty string, use original {%- endcomment -%}
       {%- if venue_norm == '' or venue_norm == ' ' -%}
         {%- assign venue_norm = venue_raw -%}
@@ -52,17 +93,23 @@ layout: default
     {%- endif -%}
   {%- endfor -%}
   {%- assign venues = venues_display | split: '||' | sort -%}
-  
-  {%- assign themes_raw = '' -%}
-  {%- for p in pubs -%}
-    {%- if p.themes -%}
-      {%- for t in p.themes -%}
-        {%- assign themes_raw = themes_raw | append: t | append: '||' -%}
-      {%- endfor -%}
-    {%- endif -%}
+  {%- assign pubs_for_filters = pubs | where_exp:'p','p.year >= 2020' -%}
+  {%- assign cas_raw = '' -%}
+  {%- assign ccf_raw = '' -%}
+  {%- for p in pubs_for_filters -%}
+    {%- assign venue_key = p.venue | downcase -%}
+    {%- for kv in site.data.venue_ranks -%}
+      {%- assign key = kv[0] -%}
+      {%- assign val = kv[1] -%}
+      {%- if venue_key contains key -%}
+        {%- if val.cas and val.cas != '' -%}{%- assign cas_raw = cas_raw | append: val.cas | append: '||' -%}{%- endif -%}
+        {%- if val.ccf and val.ccf != '' -%}{%- assign ccf_raw = ccf_raw | append: val.ccf | append: '||' -%}{%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
   {%- endfor -%}
-  {%- assign themes = themes_raw | split: '||' | uniq | sort -%}
-
+  {%- assign cas_values = cas_raw | split: '||' | uniq | sort -%}
+  {%- assign ccf_values = ccf_raw | split: '||' | uniq | sort -%}
+  
   <div class="pub-filters sticky" id="pub-filters" role="region" aria-label="Publication filters">
     <button class="filters-toggle" id="filters-toggle" aria-expanded="false" aria-controls="filters-fields">Filters</button>
     <div class="filters-fields" id="filters-fields">
@@ -71,31 +118,25 @@ layout: default
         <input type="search" id="pub-q" placeholder="Search title, authors, venue" />
       </label>
       <label>
-        <span>Year</span>
-        <select id="pub-year">
+        <span>CAS</span>
+        <select id="pub-cas">
           <option value="all">All</option>
-          {% for y in years %}{% if y %}<option value="{{ y }}">{{ y }}</option>{% endif %}{% endfor %}
+          {% for c in cas_values %}{% if c %}<option value="{{ c | escape }}">{{ c }}</option>{% endif %}{% endfor %}
         </select>
       </label>
       <label>
-        <span>Venue</span>
-        <select id="pub-venue">
+        <span>CCF</span>
+        <select id="pub-ccf">
           <option value="all">All</option>
-          {% for v in venues %}{% if v %}<option value="{{ v | escape }}">{{ v }}</option>{% endif %}{% endfor %}
-        </select>
-      </label>
-      <label>
-        <span>Theme</span>
-        <select id="pub-theme">
-          <option value="all">All</option>
-          {% for th in themes %}{% if th != '' %}<option value="{{ th | escape }}">{{ th }}</option>{% endif %}{% endfor %}
+          {% for c in ccf_values %}{% if c %}<option value="{{ c | escape }}">{{ c }}</option>{% endif %}{% endfor %}
         </select>
       </label>
     </div>
   </div>
 </div>
 
-{% assign pubs_sorted = pubs | sort: 'year' | reverse %}
+{% assign pubs_filtered = pubs | where_exp:'p','p.year >= 2020' %}
+{% assign pubs_sorted = pubs_filtered | sort: 'year' | reverse %}
 {% assign grouped = pubs_sorted | group_by: 'year' %}
 <div id="pub-list">
   {% for group in grouped %}
@@ -103,21 +144,97 @@ layout: default
       {% if group.name %}<h2 class="year">{{ group.name }}</h2>{% endif %}
       <div class="container pubs">
         {% for pub in group.items %}
-          {% assign venue_norm = pub.venue | default: '' | downcase %}
-          {% assign themes_join = pub.themes | join: '|' %}
-          <article class="pub-card" data-year="{{ pub.year }}" data-venue="{{ venue_norm }}" data-themes="{{ themes_join | downcase }}">
-            <div class="pub-badges">
-              {% if pub.venue %}<span class="badge">{{ pub.venue }}</span>{% endif %}
-              {% if pub.year %}<span class="badge">{{ pub.year }}</span>{% endif %}
-            </div>
-            <h3 class="title"><a href="{{ pub.url | relative_url }}">{{ pub.title }}</a></h3>
-            <div class="highlights">
-              {% assign hl = '' %}
-              {% if pub.cas or pub.cas_zone %}
-                {% assign casv = pub.cas | default: pub.cas_zone %}
-                <span class="tag">CAS {{ casv }}</span>
+          {% assign venue_norm = pub.venue | default: '' %}
+          {% assign venue_norm = venue_norm | replace: '2025', '' | replace: '2024', '' | replace: '2023', '' | replace: '2022', '' | replace: '2021', '' | replace: '2020', '' | replace: '2019', '' | replace: '2018', '' | replace: '2017', '' | replace: '2016', '' | replace: '2015', '' %}
+          {% assign venue_norm = venue_norm | replace: '(2025)', '' | replace: '(2024)', '' | replace: '(2023)', '' | replace: '(2022)', '' | replace: '(2021)', '' | replace: '(2020)', '' | replace: '(2019)', '' | replace: '(2018)', '' | replace: '(2017)', '' | replace: '(2016)', '' | replace: '(2015)', '' %}
+          {% assign venue_norm = venue_norm | replace: '2025:', '' | replace: '2024:', '' | replace: '2023:', '' | replace: '2022:', '' | replace: '2021:', '' | replace: '2020:', '' | replace: '2019:', '' | replace: '2018:', '' | replace: '2017:', '' | replace: '2016:', '' | replace: '2015:', '' %}
+          {% assign venue_base = venue_norm | split: ' (' | first %}
+          {% assign vn_lower = venue_norm | downcase %}
+          {% assign is_journal = false %}
+          {% if vn_lower contains 'journal' or vn_lower contains 'transactions' or vn_lower contains 'magazine' or vn_lower contains 'letters' %}
+            {% assign is_journal = true %}
+          {% endif %}
+          {% if is_journal %}
+            {% assign words = venue_base | split: ' ' %}
+            {% assign keep = '' %}
+            {% assign hit_digit = false %}
+            {% for w in words %}
+              {% if hit_digit == false and (w contains '0' or w contains '1' or w contains '2' or w contains '3' or w contains '4' or w contains '5' or w contains '6' or w contains '7' or w contains '8' or w contains '9') %}
+                {% assign hit_digit = true %}
               {% endif %}
-              {% if pub.ccf %}<span class="tag">CCF {{ pub.ccf }}</span>{% endif %}
+              {% if hit_digit == false %}
+                {% assign keep = keep | append: w | append: ' ' %}
+              {% endif %}
+            {% endfor %}
+            {% assign venue_norm = keep | strip %}
+          {% else %}
+            {% assign venue_norm = venue_base | strip %}
+          {% endif %}
+          {% assign vnorm_lc = venue_norm | downcase %}
+          {% for kv in site.data.venue_aliases %}
+            {% assign key = kv[0] | downcase %}
+            {% assign val = kv[1] %}
+            {% assign venue_raw_lc = pub.venue | downcase %}
+            {% if vnorm_lc contains key or venue_raw_lc contains key %}
+              {% assign venue_norm = val.alias %}
+            {% endif %}
+          {% endfor %}
+          {% assign venue_norm = venue_norm | strip | downcase %}
+          {% assign venue_display_raw = pub.venue | split: ' (' | first %}
+          {% assign vdisp_lc = venue_display_raw | downcase %}
+          {% assign vdisp_is_journal = vdisp_lc contains 'journal' or vdisp_lc contains 'transactions' or vdisp_lc contains 'magazine' or vdisp_lc contains 'letters' %}
+          {% if vdisp_is_journal %}
+            {% assign words = venue_display_raw | split: ' ' %}
+            {% assign keep = '' %}
+            {% assign hit_digit = false %}
+            {% for w in words %}
+              {% if hit_digit == false and (w contains '0' or w contains '1' or w contains '2' or w contains '3' or w contains '4' or w contains '5' or w contains '6' or w contains '7' or w contains '8' or w contains '9') %}
+                {% assign hit_digit = true %}
+              {% endif %}
+              {% if hit_digit == false %}
+                {% assign keep = keep | append: w | append: ' ' %}
+              {% endif %}
+            {% endfor %}
+            {% assign venue_display = keep | strip %}
+          {% else %}
+            {% assign venue_display = venue_display_raw | strip %}
+          {% endif %}
+          {% assign last = venue_display | slice: -1, 1 %}
+          {% if last == ',' or last == ':' or last == ';' or last == '-' %}
+            {% assign len = venue_display | size %}
+            {% assign len2 = len | minus: 1 %}
+            {% assign venue_display = venue_display | slice: 0, len2 | strip %}
+          {% endif %}
+          {% assign venue_display_lc = venue_display | downcase %}
+          {% for kv in site.data.venue_aliases %}
+            {% assign key = kv[0] | downcase %}
+            {% assign val = kv[1] %}
+            {% assign venue_raw_lc = pub.venue | downcase %}
+            {% if venue_display_lc contains key or venue_raw_lc contains key %}
+              {% assign venue_display = val.alias %}
+            {% endif %}
+          {% endfor %}
+          {% assign venue_badge = venue_display %}
+          {% if venue_badge == '' %}{% assign venue_badge = pub.venue %}{% endif %}
+          {% assign venue_key = pub.venue | downcase %}
+          {% assign cas_tag = '' %}
+          {% assign ccf_tag = '' %}
+          {% for kv in site.data.venue_ranks %}
+            {% assign key = kv[0] %}
+            {% assign val = kv[1] %}
+            {% if venue_key contains key %}
+              {% if val.cas and val.cas != '' %}{% assign cas_tag = val.cas %}{% endif %}
+              {% if val.ccf and val.ccf != '' %}{% assign ccf_tag = val.ccf %}{% endif %}
+            {% endif %}
+          {% endfor %}
+          <article class="pub-card" data-year="{{ pub.year }}" data-venue="{{ venue_norm }}" data-cas="{{ cas_tag }}" data-ccf="{{ ccf_tag }}">
+            <div class="pub-badges">
+              {% if venue_badge %}<span class="badge">{{ venue_badge }}</span>{% endif %}
+              {% if cas_tag and cas_tag != '' %}<span class="tag tag-cas {% if cas_tag == 'Q1' or cas_tag == '1区' %}is-top{% endif %}">CAS {{ cas_tag }}</span>{% endif %}
+              {% if ccf_tag and ccf_tag != '' %}<span class="tag tag-ccf {% if ccf_tag == 'A' %}is-top{% endif %}">CCF {{ ccf_tag }}</span>{% endif %}
+            </div>
+            <h3 class="title">{{ pub.title }}</h3>
+            <div class="highlights">
               {% if pub.code %}<span class="tag">Code</span>{% endif %}
             </div>
             {% if pub.authors %}<div class="authors">{{ pub.authors | join: ', ' }}</div>{% endif %}
@@ -128,7 +245,6 @@ layout: default
               {% if pub.slides %}<a class="chip" href="{{ pub.slides }}" target="_blank">Slides</a>{% endif %}
               {% if pub.bibtex %}<a class="chip" href="{{ pub.bibtex }}" target="_blank">BibTeX</a>{% endif %}
             </div>
-            <div class="srch-text" aria-hidden="true" hidden>{{ pub.title }} {{ pub.authors | join: ' ' }} {{ pub.venue }}</div>
           </article>
         {% endfor %}
       </div>
@@ -149,37 +265,36 @@ layout: default
 })();
 (function(){
   const q = document.getElementById('pub-q');
-  const yearSel = document.getElementById('pub-year');
-  const venueSel = document.getElementById('pub-venue');
-  const themeSel = document.getElementById('pub-theme');
+  const casSel = document.getElementById('pub-cas');
+  const ccfSel = document.getElementById('pub-ccf');
   const list = document.getElementById('pub-list');
   if(!list) return;
   const groups = Array.from(list.querySelectorAll('.year-group'));
   function norm(s){ return (s||'').toLowerCase(); }
   function apply(){
     const qv = norm(q && q.value);
-    const yv = yearSel ? yearSel.value : 'all';
-    const vv = norm(venueSel && venueSel.value);
-    const tv = norm(themeSel && themeSel.value);
+    const casv = norm(casSel && casSel.value);
+    const ccfv = norm(ccfSel && ccfSel.value);
     groups.forEach(group=>{
       let anyVisibleInGroup = false;
       group.querySelectorAll('.pub-card').forEach(card=>{
-        const cy = card.getAttribute('data-year')||'';
-        const cv = card.getAttribute('data-venue')||'';
-        const ct = card.getAttribute('data-themes')||'';
-        const text = (card.querySelector('.srch-text')?.textContent||'').toLowerCase();
-        const yrOk = (yv==='all' || yv===cy);
-        const veOk = (venueSel && venueSel.value==='all') || (vv==='' || cv.includes(vv));
-        const thOk = (themeSel && themeSel.value==='all') || (tv==='' || ct.includes(tv));
+        const cas = (card.getAttribute('data-cas')||'').toLowerCase();
+        const ccf = (card.getAttribute('data-ccf')||'').toLowerCase();
+        const titleTxt = (card.querySelector('.title')?.textContent||'');
+        const authorsTxt = (card.querySelector('.authors')?.textContent||'');
+        const venueTxt = (card.querySelector('.pub-badges .badge')?.textContent||'');
+        const text = (titleTxt + ' ' + authorsTxt + ' ' + venueTxt).toLowerCase();
+        const casOk = (casSel && casSel.value==='all') || (casv==='' || cas.includes(casv));
+        const ccfOk = (ccfSel && ccfSel.value==='all') || (ccfv==='' || ccf.includes(ccfv));
         const qOk = (!q || qv==='' || text.includes(qv));
-        const show = yrOk && veOk && thOk && qOk;
+        const show = casOk && ccfOk && qOk;
         card.style.display = show ? '' : 'none';
         if(show) anyVisibleInGroup = true;
       });
       group.style.display = anyVisibleInGroup ? '' : 'none';
     });
   }
-  [q, yearSel, venueSel, themeSel].forEach(el=>{ el && el.addEventListener(el.tagName==='INPUT'?'input':'change', apply); });
+  [q, casSel, ccfSel].forEach(el=>{ el && el.addEventListener(el.tagName==='INPUT'?'input':'change', apply); });
   apply();
 })();
 </script>

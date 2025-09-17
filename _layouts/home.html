@@ -98,7 +98,8 @@ layout: default
 
 <section class="container kpis section-block">
   <div class="kpi">
-    <div class="kpi-num">{{ site.publications | size }}</div>
+    {% assign pubs_recent = site.publications | where_exp:'p','p.year >= 2020' %}
+    <div class="kpi-num">{{ pubs_recent | size }}</div>
     <div class="kpi-label">{% if page.lang == 'en' %}Publications{% else %}论文{% endif %}</div>
   </div>
   <div class="kpi">
@@ -106,7 +107,8 @@ layout: default
     <div class="kpi-label">{% if page.lang == 'en' %}Projects{% else %}项目{% endif %}</div>
   </div>
   <div class="kpi">
-    <div class="kpi-num">{{ site.people | size }}</div>
+    {% assign members_current = site.people | where: 'status', 'current' %}
+    <div class="kpi-num">{{ members_current | size }}</div>
     <div class="kpi-label">{% if page.lang == 'en' %}Members{% else %}成员{% endif %}</div>
   </div>
   <div class="kpi">

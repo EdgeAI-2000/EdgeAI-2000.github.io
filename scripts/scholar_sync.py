@@ -33,6 +33,38 @@ def slugify(title: str) -> str:
 	return t[:80].strip("-") or hashlib.sha1(title.encode()).hexdigest()[:10]
 
 
+def to_title_case(title: str) -> str:
+	"""Apply English-style Title Case while preserving acronyms and hyphenated words."""
+	if not title:
+		return title
+	small_words = {"a","an","the","and","or","for","nor","but","on","at","to","from","by","of","in","with","as","via"}
+	parts = re.split(r"(\s+)", title.strip())
+	result = []
+	word_index = 0
+	for part in parts:
+		if part.isspace():
+			result.append(part)
+			continue
+		def cap_token(token: str) -> str:
+			if not token:
+				return token
+			if token.isupper():
+				return token
+			lower = token.lower()
+			return lower[:1].upper() + lower[1:]
+		tokens = part.split("-")
+		cased_tokens = []
+		for t in tokens:
+			lw = t.lower()
+			if word_index == 0 or lw not in small_words:
+				cased_tokens.append(cap_token(t))
+			else:
+				cased_tokens.append(lw)
+		word_index += 1
+		result.append("-".join(cased_tokens))
+	return "".join(result)
+
+
 def read_config():
 	if not DATA_FILE.exists():
 		raise SystemExit(f"Config not found: {DATA_FILE}")
@@ -132,13 +164,15 @@ def yaml_escape(s: str) -> str:
 
 
 def write_publication(pub: dict):
-	title = pub.get('title') or 'Untitled'
+	raw_title = pub.get('title') or 'Untitled'
+	title = to_title_case(raw_title)
 	year = pub.get('year') or '0000'
 	venue = pub.get('venue') or ''
 	ptype = decide_type(venue)
 	authors = pub.get('authors') or []
 	pdf = pub.get('pdf') or ''
 	code = pub.get('code') or ''
+	link = pub.get('link') or ''
 	arxiv = ''
 	doi = ''
 	slug = f"{year}-{slugify(title)}"
@@ -158,6 +192,8 @@ def write_publication(pub: dict):
 		lines.append(f"pdf: {pdf}")
 	if code:
 		lines.append(f"code: {code}")
+	if link:
+		lines.append(f"link: \"{yaml_escape(link)}\"")
 	if arxiv:
 		lines.append(f"arxiv: {arxiv}")
 	if doi:

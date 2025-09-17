@@ -1,0 +1,52 @@
+aaai:
+  alias: Proceedings of AAAI
+proceedings of the aaai conference on artificial intelligence:
+  alias: Proceedings of AAAI 
+wccct:
+  alias: Proceedings of WCCCT
+world conference on computing and communication technologies:
+  alias: Proceedings of WCCCT
+8th world conference on computing and communication technologies:
+  alias: Proceedings of WCCCT
+wasa:
+  alias: Proceedings of WASA
+international conference on wireless artificial intelligent computing:
+  alias: Proceedings of WASA
+international conference on wireless algorithms, systems, and applications:
+  alias: Proceedings of WASA
+international conference on wireless artificial intelligent computing systems and applications:
+  alias: Proceedings of WASA
+ispce-as:
+  alias: Proceedings of IEEE ISPCE-AS
+ispce-cn:
+  alias: Proceedings of IEEE ISPCE-AS
+ieee international symposium on product compliance engineering-asia:
+  alias: Proceedings of IEEE ISPCE-AS
+ieee international symposium on product compliance engineering-china:
+  alias: Proceedings of IEEE ISPCE-AS
+dsins:
+  alias: Proceedings of IEEE DSInS
+international conference on digital society and intelligent systems:
+  alias: Proceedings of IEEE DSInS
+proceedings of the sixth international confer:
+  alias: Proceedings of ICCBEI
+international conference on intelligent transportation:
+  alias: Proceedings of IEEE ITSC
+msn:
+  alias: Proceedings of IEEE MSN
+international conference on mobility, sensing and networking:
+  alias: Proceedings of IEEE MSN
+ccnc:
+  alias: Proceedings of IEEE CCNC
+neural computing for advanced applications:
+  alias: Proceedings of NCAA
+icc:
+  alias: Proceedings of IEEE ICC
+infocom:
+  alias: Proceedings of IEEE INFOCOM
+globecom:
+  alias: Proceedings of IEEE GLOBECOM
+international conference on communication software and networks:
+  alias: Proceedings of IEEE ICCSN
+arxiv e-prints:
+  alias: arXiv preprint
