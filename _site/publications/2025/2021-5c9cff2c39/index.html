@@ -15,11 +15,11 @@
 <meta property="og:url" content="http://localhost:4000/publications/2025/2021-5c9cff2c39/" />
 <meta property="og:site_name" content="Edge AI Lab" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-09-16T18:03:58+08:00" />
+<meta property="article:published_time" content="2025-09-16T22:10:07+08:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="基于势博弈的车载边缘计算信道分配方法" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"许新操， 刘凯*， 刘春晖， 蒋豪， 郭松涛， 吴巍炜"},"dateModified":"2025-09-16T18:03:58+08:00","datePublished":"2025-09-16T18:03:58+08:00","description":"边缘智能实验室官网（占位数据） Edge AI Laboratory Website (Placeholder)","headline":"基于势博弈的车载边缘计算信道分配方法","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/publications/2025/2021-5c9cff2c39/"},"url":"http://localhost:4000/publications/2025/2021-5c9cff2c39/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"许新操， 刘凯*， 刘春晖， 蒋豪， 郭松涛， 吴巍炜"},"dateModified":"2025-09-16T22:10:07+08:00","datePublished":"2025-09-16T22:10:07+08:00","description":"边缘智能实验室官网（占位数据） Edge AI Laboratory Website (Placeholder)","headline":"基于势博弈的车载边缘计算信道分配方法","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/publications/2025/2021-5c9cff2c39/"},"url":"http://localhost:4000/publications/2025/2021-5c9cff2c39/"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,23 +41,26 @@
           
             
             
-            <li class="nav-item">
-              <a href="/zh/" class="">主页</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/zh/" class="" aria-current="">主页</a>
               
             </li>
           
             
             
-            <li class="nav-item has-children">
-              <a href="/zh/about/" class="">关于</a>
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/zh/about/" class="" aria-current="">关于</a>
               
-                <ul class="dropdown">
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/zh/vision/">愿景</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/vision/">愿景</a></li>
                   
-                    <li><a href="/zh/contact/">位置与联系方式</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/contact/">联系我们</a></li>
                   
-                    <li><a href="/zh/admissions/">招生</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/admissions/">招生</a></li>
                   
                 </ul>
               
@@ -65,16 +68,26 @@
           
             
             
-            <li class="nav-item has-children">
-              <a href="/zh/themes/" class="">研究</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/zh/news/" class="" aria-current="">新闻</a>
               
-                <ul class="dropdown">
+            </li>
+          
+            
+            
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/zh/themes/" class="" aria-current="">研究</a>
+              
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/zh/projects/">项目</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/projects/">项目</a></li>
                   
-                    <li><a href="/zh/publications/">论文</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/publications/">论文</a></li>
                   
-                    <li><a href="/zh/patents/">专利</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/patents/">专利</a></li>
                   
                 </ul>
               
@@ -82,15 +95,8 @@
           
             
             
-            <li class="nav-item">
-              <a href="/zh/people/" class="">团队</a>
-              
-            </li>
-          
-            
-            
-            <li class="nav-item">
-              <a href="/zh/news/" class="">新闻</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/zh/people/" class="" aria-current="">团队</a>
               
             </li>
           
@@ -182,6 +188,34 @@
   scroller.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll);
   onScroll();
+})();
+</script>
+<script>
+(function(){
+  const mql = window.matchMedia('(max-width: 900px)');
+  function setup(){
+    document.querySelectorAll('[data-nav-item]').forEach(item=>{
+      const caret = item.querySelector('[data-nav-caret]');
+      const dropdown = item.querySelector('.dropdown');
+      if(!caret || !dropdown) return;
+      // mobile: click to toggle
+      caret.onclick = (e)=>{
+        if(mql.matches){
+          e.preventDefault();
+          const open = item.classList.contains('open');
+          document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+          if(!open) item.classList.add('open');
+          caret.setAttribute('aria-expanded', String(!open));
+        }
+      };
+    });
+  }
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+    }
+  });
+  setup();
 })();
 </script> 
   </body>

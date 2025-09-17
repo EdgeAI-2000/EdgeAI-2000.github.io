@@ -1,0 +1,144 @@
+---
+layout: default
+---
+<div class="container" style="margin:24px 0;">
+  <h1>{{ page.title }}</h1>
+  {% assign pubs = site.publications %}
+  {% if pubs == nil or pubs.size == 0 %}
+    {% assign pubs = site.collections | where: 'label', 'publications' | first | default: nil %}
+    {% if pubs %}{% assign pubs = pubs.docs %}{% endif %}
+  {% endif %}
+  <p class="meta">Total: {{ pubs | size }}</p>
+
+  {%- assign years = pubs | map: 'year' | uniq | sort | reverse -%}
+  {%- assign venues = pubs | map: 'venue' | uniq | sort -%}
+  {%- assign themes_raw = '' -%}
+  {%- for p in pubs -%}
+    {%- if p.themes -%}
+      {%- for t in p.themes -%}
+        {%- assign themes_raw = themes_raw | append: t | append: '||' -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign themes = themes_raw | split: '||' | uniq | sort -%}
+
+  <div class="pub-filters sticky" id="pub-filters" role="region" aria-label="Publication filters">
+    <button class="filters-toggle" id="filters-toggle" aria-expanded="false" aria-controls="filters-fields">Filters</button>
+    <div class="filters-fields" id="filters-fields">
+      <label>
+        <span>Keyword</span>
+        <input type="search" id="pub-q" placeholder="Search title, authors, venue" />
+      </label>
+      <label>
+        <span>Year</span>
+        <select id="pub-year">
+          <option value="all">All</option>
+          {% for y in years %}{% if y %}<option value="{{ y }}">{{ y }}</option>{% endif %}{% endfor %}
+        </select>
+      </label>
+      <label>
+        <span>Venue</span>
+        <select id="pub-venue">
+          <option value="all">All</option>
+          {% for v in venues %}{% if v %}<option value="{{ v | escape }}">{{ v }}</option>{% endif %}{% endfor %}
+        </select>
+      </label>
+      <label>
+        <span>Theme</span>
+        <select id="pub-theme">
+          <option value="all">All</option>
+          {% for th in themes %}{% if th != '' %}<option value="{{ th | escape }}">{{ th }}</option>{% endif %}{% endfor %}
+        </select>
+      </label>
+    </div>
+  </div>
+</div>
+
+{% assign pubs_sorted = pubs | sort: 'year' | reverse %}
+{% assign grouped = pubs_sorted | group_by: 'year' %}
+<div id="pub-list">
+  {% for group in grouped %}
+    <section class="year-group" data-year="{{ group.name }}">
+      {% if group.name %}<h2 class="year">{{ group.name }}</h2>{% endif %}
+      <div class="container pubs">
+        {% for pub in group.items %}
+          {% assign venue_norm = pub.venue | default: '' | downcase %}
+          {% assign themes_join = pub.themes | join: '|' %}
+          <article class="pub-card" data-year="{{ pub.year }}" data-venue="{{ venue_norm }}" data-themes="{{ themes_join | downcase }}">
+            <div class="pub-badges">
+              {% if pub.venue %}<span class="badge">{{ pub.venue }}</span>{% endif %}
+              {% if pub.year %}<span class="badge">{{ pub.year }}</span>{% endif %}
+            </div>
+            <h3 class="title"><a href="{{ pub.url | relative_url }}">{{ pub.title }}</a></h3>
+            <div class="highlights">
+              {% assign hl = '' %}
+              {% if pub.cas or pub.cas_zone %}
+                {% assign casv = pub.cas | default: pub.cas_zone %}
+                <span class="tag">CAS {{ casv }}</span>
+              {% endif %}
+              {% if pub.ccf %}<span class="tag">CCF {{ pub.ccf }}</span>{% endif %}
+              {% if pub.code %}<span class="tag">Code</span>{% endif %}
+            </div>
+            {% if pub.authors %}<div class="authors">{{ pub.authors | join: ', ' }}</div>{% endif %}
+            <div class="actions">
+              {% if pub.pdf %}<a class="chip" href="{{ pub.pdf }}" target="_blank">PDF</a>{% endif %}
+              {% if pub.code %}<a class="chip" href="{{ pub.code }}" target="_blank">Code</a>{% endif %}
+              {% if pub.poster %}<a class="chip" href="{{ pub.poster }}" target="_blank">Poster</a>{% endif %}
+              {% if pub.slides %}<a class="chip" href="{{ pub.slides }}" target="_blank">Slides</a>{% endif %}
+              {% if pub.bibtex %}<a class="chip" href="{{ pub.bibtex }}" target="_blank">BibTeX</a>{% endif %}
+            </div>
+            <div class="srch-text" aria-hidden="true" hidden>{{ pub.title }} {{ pub.authors | join: ' ' }} {{ pub.venue }}</div>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% endfor %}
+</div>
+<script>
+(function(){
+  const filters = document.getElementById('pub-filters');
+  const toggle = document.getElementById('filters-toggle');
+  if(toggle){
+    toggle.addEventListener('click', ()=>{
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      filters.classList.toggle('open', !open);
+    });
+  }
+})();
+(function(){
+  const q = document.getElementById('pub-q');
+  const yearSel = document.getElementById('pub-year');
+  const venueSel = document.getElementById('pub-venue');
+  const themeSel = document.getElementById('pub-theme');
+  const list = document.getElementById('pub-list');
+  if(!list) return;
+  const groups = Array.from(list.querySelectorAll('.year-group'));
+  function norm(s){ return (s||'').toLowerCase(); }
+  function apply(){
+    const qv = norm(q && q.value);
+    const yv = yearSel ? yearSel.value : 'all';
+    const vv = norm(venueSel && venueSel.value);
+    const tv = norm(themeSel && themeSel.value);
+    groups.forEach(group=>{
+      let anyVisibleInGroup = false;
+      group.querySelectorAll('.pub-card').forEach(card=>{
+        const cy = card.getAttribute('data-year')||'';
+        const cv = card.getAttribute('data-venue')||'';
+        const ct = card.getAttribute('data-themes')||'';
+        const text = (card.querySelector('.srch-text')?.textContent||'').toLowerCase();
+        const yrOk = (yv==='all' || yv===cy);
+        const veOk = (venueSel && venueSel.value==='all') || (vv==='' || cv.includes(vv));
+        const thOk = (themeSel && themeSel.value==='all') || (tv==='' || ct.includes(tv));
+        const qOk = (!q || qv==='' || text.includes(qv));
+        const show = yrOk && veOk && thOk && qOk;
+        card.style.display = show ? '' : 'none';
+        if(show) anyVisibleInGroup = true;
+      });
+      group.style.display = anyVisibleInGroup ? '' : 'none';
+    });
+  }
+  [q, yearSel, venueSel, themeSel].forEach(el=>{ el && el.addEventListener(el.tagName==='INPUT'?'input':'change', apply); });
+  apply();
+})();
+</script> 

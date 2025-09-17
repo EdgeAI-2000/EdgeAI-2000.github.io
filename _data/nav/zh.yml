@@ -6,10 +6,12 @@ main:
     children:
       - label: 愿景
         url: /zh/vision/
-      - label: 位置与联系方式
+      - label: 联系我们
         url: /zh/contact/
       - label: 招生
         url: /zh/admissions/
+  - label: 新闻
+    url: /zh/news/
   - label: 研究
     url: /zh/themes/
     children:
@@ -21,8 +23,6 @@ main:
         url: /zh/patents/
   - label: 团队
     url: /zh/people/
-  - label: 新闻
-    url: /zh/news/
 footer:
   - label: 隐私
     url: /zh/privacy/

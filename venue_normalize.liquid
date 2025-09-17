@@ -1,0 +1,40 @@
+{%- comment -%} Normalize venues for deduplication {%- endcomment -%}
+{%- assign venue_map = '' -%}
+{%- for pub in pubs -%}
+  {%- if pub.venue -%}
+    {%- assign venue_raw = pub.venue -%}
+    {%- comment -%} Remove year patterns like "2024", "(2024)", "2024:", etc. {%- endcomment -%}
+    {%- assign venue_norm = venue_raw | replace: '2024', '' | replace: '2023', '' | replace: '2022', '' | replace: '2021', '' | replace: '2020', '' | replace: '2019', '' | replace: '2018', '' | replace: '2017', '' | replace: '2016', '' | replace: '2015', '' -%}
+    {%- assign venue_norm = venue_norm | replace: '(2024)', '' | replace: '(2023)', '' | replace: '(2022)', '' | replace: '(2021)', '' | replace: '(2020)', '' | replace: '(2019)', '' | replace: '(2018)', '' | replace: '(2017)', '' | replace: '(2016)', '' | replace: '(2015)', '' -%}
+    {%- assign venue_norm = venue_norm | replace: '2024:', '' | replace: '2023:', '' | replace: '2022:', '' | replace: '2021:', '' | replace: '2020:', '' | replace: '2019:', '' | replace: '2018:', '' | replace: '2017:', '' | replace: '2016:', '' | replace: '2015:', '' -%}
+    {%- comment -%} Remove common conference suffixes {%- endcomment -%}
+    {%- assign venue_norm = venue_norm | replace: ' Conference', '' | replace: ' Symposium', '' | replace: ' Workshop', '' | replace: ' (CONF)', '' | replace: ' (WKS)', '' -%}
+    {%- comment -%} Remove common journal suffixes {%- endcomment -%}
+    {%- assign venue_norm = venue_norm | replace: ' Journal', '' | replace: ' Transactions', '' | replace: ' (J)', '' | replace: ' (T)', '' -%}
+    {%- comment -%} Clean up extra spaces and punctuation {%- endcomment -%}
+    {%- assign venue_norm = venue_norm | strip | replace: '  ', ' ' | replace: ',,', ',' | replace: ',,', ',' -%}
+    {%- comment -%} If normalization resulted in empty string, use original {%- endcomment -%}
+    {%- if venue_norm == '' or venue_norm == ' ' -%}
+      {%- assign venue_norm = venue_raw -%}
+    {%- endif -%}
+    {%- comment -%} Store mapping: normalized -> original {%- endcomment -%}
+    {%- assign venue_map = venue_map | append: venue_norm | append: '||' | append: venue_raw | append: '|||' -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- comment -%} Extract unique normalized venues {%- endcomment -%}
+{%- assign venue_pairs = venue_map | split: '|||' -%}
+{%- assign venues_normalized = '' -%}
+{%- assign venues_display = '' -%}
+{%- for pair in venue_pairs -%}
+  {%- if pair != '' -%}
+    {%- assign parts = pair | split: '||' -%}
+    {%- assign norm = parts[0] -%}
+    {%- assign orig = parts[1] -%}
+    {%- unless venues_normalized contains norm -%}
+      {%- assign venues_normalized = venues_normalized | append: norm | append: '||' -%}
+      {%- assign venues_display = venues_display | append: orig | append: '||' -%}
+    {%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign venues = venues_display | split: '||' | sort -%}

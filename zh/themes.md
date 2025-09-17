@@ -1,5 +1,5 @@
 ---
-layout: list
+layout: sections
 lang: zh
 title: 研究方向
 collection: themes

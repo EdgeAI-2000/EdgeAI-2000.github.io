@@ -10,21 +10,19 @@ main:
         url: /en/contact/
       - label: Admissions
         url: /en/admissions/
+  - label: News
+    url: /en/news/
   - label: Research
     url: /en/themes/
     children:
-      - label: Themes
-        url: /en/themes/
       - label: Projects
         url: /en/projects/
       - label: Publications
         url: /en/publications/
       - label: Patents
-        url: /patents/
+        url: /en/patents/
   - label: People
     url: /en/people/
-  - label: News
-    url: /en/news/
 footer:
   - label: Privacy
     url: /en/privacy/

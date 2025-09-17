@@ -9,24 +9,89 @@ layout: default
     {% if pubs %}{% assign pubs = pubs.docs %}{% endif %}
   {% endif %}
   <p class="meta">Total: {{ pubs | size }}</p>
-  <div class="pub-filters">
-    <label>
-      <span>Type</span>
-      <select id="pub-type">
-        <option value="all">All</option>
-        <option value="conference">Conference</option>
-        <option value="journal">Journal</option>
-        <option value="preprint">Preprint</option>
-      </select>
-    </label>
-    <label>
-      <span>Year</span>
-      <select id="pub-year">
-        <option value="all">All</option>
-        {% assign years = pubs | map: 'year' | uniq | sort | reverse %}
-        {% for y in years %}{% if y %}<option value="{{ y }}">{{ y }}</option>{% endif %}{% endfor %}
-      </select>
-    </label>
+
+  {%- assign years = pubs | map: 'year' | uniq | sort | reverse -%}
+  
+  {%- comment -%} Normalize venues for deduplication {%- endcomment -%}
+  {%- assign venue_map = '' -%}
+  {%- for pub in pubs -%}
+    {%- if pub.venue -%}
+      {%- assign venue_raw = pub.venue -%}
+      {%- comment -%} Remove year patterns like "2024", "(2024)", "2024:", etc. {%- endcomment -%}
+      {%- assign venue_norm = venue_raw | replace: '2024', '' | replace: '2023', '' | replace: '2022', '' | replace: '2021', '' | replace: '2020', '' | replace: '2019', '' | replace: '2018', '' | replace: '2017', '' | replace: '2016', '' | replace: '2015', '' -%}
+      {%- assign venue_norm = venue_norm | replace: '(2024)', '' | replace: '(2023)', '' | replace: '(2022)', '' | replace: '(2021)', '' | replace: '(2020)', '' | replace: '(2019)', '' | replace: '(2018)', '' | replace: '(2017)', '' | replace: '(2016)', '' | replace: '(2015)', '' -%}
+      {%- assign venue_norm = venue_norm | replace: '2024:', '' | replace: '2023:', '' | replace: '2022:', '' | replace: '2021:', '' | replace: '2020:', '' | replace: '2019:', '' | replace: '2018:', '' | replace: '2017:', '' | replace: '2016:', '' | replace: '2015:', '' -%}
+      {%- comment -%} Remove common conference suffixes {%- endcomment -%}
+      {%- assign venue_norm = venue_norm | replace: ' Conference', '' | replace: ' Symposium', '' | replace: ' Workshop', '' | replace: ' (CONF)', '' | replace: ' (WKS)', '' -%}
+      {%- comment -%} Remove common journal suffixes {%- endcomment -%}
+      {%- assign venue_norm = venue_norm | replace: ' Journal', '' | replace: ' Transactions', '' | replace: ' (J)', '' | replace: ' (T)', '' -%}
+      {%- comment -%} Clean up extra spaces and punctuation {%- endcomment -%}
+      {%- assign venue_norm = venue_norm | strip | replace: '  ', ' ' | replace: ',,', ',' | replace: ',,', ',' -%}
+      {%- comment -%} If normalization resulted in empty string, use original {%- endcomment -%}
+      {%- if venue_norm == '' or venue_norm == ' ' -%}
+        {%- assign venue_norm = venue_raw -%}
+      {%- endif -%}
+      {%- comment -%} Store mapping: normalized -> original {%- endcomment -%}
+      {%- assign venue_map = venue_map | append: venue_norm | append: '||' | append: venue_raw | append: '|||' -%}
+    {%- endif -%}
+  {%- endfor -%}
+  
+  {%- comment -%} Extract unique normalized venues {%- endcomment -%}
+  {%- assign venue_pairs = venue_map | split: '|||' -%}
+  {%- assign venues_normalized = '' -%}
+  {%- assign venues_display = '' -%}
+  {%- for pair in venue_pairs -%}
+    {%- if pair != '' -%}
+      {%- assign parts = pair | split: '||' -%}
+      {%- assign norm = parts[0] -%}
+      {%- assign orig = parts[1] -%}
+      {%- unless venues_normalized contains norm -%}
+        {%- assign venues_normalized = venues_normalized | append: norm | append: '||' -%}
+        {%- assign venues_display = venues_display | append: orig | append: '||' -%}
+      {%- endunless -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign venues = venues_display | split: '||' | sort -%}
+  
+  {%- assign themes_raw = '' -%}
+  {%- for p in pubs -%}
+    {%- if p.themes -%}
+      {%- for t in p.themes -%}
+        {%- assign themes_raw = themes_raw | append: t | append: '||' -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign themes = themes_raw | split: '||' | uniq | sort -%}
+
+  <div class="pub-filters sticky" id="pub-filters" role="region" aria-label="Publication filters">
+    <button class="filters-toggle" id="filters-toggle" aria-expanded="false" aria-controls="filters-fields">Filters</button>
+    <div class="filters-fields" id="filters-fields">
+      <label>
+        <span>Keyword</span>
+        <input type="search" id="pub-q" placeholder="Search title, authors, venue" />
+      </label>
+      <label>
+        <span>Year</span>
+        <select id="pub-year">
+          <option value="all">All</option>
+          {% for y in years %}{% if y %}<option value="{{ y }}">{{ y }}</option>{% endif %}{% endfor %}
+        </select>
+      </label>
+      <label>
+        <span>Venue</span>
+        <select id="pub-venue">
+          <option value="all">All</option>
+          {% for v in venues %}{% if v %}<option value="{{ v | escape }}">{{ v }}</option>{% endif %}{% endfor %}
+        </select>
+      </label>
+      <label>
+        <span>Theme</span>
+        <select id="pub-theme">
+          <option value="all">All</option>
+          {% for th in themes %}{% if th != '' %}<option value="{{ th | escape }}">{{ th }}</option>{% endif %}{% endfor %}
+        </select>
+      </label>
+    </div>
   </div>
 </div>
 
@@ -34,41 +99,87 @@ layout: default
 {% assign grouped = pubs_sorted | group_by: 'year' %}
 <div id="pub-list">
   {% for group in grouped %}
-    {% if group.name %}<h2 class="year">{{ group.name }}</h2>{% endif %}
-    <div class="container pubs">
-      {% for pub in group.items %}
-        <article class="pub-card" data-type="{{ pub.type | default: 'conference' }}" data-year="{{ pub.year }}">
-          {% if pub.venue %}<div class="venue">{{ pub.venue }}</div>{% endif %}
-          <h3 class="title"><a href="{{ pub.url | relative_url }}">{{ pub.title }}</a></h3>
-          {% if pub.authors %}<div class="authors">{{ pub.authors | join: ', ' }}</div>{% endif %}
-          <div class="actions">
-            {% if pub.pdf %}<a class="chip" href="{{ pub.pdf }}" target="_blank">PDF</a>{% endif %}
-            {% if pub.code %}<a class="chip" href="{{ pub.code }}" target="_blank">Code</a>{% endif %}
-            {% if pub.poster %}<a class="chip" href="{{ pub.poster }}" target="_blank">Poster</a>{% endif %}
-            {% if pub.slides %}<a class="chip" href="{{ pub.slides }}" target="_blank">Slides</a>{% endif %}
-            {% if pub.bibtex %}<a class="chip" href="{{ pub.bibtex }}" target="_blank">BibTeX</a>{% endif %}
-          </div>
-        </article>
-      {% endfor %}
-    </div>
+    <section class="year-group" data-year="{{ group.name }}">
+      {% if group.name %}<h2 class="year">{{ group.name }}</h2>{% endif %}
+      <div class="container pubs">
+        {% for pub in group.items %}
+          {% assign venue_norm = pub.venue | default: '' | downcase %}
+          {% assign themes_join = pub.themes | join: '|' %}
+          <article class="pub-card" data-year="{{ pub.year }}" data-venue="{{ venue_norm }}" data-themes="{{ themes_join | downcase }}">
+            <div class="pub-badges">
+              {% if pub.venue %}<span class="badge">{{ pub.venue }}</span>{% endif %}
+              {% if pub.year %}<span class="badge">{{ pub.year }}</span>{% endif %}
+            </div>
+            <h3 class="title"><a href="{{ pub.url | relative_url }}">{{ pub.title }}</a></h3>
+            <div class="highlights">
+              {% assign hl = '' %}
+              {% if pub.cas or pub.cas_zone %}
+                {% assign casv = pub.cas | default: pub.cas_zone %}
+                <span class="tag">CAS {{ casv }}</span>
+              {% endif %}
+              {% if pub.ccf %}<span class="tag">CCF {{ pub.ccf }}</span>{% endif %}
+              {% if pub.code %}<span class="tag">Code</span>{% endif %}
+            </div>
+            {% if pub.authors %}<div class="authors">{{ pub.authors | join: ', ' }}</div>{% endif %}
+            <div class="actions">
+              {% if pub.pdf %}<a class="chip" href="{{ pub.pdf }}" target="_blank">PDF</a>{% endif %}
+              {% if pub.code %}<a class="chip" href="{{ pub.code }}" target="_blank">Code</a>{% endif %}
+              {% if pub.poster %}<a class="chip" href="{{ pub.poster }}" target="_blank">Poster</a>{% endif %}
+              {% if pub.slides %}<a class="chip" href="{{ pub.slides }}" target="_blank">Slides</a>{% endif %}
+              {% if pub.bibtex %}<a class="chip" href="{{ pub.bibtex }}" target="_blank">BibTeX</a>{% endif %}
+            </div>
+            <div class="srch-text" aria-hidden="true" hidden>{{ pub.title }} {{ pub.authors | join: ' ' }} {{ pub.venue }}</div>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
   {% endfor %}
 </div>
 <script>
 (function(){
-  const typeSel = document.getElementById('pub-type');
-  const yearSel = document.getElementById('pub-year');
-  const list = document.getElementById('pub-list');
-  if(!typeSel || !yearSel || !list) return;
-  function apply(){
-    const t = typeSel.value; const y = yearSel.value;
-    list.querySelectorAll('.pub-card').forEach(card=>{
-      const mt = card.getAttribute('data-type')||'conference';
-      const my = card.getAttribute('data-year')||'0000';
-      const show = (t==='all'||t===mt) && (y==='all'||y===my);
-      card.style.display = show ? '' : 'none';
+  const filters = document.getElementById('pub-filters');
+  const toggle = document.getElementById('filters-toggle');
+  if(toggle){
+    toggle.addEventListener('click', ()=>{
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      filters.classList.toggle('open', !open);
     });
   }
-  typeSel.addEventListener('change', apply);
-  yearSel.addEventListener('change', apply);
 })();
-</script> 
+(function(){
+  const q = document.getElementById('pub-q');
+  const yearSel = document.getElementById('pub-year');
+  const venueSel = document.getElementById('pub-venue');
+  const themeSel = document.getElementById('pub-theme');
+  const list = document.getElementById('pub-list');
+  if(!list) return;
+  const groups = Array.from(list.querySelectorAll('.year-group'));
+  function norm(s){ return (s||'').toLowerCase(); }
+  function apply(){
+    const qv = norm(q && q.value);
+    const yv = yearSel ? yearSel.value : 'all';
+    const vv = norm(venueSel && venueSel.value);
+    const tv = norm(themeSel && themeSel.value);
+    groups.forEach(group=>{
+      let anyVisibleInGroup = false;
+      group.querySelectorAll('.pub-card').forEach(card=>{
+        const cy = card.getAttribute('data-year')||'';
+        const cv = card.getAttribute('data-venue')||'';
+        const ct = card.getAttribute('data-themes')||'';
+        const text = (card.querySelector('.srch-text')?.textContent||'').toLowerCase();
+        const yrOk = (yv==='all' || yv===cy);
+        const veOk = (venueSel && venueSel.value==='all') || (vv==='' || cv.includes(vv));
+        const thOk = (themeSel && themeSel.value==='all') || (tv==='' || ct.includes(tv));
+        const qOk = (!q || qv==='' || text.includes(qv));
+        const show = yrOk && veOk && thOk && qOk;
+        card.style.display = show ? '' : 'none';
+        if(show) anyVisibleInGroup = true;
+      });
+      group.style.display = anyVisibleInGroup ? '' : 'none';
+    });
+  }
+  [q, yearSel, venueSel, themeSel].forEach(el=>{ el && el.addEventListener(el.tagName==='INPUT'?'input':'change', apply); });
+  apply();
+})();
+</script>

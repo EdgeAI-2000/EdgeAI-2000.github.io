@@ -39,23 +39,26 @@
           
             
             
-            <li class="nav-item">
-              <a href="/en/" class="">Home</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/en/" class="" aria-current="">Home</a>
               
             </li>
           
             
             
-            <li class="nav-item has-children">
-              <a href="/en/about/" class="">About</a>
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/en/about/" class="" aria-current="">About</a>
               
-                <ul class="dropdown">
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/en/vision/">Vision</a></li>
+                    <li role="none"><a role="menuitem" href="/en/vision/">Vision</a></li>
                   
-                    <li><a href="/en/contact/">Contact</a></li>
+                    <li role="none"><a role="menuitem" href="/en/contact/">Contact</a></li>
                   
-                    <li><a href="/en/admissions/">Admissions</a></li>
+                    <li role="none"><a role="menuitem" href="/en/admissions/">Admissions</a></li>
                   
                 </ul>
               
@@ -63,18 +66,26 @@
           
             
             
-            <li class="nav-item has-children">
-              <a href="/en/themes/" class="active">Research</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/en/news/" class="" aria-current="">News</a>
               
-                <ul class="dropdown">
+            </li>
+          
+            
+            
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/en/themes/" class="active" aria-current="page">Research</a>
+              
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/en/themes/">Themes</a></li>
+                    <li role="none"><a role="menuitem" href="/en/projects/">Projects</a></li>
                   
-                    <li><a href="/en/projects/">Projects</a></li>
+                    <li role="none"><a role="menuitem" href="/en/publications/">Publications</a></li>
                   
-                    <li><a href="/en/publications/">Publications</a></li>
-                  
-                    <li><a href="/patents/">Patents</a></li>
+                    <li role="none"><a role="menuitem" href="/en/patents/">Patents</a></li>
                   
                 </ul>
               
@@ -82,15 +93,8 @@
           
             
             
-            <li class="nav-item">
-              <a href="/en/people/" class="">People</a>
-              
-            </li>
-          
-            
-            
-            <li class="nav-item">
-              <a href="/en/news/" class="">News</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/en/people/" class="" aria-current="">People</a>
               
             </li>
           
@@ -113,7 +117,8 @@
   </div>
 </header> 
     <main id="main" class="container">
-      <div class="container" style="margin:24px 0;">
+      
+<div class="container" style="margin:24px 0;">
   <h1>Research Themes</h1>
   
 </div>
@@ -132,8 +137,7 @@
         <div class="content">
           <h2>TinyML 与硬件感知共设计</h2>
           
-            <p class="lead">软硬件一体化方法，针对微控制器与专用加速器进行算法-架构共设计（占位）。</p>
-          
+          <p class="lead">软硬件一体化方法，针对微控制器与专用加速器进行算法-架构共设计（占位）。</p>
 
           
 
@@ -161,8 +165,7 @@
         <div class="content">
           <h2>模型压缩与量化</h2>
           
-            <p class="lead">面向边缘端的轻量化模型设计与自动化压缩，包括剪枝、蒸馏、量化与NAS（占位）。</p>
-          
+          <p class="lead">面向边缘端的轻量化模型设计与自动化压缩，包括剪枝、蒸馏、量化与NAS（占位）。</p>
 
           
 
@@ -190,8 +193,7 @@
         <div class="content">
           <h2>端侧部署与系统优化</h2>
           
-            <p class="lead">面向低时延与高可靠的边缘端系统协同优化，覆盖算力感知调度、编译优化与运行时管理（占位）。</p>
-          
+          <p class="lead">面向低时延与高可靠的边缘端系统协同优化，覆盖算力感知调度、编译优化与运行时管理（占位）。</p>
 
           
 
@@ -265,6 +267,34 @@
   scroller.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll);
   onScroll();
+})();
+</script>
+<script>
+(function(){
+  const mql = window.matchMedia('(max-width: 900px)');
+  function setup(){
+    document.querySelectorAll('[data-nav-item]').forEach(item=>{
+      const caret = item.querySelector('[data-nav-caret]');
+      const dropdown = item.querySelector('.dropdown');
+      if(!caret || !dropdown) return;
+      // mobile: click to toggle
+      caret.onclick = (e)=>{
+        if(mql.matches){
+          e.preventDefault();
+          const open = item.classList.contains('open');
+          document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+          if(!open) item.classList.add('open');
+          caret.setAttribute('aria-expanded', String(!open));
+        }
+      };
+    });
+  }
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+    }
+  });
+  setup();
 })();
 </script> 
   </body>

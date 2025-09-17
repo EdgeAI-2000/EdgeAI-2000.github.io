@@ -39,23 +39,26 @@
           
             
             
-            <li class="nav-item">
-              <a href="/zh/" class="">主页</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/zh/" class="" aria-current="">主页</a>
               
             </li>
           
             
             
-            <li class="nav-item has-children">
-              <a href="/zh/about/" class="">关于</a>
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/zh/about/" class="" aria-current="">关于</a>
               
-                <ul class="dropdown">
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/zh/vision/">愿景</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/vision/">愿景</a></li>
                   
-                    <li><a href="/zh/contact/">位置与联系方式</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/contact/">联系我们</a></li>
                   
-                    <li><a href="/zh/admissions/">招生</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/admissions/">招生</a></li>
                   
                 </ul>
               
@@ -63,16 +66,26 @@
           
             
             
-            <li class="nav-item has-children">
-              <a href="/zh/themes/" class="active">研究</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/zh/news/" class="" aria-current="">新闻</a>
               
-                <ul class="dropdown">
+            </li>
+          
+            
+            
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/zh/themes/" class="active" aria-current="page">研究</a>
+              
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/zh/projects/">项目</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/projects/">项目</a></li>
                   
-                    <li><a href="/zh/publications/">论文</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/publications/">论文</a></li>
                   
-                    <li><a href="/zh/patents/">专利</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/patents/">专利</a></li>
                   
                 </ul>
               
@@ -80,15 +93,8 @@
           
             
             
-            <li class="nav-item">
-              <a href="/zh/people/" class="">团队</a>
-              
-            </li>
-          
-            
-            
-            <li class="nav-item">
-              <a href="/zh/news/" class="">新闻</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/zh/people/" class="" aria-current="">团队</a>
               
             </li>
           
@@ -111,39 +117,102 @@
   </div>
 </header> 
     <main id="main" class="container">
-      <div class="container" style="margin:24px 0;">
+      
+<div class="container" style="margin:24px 0;">
   <h1>研究方向</h1>
   
+</div>
 
-  
-  
 
-  
 
-  <div class="list">
-    
-      <article class="card">
-        <h3><a href="/themes/tiny-ml/">TinyML 与硬件感知共设计</a></h3>
-        
-          <p class="meta">2025-09-16 18:03:58 +0800</p>
-        
-      </article>
-    
-      <article class="card">
-        <h3><a href="/themes/model-compression/">模型压缩与量化</a></h3>
-        
-          <p class="meta">2025-09-16 18:03:58 +0800</p>
-        
-      </article>
-    
-      <article class="card">
-        <h3><a href="/themes/edge-compute/">端侧部署与系统优化</a></h3>
-        
-          <p class="meta">2025-09-16 18:03:58 +0800</p>
-        
-      </article>
-    
-  </div>
+
+
+<div class="features">
+  
+    <section class="feature-section alt">
+      <div class="container feature-inner">
+        <div class="media">
+          <img src="/assets/images/placeholders/card-16x9.svg" alt="" loading="lazy"/>
+        </div>
+        <div class="content">
+          <h2>TinyML 与硬件感知共设计</h2>
+          
+          <p class="lead">软硬件一体化方法，针对微控制器与专用加速器进行算法-架构共设计（占位）。</p>
+
+          
+
+          
+
+          
+            <div class="body"><p>本方向围绕超低功耗设备，研究适配的模型结构、编译优化与内存管理策略。</p>
+</div>
+          
+
+          <div class="links" style="margin-top:10px;">
+            
+            
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="feature-section alt">
+      <div class="container feature-inner">
+        <div class="media">
+          <img src="/assets/images/placeholders/card-16x9.svg" alt="" loading="lazy"/>
+        </div>
+        <div class="content">
+          <h2>模型压缩与量化</h2>
+          
+          <p class="lead">面向边缘端的轻量化模型设计与自动化压缩，包括剪枝、蒸馏、量化与NAS（占位）。</p>
+
+          
+
+          
+
+          
+            <div class="body"><p>本方向致力于在保证精度的前提下降低计算与存储成本，提升端侧可部署性。</p>
+</div>
+          
+
+          <div class="links" style="margin-top:10px;">
+            
+            
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="feature-section alt">
+      <div class="container feature-inner">
+        <div class="media">
+          <img src="/assets/images/placeholders/card-16x9.svg" alt="" loading="lazy"/>
+        </div>
+        <div class="content">
+          <h2>端侧部署与系统优化</h2>
+          
+          <p class="lead">面向低时延与高可靠的边缘端系统协同优化，覆盖算力感知调度、编译优化与运行时管理（占位）。</p>
+
+          
+
+          
+
+          
+            <div class="body"><p>本方向关注端侧与近端计算的软硬件协同，探索算力受限设备上的实时 AI 推理与能效最优。</p>
+</div>
+          
+
+          <div class="links" style="margin-top:10px;">
+            
+            
+            
+          </div>
+        </div>
+      </div>
+    </section>
+  
 </div> 
     </main>
     <footer class="site-footer">
@@ -198,6 +267,34 @@
   scroller.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll);
   onScroll();
+})();
+</script>
+<script>
+(function(){
+  const mql = window.matchMedia('(max-width: 900px)');
+  function setup(){
+    document.querySelectorAll('[data-nav-item]').forEach(item=>{
+      const caret = item.querySelector('[data-nav-caret]');
+      const dropdown = item.querySelector('.dropdown');
+      if(!caret || !dropdown) return;
+      // mobile: click to toggle
+      caret.onclick = (e)=>{
+        if(mql.matches){
+          e.preventDefault();
+          const open = item.classList.contains('open');
+          document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+          if(!open) item.classList.add('open');
+          caret.setAttribute('aria-expanded', String(!open));
+        }
+      };
+    });
+  }
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+    }
+  });
+  setup();
 })();
 </script> 
   </body>

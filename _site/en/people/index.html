@@ -39,23 +39,26 @@
           
             
             
-            <li class="nav-item">
-              <a href="/en/" class="">Home</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/en/" class="" aria-current="">Home</a>
               
             </li>
           
             
             
-            <li class="nav-item has-children">
-              <a href="/en/about/" class="">About</a>
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/en/about/" class="" aria-current="">About</a>
               
-                <ul class="dropdown">
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/en/vision/">Vision</a></li>
+                    <li role="none"><a role="menuitem" href="/en/vision/">Vision</a></li>
                   
-                    <li><a href="/en/contact/">Contact</a></li>
+                    <li role="none"><a role="menuitem" href="/en/contact/">Contact</a></li>
                   
-                    <li><a href="/en/admissions/">Admissions</a></li>
+                    <li role="none"><a role="menuitem" href="/en/admissions/">Admissions</a></li>
                   
                 </ul>
               
@@ -63,18 +66,26 @@
           
             
             
-            <li class="nav-item has-children">
-              <a href="/en/themes/" class="">Research</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/en/news/" class="" aria-current="">News</a>
               
-                <ul class="dropdown">
+            </li>
+          
+            
+            
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/en/themes/" class="" aria-current="">Research</a>
+              
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/en/themes/">Themes</a></li>
+                    <li role="none"><a role="menuitem" href="/en/projects/">Projects</a></li>
                   
-                    <li><a href="/en/projects/">Projects</a></li>
+                    <li role="none"><a role="menuitem" href="/en/publications/">Publications</a></li>
                   
-                    <li><a href="/en/publications/">Publications</a></li>
-                  
-                    <li><a href="/patents/">Patents</a></li>
+                    <li role="none"><a role="menuitem" href="/en/patents/">Patents</a></li>
                   
                 </ul>
               
@@ -82,15 +93,8 @@
           
             
             
-            <li class="nav-item">
-              <a href="/en/people/" class="active">People</a>
-              
-            </li>
-          
-            
-            
-            <li class="nav-item">
-              <a href="/en/news/" class="">News</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/en/people/" class="active" aria-current="page">People</a>
               
             </li>
           
@@ -131,7 +135,9 @@
             <img class="avatar-img" src="/assets/images/people/zhangsan.svg" alt="张三" loading="lazy"/>
             <h3>张三</h3>
             <p class="meta">边缘计算, 嵌入式AI, and 分布式学习</p>
-            <p class="intro">某某大学教授，研究方向为边缘计算、嵌入式AI与分布式学习（占位）。</p>
+            
+              <p class="intro">Full professor. Research focuses on edge computing, embedded AI, and distribu...</p>
+            
           </a>
         
       </div>
@@ -154,7 +160,9 @@
             <img class="avatar-img" src="/assets/images/people/lisi.svg" alt="李四" loading="lazy"/>
             <h3>李四</h3>
             <p class="meta">计算机视觉, 模型压缩, and 量化</p>
-            <p class="intro">博士生，关注端侧视觉与模型压缩（占位）。</p>
+            
+              <p class="intro">博士生，关注端侧视觉与模型压缩（占位）。</p>
+            
           </a>
         
       </div>
@@ -171,7 +179,9 @@
             <img class="avatar-img" src="/assets/images/people/wangwu.svg" alt="王五" loading="lazy"/>
             <h3>王五</h3>
             <p class="meta">嵌入式AI and 实时检测</p>
-            <p class="intro">硕士生，研究嵌入式设备上的实时检测（占位）。</p>
+            
+              <p class="intro">硕士生，研究嵌入式设备上的实时检测（占位）。</p>
+            
           </a>
         
       </div>
@@ -192,7 +202,9 @@
           <img class="avatar-img" src="/assets/images/people/zhaoliu.svg" alt="赵六" loading="lazy"/>
           <h3>赵六</h3>
           <p class="meta">某科技公司（Edge AI 工程师）</p>
-          <p class="intro">毕业生（占位）。</p>
+          
+            <p class="intro">毕业生（占位）。</p>
+          
         </a>
       
     </div>
@@ -251,6 +263,34 @@
   scroller.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll);
   onScroll();
+})();
+</script>
+<script>
+(function(){
+  const mql = window.matchMedia('(max-width: 900px)');
+  function setup(){
+    document.querySelectorAll('[data-nav-item]').forEach(item=>{
+      const caret = item.querySelector('[data-nav-caret]');
+      const dropdown = item.querySelector('.dropdown');
+      if(!caret || !dropdown) return;
+      // mobile: click to toggle
+      caret.onclick = (e)=>{
+        if(mql.matches){
+          e.preventDefault();
+          const open = item.classList.contains('open');
+          document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+          if(!open) item.classList.add('open');
+          caret.setAttribute('aria-expanded', String(!open));
+        }
+      };
+    });
+  }
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+    }
+  });
+  setup();
 })();
 </script> 
   </body>

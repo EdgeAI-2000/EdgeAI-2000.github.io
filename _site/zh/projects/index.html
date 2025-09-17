@@ -39,23 +39,26 @@
           
             
             
-            <li class="nav-item">
-              <a href="/zh/" class="">主页</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/zh/" class="" aria-current="">主页</a>
               
             </li>
           
             
             
-            <li class="nav-item has-children">
-              <a href="/zh/about/" class="">关于</a>
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/zh/about/" class="" aria-current="">关于</a>
               
-                <ul class="dropdown">
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/zh/vision/">愿景</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/vision/">愿景</a></li>
                   
-                    <li><a href="/zh/contact/">位置与联系方式</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/contact/">联系我们</a></li>
                   
-                    <li><a href="/zh/admissions/">招生</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/admissions/">招生</a></li>
                   
                 </ul>
               
@@ -63,16 +66,26 @@
           
             
             
-            <li class="nav-item has-children">
-              <a href="/zh/themes/" class="">研究</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/zh/news/" class="" aria-current="">新闻</a>
               
-                <ul class="dropdown">
+            </li>
+          
+            
+            
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/zh/themes/" class="" aria-current="">研究</a>
+              
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/zh/projects/">项目</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/projects/">项目</a></li>
                   
-                    <li><a href="/zh/publications/">论文</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/publications/">论文</a></li>
                   
-                    <li><a href="/zh/patents/">专利</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/patents/">专利</a></li>
                   
                 </ul>
               
@@ -80,15 +93,8 @@
           
             
             
-            <li class="nav-item">
-              <a href="/zh/people/" class="">团队</a>
-              
-            </li>
-          
-            
-            
-            <li class="nav-item">
-              <a href="/zh/news/" class="">新闻</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/zh/people/" class="" aria-current="">团队</a>
               
             </li>
           
@@ -111,25 +117,56 @@
   </div>
 </header> 
     <main id="main" class="container">
-      <div class="container" style="margin:24px 0;">
+      
+<div class="container" style="margin:24px 0;">
   <h1>项目</h1>
   
+</div>
 
-  
-  
 
-  
 
-  <div class="list">
-    
-      <article class="card">
-        <h3><a href="/projects/project-orion/">Project Orion：超低时延边缘视觉</a></h3>
-        
-          <p>面向摄像头端的实时目标检测与跟踪系统，端到端时延低至 12 ms（占位）。</p>
-        
-      </article>
-    
-  </div>
+
+
+<div class="features">
+  
+    <section class="feature-section alt">
+      <div class="container feature-inner">
+        <div class="media">
+          <img src="/assets/images/placeholders/card-16x9.svg" alt="" loading="lazy"/>
+        </div>
+        <div class="content">
+          <h2>Project Orion：超低时延边缘视觉</h2>
+          
+          <p class="lead">面向摄像头端的实时目标检测与跟踪系统，端到端时延低至 12 ms（占位）。</p>
+
+          
+            <div class="metrics">
+              <div class="metric"><span class="k">Latency</span><span class="v">12.0 ms</span></div>
+              <div class="metric"><span class="k">Power</span><span class="v">1.8 W</span></div>
+              <div class="metric"><span class="k">Accuracy</span><span class="v">72.1 mAP</span></div>
+            </div>
+          
+
+          
+            <div class="tags" style="margin-top:8px;">
+              <span class="tag">端侧部署与系统优化</span><span class="tag">模型压缩与量化</span>
+            </div>
+          
+
+          
+            <div class="body"><p>项目简介（占位）。</p>
+</div>
+          
+
+          <div class="links" style="margin-top:10px;">
+            
+            <a class="link" href="https://github.com/EdgeAI-2000/orion" target="_blank">Code</a>
+             · <a class="link" href="https://www.example.com/videos/orion" target="_blank">Video</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  
 </div> 
     </main>
     <footer class="site-footer">
@@ -184,6 +221,34 @@
   scroller.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll);
   onScroll();
+})();
+</script>
+<script>
+(function(){
+  const mql = window.matchMedia('(max-width: 900px)');
+  function setup(){
+    document.querySelectorAll('[data-nav-item]').forEach(item=>{
+      const caret = item.querySelector('[data-nav-caret]');
+      const dropdown = item.querySelector('.dropdown');
+      if(!caret || !dropdown) return;
+      // mobile: click to toggle
+      caret.onclick = (e)=>{
+        if(mql.matches){
+          e.preventDefault();
+          const open = item.classList.contains('open');
+          document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+          if(!open) item.classList.add('open');
+          caret.setAttribute('aria-expanded', String(!open));
+        }
+      };
+    });
+  }
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+    }
+  });
+  setup();
 })();
 </script> 
   </body>

@@ -1,5 +1,5 @@
 ---
-layout: list
+layout: sections
 lang: zh
 title: 项目
 collection: projects

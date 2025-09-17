@@ -35,7 +35,11 @@ layout: default
             <img class="avatar-img" src="{{ p.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url }}" alt="{{ p.name }}" loading="lazy"/>
             <h3>{{ p.name }}</h3>
             {% if p.research_areas %}<p class="meta">{{ p.research_areas | array_to_sentence_string }}</p>{% endif %}
-            <p class="intro">{{ p.bio_zh | default: p.bio_en | truncate: 80 }}</p>
+            {% if page.lang == 'en' %}
+              <p class="intro">{{ p.bio_en | default: p.bio_zh | truncate: 80 }}</p>
+            {% else %}
+              <p class="intro">{{ p.bio_zh | default: p.bio_en | truncate: 80 }}</p>
+            {% endif %}
           </a>
         {% endfor %}
       </div>
@@ -50,7 +54,11 @@ layout: default
           <img class="avatar-img" src="{{ p.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url }}" alt="{{ p.name }}" loading="lazy"/>
           <h3>{{ p.name }}</h3>
           {% if p.destination %}<p class="meta">{{ p.destination }}</p>{% endif %}
-          <p class="intro">{{ p.bio_zh | default: p.bio_en | truncate: 80 }}</p>
+          {% if page.lang == 'en' %}
+            <p class="intro">{{ p.bio_en | default: p.bio_zh | truncate: 80 }}</p>
+          {% else %}
+            <p class="intro">{{ p.bio_zh | default: p.bio_en | truncate: 80 }}</p>
+          {% endif %}
         </a>
       {% endfor %}
     </div>

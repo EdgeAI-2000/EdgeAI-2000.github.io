@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>愿景 Vision | Edge AI Lab</title>
+<title>愿景 | Edge AI Lab</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="愿景 Vision" />
+<meta property="og:title" content="愿景" />
 <meta property="og:locale" content="zh" />
 <meta name="description" content="边缘智能实验室官网（占位数据） Edge AI Laboratory Website (Placeholder)" />
 <meta property="og:description" content="边缘智能实验室官网（占位数据） Edge AI Laboratory Website (Placeholder)" />
@@ -15,9 +15,9 @@
 <meta property="og:site_name" content="Edge AI Lab" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="愿景 Vision" />
+<meta property="twitter:title" content="愿景" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"边缘智能实验室官网（占位数据） Edge AI Laboratory Website (Placeholder)","headline":"愿景 Vision","url":"http://localhost:4000/zh/vision/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"边缘智能实验室官网（占位数据） Edge AI Laboratory Website (Placeholder)","headline":"愿景","url":"http://localhost:4000/zh/vision/"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,23 +39,26 @@
           
             
             
-            <li class="nav-item">
-              <a href="/zh/" class="">主页</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/zh/" class="" aria-current="">主页</a>
               
             </li>
           
             
             
-            <li class="nav-item has-children">
-              <a href="/zh/about/" class="">关于</a>
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/zh/about/" class="" aria-current="">关于</a>
               
-                <ul class="dropdown">
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/zh/vision/">愿景</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/vision/">愿景</a></li>
                   
-                    <li><a href="/zh/contact/">位置与联系方式</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/contact/">联系我们</a></li>
                   
-                    <li><a href="/zh/admissions/">招生</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/admissions/">招生</a></li>
                   
                 </ul>
               
@@ -63,16 +66,26 @@
           
             
             
-            <li class="nav-item has-children">
-              <a href="/zh/themes/" class="">研究</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/zh/news/" class="" aria-current="">新闻</a>
               
-                <ul class="dropdown">
+            </li>
+          
+            
+            
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/zh/themes/" class="" aria-current="">研究</a>
+              
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/zh/projects/">项目</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/projects/">项目</a></li>
                   
-                    <li><a href="/zh/publications/">论文</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/publications/">论文</a></li>
                   
-                    <li><a href="/zh/patents/">专利</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/patents/">专利</a></li>
                   
                 </ul>
               
@@ -80,15 +93,8 @@
           
             
             
-            <li class="nav-item">
-              <a href="/zh/people/" class="">团队</a>
-              
-            </li>
-          
-            
-            
-            <li class="nav-item">
-              <a href="/zh/news/" class="">新闻</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/zh/people/" class="" aria-current="">团队</a>
               
             </li>
           
@@ -112,7 +118,7 @@
 </header> 
     <main id="main" class="container">
       <div class="container" style="margin:24px 0;">
-  <h1>愿景 Vision</h1>
+  <h1>愿景</h1>
   
   <p class="lead">我们致力于推动边缘智能在真实世界的规模化落地：以系统与算法协同为核心，面向低时延、低功耗与高可靠，打造可复用、可验证、可部署的 Edge AI 方案（占位）。</p>
 </div>
@@ -170,6 +176,34 @@
   scroller.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll);
   onScroll();
+})();
+</script>
+<script>
+(function(){
+  const mql = window.matchMedia('(max-width: 900px)');
+  function setup(){
+    document.querySelectorAll('[data-nav-item]').forEach(item=>{
+      const caret = item.querySelector('[data-nav-caret]');
+      const dropdown = item.querySelector('.dropdown');
+      if(!caret || !dropdown) return;
+      // mobile: click to toggle
+      caret.onclick = (e)=>{
+        if(mql.matches){
+          e.preventDefault();
+          const open = item.classList.contains('open');
+          document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+          if(!open) item.classList.add('open');
+          caret.setAttribute('aria-expanded', String(!open));
+        }
+      };
+    });
+  }
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+    }
+  });
+  setup();
 })();
 </script> 
   </body>

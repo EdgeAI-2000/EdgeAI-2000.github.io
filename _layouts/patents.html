@@ -1,0 +1,38 @@
+---
+layout: default
+---
+<div class="container" style="margin:24px 0;">
+  <h1>{{ page.title }}</h1>
+  {% assign items = site.patents %}
+  {% if page.sort_by %}
+    {% assign items = items | sort: page.sort_by %}
+    {% if page.reverse %}{% assign items = items | reverse %}{% endif %}
+  {% endif %}
+
+  <div class="patent-grid">
+    {% for p in items %}
+      {% assign status = p.status | default: 'pending' %}
+      {% assign inventors = p.inventors | default: p.authors | default: p.contributors %}
+      {% assign assignee = p.assignee | default: p.organization | default: p.affiliation %}
+      {% assign appno = p.application_no | default: p.application_number | default: p.app_no %}
+      <article class="patent-card">
+        <div class="patent-meta">
+          <span class="status {{ status }}">{{ status | capitalize }}</span>
+          {% if p.year %}<span class="badge">{{ p.year }}</span>{% endif %}
+        </div>
+        <h3><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3>
+        <div class="patent-fields">
+          {% if appno %}
+          <div class="row"><div class="label">Application No.</div><div class="value">{{ appno }}</div></div>
+          {% endif %}
+          {% if inventors %}
+          <div class="row"><div class="label">Inventors</div><div class="value">{% if inventors.size %}{{ inventors | join: ', ' }}{% else %}{{ inventors }}{% endif %}</div></div>
+          {% endif %}
+          {% if assignee %}
+          <div class="row"><div class="label">Assignee</div><div class="value">{{ assignee }}</div></div>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</div> 

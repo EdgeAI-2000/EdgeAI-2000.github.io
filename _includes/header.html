@@ -13,12 +13,15 @@
             {% if page.url == item.url or page.url == item.url | append: 'index.html' %}
               {% assign is_active = true %}
             {% endif %}
-            <li class="nav-item{% if item.children %} has-children{% endif %}">
-              <a href="{{ item.url | relative_url }}" class="{% if is_active %}active{% endif %}">{{ item.label }}</a>
+            <li class="nav-item{% if item.children %} has-children{% endif %}" data-nav-item>
+              <a href="{{ item.url | relative_url }}" class="{% if is_active %}active{% endif %}" aria-current="{% if is_active %}page{% endif %}">{{ item.label }}</a>
               {% if item.children %}
-                <ul class="dropdown">
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   {% for c in item.children %}
-                    <li><a href="{{ c.url | relative_url }}">{{ c.label }}</a></li>
+                    <li role="none"><a role="menuitem" href="{{ c.url | relative_url }}">{{ c.label }}</a></li>
                   {% endfor %}
                 </ul>
               {% endif %}

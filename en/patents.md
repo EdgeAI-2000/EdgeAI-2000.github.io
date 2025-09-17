@@ -1,5 +1,5 @@
 ---
-layout: list
+layout: patents
 lang: en
 title: Patents
 collection: patents

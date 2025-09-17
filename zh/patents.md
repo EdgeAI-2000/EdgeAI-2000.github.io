@@ -1,5 +1,5 @@
 ---
-layout: list
+layout: patents
 lang: zh
 title: 专利
 collection: patents

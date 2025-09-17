@@ -39,23 +39,26 @@
           
             
             
-            <li class="nav-item">
-              <a href="/zh/" class="">主页</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/zh/" class="" aria-current="">主页</a>
               
             </li>
           
             
             
-            <li class="nav-item has-children">
-              <a href="/zh/about/" class="">关于</a>
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/zh/about/" class="" aria-current="">关于</a>
               
-                <ul class="dropdown">
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/zh/vision/">愿景</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/vision/">愿景</a></li>
                   
-                    <li><a href="/zh/contact/">位置与联系方式</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/contact/">联系我们</a></li>
                   
-                    <li><a href="/zh/admissions/">招生</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/admissions/">招生</a></li>
                   
                 </ul>
               
@@ -63,16 +66,26 @@
           
             
             
-            <li class="nav-item has-children">
-              <a href="/zh/themes/" class="">研究</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/zh/news/" class="" aria-current="">新闻</a>
               
-                <ul class="dropdown">
+            </li>
+          
+            
+            
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/zh/themes/" class="" aria-current="">研究</a>
+              
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/zh/projects/">项目</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/projects/">项目</a></li>
                   
-                    <li><a href="/zh/publications/">论文</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/publications/">论文</a></li>
                   
-                    <li><a href="/zh/patents/">专利</a></li>
+                    <li role="none"><a role="menuitem" href="/zh/patents/">专利</a></li>
                   
                 </ul>
               
@@ -80,15 +93,8 @@
           
             
             
-            <li class="nav-item">
-              <a href="/zh/people/" class="">团队</a>
-              
-            </li>
-          
-            
-            
-            <li class="nav-item">
-              <a href="/zh/news/" class="">新闻</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/zh/people/" class="" aria-current="">团队</a>
               
             </li>
           
@@ -125,7 +131,7 @@
       <article class="card">
         <h3><a href="/patents/2024-edge-ai-accelerator/">一种面向边缘智能的加速器与方法（占位）</a></h3>
         
-          <p class="meta">2025-09-16 18:03:58 +0800</p>
+          <p class="meta">2025-09-16 22:10:07 +0800</p>
         
       </article>
     
@@ -184,6 +190,34 @@
   scroller.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll);
   onScroll();
+})();
+</script>
+<script>
+(function(){
+  const mql = window.matchMedia('(max-width: 900px)');
+  function setup(){
+    document.querySelectorAll('[data-nav-item]').forEach(item=>{
+      const caret = item.querySelector('[data-nav-caret]');
+      const dropdown = item.querySelector('.dropdown');
+      if(!caret || !dropdown) return;
+      // mobile: click to toggle
+      caret.onclick = (e)=>{
+        if(mql.matches){
+          e.preventDefault();
+          const open = item.classList.contains('open');
+          document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+          if(!open) item.classList.add('open');
+          caret.setAttribute('aria-expanded', String(!open));
+        }
+      };
+    });
+  }
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+    }
+  });
+  setup();
 })();
 </script> 
   </body>

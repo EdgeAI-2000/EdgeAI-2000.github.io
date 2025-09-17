@@ -39,23 +39,26 @@
           
             
             
-            <li class="nav-item">
-              <a href="/en/" class="active">Home</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/en/" class="active" aria-current="page">Home</a>
               
             </li>
           
             
             
-            <li class="nav-item has-children">
-              <a href="/en/about/" class="">About</a>
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/en/about/" class="" aria-current="">About</a>
               
-                <ul class="dropdown">
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/en/vision/">Vision</a></li>
+                    <li role="none"><a role="menuitem" href="/en/vision/">Vision</a></li>
                   
-                    <li><a href="/en/contact/">Contact</a></li>
+                    <li role="none"><a role="menuitem" href="/en/contact/">Contact</a></li>
                   
-                    <li><a href="/en/admissions/">Admissions</a></li>
+                    <li role="none"><a role="menuitem" href="/en/admissions/">Admissions</a></li>
                   
                 </ul>
               
@@ -63,18 +66,26 @@
           
             
             
-            <li class="nav-item has-children">
-              <a href="/en/themes/" class="">Research</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/en/news/" class="" aria-current="">News</a>
               
-                <ul class="dropdown">
+            </li>
+          
+            
+            
+            <li class="nav-item has-children" data-nav-item>
+              <a href="/en/themes/" class="" aria-current="">Research</a>
+              
+                <button class="nav-caret" aria-expanded="false" aria-label="Toggle submenu" data-nav-caret>
+                  <span aria-hidden="true">▾</span>
+                </button>
+                <ul class="dropdown" role="menu">
                   
-                    <li><a href="/en/themes/">Themes</a></li>
+                    <li role="none"><a role="menuitem" href="/en/projects/">Projects</a></li>
                   
-                    <li><a href="/en/projects/">Projects</a></li>
+                    <li role="none"><a role="menuitem" href="/en/publications/">Publications</a></li>
                   
-                    <li><a href="/en/publications/">Publications</a></li>
-                  
-                    <li><a href="/patents/">Patents</a></li>
+                    <li role="none"><a role="menuitem" href="/en/patents/">Patents</a></li>
                   
                 </ul>
               
@@ -82,15 +93,8 @@
           
             
             
-            <li class="nav-item">
-              <a href="/en/people/" class="">People</a>
-              
-            </li>
-          
-            
-            
-            <li class="nav-item">
-              <a href="/en/news/" class="">News</a>
+            <li class="nav-item" data-nav-item>
+              <a href="/en/people/" class="" aria-current="">People</a>
               
             </li>
           
@@ -113,44 +117,59 @@
   </div>
 </header> 
     <main id="main" class="container">
-      <section class="hero">
+      
+
+<section class="hero hero-large">
   <div class="container">
     <h1>Edge AI Lab</h1>
-    <p>边缘智能实验室官网（占位数据） | Edge AI Laboratory Website (Placeholder)</p>
+    <p class="hero-sub">Edge AI via system–algorithm co-design</p>
+    <div class="hero-cta">
+      <a class="btn" href="/en/themes/">Explore Research</a>
+    </div>
   </div>
   <img class="hero-visual" src="/assets/images/placeholders/hero-visual.svg" alt="" aria-hidden="true" />
 </section>
 
 
 
-<section class="container" style="margin-top:16px;">
-  <div class="section-head">
-    <h2>Vision</h2>
+<section class="container section-block">
+  <div class="vision-wrap">
+    <div class="vision-text">
+      <h2>Vision</h2>
+      <p class="lead">We advance Edge AI for real-world deployment at scale: system–algorithm co-design for low latency, low power, and high reliability, building reusable, verifiable, and deployable solutions (placeholder).</p>
+    </div>
+    <div class="vision-fig">
+      <img src="/assets/images/placeholders/vision-illustration.svg" alt="" loading="lazy"/>
+    </div>
   </div>
-  <p class="lead">We advance Edge AI for real-world deployment at scale: system–algorithm co-design for low latency, low power, and high reliability, building reusable, verifiable, and deployable solutions (placeholder).</p>
 </section>
 
 
-<section class="container" style="margin-top:24px;">
+<section class="container section-block">
   <div class="section-head">
     <h2>Latest News</h2>
-    <a class="link" href="/news/">View all</a>
+    <a class="link" href="/en/news/">View all</a>
   </div>
-  <ul class="news-list">
+  <ul class="news-list visual">
     
     
       <li>
-        <span class="date">2025-09-01</span>
-        <a href="/news/2025-09-01-lab-founded/">实验室成立（占位）</a>
+        <img class="thumb" src="/assets/images/placeholders/card-16x9.svg" alt="" loading="lazy"/>
+        <div class="news-meta">
+          
+          <span class="badge-type">News</span>
+          <span class="date">2025-09-01</span>
+        </div>
+        <a class="title" href="/news/2025-09-01-lab-founded/">实验室成立（占位）</a>
       </li>
     
   </ul>
 </section>
 
-<section class="container" style="margin-top:24px;">
+<section class="container section-block">
   <div class="section-head">
     <h2>Research Themes</h2>
-    <a class="link" href="/themes/">View all</a>
+    <a class="link" href="/en/themes/">View all</a>
   </div>
   <div class="hscroll-wrap one">
     <div class="hscroll one" id="themes-hs">
@@ -196,10 +215,10 @@
   </div>
 </section>
 
-<section class="container team-mosaic" style="margin-top:24px;">
+<section class="container team-mosaic section-block">
   <div class="section-head">
     <h2>Team</h2>
-    <a class="link" href="/people/">View all</a>
+    <a class="link" href="/en/people/">View all</a>
   </div>
   <div class="mosaic">
     
@@ -222,15 +241,7 @@
   </div>
 </section>
 
-<section class="container audience" style="margin-top:24px;">
-  <div class="aud-grid">
-    <a class="aud-card" href="/openings/">I'm a student</a>
-    <a class="aud-card" href="/projects/">I'm an industry partner</a>
-    <a class="aud-card" href="/publications/">I'm a researcher</a>
-  </div>
-</section>
-
-<section class="container kpis" style="margin-top:8px;">
+<section class="container kpis section-block">
   <div class="kpi">
     <div class="kpi-num">93</div>
     <div class="kpi-label">Publications</div>
@@ -304,6 +315,34 @@
   scroller.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll);
   onScroll();
+})();
+</script>
+<script>
+(function(){
+  const mql = window.matchMedia('(max-width: 900px)');
+  function setup(){
+    document.querySelectorAll('[data-nav-item]').forEach(item=>{
+      const caret = item.querySelector('[data-nav-caret]');
+      const dropdown = item.querySelector('.dropdown');
+      if(!caret || !dropdown) return;
+      // mobile: click to toggle
+      caret.onclick = (e)=>{
+        if(mql.matches){
+          e.preventDefault();
+          const open = item.classList.contains('open');
+          document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+          if(!open) item.classList.add('open');
+          caret.setAttribute('aria-expanded', String(!open));
+        }
+      };
+    });
+  }
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.nav-item.has-children.open').forEach(i=>i.classList.remove('open'));
+    }
+  });
+  setup();
 })();
 </script> 
   </body>
