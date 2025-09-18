@@ -1,5 +1,5 @@
 ---
-title: "Adaptive scheduling for real-time and temporal information services in vehicular networks (vol 71, pg 313, 2016)"
+title: "Adaptive Scheduling for Real-Time and Temporal Information Services in Vehicular Networks (vol 71, Pg 313, 2016)"
 authors:
 - P Dai
 - K Liu
@@ -10,5 +10,6 @@ authors:
 venue: "TRANSPORTATION RESEARCH PART C-EMERGING TECHNOLOGIES 75, 254-254, 2017"
 year: 2017
 type: conference
+link: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xtXbq_AAAAAJ&pagesize=100&citation_for_view=xtXbq_AAAAAJ:RHpTSmoSYBkC"
 source: scholar
 ---
