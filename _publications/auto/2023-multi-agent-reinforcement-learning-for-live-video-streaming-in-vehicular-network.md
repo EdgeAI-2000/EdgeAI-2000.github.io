@@ -1,5 +1,5 @@
 ---
-title: "Multi-agent Reinforcement Learning for Live Video Streaming in Vehicular Networks"
+title: "Multi-Agent Reinforcement Learning for Live Video Streaming in Vehicular Networks"
 authors:
 - M Wu
 - K Zhao
@@ -8,5 +8,6 @@ authors:
 venue: "2023 3rd International Conference on Digital Society and Intelligent Systems …, 2023"
 year: 2023
 type: conference
+link: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xtXbq_AAAAAJ&pagesize=100&citation_for_view=xtXbq_AAAAAJ:lSLTfruPkqcC"
 source: scholar
 ---

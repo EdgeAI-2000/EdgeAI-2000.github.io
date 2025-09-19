@@ -1,5 +1,5 @@
 ---
-title: "Joint optimization for quality selection and resource allocation of live video streaming in internet of vehicles"
+title: "Joint Optimization for Quality Selection and Resource Allocation of Live Video Streaming in Internet of Vehicles"
 authors:
 - P Dai
 - M Wu
@@ -9,5 +9,6 @@ authors:
 venue: "IEEE Transactions on Services Computing 17 (4), 1607-1621, 2024"
 year: 2024
 type: journal
+link: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xtXbq_AAAAAJ&pagesize=100&citation_for_view=xtXbq_AAAAAJ:TFP_iSt0sucC"
 source: scholar
 ---
