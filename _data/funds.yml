@@ -1,0 +1,85 @@
+vertical:
+  - category_zh: 国家级项目
+    category_en: National Programs
+    items:
+      - title_zh: 国家重点研发计划“边缘智能协同系统关键技术”
+        title_en: National Key R&D Program on Edge Intelligence Systems
+        period: 2023-2026
+        role_zh: 牵头单位
+        role_en: Lead Institution
+        sponsors_zh: 科技部
+        sponsors_en: Ministry of Science and Technology
+        budget_zh: 3000 万元
+        budget_en: ¥30M
+        description_zh: 围绕工业物联网场景中的边缘智能协同调度、低时延推理与安全保障等关键问题开展研究。
+        description_en: Research on coordinated scheduling, low-latency inference, and safety for edge intelligence in industrial IoT scenarios.
+      - title_zh: 国家自然科学基金青年项目“高可靠边缘推理加速架构”
+        title_en: NSFC Young Scientists Grant on Reliable Edge Inference Accelerators
+        period: 2024-2026
+        role_zh: 项目负责人
+        role_en: Principal Investigator
+        sponsors_zh: 国家自然科学基金委员会
+        sponsors_en: National Natural Science Foundation of China
+        budget_zh: 80 万元
+        budget_en: ¥0.8M
+        description_zh: 探索软硬件协同的推理加速方案，实现低功耗条件下的高可靠推理能力。
+        description_en: Explores co-designed hardware/software acceleration to deliver reliable inference under tight power budgets.
+  - category_zh: 省市级项目
+    category_en: Provincial & Municipal Programs
+    items:
+      - title_zh: 上海市科技创新行动计划“面向智慧城市的边缘智能平台”
+        title_en: Shanghai Science and Technology Innovation Action Plan on Edge Platforms for Smart Cities
+        period: 2022-2025
+        role_zh: 课题负责人
+        role_en: Project Lead
+        sponsors_zh: 上海市科委
+        sponsors_en: Shanghai Municipal Science and Technology Commission
+        budget_zh: 1200 万元
+        budget_en: ¥12M
+        description_zh: 构建统一的城市感知与边缘协同平台，支撑交通、安防等多场景应用。
+        description_en: Builds a unified sensing and edge collaboration platform to serve smart transportation, security, and other municipal applications.
+      - title_zh: 浙江省重点研发计划“供应链边缘智能优化”
+        title_en: Zhejiang Provincial Key R&D Program on Supply-Chain Edge Optimization
+        period: 2023-2025
+        role_zh: 参与单位
+        role_en: Co-PI
+        sponsors_zh: 浙江省科技厅
+        sponsors_en: Department of Science and Technology of Zhejiang Province
+        budget_zh: 600 万元
+        budget_en: ¥6M
+        description_zh: 与本地制造企业协同，提升供应链预测和执行效率。
+        description_en: Collaborates with local manufacturers to improve supply-chain forecasting and execution efficiency.
+horizontal:
+  - category_zh: 企业合作项目
+    category_en: Industry Collaborations
+    items:
+      - title_zh: 某工业集团“边缘质检智能体”联合攻关
+        title_en: Joint Project on Edge Quality Inspection Agents with Industrial Group
+        period: 2022-2024
+        partners_zh: 某工业集团
+        partners_en: Industrial Group Co., Ltd.
+        budget_zh: 500 万元
+        budget_en: ¥5M
+        description_zh: 共建面向生产线的实时视觉质检系统，部署实验室自研的轻量化模型。
+        description_en: Co-develops a real-time visual inspection system for production lines using the lab's lightweight models.
+      - title_zh: 某运营商“5G+边缘智能”示范应用
+        title_en: '"5G + Edge Intelligence" Pilot with Telecom Operator'
+        period: 2023-2024
+        partners_zh: 某通信运营商
+        partners_en: Telecom Operator
+        budget_zh: 300 万元
+        budget_en: ¥3M
+        description_zh: 在园区网络中部署边缘节点，实现多源数据分析与智能运维。
+        description_en: Deploys edge nodes in campus networks to enable multi-source analytics and intelligent operations.
+  - category_zh: 产学研联合实验室
+    category_en: Joint Industry-Academia Labs
+    items:
+      - title_zh: 与某芯片企业共建“边缘AI加速联合实验室”
+        title_en: Edge AI Acceleration Joint Lab with Semiconductor Partner
+        period: 2021-至今
+        partners_zh: 某芯片企业
+        partners_en: Semiconductor Partner
+        budget_zh: 800 万元
+        budget_en: ¥8M
+        description_zh: 推动面向工业与车载场景的AI芯片评测、模型优化与场景验证。
+        description_en: Drives chip evaluation, model optimization, and scenario validation for industrial and automotive edge AI.

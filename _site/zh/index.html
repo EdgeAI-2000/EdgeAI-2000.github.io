@@ -83,6 +83,8 @@
                   
                     <li role="none"><a role="menuitem" href="/zh/projects/">项目</a></li>
                   
+                    <li role="none"><a role="menuitem" href="/zh/funding/">基金</a></li>
+                  
                     <li role="none"><a role="menuitem" href="/zh/publications/">论文</a></li>
                   
                     <li role="none"><a role="menuitem" href="/zh/patents/">专利</a></li>
@@ -215,6 +217,46 @@
   </div>
 </section>
 
+
+
+<section class="container section-block">
+  <div class="section-head">
+    <h2>重点项目</h2>
+    <a class="link" href="/zh/projects/">查看全部</a>
+  </div>
+  <div class="hscroll-wrap one">
+    <div class="hscroll one" id="projects-hs">
+      
+        
+        
+        <article class="hcard card project-card" data-i="0">
+          <img class="cover" src="/assets/images/placeholders/card-16x9.svg" alt="" aria-hidden="true" />
+          <h3><a href="/projects/project-orion/">Project Orion：超低时延边缘视觉</a></h3>
+          <p class="meta">端侧部署与系统优化 and 模型压缩与量化</p>
+          <p>面向摄像头端的实时目标检测与跟踪系统，端到端时延低至 12 ms（占位）。</p>
+        </article>
+      
+    </div>
+    <div class="dots" data-for="projects-hs">
+      
+      
+        
+          <button class="dot" data-g="0" aria-label="page 0"></button>
+        
+      
+        
+          <button class="dot" data-g="1" disabled aria-hidden="true"></button>
+        
+      
+        
+          <button class="dot" data-g="2" disabled aria-hidden="true"></button>
+        
+      
+    </div>
+  </div>
+</section>
+
+
 <section class="container team-mosaic section-block">
   <div class="section-head">
     <h2>团队</h2>
@@ -223,20 +265,76 @@
   <div class="mosaic">
     
     
-      <a class="mosaic-item" href="/people/li-si/" title="李四">
-        <div class="avatar" aria-hidden="true"></div>
-        <span class="name">李四</span>
-      </a>
     
-      <a class="mosaic-item" href="/people/wang-wu/" title="王五">
-        <div class="avatar" aria-hidden="true"></div>
-        <span class="name">王五</span>
-      </a>
     
+    
+      
+      
+      
+        
+        
+        
+      
+      
       <a class="mosaic-item" href="/people/zhang-san/" title="张三">
-        <div class="avatar" aria-hidden="true"></div>
+        <img class="avatar-img" src="/assets/images/people/zhangsan.svg" alt="张三" loading="lazy"/>
         <span class="name">张三</span>
+        <span class="role">PI</span>
       </a>
+        
+      
+    
+      
+      
+      
+    
+      
+      
+      
+        
+        
+        
+      
+      
+      <a class="mosaic-item" href="/people/li-si/" title="李四">
+        <img class="avatar-img" src="/assets/images/people/lisi.svg" alt="李四" loading="lazy"/>
+        <span class="name">李四</span>
+        <span class="role">博士研究生</span>
+      </a>
+        
+      
+    
+      
+      
+      
+        
+        
+        
+      
+      
+      <a class="mosaic-item" href="/people/wang-wu/" title="王五">
+        <img class="avatar-img" src="/assets/images/people/wangwu.svg" alt="王五" loading="lazy"/>
+        <span class="name">王五</span>
+        <span class="role">硕士研究生</span>
+      </a>
+        
+      
+    
+      
+      
+      
+    
+      
+      
+      
+    
+      
+      
+      
+    
+      
+      
+      
     
   </div>
 </section>
@@ -244,7 +342,8 @@
 <section class="container kpis section-block">
   <div class="kpi">
     
-    <div class="kpi-num">68</div>
+    
+    <div class="kpi-num">40</div>
     <div class="kpi-label">论文</div>
   </div>
   <div class="kpi">
@@ -264,6 +363,7 @@
 
  
  
+
     </main>
     <footer class="site-footer">
   <div class="container footer-inner">
@@ -285,38 +385,44 @@
 </footer>
 <script>
 (function(){
-  const wrap = document.querySelector('.hscroll-wrap.one');
-  if(!wrap) return;
-  const scroller = wrap.querySelector('.hscroll.one');
-  const dots = Array.from(wrap.querySelectorAll('.dots .dot'));
-  const cards = Array.from(scroller.querySelectorAll('.hcard'));
-  if(!scroller || !dots.length || !cards.length) return;
-  const pageSize = Math.max(1, Math.round(cards.length / 3));
-  function scrollToGroup(g){
-    const idx = Math.min(cards.length - 1, g * pageSize);
-    const card = cards[idx];
-    if(card){ card.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); activate(g); }
-  }
-  function activeGroup(){
-    const mid = scroller.getBoundingClientRect().left + scroller.clientWidth/2;
-    let activeIdx = 0, minDist = Infinity;
-    cards.forEach((el, i)=>{
-      const rect = el.getBoundingClientRect();
-      const center = rect.left + rect.width/2;
-      const dist = Math.abs(center - mid);
-      if(dist < minDist){ minDist = dist; activeIdx = i; }
-    });
-    return Math.min(2, Math.floor(activeIdx / pageSize));
-  }
-  function activate(g){ dots.forEach((d,i)=>{
-    d.classList.toggle('active', i===g);
-    d.disabled = (i !== g && !d.hasAttribute('aria-hidden')) ? false : d.disabled;
-  }); }
-  dots.forEach((btn,i)=>{ if(!btn.disabled){ btn.addEventListener('click', ()=>scrollToGroup(i)); } });
-  const onScroll = ()=> activate(activeGroup());
-  scroller.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll);
-  onScroll();
+  const wraps = document.querySelectorAll('.hscroll-wrap.one');
+  if(!wraps.length) return;
+  wraps.forEach(wrap=>{
+    const scroller = wrap.querySelector('.hscroll.one');
+    const dots = Array.from(wrap.querySelectorAll('.dots .dot'));
+    const cards = Array.from(scroller?.querySelectorAll('.hcard') || []);
+    if(!scroller || !dots.length || !cards.length) return;
+    const interactiveDots = dots.filter(d=>!d.disabled && !d.hasAttribute('aria-hidden'));
+    const pageSize = Math.max(1, Math.round(cards.length / Math.max(1, interactiveDots.length || 3)));
+    const maxGroup = Math.max(0, interactiveDots.length - 1);
+    function scrollToGroup(g){
+      const idx = Math.min(cards.length - 1, g * pageSize);
+      const card = cards[idx];
+      if(card){ card.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); activate(g); }
+    }
+    function activeGroup(){
+      const mid = scroller.getBoundingClientRect().left + scroller.clientWidth/2;
+      let activeIdx = 0, minDist = Infinity;
+      cards.forEach((el, i)=>{
+        const rect = el.getBoundingClientRect();
+        const center = rect.left + rect.width/2;
+        const dist = Math.abs(center - mid);
+        if(dist < minDist){ minDist = dist; activeIdx = i; }
+      });
+      return Math.min(maxGroup, Math.floor(activeIdx / pageSize));
+    }
+    function activate(g){
+      dots.forEach((d,i)=>{
+        d.classList.toggle('active', i===g);
+        if(!d.hasAttribute('aria-hidden')) d.disabled = (i !== g && interactiveDots.length > 1) ? false : d.disabled;
+      });
+    }
+    dots.forEach((btn,i)=>{ if(!btn.disabled){ btn.addEventListener('click', ()=>scrollToGroup(i)); } });
+    const onScroll = ()=> activate(activeGroup());
+    scroller.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', onScroll);
+    activate(0);
+  });
 })();
 </script>
 <script>
@@ -347,5 +453,6 @@
   setup();
 })();
 </script> 
+
   </body>
 </html> 

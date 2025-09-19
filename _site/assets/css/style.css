@@ -62,7 +62,8 @@ section .section-title { font-size: 22px; margin: 0 0 12px; }
 .skip-link { position: absolute; left: -10000px; }
 
 .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-.kpi { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 12px; box-shadow: var(--shadow); text-align: center; }
+.kpi { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 12px; box-shadow: var(--shadow); text-align: center; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.kpi:hover { transform: translateY(-4px); box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12); border-color: rgba(21, 94, 239, 0.3); }
 .kpi-num { font-size: 24px; font-weight: 800; line-height: 1.1; }
 .kpi-label { color: var(--muted); font-size: 12px; }
 
@@ -89,10 +90,13 @@ section .section-title { font-size: 22px; margin: 0 0 12px; }
 .badges { position: absolute; top: -10px; right: 12px; display: flex; gap: 6px; }
 .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); }
 
-.team-mosaic .mosaic { display: grid; grid-template-columns: repeat(8, 1fr); gap: 8px; }
-.mosaic-item { display: grid; justify-items: center; align-content: start; text-decoration: none; color: var(--fg); }
-.mosaic-item .avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #e9eefc, #f5f7ff); border: 1px solid var(--border); }
-.mosaic-item .name { font-size: 12px; margin-top: 6px; color: var(--fg); }
+.team-mosaic .mosaic { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+.mosaic-item { display: grid; justify-items: center; align-content: start; text-decoration: none; color: var(--fg); gap: 4px; padding: 10px 6px; border-radius: 14px; background: var(--bg); border: 1px solid var(--border); box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .2s ease; }
+.mosaic-item:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08); }
+.mosaic-item .avatar-img { width: 68px; height: 68px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .2s ease; }
+.mosaic-item:hover .avatar-img { transform: scale(1.04); box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12); }
+.mosaic-item .name { font-size: 13px; margin-top: 2px; color: var(--fg); font-weight: 600; text-align: center; }
+.mosaic-item .role { font-size: 11px; color: var(--muted); text-align: center; }
 
 .admissions-cta .cta { border: 1px solid var(--border); border-radius: 16px; padding: 16px; background: linear-gradient(180deg, #f7f9ff 0%, rgba(247,249,255,0.6) 100%); box-shadow: var(--shadow); text-align: center; }
 .admissions-cta .cta h3 { margin: 0 0 6px; font-size: 22px; }
@@ -122,7 +126,7 @@ section .section-title { font-size: 22px; margin: 0 0 12px; }
   .header-inner { flex-wrap: wrap; gap: 10px; }
   .kpis { grid-template-columns: repeat(2, 1fr); }
   .audience .aud-grid { grid-template-columns: 1fr; }
-  .team-mosaic .mosaic { grid-template-columns: repeat(4, 1fr); }
+  .team-mosaic .mosaic { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
 } 
 
 .hscroll-wrap { position: relative; }
@@ -150,7 +154,7 @@ section .section-title { font-size: 22px; margin: 0 0 12px; }
 .dot.active { background: #0b5cff; width: 24px; height: 8px; border-radius: 999px; } 
 
 .people-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-.person-card { display: grid; justify-items: center; text-decoration: none; color: var(--fg); border: 1px solid var(--border); border-radius: 14px; padding: 14px; background: var(--bg); box-shadow: var(--shadow); }
+.person-card { display: grid; justify-items: center; text-decoration: none; color: var(--fg); border: 1px solid var(--border); border-radius: 14px; padding: 14px; background: var(--bg); box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .2s ease; }
 .person-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(15,23,42,0.08); }
 .avatar-img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; background: var(--surface); border: 1px solid var(--border); }
 .person-card h3 { margin: 8px 0 4px; font-size: 16px; }
@@ -192,7 +196,8 @@ section .section-title { font-size: 22px; margin: 0 0 12px; }
 
 .year { margin: 18px 0 8px; font-size: 22px; }
 .pubs { display: grid; gap: 10px; }
-.pub-card { border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--bg); box-shadow: var(--shadow); }
+.pub-card { border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--bg); box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .2s ease; }
+.pub-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12); }
 .pub-card .venue { display: inline-block; background: var(--surface); border: 1px solid var(--border); padding: 2px 8px; border-radius: 999px; font-size: 12px; color: var(--muted); margin-bottom: 6px; }
 .pub-card .title { margin: 0 0 4px; font-size: 18px; }
 .pub-card .authors { font-size: 14px; color: var(--muted); }
@@ -259,7 +264,8 @@ h3 { font-size: 18px; font-weight: 700; }
 .chip:hover { background: #ebebf0; }
 
 /* KPI tiles */
-.kpi { box-shadow: none; border: 1px solid var(--border); }
+.kpi { box-shadow: none; border: 1px solid var(--border); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.kpi:hover { box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12); border-color: rgba(21, 94, 239, 0.3); }
 
 /* Audience cards */
 .aud-card { box-shadow: none; border: 1px solid var(--border); }
@@ -343,7 +349,8 @@ h3 { font-size: 18px; font-weight: 700; }
 
 /* Patents grid */
 .patent-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.patent-card { border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--bg); }
+.patent-card { border: 1px solid var(--border); border-radius: 12px; padding: 12px; background: var(--bg); box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .2s ease; }
+.patent-card:hover { transform: translateY(-4px); box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12); }
 .patent-card h3 { margin: 0 0 6px; font-size: 16px; }
 .patent-meta { display: flex; gap: 6px; align-items: center; margin-bottom: 6px; }
 .status { display: inline-block; font-size: 11px; padding: 2px 8px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); color: var(--muted); }

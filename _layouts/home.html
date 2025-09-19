@@ -80,6 +80,44 @@ layout: default
   </div>
 </section>
 
+{% assign featured_projects = site.projects | where: 'status', 'active' %}
+{% if featured_projects and featured_projects.size > 0 %}
+<section class="container section-block">
+  <div class="section-head">
+    <h2>{% if page.lang == 'en' %}Featured Projects{% else %}重点项目{% endif %}</h2>
+    <a class="link" href="{{ lp | append: '/projects/' | relative_url }}">{% if page.lang == 'en' %}View all{% else %}查看全部{% endif %}</a>
+  </div>
+  <div class="hscroll-wrap one">
+    <div class="hscroll one" id="projects-hs">
+      {% for project in featured_projects limit:12 %}
+        {% assign cover = project.cover | default: '/assets/images/placeholders/card-16x9.svg' %}
+        {% if page.lang == 'en' %}
+          {% assign summary = project.summary_en | default: project.summary_zh | default: project.intro | default: project.content %}
+        {% else %}
+          {% assign summary = project.summary_zh | default: project.summary_en | default: project.intro | default: project.content %}
+        {% endif %}
+        <article class="hcard card project-card" data-i="{{ forloop.index0 }}">
+          <img class="cover" src="{{ cover | relative_url }}" alt="" aria-hidden="true" />
+          <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+          {% if project.themes %}<p class="meta">{{ project.themes | array_to_sentence_string }}</p>{% endif %}
+          {% if summary %}<p>{{ summary | strip_html | truncate: 120 }}</p>{% endif %}
+        </article>
+      {% endfor %}
+    </div>
+    <div class="dots" data-for="projects-hs">
+      {% assign total_projects = featured_projects | size %}
+      {% for g in (0..2) %}
+        {% if g < total_projects %}
+          <button class="dot" data-g="{{ g }}" aria-label="{{ 'page ' | append: g }}"></button>
+        {% else %}
+          <button class="dot" data-g="{{ g }}" disabled aria-hidden="true"></button>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
 <section class="container team-mosaic section-block">
   <div class="section-head">
     <h2>{% if page.lang == 'en' %}Team{% else %}团队{% endif %}</h2>
@@ -87,19 +125,76 @@ layout: default
   </div>
   <div class="mosaic">
     {% assign members = site.people | where: 'status', 'current' %}
-    {% for p in members limit:8 %}
+    {% assign role_order = 'pi,postdoc,phd,master,undergrad,engineer,faculty,ra' | split: ',' %}
+    {% assign displayed = 0 %}
+    {% assign limit = 8 %}
+    {% for r in role_order %}
+      {% if displayed >= limit %}{% break %}{% endif %}
+      {% assign group = members | where: 'role', r | sort: 'name' %}
+      {% for p in group %}
+        {% if displayed >= limit %}{% break %}{% endif %}
+        {% assign avatar = p.avatar | default: '/assets/images/placeholders/avatar.svg' %}
+        {% assign role_label = '' %}
+      {% if page.lang == 'zh' %}
+        {% case p.role %}
+          {% when 'pi' %}{% assign role_label = 'PI' %}
+          {% when 'faculty' %}{% assign role_label = '教师' %}
+          {% when 'postdoc' %}{% assign role_label = '博士后' %}
+          {% when 'phd' %}{% assign role_label = '博士研究生' %}
+          {% when 'master' %}{% assign role_label = '硕士研究生' %}
+          {% when 'undergrad' %}{% assign role_label = '本科生' %}
+          {% when 'engineer' %}{% assign role_label = '工程师' %}
+          {% when 'ra' %}{% assign role_label = '研究助理' %}
+        {% endcase %}
+      {% else %}
+        {% case p.role %}
+          {% when 'pi' %}{% assign role_label = 'PI' %}
+          {% when 'faculty' %}{% assign role_label = 'Faculty' %}
+          {% when 'postdoc' %}{% assign role_label = 'Postdoc' %}
+          {% when 'phd' %}{% assign role_label = 'PhD Student' %}
+          {% when 'master' %}{% assign role_label = 'Master Student' %}
+          {% when 'undergrad' %}{% assign role_label = 'Undergraduate' %}
+          {% when 'engineer' %}{% assign role_label = 'Engineer' %}
+          {% when 'ra' %}{% assign role_label = 'Research Assistant' %}
+        {% endcase %}
+      {% endif %}
+      {% if role_label == '' and p.role %}
+        {% assign role_label = p.role | capitalize %}
+      {% endif %}
       <a class="mosaic-item" href="{{ p.url | relative_url }}" title="{{ p.name }}">
-        <div class="avatar" aria-hidden="true"></div>
+        <img class="avatar-img" src="{{ avatar | relative_url }}" alt="{{ p.name }}" loading="lazy"/>
         <span class="name">{{ p.name }}</span>
+        {% if role_label %}<span class="role">{{ role_label }}</span>{% endif %}
       </a>
+        {% assign displayed = displayed | plus: 1 %}
+      {% endfor %}
     {% endfor %}
   </div>
 </section>
 
 <section class="container kpis section-block">
   <div class="kpi">
-    {% assign pubs_recent = site.publications | where_exp:'p','p.year >= 2020' %}
-    <div class="kpi-num">{{ pubs_recent | size }}</div>
+    {% assign pubs_ranked_recent = 0 %}
+    {% for pub in site.publications %}
+      {% assign year_num = pub.year | default: 0 | plus: 0 %}
+      {% if year_num >= 2020 %}
+        {% assign venue_key = pub.venue | default: '' | downcase %}
+        {% assign cas_tag = '' %}
+        {% assign ccf_tag = '' %}
+        {% for kv in site.data.venue_ranks %}
+          {% assign key = kv[0] | downcase %}
+          {% assign val = kv[1] %}
+          {% if venue_key contains key %}
+            {% if val.cas and val.cas != '' %}{% assign cas_tag = val.cas %}{% endif %}
+            {% if val.ccf and val.ccf != '' %}{% assign ccf_tag = val.ccf %}{% endif %}
+          {% endif %}
+        {% endfor %}
+        {% if cas_tag != '' or ccf_tag != '' %}
+          {% assign pubs_ranked_recent = pubs_ranked_recent | plus: 1 %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    <div class="kpi-num">{{ pubs_ranked_recent }}</div>
     <div class="kpi-label">{% if page.lang == 'en' %}Publications{% else %}论文{% endif %}</div>
   </div>
   <div class="kpi">

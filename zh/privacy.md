@@ -2,9 +2,8 @@
 layout: default
 lang: zh
 title: 隐私声明
-permalink: /privacy/
+permalink: /zh/privacy/
 ---
-
 <div class="container" style="margin:24px 0;">
   <h1>隐私声明</h1>
   <p>本网站重视用户隐私，遵循最小化数据原则：</p>
@@ -16,4 +15,4 @@ permalink: /privacy/
   </ul>
   <p>如对本声明或数据使用有疑问，请联系：<a href="mailto:contact@example.edu">contact@example.edu</a>。</p>
   <p>更新日期：2025-09-16（占位）</p>
-</div> 
+</div>

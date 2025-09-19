@@ -17,6 +17,8 @@ main:
     children:
       - label: Projects
         url: /en/projects/
+      - label: Funding
+        url: /en/funding/
       - label: Publications
         url: /en/publications/
       - label: Patents

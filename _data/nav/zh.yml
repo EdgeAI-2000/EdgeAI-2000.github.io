@@ -17,6 +17,8 @@ main:
     children:
       - label: 项目
         url: /zh/projects/
+      - label: 基金
+        url: /zh/funding/
       - label: 论文
         url: /zh/publications/
       - label: 专利

@@ -2,12 +2,13 @@
 {% if current_lang == 'en' %}{% assign lp = '/en' %}{% else %}{% assign lp = '/zh' %}{% endif %}
 <nav class="breadcrumbs" aria-label="Breadcrumb">
   <ol>
-    {% if page.url contains '/themes/' or page.url contains '/projects/' or page.url contains '/publications/' or page.url contains '/patents/' %}
+    {% if page.url contains '/themes/' or page.url contains '/projects/' or page.url contains '/publications/' or page.url contains '/patents/' or page.url contains '/funding/' %}
       <li><a href="{{ lp | append: '/themes/' | relative_url }}">{% if current_lang == 'en' %}Research{% else %}研究{% endif %}</a></li>
       {% if page.url contains '/themes/' %}<li aria-current="page">{% if current_lang == 'en' %}Themes{% else %}研究方向{% endif %}</li>{% endif %}
       {% if page.url contains '/projects/' %}<li aria-current="page">{% if current_lang == 'en' %}Projects{% else %}项目{% endif %}</li>{% endif %}
       {% if page.url contains '/publications/' %}<li aria-current="page">{% if current_lang == 'en' %}Publications{% else %}论文{% endif %}</li>{% endif %}
       {% if page.url contains '/patents/' %}<li aria-current="page">{% if current_lang == 'en' %}Patents{% else %}专利{% endif %}</li>{% endif %}
+      {% if page.url contains '/funding/' %}<li aria-current="page">{% if current_lang == 'en' %}Funding{% else %}基金{% endif %}</li>{% endif %}
     {% elsif page.url contains '/about/' or page.url contains '/vision/' or page.url contains '/contact/' or page.url contains '/admissions/' %}
       <li><a href="{{ lp | append: '/about/' | relative_url }}">{% if current_lang == 'en' %}About{% else %}关于{% endif %}</a></li>
       {% if page.url contains '/vision/' %}<li aria-current="page">{% if current_lang == 'en' %}Vision{% else %}愿景{% endif %}</li>{% endif %}

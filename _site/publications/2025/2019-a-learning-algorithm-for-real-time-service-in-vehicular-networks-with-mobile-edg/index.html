@@ -15,11 +15,11 @@
 <meta property="og:url" content="http://localhost:4000/publications/2025/2019-a-learning-algorithm-for-real-time-service-in-vehicular-networks-with-mobile-edg/" />
 <meta property="og:site_name" content="Edge AI Lab" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-09-17T16:31:09+08:00" />
+<meta property="article:published_time" content="2025-09-18T16:22:48+08:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="A Learning Algorithm for Real-Time Service in Vehicular Networks with Mobile-Edge Computing" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"P Dai"},"dateModified":"2025-09-17T16:31:09+08:00","datePublished":"2025-09-17T16:31:09+08:00","description":"边缘智能实验室官网（占位数据） Edge AI Laboratory Website (Placeholder)","headline":"A Learning Algorithm for Real-Time Service in Vehicular Networks with Mobile-Edge Computing","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/publications/2025/2019-a-learning-algorithm-for-real-time-service-in-vehicular-networks-with-mobile-edg/"},"url":"http://localhost:4000/publications/2025/2019-a-learning-algorithm-for-real-time-service-in-vehicular-networks-with-mobile-edg/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"P Dai"},"dateModified":"2025-09-18T16:22:48+08:00","datePublished":"2025-09-18T16:22:48+08:00","description":"边缘智能实验室官网（占位数据） Edge AI Laboratory Website (Placeholder)","headline":"A Learning Algorithm for Real-Time Service in Vehicular Networks with Mobile-Edge Computing","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/publications/2025/2019-a-learning-algorithm-for-real-time-service-in-vehicular-networks-with-mobile-edg/"},"url":"http://localhost:4000/publications/2025/2019-a-learning-algorithm-for-real-time-service-in-vehicular-networks-with-mobile-edg/"}</script>
 <!-- End Jekyll SEO tag -->
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,6 +84,8 @@
                 <ul class="dropdown" role="menu">
                   
                     <li role="none"><a role="menuitem" href="/zh/projects/">项目</a></li>
+                  
+                    <li role="none"><a role="menuitem" href="/zh/funding/">基金</a></li>
                   
                     <li role="none"><a role="menuitem" href="/zh/publications/">论文</a></li>
                   
@@ -156,38 +158,44 @@
 </footer>
 <script>
 (function(){
-  const wrap = document.querySelector('.hscroll-wrap.one');
-  if(!wrap) return;
-  const scroller = wrap.querySelector('.hscroll.one');
-  const dots = Array.from(wrap.querySelectorAll('.dots .dot'));
-  const cards = Array.from(scroller.querySelectorAll('.hcard'));
-  if(!scroller || !dots.length || !cards.length) return;
-  const pageSize = Math.max(1, Math.round(cards.length / 3));
-  function scrollToGroup(g){
-    const idx = Math.min(cards.length - 1, g * pageSize);
-    const card = cards[idx];
-    if(card){ card.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); activate(g); }
-  }
-  function activeGroup(){
-    const mid = scroller.getBoundingClientRect().left + scroller.clientWidth/2;
-    let activeIdx = 0, minDist = Infinity;
-    cards.forEach((el, i)=>{
-      const rect = el.getBoundingClientRect();
-      const center = rect.left + rect.width/2;
-      const dist = Math.abs(center - mid);
-      if(dist < minDist){ minDist = dist; activeIdx = i; }
-    });
-    return Math.min(2, Math.floor(activeIdx / pageSize));
-  }
-  function activate(g){ dots.forEach((d,i)=>{
-    d.classList.toggle('active', i===g);
-    d.disabled = (i !== g && !d.hasAttribute('aria-hidden')) ? false : d.disabled;
-  }); }
-  dots.forEach((btn,i)=>{ if(!btn.disabled){ btn.addEventListener('click', ()=>scrollToGroup(i)); } });
-  const onScroll = ()=> activate(activeGroup());
-  scroller.addEventListener('scroll', onScroll, {passive:true});
-  window.addEventListener('resize', onScroll);
-  onScroll();
+  const wraps = document.querySelectorAll('.hscroll-wrap.one');
+  if(!wraps.length) return;
+  wraps.forEach(wrap=>{
+    const scroller = wrap.querySelector('.hscroll.one');
+    const dots = Array.from(wrap.querySelectorAll('.dots .dot'));
+    const cards = Array.from(scroller?.querySelectorAll('.hcard') || []);
+    if(!scroller || !dots.length || !cards.length) return;
+    const interactiveDots = dots.filter(d=>!d.disabled && !d.hasAttribute('aria-hidden'));
+    const pageSize = Math.max(1, Math.round(cards.length / Math.max(1, interactiveDots.length || 3)));
+    const maxGroup = Math.max(0, interactiveDots.length - 1);
+    function scrollToGroup(g){
+      const idx = Math.min(cards.length - 1, g * pageSize);
+      const card = cards[idx];
+      if(card){ card.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); activate(g); }
+    }
+    function activeGroup(){
+      const mid = scroller.getBoundingClientRect().left + scroller.clientWidth/2;
+      let activeIdx = 0, minDist = Infinity;
+      cards.forEach((el, i)=>{
+        const rect = el.getBoundingClientRect();
+        const center = rect.left + rect.width/2;
+        const dist = Math.abs(center - mid);
+        if(dist < minDist){ minDist = dist; activeIdx = i; }
+      });
+      return Math.min(maxGroup, Math.floor(activeIdx / pageSize));
+    }
+    function activate(g){
+      dots.forEach((d,i)=>{
+        d.classList.toggle('active', i===g);
+        if(!d.hasAttribute('aria-hidden')) d.disabled = (i !== g && interactiveDots.length > 1) ? false : d.disabled;
+      });
+    }
+    dots.forEach((btn,i)=>{ if(!btn.disabled){ btn.addEventListener('click', ()=>scrollToGroup(i)); } });
+    const onScroll = ()=> activate(activeGroup());
+    scroller.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', onScroll);
+    activate(0);
+  });
 })();
 </script>
 <script>
@@ -218,5 +226,6 @@
   setup();
 })();
 </script> 
+
   </body>
 </html> 
