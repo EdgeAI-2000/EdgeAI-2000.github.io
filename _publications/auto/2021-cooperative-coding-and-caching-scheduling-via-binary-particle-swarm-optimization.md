@@ -1,15 +1,15 @@
 ---
 title: "Cooperative Coding and Caching Scheduling via Binary Particle Swarm Optimization in Software-Defined Vehicular Networks"
 authors:
-- K Xiao
-- K Liu*
-- X Xu
-- L Feng
-- Z Wu
-- Q Zhao
-venue: "Neural Computing and Applications 33, 1467-1478, 2021"
+- Ke Xiao
+- Kai Liu*
+- Xincao Xu
+- Liang Feng
+- Zhou Wu
+- Qiangwei Zhao
+venue: "Neural Computing and Applications"
 year: 2021
 type: conference
-link: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=DK5avZUAAAAJ&pagesize=100&citation_for_view=DK5avZUAAAAJ:l7t_Zn2s7bgC"
+link: "https://link.springer.com/article/10.1007/s00521-020-04978-5"
 source: scholar
 ---
