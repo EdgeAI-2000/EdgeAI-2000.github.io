@@ -1,14 +1,14 @@
 ---
 title: "Stacked Denoising Autoencoder for Missing Traffic Data Reconstruction via Mobile Edge Computing"
 authors:
-- Penglin Dai
-- Jingtao Luo
-- Kangli Zhao
-- Huanlai Xing
-- Xiao Wu
-venue: "Neural Computing and Applications"
+- P Dai
+- J Luo
+- K Zhao
+- H Xing
+- X Wu
+venue: "Neural Computing and Applications 35 (19), 14259-14274, 2023"
 year: 2023
 type: conference
-link: "https://link.springer.com/article/10.1007/s00521-023-08475-3"
+link: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xtXbq_AAAAAJ&pagesize=100&citation_for_view=xtXbq_AAAAAJ:e5wmG9Sq2KIC"
 source: scholar
 ---

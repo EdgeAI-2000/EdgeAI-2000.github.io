@@ -1,14 +1,15 @@
 ---
 title: "Adaptive Task Scheduling via End-Edge-Cloud Cooperation in Vehicular Networks"
 authors:
-- Hualing Ren
-- Kai Liu
-- Penglin Dai
-- Yantao Li
-- Ruitao Xie
-- Songtao Guo
+- H Ren
+- K Liu
+- P Dai
+- Y Li
+- R Xie
+- S Guo
+venue: "International Conference on Wireless Algorithms, Systems, and Applications …, 2020"
 year: 2020
 type: conference
-link: "https://link.springer.com/chapter/10.1007/978-3-030-59016-1_34"
+link: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xtXbq_AAAAAJ&pagesize=100&citation_for_view=xtXbq_AAAAAJ:KlAtU1dfN6UC"
 source: scholar
 ---

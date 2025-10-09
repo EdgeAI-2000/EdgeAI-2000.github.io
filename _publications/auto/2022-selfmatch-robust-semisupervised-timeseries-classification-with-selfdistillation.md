@@ -1,15 +1,15 @@
 ---
 title: "Selfmatch: Robust Semisupervised Time‐series Classification with Self‐distillation"
 authors:
-- Huanlai Xing
-- Zhiwen Xiao
-- Dawei Zhan
-- Shouxi Luo
-- Penglin Dai
-- Ke Li
-venue: "International Journal of Intelligent Systems"
+- H Xing
+- Z Xiao
+- D Zhan
+- S Luo
+- P Dai
+- K Li
+venue: "International Journal of Intelligent Systems 37 (11), 8583-8610, 2022"
 year: 2022
 type: journal
-link: "https://onlinelibrary.wiley.com/doi/abs/10.1002/int.22957"
+link: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xtXbq_AAAAAJ&pagesize=100&citation_for_view=xtXbq_AAAAAJ:L8Ckcad2t8MC"
 source: scholar
 ---

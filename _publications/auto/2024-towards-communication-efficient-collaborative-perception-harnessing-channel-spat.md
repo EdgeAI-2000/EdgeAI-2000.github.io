@@ -1,13 +1,14 @@
 ---
 title: "Towards Communication-Efficient Collaborative Perception: Harnessing Channel-Spatial Attention and Knowledge Distillation"
 authors:
-- Fei Wang
-- Penglin Dai
-- Chuzhao Li
-- Zhangjie Meng
-- Kai Liu
+- F Wang
+- P Dai
+- C Li
+- Z Meng
+- K Liu
+venue: "International Conference on Wireless Artificial Intelligent Computing …, 2024"
 year: 2024
 type: conference
-link: "https://link.springer.com/chapter/10.1007/978-3-031-71470-2_19"
+link: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xtXbq_AAAAAJ&pagesize=100&citation_for_view=xtXbq_AAAAAJ:BqipwSGYUEgC"
 source: scholar
 ---

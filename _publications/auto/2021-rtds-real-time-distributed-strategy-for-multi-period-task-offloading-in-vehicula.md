@@ -1,15 +1,15 @@
 ---
 title: "Rtds: Real-Time Distributed Strategy for Multi-Period Task Offloading in Vehicular Edge Computing Environment"
 authors:
-- Chunhui Liu
-- Kai Liu*
-- Hualing Ren
-- Xincao Xu
-- Ruitao Xie
-- Jingjing Cao
-venue: "Neural Computing and Applications"
+- C Liu
+- K Liu*
+- H Ren
+- X Xu
+- R Xie
+- J Cao
+venue: "Neural Computing and Applications, 1-15, 2021"
 year: 2021
 type: conference
-link: "https://link.springer.com/article/10.1007/s00521-021-05766-5"
+link: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=DK5avZUAAAAJ&pagesize=100&citation_for_view=DK5avZUAAAAJ:4fKUyHm3Qg0C"
 source: scholar
 ---

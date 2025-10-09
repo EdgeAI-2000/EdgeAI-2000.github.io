@@ -1,14 +1,14 @@
 ---
 title: "Efficient Fog-Assisted Heterogeneous Data Services in Software Defined Vanets"
 authors:
-- Ke Xiao
-- Kai Liu*
-- Xincao Xu
-- Yi Zhou
-- Liang Feng
-venue: "Journal of Ambient Intelligence and Humanized Computing"
+- K Xiao
+- K Liu*
+- X Xu
+- Y Zhou
+- L Feng
+venue: "Journal of Ambient Intelligence and Humanized Computing 12, 261-273, 2021"
 year: 2021
 type: journal
-link: "https://link.springer.com/article/10.1007/s12652-019-01507-8"
+link: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=DK5avZUAAAAJ&pagesize=100&citation_for_view=DK5avZUAAAAJ:CHSYGLWDkRkC"
 source: scholar
 ---
