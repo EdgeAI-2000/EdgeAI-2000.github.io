@@ -1,15 +1,15 @@
 ---
 title: "Meta Reinforcement Learning for Multi-Task Offloading in Vehicular Edge Computing"
 authors:
-- P Dai
-- Y Huang
-- K Hu
-- X Wu
-- H Xing
-- Z Yu
-venue: "IEEE Transactions on Mobile Computing 23 (3), 2123-2138, 2023"
+- Penglin Dai
+- Yaorong Huang
+- Kaiwen Hu
+- Xiao Wu
+- Huanlai Xing
+- Zhaofei Yu
+venue: "IEEE Transactions on Mobile Computing"
 year: 2023
 type: journal
-link: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xtXbq_AAAAAJ&pagesize=100&citation_for_view=xtXbq_AAAAAJ:R3hNpaxXUhUC"
+link: "https://ieeexplore.ieee.org/abstract/document/10050793/"
 source: scholar
 ---

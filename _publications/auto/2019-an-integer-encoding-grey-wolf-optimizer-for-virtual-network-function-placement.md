@@ -1,16 +1,16 @@
 ---
 title: "An Integer Encoding Grey Wolf Optimizer for Virtual Network Function Placement"
 authors:
-- H Xing
-- X Zhou
-- X Wang
-- S Luo
-- P Dai
-- K Li
-- H Yang
-venue: "Applied Soft Computing 76, 575-594, 2019"
+- Huanlai Xing
+- Xinyu Zhou
+- Xinhan Wang
+- Shouxi Luo
+- Penglin Dai
+- Ke Li
+- Hui Yang
+venue: "Applied Soft Computing"
 year: 2019
 type: conference
-link: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xtXbq_AAAAAJ&pagesize=100&citation_for_view=xtXbq_AAAAAJ:_FxGoFyzp5QC"
+link: "https://www.sciencedirect.com/science/article/pii/S1568494619300018"
 source: scholar
 ---

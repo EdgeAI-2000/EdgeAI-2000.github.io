@@ -1,15 +1,14 @@
 ---
 title: "Multi-Period Distributed Delay-Sensitive Tasks Offloading in a Two-Layer Vehicular Fog Computing Architecture"
 authors:
-- Y Zhou
-- K Liu*
-- X Xu
-- C Liu
-- L Feng
-- C Chen
-venue: "Neural Computing for Advanced Applications: First International Conference …, 2020"
+- Yi Zhou
+- Kai Liu*
+- Xincao Xu
+- Chunhui Liu
+- Liang Feng
+- Chao Chen
 year: 2020
 type: conference
-link: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=DK5avZUAAAAJ&pagesize=100&citation_for_view=DK5avZUAAAAJ:vRqMK49ujn8C"
+link: "https://link.springer.com/chapter/10.1007/978-981-15-7670-6_38"
 source: scholar
 ---

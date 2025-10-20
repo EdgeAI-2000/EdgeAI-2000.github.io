@@ -1,16 +1,16 @@
 ---
 title: "Evolutionary Multi-Objective Reinforcement Learning Based Trajectory Control and Task Offloading in UAV-Assisted Mobile Edge Computing"
 authors:
-- F Song
-- H Xing
-- X Wang
-- S Luo
-- P Dai
-- Z Xiao
-- B Zhao
-venue: "IEEE Transactions on Mobile Computing 22 (12), 7387-7405, 2022"
+- Fuhong Song
+- Huanlai Xing
+- Xinhan Wang
+- Shouxi Luo
+- Penglin Dai
+- Zhiwen Xiao
+- Bowen Zhao
+venue: "IEEE Transactions on Mobile Computing"
 year: 2022
 type: journal
-link: "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xtXbq_AAAAAJ&pagesize=100&citation_for_view=xtXbq_AAAAAJ:dhFuZR0502QC"
+link: "https://ieeexplore.ieee.org/abstract/document/9897000/"
 source: scholar
 ---
