@@ -10,6 +10,6 @@ authors:
 venue: "IEEE TRANSACTIONS ON INTELLIGENT TRANSPORTATION SYSTEMS"
 year: 2025
 type: journal
-link: "https://scholar.google.com/scholar?cluster=15623926020469797483&hl=en&oi=scholarr"
+link: "https://ieeexplore.ieee.org/abstract/document/11224917/"
 source: scholar
 ---
