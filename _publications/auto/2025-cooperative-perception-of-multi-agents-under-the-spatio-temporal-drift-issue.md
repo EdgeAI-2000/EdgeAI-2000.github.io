@@ -7,7 +7,7 @@ authors:
 - Xiao Wu
 - Zhanbo Sun
 - Zhaofei Yu
-venue: "IEEE TRANSACTIONS ON INTELLIGENT TRANSPORTATION SYSTEMS"
+venue: "IEEE Transactions on Intelligent Transportation Systems"
 year: 2025
 type: journal
 link: "https://ieeexplore.ieee.org/abstract/document/11224917/"
