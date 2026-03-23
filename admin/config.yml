@@ -1,0 +1,113 @@
+backend:
+  name: github
+  repo: EdgeAI-2000/EdgeAI-2000.github.io
+  branch: main
+  # 学生需要是 EdgeAI-2000 GitHub 组织成员才能登录
+  # 在 GitHub OAuth App 中配置：
+  # Authorization callback URL: https://eaislab.com/admin/
+
+# 上传的图片存放位置
+media_folder: "assets/images/people"
+public_folder: "/assets/images/people"
+
+# 站点预览地址
+site_url: https://eaislab.com
+display_url: https://eaislab.com
+logo_url: https://eaislab.com/assets/images/placeholders/avatar.svg
+
+# 本地化
+locale: zh_Hans
+
+collections:
+  # ── 成员信息（学生可自己编辑） ──────────────────────────────
+  - name: "people"
+    label: "成员 / People"
+    label_singular: "成员"
+    folder: "_people"
+    create: false        # 只允许编辑已有条目，不能新建（防止乱建）
+    slug: "{{slug}}"
+    identifier_field: name
+    summary: "{{name}} · {{role}} · {{status}}"
+    fields:
+      - { label: "姓名", name: "name", widget: "string", hint: "中文全名" }
+      - label: "角色"
+        name: "role"
+        widget: "select"
+        options:
+          - { label: "PI / 导师", value: "pi" }
+          - { label: "博士研究生", value: "phd" }
+          - { label: "硕士研究生", value: "master" }
+          - { label: "本科生", value: "undergrad" }
+          - { label: "博士后", value: "postdoc" }
+          - { label: "工程师", value: "engineer" }
+          - { label: "研究助理", value: "ra" }
+      - label: "状态"
+        name: "status"
+        widget: "select"
+        default: "current"
+        options:
+          - { label: "在读 / 在职", value: "current" }
+          - { label: "校友", value: "alumni" }
+      - label: "头像"
+        name: "avatar"
+        widget: "image"
+        required: false
+        hint: "建议上传 600×600 方形图片（JPG/PNG），将自动存到 assets/images/people/"
+        default: "/assets/images/placeholders/avatar.svg"
+        media_library:
+          config:
+            multiple: false
+      - { label: "中文简介", name: "bio_zh", widget: "text", required: false, hint: "60-120 字，介绍研究方向与背景" }
+      - { label: "English Bio", name: "bio_en", widget: "text", required: false }
+      - label: "研究方向标签"
+        name: "research_areas"
+        widget: "list"
+        required: false
+        hint: "每行一个标签，如：协同感知、模型压缩"
+        field: { label: "方向", name: "area", widget: "string" }
+      - { label: "邮箱", name: "email", widget: "string", required: false, pattern: ['^[^@]+@[^@]+\.[^@]+$', "请输入有效邮箱"] }
+      - { label: "个人主页", name: "homepage", widget: "string", required: false }
+      - { label: "Google Scholar", name: "scholar", widget: "string", required: false }
+      - { label: "GitHub", name: "github", widget: "string", required: false }
+      - { label: "DBLP", name: "dblp", widget: "string", required: false }
+      - { label: "学院 / 单位", name: "affiliation", widget: "string", required: false }
+      - { label: "在读时间", name: "period", widget: "string", required: false, hint: "如：2024 – 至今" }
+      - { label: "毕业去向", name: "destination", widget: "string", required: false, hint: "仅校友填写" }
+      - { label: "详细介绍（可选）", name: "body", widget: "markdown", required: false }
+
+  # ── 新闻（导师/管理员发布） ────────────────────────────────
+  - name: "news"
+    label: "新闻动态 / News"
+    label_singular: "新闻"
+    folder: "_news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    filter: { field: "lang", value: "zh" }
+    fields:
+      - { label: "标题（中文）", name: "title", widget: "string" }
+      - { label: "Title (English)", name: "title_en", widget: "string", required: false }
+      - { label: "语言", name: "lang", widget: "hidden", default: "zh" }
+      - { label: "日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - label: "类型"
+        name: "type"
+        widget: "select"
+        default: "news"
+        options:
+          - { label: "新闻", value: "news" }
+          - { label: "获奖", value: "award" }
+          - { label: "媒体报道", value: "press" }
+      - { label: "摘要（中文）", name: "summary", widget: "text", hint: "显示在新闻列表页，建议 80 字以内" }
+      - { label: "Summary (English)", name: "summary_en", widget: "text", required: false }
+      - label: "封面图"
+        name: "cover"
+        widget: "image"
+        required: false
+        default: "/assets/images/placeholders/card-16x9.svg"
+      - label: "相关作者"
+        name: "authors"
+        widget: "list"
+        required: false
+        field: { label: "姓名", name: "name", widget: "string" }
+      - { label: "会议/期刊", name: "venue", widget: "string", required: false }
+      - { label: "链接", name: "link", widget: "string", required: false }
+      - { label: "正文", name: "body", widget: "markdown", required: false }
