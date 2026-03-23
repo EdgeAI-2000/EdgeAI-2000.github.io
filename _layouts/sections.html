@@ -32,10 +32,16 @@ layout: default
 
           {% if it.metrics %}
             <div class="metrics">
-              {% if it.metrics.latency %}<div class="metric"><span class="k">Latency</span><span class="v">{{ it.metrics.latency }}</span></div>{% endif %}
-              {% if it.metrics.power %}<div class="metric"><span class="k">Power</span><span class="v">{{ it.metrics.power }}</span></div>{% endif %}
-              {% if it.metrics.accuracy %}<div class="metric"><span class="k">Accuracy</span><span class="v">{{ it.metrics.accuracy }}</span></div>{% endif %}
+              {% for kv in it.metrics %}
+                <div class="metric"><span class="k">{{ kv[0] }}</span><span class="v">{{ kv[1] }}</span></div>
+              {% endfor %}
             </div>
+          {% endif %}
+
+          {% if it.highlights %}
+            <ul class="highlights" style="margin:8px 0 0 0;padding-left:1.2em;">
+              {% for h in it.highlights %}<li>{{ h }}</li>{% endfor %}
+            </ul>
           {% endif %}
 
           {% if it.themes %}
