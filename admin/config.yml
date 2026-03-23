@@ -2,9 +2,12 @@ backend:
   name: github
   repo: EdgeAI-2000/EdgeAI-2000.github.io
   branch: main
+  client_id: Ov23liOT1xM6d06Bbtqy
+  base_url: https://eaislab.com
+  auth_endpoint: /admin/oauth/
+  # OAuth 代理由 Cloudflare Worker eais-cms-oauth 处理
+  # 路由：eaislab.com/admin/oauth/* → Worker
   # 学生需要是 EdgeAI-2000 GitHub 组织成员才能登录
-  # 在 GitHub OAuth App 中配置：
-  # Authorization callback URL: https://eaislab.com/admin/
 
 # 上传的图片存放位置
 media_folder: "assets/images/people"
