@@ -4,7 +4,7 @@ backend:
   branch: main
   client_id: Ov23liOT1xM6d06Bbtqy
   base_url: https://eais-cms-oauth.neardws.workers.dev
-  auth_endpoint: /admin/oauth
+  auth_endpoint: /oauth
   # OAuth 代理由 Cloudflare Worker eais-cms-oauth 处理
   # Worker 地址：https://eais-cms-oauth.neardws.workers.dev
   # 学生需要是 EdgeAI-2000 GitHub 组织成员才能登录
