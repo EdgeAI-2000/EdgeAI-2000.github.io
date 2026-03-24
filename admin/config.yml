@@ -19,6 +19,7 @@ display_url: https://eaislab.com
 logo_url: https://eaislab.com/assets/images/placeholders/avatar.svg
 
 # 本地化
+publish_mode: editorial_workflow
 locale: zh_Hans
 
 collections:
