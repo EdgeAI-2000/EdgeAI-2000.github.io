@@ -1,7 +1,7 @@
 ---
 title: "Joint Optimization for Quality Selection and Resource Allocation of Live Video Streaming in Internet of Vehicles"
 authors:
-- Penglin Dai
+- Penglin Dai*
 - Meiting Wu
 - Ke Li
 - Xiao Wu
@@ -9,6 +9,13 @@ authors:
 venue: "IEEE Transactions on Services Computing"
 year: 2024
 type: journal
-link: "https://ieeexplore.ieee.org/abstract/document/10379126/"
-source: scholar
+volume: 17
+number: 4
+pages: "1607-1621"
+jcr: Q1
+sci: Q2
+ccf: A
+corresponding_authors:
+- Penglin Dai
+source: manual
 ---

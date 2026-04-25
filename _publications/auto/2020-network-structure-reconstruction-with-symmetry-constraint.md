@@ -1,13 +1,19 @@
 ---
-title: "Network Structure Reconstruction with Symmetry Constraint"
+title: "Network structure reconstruction with symmetry constraint"
 authors:
 - Zihua Hang
-- Penglin Dai
-- Shanshan Jia
+- Penglin Dai*
+- Shanshan Jia*
 - Zhaofei Yu
 venue: "Chaos, Solitons & Fractals"
 year: 2020
-type: conference
-link: "https://www.sciencedirect.com/science/article/pii/S0960077920306834"
-source: scholar
+type: journal
+volume: 139
+pages: "1-9"
+jcr: Q1
+sci: Q1
+corresponding_authors:
+- Penglin Dai
+- Shanshan Jia
+source: manual
 ---

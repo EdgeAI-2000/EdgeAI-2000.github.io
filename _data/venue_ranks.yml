@@ -73,3 +73,26 @@ icc:
   ccf: C
 globecom:
   ccf: C
+ieee transactions on systems, man and cybernetics: systems:
+  cas: Q1
+
+transportation research part c:
+  cas: Q1
+
+ieee international conference on mobility, sensing and networking:
+  ccf: C
+
+ieee msn:
+  ccf: C
+
+ieee global communications conference:
+  ccf: C
+
+ieee international conference on communications:
+  ccf: C
+
+ieee wireless communications and networking conference:
+  ccf: C
+
+wcnc:
+  ccf: C

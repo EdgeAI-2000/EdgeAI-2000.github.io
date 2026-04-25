@@ -3,7 +3,7 @@ title: "Multi-Armed Bandit Learning for Computation-Intensive Services in MEC-Em
 authors:
 - Penglin Dai
 - Zihua Hang
-- Kai Liu
+- Kai Liu*
 - Xiao Wu
 - Huanlai Xing
 - Zhaofei Yu
@@ -11,6 +11,12 @@ authors:
 venue: "IEEE Transactions on Vehicular Technology"
 year: 2020
 type: journal
-link: "https://ieeexplore.ieee.org/abstract/document/9082866/"
-source: scholar
+volume: 69
+number: 7
+pages: "7821-7834"
+jcr: Q1
+sci: Q2
+corresponding_authors:
+- Kai Liu
+source: manual
 ---

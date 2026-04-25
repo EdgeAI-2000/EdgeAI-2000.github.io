@@ -10,8 +10,7 @@ year: 2025
 type: conference
 location: "Hangzhou, China"
 dates: "Oct. 19 - Oct. 25, 2025"
-ccf: B
-corresponding_author: "Penglin Dai"
-link: "https://ieeexplore.ieee.org/abstract/document/11247221/"
+corresponding_authors:
+- Penglin Dai
 source: manual
 ---

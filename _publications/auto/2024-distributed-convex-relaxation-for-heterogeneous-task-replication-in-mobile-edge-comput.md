@@ -1,15 +1,22 @@
 ---
 title: "Distributed Convex Relaxation for Heterogeneous Task Replication in Mobile Edge Computing"
 authors:
-- Penglin Dai
+- Penglin Dai*
 - Biao Han
 - Xiao Wu
 - Huanlai Xing
 - Bingyi Liu
 - Kai Liu
 venue: "IEEE Transactions on Mobile Computing"
-year: 2022
+year: 2024
 type: journal
-link: "https://ieeexplore.ieee.org/abstract/document/9999483/"
-source: scholar
+volume: 23
+number: 2
+pages: "1230-1245"
+jcr: Q1
+sci: Q2
+ccf: A
+corresponding_authors:
+- Penglin Dai
+source: manual
 ---

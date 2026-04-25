@@ -1,12 +1,17 @@
 ---
-title: "A Convex-Based Computation Offloading Mechanism in Vehicular Edge Computing"
+title: "A Convex-based Computation Offloading Mechanism in Vehicular Edge Computing"
 authors:
-- Penglin Dai
+- Penglin Dai*
 - Kaiwen Hu
 - Huanlai Xing
 - Kangli Zhao
+venue: "IEEE International Symposium on Product Compliance Engineering-Asia (ISPCE-CN 2020)"
 year: 2020
 type: conference
-link: "https://ieeexplore.ieee.org/abstract/document/9321853/"
-source: scholar
+location: "Chongqing, China"
+dates: "2020"
+award: "Best Paper Award"
+corresponding_authors:
+- Penglin Dai
+source: manual
 ---

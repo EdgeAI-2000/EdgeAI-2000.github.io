@@ -251,6 +251,8 @@ layout: default
           <div class="pub-badges">
             {% if venue_badge %}<span class="badge">{{ venue_badge }}</span>{% endif %}
             {% if cas_tag and cas_tag != '' %}<span class="tag tag-cas {% if cas_tag == 'Q1' or cas_tag == '1区' %}is-top{% endif %}">CAS {{ cas_tag }}</span>{% endif %}
+            {% if pub.jcr %}<span class="tag tag-jcr {% if pub.jcr == 'Q1' %}is-top{% endif %}">JCR {{ pub.jcr }}</span>{% endif %}
+            {% if pub.sci %}<span class="tag tag-sci {% if pub.sci == 'Q1' %}is-top{% endif %}">SCI {{ pub.sci }}</span>{% endif %}
             {% if ccf_tag and ccf_tag != '' %}<span class="tag tag-ccf {% if ccf_tag == 'A' %}is-top{% endif %}">CCF {{ ccf_tag }}</span>{% endif %}
           </div>
           <h3 class="title">{{ pub.title }}</h3>

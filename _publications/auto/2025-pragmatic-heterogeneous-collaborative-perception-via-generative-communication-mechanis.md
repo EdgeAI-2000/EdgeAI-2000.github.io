@@ -10,12 +10,12 @@ authors:
 venue: "Advances in Neural Information Processing Systems (NeurIPS 2025)"
 year: 2025
 type: conference
-presentation: poster
+ccf: A
 location: "San Diego, CA, USA"
 dates: "Nov. 30 - Dec. 7, 2025"
-ccf: A
-corresponding_author: "Penglin Dai"
+presentation: "poster"
+corresponding_authors:
+- Penglin Dai
 code_available: true
-link: "https://arxiv.org/abs/2510.19618"
 source: manual
 ---

@@ -15,6 +15,7 @@ status: accepted
 jcr: Q1
 sci: Q1
 ccf: A
-corresponding_author: "Penglin Dai"
+corresponding_authors:
+- Penglin Dai
 source: manual
 ---

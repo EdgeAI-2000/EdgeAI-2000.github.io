@@ -8,8 +8,13 @@ authors:
 - Pan Zhou
 - Songtao Guo
 venue: "IEEE Transactions on Mobile Computing"
-year: 2021
+year: 2023
 type: journal
-link: "https://ieeexplore.ieee.org/abstract/document/9519528/"
-source: scholar
+volume: 22
+number: 3
+pages: "1464-1478"
+jcr: Q1
+sci: Q2
+ccf: A
+source: manual
 ---

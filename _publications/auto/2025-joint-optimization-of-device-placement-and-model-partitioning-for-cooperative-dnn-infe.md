@@ -9,14 +9,14 @@ authors:
 - Kai Liu
 venue: "IEEE Transactions on Mobile Computing"
 year: 2025
+type: journal
 volume: 24
 number: 1
 pages: "210-226"
-type: journal
 jcr: Q1
 sci: Q2
 ccf: A
-corresponding_author: "Penglin Dai"
-link: "https://ieeexplore.ieee.org/abstract/document/10675335/"
+corresponding_authors:
+- Penglin Dai
 source: manual
 ---

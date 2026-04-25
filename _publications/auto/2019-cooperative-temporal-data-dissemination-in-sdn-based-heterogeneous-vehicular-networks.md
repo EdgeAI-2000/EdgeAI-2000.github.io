@@ -2,14 +2,21 @@
 title: "Cooperative Temporal Data Dissemination in SDN-Based Heterogeneous Vehicular Networks"
 authors:
 - Penglin Dai
-- Kai Liu
+- Kai Liu*
 - Xiao Wu
-- Zhaofei Yu
-- Huanlai Xing
-- Victor Chung Sing Lee
+- Zhaofei Yu*
+- Huanglai Xing
+- Victor C. S. Lee
 venue: "IEEE Internet of Things Journal"
-year: 2018
+year: 2019
 type: journal
-link: "https://ieeexplore.ieee.org/abstract/document/8474352/"
-source: scholar
+volume: 6
+number: 1
+pages: "72-83"
+jcr: Q1
+sci: Q1
+corresponding_authors:
+- Kai Liu
+- Zhaofei Yu
+source: manual
 ---
