@@ -65,6 +65,10 @@ international conference on wireless algorithms, systems, and applications:
   ccf: C
 international conference on mobility, sensing and networking:
   ccf: C
+ieee/rsj international conference on intelligent robots and systems:
+  ccf: B
+iros:
+  ccf: B
 icc:
   ccf: C
 globecom:
