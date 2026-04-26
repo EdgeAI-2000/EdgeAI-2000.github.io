@@ -38,7 +38,7 @@ permalink: /en/funding/
 
 <section class="container" style="margin-bottom:40px;">
   <div class="section-head">
-    <h2>Industry & Joint Initiatives</h2>
+    <h2>Participated Programs & Open Collaborations</h2>
   </div>
   {% for group in funding.horizontal %}
     <div style="margin-bottom:24px;">

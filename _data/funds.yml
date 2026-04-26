@@ -1,85 +1,179 @@
 vertical:
-  - category_zh: 国家级项目
-    category_en: National Programs
+  - category_zh: 主持项目
+    category_en: Principal Investigator / Co-PI Projects
     items:
-      - title_zh: 国家重点研发计划“边缘智能协同系统关键技术”
-        title_en: National Key R&D Program on Edge Intelligence Systems
-        period: 2023-2026
-        role_zh: 牵头单位
-        role_en: Lead Institution
-        sponsors_zh: 科技部
-        sponsors_en: Ministry of Science and Technology
-        budget_zh: 3000 万元
-        budget_en: ¥30M
-        description_zh: 围绕工业物联网场景中的边缘智能协同调度、低时延推理与安全保障等关键问题开展研究。
-        description_en: Research on coordinated scheduling, low-latency inference, and safety for edge intelligence in industrial IoT scenarios.
-      - title_zh: 国家自然科学基金青年项目“高可靠边缘推理加速架构”
-        title_en: NSFC Young Scientists Grant on Reliable Edge Inference Accelerators
-        period: 2024-2026
-        role_zh: 项目负责人
-        role_en: Principal Investigator
-        sponsors_zh: 国家自然科学基金委员会
-        sponsors_en: National Natural Science Foundation of China
-        budget_zh: 80 万元
-        budget_en: ¥0.8M
-        description_zh: 探索软硬件协同的推理加速方案，实现低功耗条件下的高可靠推理能力。
-        description_en: Explores co-designed hardware/software acceleration to deliver reliable inference under tight power budgets.
-  - category_zh: 省市级项目
-    category_en: Provincial & Municipal Programs
-    items:
-      - title_zh: 上海市科技创新行动计划“面向智慧城市的边缘智能平台”
-        title_en: Shanghai Science and Technology Innovation Action Plan on Edge Platforms for Smart Cities
-        period: 2022-2025
-        role_zh: 课题负责人
-        role_en: Project Lead
-        sponsors_zh: 上海市科委
-        sponsors_en: Shanghai Municipal Science and Technology Commission
-        budget_zh: 1200 万元
-        budget_en: ¥12M
-        description_zh: 构建统一的城市感知与边缘协同平台，支撑交通、安防等多场景应用。
-        description_en: Builds a unified sensing and edge collaboration platform to serve smart transportation, security, and other municipal applications.
-      - title_zh: 浙江省重点研发计划“供应链边缘智能优化”
-        title_en: Zhejiang Provincial Key R&D Program on Supply-Chain Edge Optimization
-        period: 2023-2025
-        role_zh: 参与单位
-        role_en: Co-PI
-        sponsors_zh: 浙江省科技厅
-        sponsors_en: Department of Science and Technology of Zhejiang Province
-        budget_zh: 600 万元
-        budget_en: ¥6M
-        description_zh: 与本地制造企业协同，提升供应链预测和执行效率。
-        description_en: Collaborates with local manufacturers to improve supply-chain forecasting and execution efficiency.
+      - title_zh: 基于深度强化学习的端-边-云协同车联网分布式任务处理机制研究
+        title_en: Research on distributed task processing mechanism in end-edge-cloud orchestrated Internet of Vehicles based on deep reinforcement learning
+        period: 2022-01 至 2025-12
+        role_zh: 戴朋林，项目负责人
+        role_en: Penglin Dai, PI
+        sponsors_zh: 国家自然科学基金委员会（面上项目）
+        sponsors_en: National Natural Science Foundation of China (General Project)
+        budget_zh: 59 万元
+        budget_en: 590,000 CNY
+        description_zh: 项目编号：62172342。来源：戴朋林老师个人主页。
+        description_en: "Grant No. 62172342. Source: Prof. Penglin Dai's homepage."
+      - title_zh: 车联网中实时数据调度与动态资源优化关键技术研究
+        title_en: Research on Key Techniques for Real-time Data Scheduling and Dynamic Resource Optimization in Vehicle Networks
+        period: 2019-01 至 2021-12
+        role_zh: 戴朋林，项目负责人
+        role_en: Penglin Dai, PI
+        sponsors_zh: 国家自然科学基金委员会（面上项目）
+        sponsors_en: National Natural Science Foundation of China (General Project)
+        budget_zh: 26 万元
+        budget_en: 260,000 CNY
+        description_zh: 项目编号：61802319。来源：戴朋林老师个人主页。
+        description_en: "Grant No. 61802319. Source: Prof. Penglin Dai's homepage."
+      - title_zh: 车联网中边缘缓存与计算模型自适应关键技术研究
+        title_en: Research on Key Techniques for Self-Adaptation of Edge Caching and Computation Model in Vehicular Networks
+        period: 2022-01 至 2024-12
+        role_zh: 戴朋林，项目负责人
+        role_en: Penglin Dai, PI
+        sponsors_zh: 河北省自然科学基金
+        sponsors_en: Natural Science Foundation of Hebei Province
+        budget_zh: 20 万元
+        budget_en: 200,000 CNY
+        description_zh: 项目编号：F2022105003。来源：戴朋林老师个人主页。
+        description_en: "Grant No. F2022105003. Source: Prof. Penglin Dai's homepage."
+      - title_zh: 基于异构网络融合的移动计算数据分发关键技术研究
+        title_en: Research on Key Technologies for data dissemination in mobile computing based on heterogeneous network integration
+        period: 2020-01 至 2022-12
+        role_zh: 戴朋林，项目负责人
+        role_en: Penglin Dai, PI
+        sponsors_zh: 四川省科技计划
+        sponsors_en: Sichuan Science and Technology Program
+        budget_zh: 10 万元
+        budget_en: 100,000 CNY
+        description_zh: 项目编号：2020YJ0272。来源：戴朋林老师个人主页。
+        description_en: "Grant No. 2020YJ0272. Source: Prof. Penglin Dai's homepage."
+      - title_zh: 基于边缘智能的车联网实时数据传输与处理机制研究
+        title_en: Research on real-time data transmission and processing mechanism of Internet of vehicles based on edge intelligence
+        period: 2020-07 至 2022-07
+        role_zh: 戴朋林，项目负责人
+        role_en: Penglin Dai, PI
+        sponsors_zh: 中国博士后科学基金（特别资助）
+        sponsors_en: China Postdoctoral Science Foundation (Special Funding)
+        budget_zh: 18 万元
+        budget_en: 180,000 CNY
+        description_zh: 项目编号：2020T130547。来源：戴朋林老师个人主页。
+        description_en: "Grant No. 2020T130547. Source: Prof. Penglin Dai's homepage."
+      - title_zh: 基于边缘计算架构的车联网高效数据服务策略研究
+        title_en: Research on efficient data service strategy of Internet of vehicles based on edge computing architecture
+        period: 2020-01 至 2022-05
+        role_zh: 戴朋林，项目负责人
+        role_en: Penglin Dai, PI
+        sponsors_zh: 中国博士后科学基金（面上资助）
+        sponsors_en: China Postdoctoral Science Foundation (General Fund)
+        budget_zh: 12 万元
+        budget_en: 120,000 CNY
+        description_zh: 项目编号：2019M660245。来源：戴朋林老师个人主页。
+        description_en: "Grant No. 2019M660245. Source: Prof. Penglin Dai's homepage."
+      - title_zh: 生成式模型驱动的车联网数字孪生关键技术研究
+        title_en: Research on Key Techniques for Generative Model-based Vehicular Digital Twins
+        period: 2025-01 至 2027-12
+        role_zh: 许新操，项目负责人
+        role_en: Xincao Xu, PI
+        sponsors_zh: 广东省基础与应用基础研究基金（面上项目）
+        sponsors_en: Guangdong Basic and Applied Basic Research Foundation (General Project)
+        budget_zh: 10 万元
+        budget_en: 100,000 CNY
+        description_zh: 项目编号：2025A1515012825；入选比例 top 18.8%。来源：许新操老师个人主页。
+        description_en: "Grant No. 2025A1515012825; top 18.8%. Source: Prof. Xincao Xu's homepage."
+      - title_zh: 面向车联网数字孪生网络的感通一体化车路协同系统研究
+        title_en: Research on Integrated Sensing and Communications based Vehicle-Infrastructure Cooperation System for Vehicular Digital Twin Networks
+        period: 2024-01 至 2025-06
+        role_zh: 许新操，项目负责人
+        role_en: Xincao Xu, PI
+        sponsors_zh: 中国博士后科学基金（博士后创新人才支持计划）
+        sponsors_en: China Postdoctoral Science Foundation (Postdoctoral Fellowship Program)
+        budget_zh: 24 万元
+        budget_en: 240,000 CNY
+        description_zh: 项目编号：GZC20230384；2023 年信息与通信工程学科仅 58 人入选。来源：许新操老师个人主页。
+        description_en: "Grant No. GZC20230384; only 58 candidates were selected in Information and Communication Engineering in 2023. Source: Prof. Xincao Xu's homepage."
+      - title_zh: 面向车载边缘计算的网络物理系统建模与优化
+        title_en: Modeling and Optimization of Cyber-Physical System for Vehicular Edge Computing
+        period: 2024-01 至 2025-06
+        role_zh: 许新操，项目负责人
+        role_en: Xincao Xu, PI
+        sponsors_zh: 中国博士后科学基金（面上资助）
+        sponsors_en: China Postdoctoral Science Foundation (General Fund)
+        budget_zh: 8 万元
+        budget_en: 80,000 CNY
+        description_zh: 项目编号：2023M740515；入选比例 top 15.9%。来源：许新操老师个人主页。
+        description_en: "Grant No. 2023M740515; top 15.9%. Source: Prof. Xincao Xu's homepage."
 horizontal:
-  - category_zh: 企业合作项目
-    category_en: Industry Collaborations
+  - category_zh: 参与项目与开放合作
+    category_en: Participated Programs & Open Collaborations
     items:
-      - title_zh: 某工业集团“边缘质检智能体”联合攻关
-        title_en: Joint Project on Edge Quality Inspection Agents with Industrial Group
-        period: 2022-2024
-        partners_zh: 某工业集团
-        partners_en: Industrial Group Co., Ltd.
+      - title_zh: 车联网边缘智能计算模型部署与跨域协同优化
+        title_en: Computing Model Deployment and Collaborative Cross Domain Optimization for Edge Intelligence of Internet of Vehicles
+        period: 2022-01 至 2025-12
+        partners_zh: 国家自然科学基金委员会；许新操参与
+        partners_en: National Natural Science Foundation of China; Xincao Xu participated
+        budget_zh: 59 万元
+        budget_en: 590,000 CNY
+        description_zh: 面上项目，项目编号：62172064。来源：许新操老师个人主页。
+        description_en: "General Project, Grant No. 62172064. Source: Prof. Xincao Xu's homepage."
+      - title_zh: 基于连续干扰消除的无线可充能通信网络高性能数据传输与接收机制研究
+        title_en: Research on High Performance Data Transmission and Reception Mechanism of Wireless Energy-capable Communication Network Based on Successive Interference Cancellation
+        period: 2021-01 至 2024-12
+        partners_zh: 国家自然科学基金委员会；许新操参与
+        partners_en: National Natural Science Foundation of China; Xincao Xu participated
+        budget_zh: 58 万元
+        budget_en: 580,000 CNY
+        description_zh: 面上项目，项目编号：62072064。来源：许新操老师个人主页。
+        description_en: "General Project, Grant No. 62072064. Source: Prof. Xincao Xu's homepage."
+      - title_zh: 基于行为特征的移动用户持续认证方法与关键技术研究
+        title_en: Research on Continuous Authentication Method and Key Technologies for Mobile Users Based on Behavioral Characteristics
+        period: 2021-01 至 2024-12
+        partners_zh: 国家自然科学基金委员会；许新操参与
+        partners_en: National Natural Science Foundation of China; Xincao Xu participated
+        budget_zh: 58 万元
+        budget_en: 580,000 CNY
+        description_zh: 面上项目，项目编号：62072061。来源：许新操老师个人主页。
+        description_en: "General Project, Grant No. 62072061. Source: Prof. Xincao Xu's homepage."
+      - title_zh: 基于迁移学习的智能多任务高性能优化算法研究
+        title_en: Research on Intelligent Multitask High-Performance Optimization Algorithms Based on Transfer Learning
+        period: 2019-01 至 2022-12
+        partners_zh: 国家自然科学基金委员会；许新操参与
+        partners_en: National Natural Science Foundation of China; Xincao Xu participated
+        budget_zh: 62 万元
+        budget_en: 620,000 CNY
+        description_zh: 面上项目，项目编号：61876025。来源：许新操老师个人主页。
+        description_en: "General Project, Grant No. 61876025. Source: Prof. Xincao Xu's homepage."
+      - title_zh: 融合异构车联网大规模数据服务架构与协议研究
+        title_en: Research on Architecture and Protocols for Large-scale Data Services in Converged Heterogeneous Internet of Vehicles
+        period: 2019-01 至 2022-12
+        partners_zh: 国家自然科学基金委员会；许新操参与
+        partners_en: National Natural Science Foundation of China; Xincao Xu participated
+        budget_zh: 64 万元
+        budget_en: 640,000 CNY
+        description_zh: 面上项目，项目编号：61872049。来源：许新操老师个人主页。
+        description_en: "General Project, Grant No. 61872049. Source: Prof. Xincao Xu's homepage."
+      - title_zh: 面向企业级应用的 PCIe Gen6 SSD 芯片关键技术研发
+        title_en: Research and Development of Key Technologies for PCIe Gen6 SSD Chips Towards Enterprise-Level Applications
+        period: 2025-01 至 2027-12
+        partners_zh: 深圳市科技计划；许新操参与
+        partners_en: Shenzhen Science and Technology Program; Xincao Xu participated
         budget_zh: 500 万元
-        budget_en: ¥5M
-        description_zh: 共建面向生产线的实时视觉质检系统，部署实验室自研的轻量化模型。
-        description_en: Co-develops a real-time visual inspection system for production lines using the lab's lightweight models.
-      - title_zh: 某运营商“5G+边缘智能”示范应用
-        title_en: '"5G + Edge Intelligence" Pilot with Telecom Operator'
-        period: 2023-2024
-        partners_zh: 某通信运营商
-        partners_en: Telecom Operator
-        budget_zh: 300 万元
-        budget_en: ¥3M
-        description_zh: 在园区网络中部署边缘节点，实现多源数据分析与智能运维。
-        description_en: Deploys edge nodes in campus networks to enable multi-source analytics and intelligent operations.
-  - category_zh: 产学研联合实验室
-    category_en: Joint Industry-Academia Labs
-    items:
-      - title_zh: 与某芯片企业共建“边缘AI加速联合实验室”
-        title_en: Edge AI Acceleration Joint Lab with Semiconductor Partner
-        period: 2021-至今
-        partners_zh: 某芯片企业
-        partners_en: Semiconductor Partner
-        budget_zh: 800 万元
-        budget_en: ¥8M
-        description_zh: 推动面向工业与车载场景的AI芯片评测、模型优化与场景验证。
-        description_en: Drives chip evaluation, model optimization, and scenario validation for industrial and automotive edge AI.
+        budget_en: 5,000,000 CNY
+        description_zh: 科技重大项目，项目编号：KIZD20240903095401003。来源：许新操老师个人主页。
+        description_en: "Science and Technology Major Project, Grant No. KIZD20240903095401003. Source: Prof. Xincao Xu's homepage."
+      - title_zh: 云边端协同深度学习模型高效训练与推理方法研究
+        title_en: Research on Efficient Training and Inference Methods for Cloud-Edge-Device Collaborative Deep Learning Models
+        period: 2025-01 至 2027-12
+        partners_zh: 深圳市科技计划；许新操参与
+        partners_en: Shenzhen Science and Technology Program; Xincao Xu participated
+        budget_zh: 30 万元
+        budget_en: 300,000 CNY
+        description_zh: 面上项目，项目编号：JCYJ20240813114223031。来源：许新操老师个人主页。
+        description_en: "General Project, Grant No. JCYJ20240813114223031. Source: Prof. Xincao Xu's homepage."
+      - title_zh: 赋能交通安全运维的车边协同推理技术研究
+        title_en: Research on Vehicle-Edge Collaborative Inference Technology for Empowering Traffic Safety Operations and Maintenance
+        period: 2025-07 至 2025-12
+        partners_zh: 教育部可持续城市智能交通工程研究中心；许新操参与
+        partners_en: Engineering Research Center of Sustainable Urban Intelligent Transportation, Ministry of Education, China; Xincao Xu participated
+        budget_zh: 2 万元
+        budget_en: 20,000 CNY
+        description_zh: 开放课题，项目编号：KCX2024-KF07。来源：许新操老师个人主页。
+        description_en: "Open Research Topic, Grant No. KCX2024-KF07. Source: Prof. Xincao Xu's homepage."

@@ -38,7 +38,7 @@ permalink: /zh/funding/
 
 <section class="container" style="margin-bottom:40px;">
   <div class="section-head">
-    <h2>横向合作</h2>
+    <h2>参与项目与开放合作</h2>
   </div>
   {% for group in funding.horizontal %}
     <div style="margin-bottom:24px;">
