@@ -360,3 +360,21 @@ h3 { font-size: 18px; font-weight: 700; }
 .patent-fields .row { display: grid; grid-template-columns: 120px 1fr; gap: 8px; }
 .patent-fields .label { color: var(--muted); }
 @media (max-width: 900px){ .patent-grid { grid-template-columns: 1fr; } } 
+
+.meeting-brief { border: 1px solid var(--border); border-radius: 20px; padding: 22px; background: linear-gradient(180deg, #f7f9ff 0%, #ffffff 72%); }
+.meeting-brief .section-head { align-items: baseline; gap: 12px; }
+.meeting-date { color: var(--muted); font-weight: 700; font-size: 14px; white-space: nowrap; }
+.meeting-rules { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 18px; }
+.meeting-agenda { display: grid; gap: 12px; }
+.meeting-slot { display: grid; grid-template-columns: 128px 1fr; gap: 14px; border: 1px solid var(--border); border-radius: 14px; padding: 12px; background: rgba(255,255,255,0.78); }
+.meeting-slot h3 { margin: 0 0 8px; font-size: 16px; }
+.meeting-time { color: var(--muted); font-weight: 800; font-variant-numeric: tabular-nums; }
+.speaker-list { margin: 0; padding-left: 1.25rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 18px; }
+.speaker-list li { padding-left: 2px; }
+.speaker-time { display: inline-block; min-width: 92px; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) {
+  .meeting-brief { padding: 16px; }
+  .meeting-brief .section-head { display: grid; }
+  .meeting-slot { grid-template-columns: 1fr; gap: 6px; }
+  .speaker-list { grid-template-columns: 1fr; }
+}

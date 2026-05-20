@@ -15,6 +15,37 @@ layout: default
   <img class="hero-visual" src="{{ '/assets/images/placeholders/hero-visual.svg' | relative_url }}" alt="" aria-hidden="true" />
 </section>
 
+{% assign meeting = site.data.lab_meeting %}
+{% if meeting and meeting.enabled %}
+<section class="container section-block meeting-brief">
+  <div class="section-head">
+    <h2>{% if page.lang == 'en' %}{{ meeting.title_en }}{% else %}{{ meeting.title_zh }}{% endif %}</h2>
+    <span class="meeting-date">{{ meeting.date | date: '%Y-%m-%d' }} · {{ meeting.start }}–{{ meeting.end }}</span>
+  </div>
+  <p class="lead">{% if page.lang == 'en' %}{{ meeting.summary_en }}{% else %}{{ meeting.summary_zh }}{% endif %}</p>
+  <div class="meeting-rules">
+    {% for rule in meeting.rules %}<span class="tag">{{ rule }}</span>{% endfor %}
+  </div>
+  <div class="meeting-agenda">
+    {% for slot in meeting.agenda %}
+      <article class="meeting-slot{% if slot.speakers %} has-speakers{% endif %}">
+        <div class="meeting-time">{{ slot.time }}</div>
+        <div>
+          <h3>{{ slot.item }}</h3>
+          {% if slot.speakers %}
+            <ol class="speaker-list">
+              {% for speaker in slot.speakers %}
+                <li><span class="speaker-time">{{ speaker.time }}</span><span>{{ speaker.name }}</span></li>
+              {% endfor %}
+            </ol>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
 {% assign v = site.data.vision %}
 {% if v %}
 <section class="container section-block">

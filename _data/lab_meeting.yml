@@ -1,0 +1,76 @@
+enabled: true
+date: "2026-05-22"
+weekday_zh: 周五
+start: "09:00"
+end: "12:00"
+title_zh: 下次组会安排
+title_en: Next Lab Meeting
+summary_zh: 组会定于 2026 年 5 月 22 日（周五）上午 9:00 开始，预计持续到中午 12:00。各方向组内发言顺序已随机排定，请按时间控制汇报。
+summary_en: The next lab meeting is scheduled for Friday, May 22, 2026, from 09:00 to 12:00. Speaking order is randomized within each group.
+rules:
+  - 每组按随机顺序发言
+  - 每位同学按 8 分钟控制（建议 6 分钟汇报 + 2 分钟讨论/切换）
+  - 各组设 2 分钟组间切换时间
+agenda:
+  - time: "09:00-09:05"
+    item: 开场与规则说明
+  - time: "09:05-10:01"
+    item: 方向 A：多模态协同感知
+    group: A
+    speakers:
+      - time: "09:05-09:13"
+        name: 张鹏举
+      - time: "09:13-09:21"
+        name: 李诗睿
+      - time: "09:21-09:29"
+        name: 吕骏峰
+      - time: "09:29-09:37"
+        name: 倪利
+      - time: "09:37-09:45"
+        name: 李本超
+      - time: "09:45-09:53"
+        name: 周骏飞
+      - time: "09:53-10:01"
+        name: 韦全敏
+  - time: "10:01-10:03"
+    item: 组间切换
+  - time: "10:03-10:51"
+    item: 方向 B：边缘大模型推理与部署
+    group: B
+    speakers:
+      - time: "10:03-10:11"
+        name: 陈欣雨
+      - time: "10:11-10:19"
+        name: 翟锐钦
+      - time: "10:19-10:27"
+        name: 何春
+      - time: "10:27-10:35"
+        name: 谭浩然
+      - time: "10:35-10:43"
+        name: 龙婷
+      - time: "10:43-10:51"
+        name: 肖林
+  - time: "10:51-10:53"
+    item: 组间切换
+  - time: "10:53-11:57"
+    item: 方向 C：边缘多智能体系统
+    group: C
+    speakers:
+      - time: "10:53-11:01"
+        name: 李杰
+      - time: "11:01-11:09"
+        name: 王军
+      - time: "11:09-11:17"
+        name: 娄春阳
+      - time: "11:17-11:25"
+        name: 王宁
+      - time: "11:25-11:33"
+        name: 周子杰
+      - time: "11:33-11:41"
+        name: 何鲁生
+      - time: "11:41-11:49"
+        name: 任自强
+      - time: "11:49-11:57"
+        name: 许文涛
+  - time: "11:57-12:00"
+    item: 总结与后续安排
