@@ -2,11 +2,7 @@
 layout: default
 ---
 <div class="container" style="margin:24px 0;">
-  {% if page.collection == 'news' %}
-    {% include page-heading.html %}
-  {% else %}
-    <h1>{{ page.title }}</h1>
-  {% endif %}
+  {% include page-heading.html %}
   {% if page.description %}<p class="meta">{{ page.description }}</p>{% endif %}
 
   {% assign coll_name = page.collection | default: page.items %}
@@ -28,7 +24,7 @@ layout: default
           <h3><a class="link" href="{{ news_url | relative_url }}">{% if page.lang == 'en' %}{{ item.title_en | default: item.title }}{% else %}{{ item.title }}{% endif %}</a></h3>
           <p>{% if page.lang == 'en' %}{{ item.summary_en | default: item.summary | truncate: 160 }}{% else %}{{ item.summary | default: item.summary_zh | truncate: 160 }}{% endif %}</p>
         {% else %}
-        <h3><a href="{{ item.url | relative_url }}">{{ item.title | default: item.name }}</a></h3>
+        <h3><a class="link" href="{{ item.url | relative_url }}">{{ item.title | default: item.name }}</a></h3>
         {% if item.summary_zh or item.summary_en %}
           <p>{{ item.summary_zh | default: item.summary_en | truncate: 160 }}</p>
         {% elsif item.abstract_zh or item.abstract_en %}

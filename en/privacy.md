@@ -1,11 +1,12 @@
 ---
 layout: default
 lang: en
+mascot: badge
 title: Privacy
 permalink: /en/privacy/
 ---
 <div class="container" style="margin:24px 0;">
-  <h1>Privacy</h1>
+  {% include page-heading.html title="Privacy" %}
   <p class="meta">Last updated: September 30, 2026</p>
   <p>This statement describes information handling when browsing, contacting, or administering the EAIS LAB website at eaislab.com. Other websites linked from this site have their own privacy statements.</p>
 

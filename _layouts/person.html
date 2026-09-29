@@ -19,7 +19,8 @@ layout: default
   <div class="person-hero">
     <img class="avatar-lg" src="{{ person.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url }}" alt="{{ person_name | escape }}"/>
     <div class="info">
-      <h1>{{ person_name | escape }}</h1>
+      {% assign person_heading = person_name | escape %}
+      {% include page-heading.html title=person_heading %}
       <p class="meta">
         {% case person.role %}
           {% when 'phd' %}{% if page.lang == 'en' %}PhD Student{% else %}博士研究生{% endif %}

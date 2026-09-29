@@ -1,13 +1,14 @@
 ---
 layout: default
 lang: zh
+mascot: idea
 title: 研究 Research
 permalink: /zh/research/
 ---
 
 {% unless site.data.page_visibility.research == false or site.data.page_visibility.themes == false %}
 <div class="container" style="margin:24px 0;">
-  <h1>研究 Research</h1>
+  {% include page-heading.html title="研究 Research" %}
   {% unless site.data.page_visibility.themes == false %}
   <section style="margin-top:12px;">
     <h2>研究方向 Themes</h2>

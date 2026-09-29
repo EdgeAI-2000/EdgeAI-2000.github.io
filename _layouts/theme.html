@@ -6,7 +6,9 @@ layout: default
   {% assign theme = site.themes | where: 'slug', page.theme_slug | first %}
 {% endif %}
 <article class="container" style="margin:24px 0;">
-  <h1>{% if page.lang == 'en' %}{{ theme.title_en }}{% else %}{{ theme.title }}{% endif %}</h1>
+  {% assign theme_title = theme.title %}
+  {% if page.lang == 'en' %}{% assign theme_title = theme.title_en | default: theme.title %}{% endif %}
+  {% include page-heading.html title=theme_title %}
   <img class="research-diagram" src="{{ theme.cover | relative_url }}" alt="{% if page.lang == 'en' %}{{ theme.title_en }}{% else %}{{ theme.title }}{% endif %}" />
   <div class="content">
     {% if page.lang == 'en' %}{{ theme.content_en | markdownify }}{% else %}{{ content }}{% endif %}

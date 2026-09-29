@@ -2,7 +2,8 @@
 layout: default
 ---
 <article class="container" style="margin:24px 0;">
-  <h1>{{ page.title | default: page.name }}</h1>
+  {% assign detail_title = page.title | default: page.name %}
+  {% include page-heading.html title=detail_title %}
   <p class="meta">
     {% if page.venue %}{{ page.venue }} {{ page.year }}{% endif %}
     {% if page.role %}{{ page.role | capitalize }}{% endif %}

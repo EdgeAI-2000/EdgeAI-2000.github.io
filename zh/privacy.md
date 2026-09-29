@@ -1,11 +1,12 @@
 ---
 layout: default
 lang: zh
+mascot: badge
 title: 隐私声明
 permalink: /zh/privacy/
 ---
 <div class="container" style="margin:24px 0;">
-  <h1>隐私声明</h1>
+  {% include page-heading.html title="隐私声明" %}
   <p class="meta">更新日期：2026年9月30日</p>
   <p>本声明说明 EAIS LAB（边缘智能实验室）网站 eaislab.com 在浏览、联系和内容管理过程中涉及的信息处理。通过本站链接访问的其他网站适用其各自的隐私声明。</p>
 

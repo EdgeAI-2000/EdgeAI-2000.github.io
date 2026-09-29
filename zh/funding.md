@@ -1,12 +1,13 @@
 ---
 layout: default
 lang: zh
+mascot: reading
 title: 基金
 permalink: /zh/funding/
 ---
 
 <div class="container" style="margin:24px 0 32px;">
-  <h1>基金</h1>
+  {% include page-heading.html title="基金" %}
 </div>
 
 {% assign funding = site.data.funds %}

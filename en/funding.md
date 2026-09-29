@@ -1,12 +1,13 @@
 ---
 layout: default
 lang: en
+mascot: reading
 title: Funding
 permalink: /en/funding/
 ---
 
 <div class="container" style="margin:24px 0 32px;">
-  <h1>Funding Portfolio</h1>
+  {% include page-heading.html title="Funding Portfolio" %}
 </div>
 
 {% assign funding = site.data.funds %}
