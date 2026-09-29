@@ -17,6 +17,10 @@ not vector illustrations.
 - Footer: choose coffee, peeking or waving once per page load, with coffee as the
   no-JavaScript fallback. Never rotate while a visitor is reading.
 - Browser icon: framed cat head; Apple touch icon: full badge.
+- CMS: the waving cat is the login and navigation logo. `admin/brand.css` applies
+  the blue/yellow palette to Decap's login, navigation, collections and settings.
+  Its component-label selectors target the pinned Decap 3.16.3; check these
+  screens again when upgrading Decap. Keep authentication and status colours intact.
 
 Use deep blue text, blue actions and yellow accents on white and pale blue surfaces.
 Yellow highlights active navigation and key details; pair yellow fills with dark text.

@@ -16,7 +16,9 @@ public_folder: "/assets/images/people"
 # 站点预览地址
 site_url: https://eaislab.com
 display_url: https://eaislab.com
-logo_url: https://eaislab.com/assets/images/placeholders/avatar.svg
+logo:
+  src: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/75662c2e-d1c4-4d7d-7d80-446f76490500/content
+  show_in_header: true
 
 # 本地化
 publish_mode: editorial_workflow
