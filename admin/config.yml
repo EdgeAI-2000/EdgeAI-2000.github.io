@@ -29,16 +29,6 @@ media_library:
     endpoint: "https://eais-cms-images.neardws.workers.dev"
 
 collections:
-  - name: "settings"
-    label: "设置"
-    files:
-      - name: "page_visibility"
-        label: "页面显示设置"
-        file: "_data/page_visibility.yml"
-        fields:
-          - { label: "显示 News / 新闻", name: "news", widget: "boolean", default: false, required: false, hint: "控制中英文导航和首页新闻板块。关闭后原有链接仍可访问；发布并等待网站部署后生效。" }
-          - { label: "显示 Projects / 项目", name: "projects", widget: "boolean", default: false, required: false, hint: "控制中英文导航、首页项目板块及研究页面入口。关闭后原有链接仍可访问；发布并等待网站部署后生效。" }
-
   # ── 成员信息（管理员维护） ──────────────────────────────
   - name: "people"
     label: "成员 / People"

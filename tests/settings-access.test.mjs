@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import { readFileSync } from 'node:fs';
 const source = readFileSync(new URL('../admin/settings.js', import.meta.url), 'utf8');
 const flush = () => new Promise(resolve => setImmediate(resolve));
-function setup(fetch, endpoint = 'https://worker.example') {
+function setup(fetch, endpoint = 'https://worker.example', visibilityFetch = async () => Response.json({ sha: 'initial-sha', content: btoa('news: false\nprojects: false\n') })) {
   let session = null;
   let poll;
   const fields = new Map();
@@ -17,7 +17,13 @@ function setup(fetch, endpoint = 'https://worker.example') {
   const submit = {};
   const status = {};
   const form = { reset() { for (const value of fields.values()) value.value = ''; }, elements: { namedItem: field }, querySelectorAll: () => [], querySelector: () => submit };
-  const page = { querySelector: selector => selector === 'form' ? form : selector === '[data-status]' ? status : {} };
+  const visibilityFields = {};
+  const visibilityStatus = {};
+  const visibilityReload = {};
+  const switches = { news: { checked: false }, projects: { checked: false } };
+  const visibilityForm = { querySelector: () => visibilityFields, elements: { namedItem: name => switches[name] } };
+  const page = { querySelector: selector => ({ '[data-images-form]': form, '[data-status]': status,
+    '[data-visibility-form]': visibilityForm, '[data-visibility-status]': visibilityStatus, '[data-visibility-reload]': visibilityReload })[selector] || {} };
   const nav = { querySelector: () => ({ className: 'native-link' }), append(node) { node.parentElement = this; } };
   const events = {};
   const window = { location: { hash: '#/collections/people' }, addEventListener(name, fn) { events[name] = fn; }, setInterval(fn) { poll = fn; } };
@@ -28,10 +34,11 @@ function setup(fetch, endpoint = 'https://worker.example') {
       body: { append() {}, classList: { toggle() {} } },
     },
     MutationObserver: class { observe() {} },
-    localStorage: { getItem: () => session }, fetch,
+    localStorage: { getItem: () => session }, atob, btoa,
+    fetch: (url, options) => url.includes('/contents/') ? visibilityFetch(url, options) : fetch(url, options),
   });
   window.EAISCreateSettings(endpoint);
-  return { item, page, field, submit, status, poll: () => poll(), focus: () => events.focus(),
+  return { item, page, field, submit, status, switches, visibilityForm, visibilityFields, visibilityStatus, visibilityReload, poll: () => poll(), focus: () => events.focus(),
     navigate(hash) { window.location.hash = hash; events.hashchange(); },
     login(token) { session = token ? JSON.stringify({ backendName: 'github', token }) : null; },
   };
@@ -154,4 +161,85 @@ test('ready service enables save and uninitialized storage explains the disabled
     assert.equal(state.submit.disabled, !editable);
     assert.equal(state.submit.textContent, editable ? '验证并保存配置' : '存储未初始化，暂不能保存');
   }
+});
+
+
+test('inline switches load and publish on the same page even without an image service', async () => {
+  const calls = [];
+  const state = setup(async () => Response.json({ permissions: { push: true, admin: true } }), '', async (url, options) => {
+    calls.push({ url, options });
+    return Response.json(options.method === 'GET'
+      ? { sha: 'old', content: btoa('news: true\nprojects: false\n') }
+      : { content: { sha: 'new' } });
+  });
+  state.login('admin-token');
+  await state.poll();
+  state.navigate('#/image-settings');
+  await flush();
+  assert.equal(state.switches.news.checked, true);
+  assert.equal(state.switches.projects.checked, false);
+  assert.equal(state.visibilityFields.disabled, false);
+  state.switches.news.checked = false;
+  state.switches.projects.checked = true;
+  await state.visibilityForm.onsubmit({ preventDefault() {} });
+  assert.equal(state.page.hidden, false);
+  assert.equal(calls[1].options.headers.Authorization, 'Bearer admin-token');
+  const payload = JSON.parse(calls[1].options.body);
+  assert.equal(payload.sha, 'old');
+  assert.equal(payload.branch, 'main');
+  assert.equal(atob(payload.content), 'news: false\nprojects: true\n');
+  assert.match(state.visibilityStatus.textContent, /已保存并发布/);
+  await state.visibilityForm.onsubmit({ preventDefault() {} });
+  assert.equal(JSON.parse(calls[2].options.body).sha, 'new');
+});
+
+test('failed or malformed reads disable publishing and allow reload', async () => {
+  for (const response of [() => new Response('', { status: 403 }), () => Response.json({ sha: 'bad', content: btoa('invalid') })]) {
+    const state = setup(async () => Response.json({ permissions: { push: true, admin: true } }), '', response);
+    state.login('admin-token');
+    await state.poll();
+    state.navigate('#/image-settings');
+    await flush();
+    assert.equal(state.visibilityFields.disabled, true);
+    assert.equal(state.visibilityReload.disabled, false);
+    assert.ok(state.visibilityStatus.textContent);
+  }
+});
+
+test('concurrent changes are not overwritten and failed saves preserve draft switches', async () => {
+  let writes = 0;
+  const state = setup(async () => Response.json({ permissions: { push: true, admin: true } }), '', async (url, options) => {
+    if (options.method === 'GET') return Response.json({ sha: 'old', content: btoa('news: false\nprojects: false\n') });
+    writes++;
+    return new Response('', { status: 409 });
+  });
+  state.login('admin-token');
+  await state.poll();
+  state.navigate('#/image-settings');
+  await flush();
+  state.switches.news.checked = true;
+  await state.visibilityForm.onsubmit({ preventDefault() {} });
+  assert.equal(writes, 1);
+  assert.equal(state.switches.news.checked, true);
+  assert.match(state.visibilityStatus.textContent, /重新读取/);
+});
+
+test('late visibility reads cannot update the page after logout', async () => {
+  let respond;
+  let writes = 0;
+  const state = setup(async () => Response.json({ permissions: { push: true, admin: true } }), '', async (url, options) => {
+    if (options.method === 'PUT') writes++;
+    return new Promise(resolve => { respond = resolve; });
+  });
+  state.login('admin-token');
+  await state.poll();
+  state.navigate('#/image-settings');
+  state.login(null);
+  await state.poll();
+  respond(Response.json({ sha: 'old', content: btoa('news: true\nprojects: true\n') }));
+  await flush();
+  assert.equal(state.switches.news.checked, false);
+  assert.equal(state.page.hidden, true);
+  await state.visibilityForm.onsubmit({ preventDefault() {} });
+  assert.equal(writes, 0);
 });

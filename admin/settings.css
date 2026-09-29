@@ -39,3 +39,28 @@ a.eais-settings-link[aria-current="page"] { color: #3a69c7; }
   #eais-image-settings fieldset { padding: 12px; }
   #eais-image-settings select { max-width: 100%; }
 }
+
+/* Keep the two independent settings forms visually distinct. */
+#eais-image-settings .eais-settings-section {
+  margin-top: 28px;
+  padding: 28px;
+  border: 1px solid #d5d9df;
+  border-top: 4px solid #3a69c7;
+  border-radius: 8px;
+  background: #fff;
+}
+#eais-image-settings .eais-settings-section h2 {
+  margin: 0 0 20px;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+#eais-image-settings [data-visibility-form] fieldset { border: 0; margin: 0; padding: 0; }
+#eais-image-settings .eais-visibility-option { display: flex; align-items: center; gap: 12px; margin: 20px 0; font-size: 18px; }
+#eais-image-settings input[type="checkbox"] { width: 22px; height: 22px; margin: 0; accent-color: #3a69c7; }
+#eais-image-settings [data-visibility-reload] { background: #eef2f8; color: #313d3e; }
+.eais-settings-icon { display: inline-block; margin-right: 8px; font-size: 20px; line-height: 1; vertical-align: middle; }
+@media (max-width: 600px) {
+  #eais-image-settings .eais-settings-section { padding: 20px 16px; }
+  #eais-image-settings .eais-settings-section h2 { font-size: 24px; }
+}
