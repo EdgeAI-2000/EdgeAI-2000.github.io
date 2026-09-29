@@ -213,6 +213,20 @@ layout: default
 </section>
 {% endunless %}
 
+<section class="container section-block friend-links" aria-labelledby="friend-links-title">
+  <div class="section-head">
+    <h2 id="friend-links-title">{% if page.lang == 'en' %}Useful Links{% else %}友情链接{% endif %}</h2>
+  </div>
+  <div class="grid">
+    {% for link in site.data.friend_links %}
+      <a class="card friend-link" href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">
+        <h3>{% if page.lang == 'en' %}{{ link.name_en | escape }}{% else %}{{ link.name_zh | escape }}{% endif %} <span aria-hidden="true">↗</span></h3>
+        <p class="meta">{% if page.lang == 'en' %}{{ link.description_en | escape }}{% else %}{{ link.description_zh | escape }}{% endif %}</p>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
 <section class="container kpis section-block">
 {% unless site.data.page_visibility.publications == false or site.data.page_visibility.themes == false %}
   <div class="kpi">

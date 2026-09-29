@@ -103,6 +103,10 @@ section .section-title { font-size: 22px; margin: 0 0 12px; }
 .mosaic-item .name { font-size: 13px; margin-top: 2px; color: var(--fg); font-weight: 600; text-align: center; }
 .mosaic-item .role { font-size: 11px; color: var(--muted); text-align: center; }
 
+.friend-link { display: block; color: var(--fg); text-decoration: none; }
+.friend-link h3 { color: var(--primary); }
+.friend-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+
 .admissions-cta .cta { border: 1px solid var(--border); border-radius: 16px; padding: 16px; background: linear-gradient(135deg, var(--surface), var(--accent-soft)); box-shadow: var(--shadow); text-align: center; }
 .admissions-cta .cta h3 { margin: 0 0 6px; font-size: 22px; }
 .admissions-cta .cta p { margin: 0 0 12px; color: var(--muted); }

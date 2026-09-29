@@ -1,0 +1,15 @@
+- url: https://services.eaislab.com/
+  name_zh: EAIS 实验室内部服务门户
+  name_en: EAIS Services Portal
+  description_zh: 实验室服务、学习资料与日常协作入口。
+  description_en: Lab services, learning resources and everyday collaboration.
+- url: https://github.com/EdgeAI-2000
+  name_zh: GitHub 组织
+  name_en: GitHub
+  description_zh: 实验室代码仓库、项目协作与开源入口。
+  description_en: Lab repositories, project collaboration and open-source work.
+- url: https://sub2api.eaislab.com
+  name_zh: Sub2API
+  name_en: Sub2API
+  description_zh: 实验室统一的 AI API 账户与服务入口。
+  description_en: Unified AI API accounts and services for the lab.
