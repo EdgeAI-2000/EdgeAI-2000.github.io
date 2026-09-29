@@ -95,7 +95,7 @@ section .section-title { font-size: 22px; margin: 0 0 12px; }
 .badges { position: absolute; top: -10px; right: 12px; display: flex; gap: 6px; }
 .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); }
 
-.team-mosaic .mosaic { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+.team-mosaic .mosaic { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 12px; }
 .mosaic-item { display: grid; justify-items: center; align-content: start; text-decoration: none; color: var(--fg); gap: 4px; padding: 10px 6px; border-radius: 14px; background: var(--bg); border: 1px solid var(--border); box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .2s ease; }
 .mosaic-item:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08); }
 .mosaic-item .avatar-img { width: 68px; height: 68px; border-radius: 50%; object-fit: cover; border: 1px solid var(--border); box-shadow: var(--shadow); transition: transform .2s ease, box-shadow .2s ease; }
@@ -119,6 +119,14 @@ section .section-title { font-size: 22px; margin: 0 0 12px; }
 /* Clip images inside card and avoid radius/border overflow */
 .card { overflow: hidden; }
 .card .cover { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: none; border-radius: 0; margin: 0 0 10px 0; }
+
+.theme-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 24px; }
+.theme-card .cover { margin: 0; }
+.theme-copy { min-width: 0; }
+
+@media (max-width: 600px) {
+  .theme-card { grid-template-columns: 1fr; gap: 16px; }
+}
 
 .news-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .news-list li { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: center; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); }

@@ -98,8 +98,9 @@ layout: default
     <div class="hscroll one" id="themes-hs">
       {% assign ordered_themes = site.themes | sort: 'order' %}
       {% for theme in ordered_themes limit:12 %}
-        <article class="hcard card" data-i="{{ forloop.index0 }}">
+        <article class="hcard card theme-card" data-i="{{ forloop.index0 }}">
           <img class="cover" src="{{ theme.cover | default: '/assets/images/placeholders/card-16x9.svg' | relative_url }}" alt="" aria-hidden="true" />
+          <div class="theme-copy">
           {% if page.lang == 'en' %}
             <h3><a href="{{ '/en' | append: theme.url | relative_url }}">{{ theme.title_en }}</a></h3>
           {% else %}
@@ -107,6 +108,7 @@ layout: default
           {% endif %}
           <p class="meta">{{ theme.keywords | array_to_sentence_string }}</p>
           <p>{% if page.lang == 'en' %}{{ theme.intro_en | strip_html | truncate: 240 }}{% else %}{{ theme.intro | strip_html | truncate: 120 }}{% endif %}</p>
+          </div>
         </article>
       {% endfor %}
     </div>
@@ -172,10 +174,25 @@ layout: default
     {% assign members = site.people | where: 'status', 'current' %}
     {% assign role_order = 'pi,postdoc,phd,master,undergrad,engineer,faculty,ra' | split: ',' %}
     {% assign displayed = 0 %}
-    {% assign limit = 8 %}
+    {% assign limit = 16 %}
     {% for r in role_order %}
       {% if displayed >= limit %}{% break %}{% endif %}
       {% assign group = members | where: 'role', r | sort: 'name' %}
+      {% if r == 'phd' or r == 'master' or r == 'undergrad' %}
+        {% assign cohorts = group | group_by: 'period' | sort: 'name' %}
+        {% assign group = '' | split: ',' %}
+        {% assign ungraded = '' | split: ',' %}
+        {% for cohort in cohorts %}
+          {% comment %}Student slugs use family-name-first pinyin, e.g. li-hongjin.{% endcomment %}
+          {% assign classmates = cohort.items | sort: 'slug' %}
+          {% if cohort.name == '' %}
+            {% assign ungraded = classmates %}
+          {% else %}
+            {% assign group = group | concat: classmates %}
+          {% endif %}
+        {% endfor %}
+        {% assign group = group | concat: ungraded %}
+      {% endif %}
       {% for p in group %}
         {% if displayed >= limit %}{% break %}{% endif %}
         {% assign avatar = p.avatar | default: '/assets/images/placeholders/avatar.svg' %}
