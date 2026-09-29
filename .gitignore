@@ -1,1 +1,3 @@
 .DS_Store
+workers/images/.dev.vars
+workers/images/.wrangler/

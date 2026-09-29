@@ -7,7 +7,7 @@ backend:
   auth_endpoint: /oauth
   # OAuth 代理由 Cloudflare Worker eais-cms-oauth 处理
   # Worker 地址：https://eais-cms-oauth.neardws.workers.dev
-  # 学生需要是 EdgeAI-2000 GitHub 组织成员才能登录
+  # 仅向管理员授予仓库写权限；组织成员身份本身不授予编辑权限。
 
 # 上传的图片存放位置
 media_folder: "assets/images/people"
@@ -22,13 +22,19 @@ logo_url: https://eaislab.com/assets/images/placeholders/avatar.svg
 publish_mode: editorial_workflow
 locale: zh_Hans
 
+media_library:
+  name: cloudflare_images
+  config:
+    # 部署 workers/images 后填写 HTTPS 地址，不要填写密钥。
+    endpoint: ""
+
 collections:
-  # ── 成员信息（学生可自己编辑） ──────────────────────────────
+  # ── 成员信息（管理员维护） ──────────────────────────────
   - name: "people"
     label: "成员 / People"
     label_singular: "成员"
     folder: "_people"
-    create: false        # 只允许编辑已有条目，不能新建（防止乱建）
+    create: true
     slug: "{{slug}}"
     identifier_field: name
     summary: "{{name}} · {{role}} · {{status}}"
@@ -56,7 +62,7 @@ collections:
         name: "avatar"
         widget: "image"
         required: false
-        hint: "建议上传 600×600 方形图片（JPG/PNG），将自动存到 assets/images/people/"
+        hint: "上传后选择头像尺寸，自动通过 Cloudflare 优化分发"
         default: "/assets/images/placeholders/avatar.svg"
         media_library:
           config:
@@ -114,4 +120,58 @@ collections:
         field: { label: "姓名", name: "name", widget: "string" }
       - { label: "会议/期刊", name: "venue", widget: "string", required: false }
       - { label: "链接", name: "link", widget: "string", required: false }
+      - { label: "正文", name: "body", widget: "markdown", required: false }
+
+
+  - name: "projects"
+    label: "项目 / Projects"
+    folder: "_projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "英文标题", name: "title_en", widget: "string", required: false }
+      - { label: "日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
+      - { label: "状态", name: "status", widget: "select", options: [active, completed], default: active }
+      - { label: "中文摘要", name: "summary_zh", widget: "text" }
+      - { label: "英文摘要", name: "summary_en", widget: "text", required: false }
+      - { label: "封面", name: "cover", widget: "image", required: false }
+      - { label: "研究方向", name: "themes", widget: "list", required: false }
+      - { label: "亮点", name: "highlights", widget: "list", required: false }
+      - { label: "代码链接", name: "code", widget: "string", required: false }
+      - { label: "论文链接", name: "pdf", widget: "string", required: false }
+      - { label: "演示视频", name: "demo_video", widget: "string", required: false }
+      - { label: "正文", name: "body", widget: "markdown", required: false }
+
+  - name: "publications"
+    label: "手工论文 / Publications"
+    description: "此处维护的论文不会被 Scholar 自动同步覆盖；请先检查是否已有同名论文。"
+    folder: "_publications/manual"
+    create: true
+    slug: "{{fields.year}}-{{slug}}"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "作者", name: "authors", widget: "list" }
+      - { label: "年份", name: "year", widget: "number", value_type: "int", min: 1900 }
+      - { label: "会议 / 期刊", name: "venue", widget: "string" }
+      - { label: "类型", name: "type", widget: "select", options: [conference, journal, preprint] }
+      - { label: "CCF 等级", name: "ccf", widget: "string", required: false }
+      - { label: "PDF", name: "pdf", widget: "string", required: false }
+      - { label: "代码", name: "code", widget: "string", required: false }
+      - { label: "来源", name: "source", widget: "hidden", default: manual }
+      - { label: "正文", name: "body", widget: "markdown", required: false }
+
+  - name: "patents"
+    label: "专利 / Patents"
+    folder: "_patents"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "名称", name: "title", widget: "string" }
+      - { label: "年份", name: "year", widget: "number", value_type: "int", min: 1900 }
+      - { label: "发明人", name: "inventors", widget: "list" }
+      - { label: "申请人", name: "assignee", widget: "string" }
+      - { label: "申请号", name: "application_no", widget: "string", required: false }
+      - { label: "授权 / 公开号", name: "number", widget: "string", required: false }
+      - { label: "状态", name: "status", widget: "select", options: [pending, granted], default: pending }
       - { label: "正文", name: "body", widget: "markdown", required: false }
