@@ -39,7 +39,7 @@ Account ID、Account Hash 和 Images Token 均可留空，改由后台设置。�
 
 ## 后台日常配置
 
-1. 使用网站仓库 **Admin** 权限账号登录 `/admin/`，点击右下角“图片服务设置”。Write 权限可以编辑内容及上传图片，但不能配置服务。
+1. 使用网站仓库 **Admin** 权限账号登录 `/admin/`，点击顶部导航中“媒体”后面的“图片服务设置”，进入独立设置页面。Write 权限可以编辑内容及上传图片，但不能配置服务。
 2. 填写 Cloudflare Account ID 和 Images Account Hash（两者不同，在 Images 控制台查找）。
 3. 填写限定该账号、具有 Images 编辑权限的 API Token。后台只显示是否已配置，不会返回原始密钥。更换时填写新 Token；留空保留同一账号的已有 Token。切换账号必须提供新 Token。
 4. 配置头像、封面和正文图片的宽、高与缩放模式。默认如下，尺寸可设为 1–4096 像素：

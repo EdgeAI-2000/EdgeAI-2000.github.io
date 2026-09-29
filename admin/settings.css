@@ -1,0 +1,41 @@
+/* Scoped to the additional route in the pinned Decap 3.16.3 shell. */
+body.eais-settings-route #nc-root header + div { display: none; }
+#eais-image-settings[hidden] { display: none; }
+#eais-image-settings {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 32px 64px;
+  color: #313d3e;
+  font-family: inherit;
+  line-height: 1.6;
+}
+#eais-image-settings h1 { font-size: 28px; margin: 0 0 12px; }
+#eais-image-settings form { max-width: 840px; }
+#eais-image-settings label { font-weight: 600; }
+#eais-image-settings input, #eais-image-settings select {
+  box-sizing: border-box;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1px solid #d5d9df;
+  border-radius: 4px;
+  background: white;
+  color: #313d3e;
+  font: inherit;
+}
+#eais-image-settings fieldset { margin: 28px 0 12px; padding: 16px 20px; border: 1px solid #d5d9df; }
+#eais-image-settings button {
+  padding: 12px 20px;
+  border: 0;
+  border-radius: 4px;
+  background: #3a69c7;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+#eais-image-settings button:disabled { opacity: .5; cursor: not-allowed; }
+a.eais-settings-link[aria-current="page"] { color: #3a69c7; }
+@media (max-width: 600px) {
+  #eais-image-settings { padding: 24px 16px 40px; }
+  #eais-image-settings fieldset { padding: 12px; }
+  #eais-image-settings select { max-width: 100%; }
+}
