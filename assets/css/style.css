@@ -409,7 +409,8 @@ h3 { font-size: 18px; font-weight: 700; }
   .site-nav > ul { justify-content: space-between; gap: 0; }
   .site-nav > ul > .nav-item { display: flex; align-items: center; white-space: nowrap; }
   .site-nav a { display: inline-block; padding: 8px 4px; }
-  .nav-item.has-children .dropdown { position: absolute; top: 100%; left: 0; min-width: 150px; padding: 8px; background: var(--bg); border: 1px solid var(--border); box-shadow: var(--shadow); }
+  .nav-item.has-children .dropdown, .nav-item.has-children:hover .dropdown { display: none; position: absolute; top: 100%; left: 0; min-width: 150px; padding: 8px; background: var(--bg); border: 1px solid var(--border); box-shadow: var(--shadow); }
+  .nav-item.has-children.open .dropdown { display: block; }
   .nav-item.has-children .nav-caret { margin-left: 0; min-height: 40px; padding: 0 4px; }
   .site-nav a.active::after { left: 5px; right: 5px; bottom: 2px; }
   .hero.hero-large .hero-inner { gap: 16px; }
