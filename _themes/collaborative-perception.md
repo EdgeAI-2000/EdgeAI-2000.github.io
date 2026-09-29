@@ -9,6 +9,30 @@ keywords:
   - task-aware communication
   - robust fusion
 cover: /assets/images/research/multi-agent-collaborative-perception.png
+order: 1
+layout: theme
+content_en: |
+  ## Research Overview
+
+  We study **multi-agent collaborative perception** across vehicles, roadside units, and UAVs, aiming for accurate, efficient, and robust scene understanding under occlusion, sensor heterogeneity, limited bandwidth, and asynchronous observations.
+
+  ### 1.1 Heterogeneous Perception and Feature Alignment
+
+  Local encoders extract features from cameras, LiDAR, and aerial observations. Features from different agents are aligned in a shared bird's-eye-view (BEV) space to support cross-modal and cross-view collaboration.
+
+  **Key techniques:** Multimodal feature encoding · Heterogeneous alignment · Shared BEV representations
+
+  ### 1.2 Task-Aware Communication
+
+  Spatial confidence and perception demand guide the selection of informative regions. Sparse messages and feature compression reduce communication costs, while demand feedback adapts information exchange.
+
+  **Key techniques:** Demand-aware region selection · Sparse feature communication · Bandwidth-constrained collaboration
+
+  ### 1.3 Robust Fusion and 3D Scene Understanding
+
+  Pose correction, temporal alignment, and reliability weighting address localization errors and asynchronous observations. Fusing local and neighboring features supports 3D object detection, BEV mapping, and 3D Gaussian splatting (3DGS) reconstruction.
+
+  **Key techniques:** Spatiotemporal error compensation · Reliability-weighted fusion · 3D scene reconstruction
 ---
 
 ## 研究方向概述

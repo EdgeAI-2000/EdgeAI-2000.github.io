@@ -433,11 +433,13 @@ h3 { font-size: 18px; font-weight: 700; }
   .footer-inner ul { flex-wrap: wrap; }
 }
 
-/* Keep the collaborative perception diagram readable and uncropped. */
-img[src$="/research/multi-agent-collaborative-perception.png"] {
+/* Keep research diagrams readable and uncropped. */
+img[src*="/images/research/"] {
   background: #fff;
 }
-.card .cover[src$="/research/multi-agent-collaborative-perception.png"] {
+.card .cover[src*="/images/research/"] {
   aspect-ratio: auto;
   object-fit: contain;
 }
+
+.research-diagram { display: block; width: 100%; height: auto; }

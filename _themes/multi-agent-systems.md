@@ -10,6 +10,30 @@ keywords:
   - UAV coordination
   - on-device fine-tuning
 cover: /assets/images/placeholders/card-16x9.svg
+order: 3
+layout: theme
+content_en: |
+  ## Research Overview
+
+  We study **multi-agent systems under edge constraints**, bringing the agent capabilities of large language models to settings that require privacy, offline operation, and efficient use of limited compute.
+
+  ### 3.1 Edge Model Customization with LLM Agents
+
+  Multi-agent collaboration supports an iterative process of model adaptation, evaluation, and optimization for edge deployment.
+
+  **Key techniques:** Agent communication protocols · Role assignment · Edge agent orchestration · RAG knowledge bases
+
+  ### 3.2 Multi-Agent Collaborative Decision-Making
+
+  For UAV swarms and vehicle teams, we investigate distributed task allocation, conflict resolution, and dynamic planning.
+
+  **Key techniques:** Reinforcement learning · Game theory · Distributed optimization · Multi-UAV task allocation
+
+  ### 3.3 Research Assistants and Tools
+
+  Research assistants support literature search and reading, experiment logging, and automated code evaluation.
+
+  **Key techniques:** Retrieval-augmented generation (RAG) · Automated code evaluation · Knowledge-base construction
 ---
 
 ## 研究方向概述

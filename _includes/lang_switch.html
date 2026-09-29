@@ -1,7 +1,14 @@
 <div class="lang-switch">
   {% assign current_lang = page.lang | default: site.lang | default: 'zh' %}
   {% assign pages_urls = site.pages | map: 'url' %}
-  {% if page.layout == 'person' %}
+  {% if page.layout == 'theme' %}
+    {% assign theme_slug = page.theme_slug | default: page.slug %}
+    {% if current_lang == 'en' %}
+      <a href="{{ '/themes/' | append: theme_slug | append: '/' | relative_url }}">中文</a>
+    {% else %}
+      <a href="{{ '/en/themes/' | append: theme_slug | append: '/' | relative_url }}">EN</a>
+    {% endif %}
+  {% elsif page.layout == 'person' %}
     {% assign person_slug = page.person_slug | default: page.slug %}
     {% if current_lang == 'en' %}
       {% assign person_url = '/people/' | append: person_slug | append: '/' %}

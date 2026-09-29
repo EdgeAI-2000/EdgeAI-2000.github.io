@@ -23,9 +23,9 @@ layout: default
           <img src="{{ it.cover | default: '/assets/images/placeholders/card-16x9.svg' | relative_url }}" alt="" loading="lazy"/>
         </div>
         <div class="content">
-          <h2>{{ it.title }}</h2>
+          <h2>{% if page.lang == 'en' %}{{ it.title_en | default: it.title }}{% else %}{{ it.title }}{% endif %}</h2>
           {% if page.lang == 'en' %}
-            {% assign lead = it.summary_en | default: it.summary_zh | default: it.intro %}
+            {% assign lead = it.summary_en | default: it.intro_en | default: it.summary_zh | default: it.intro %}
           {% else %}
             {% assign lead = it.summary_zh | default: it.summary_en | default: it.intro %}
           {% endif %}
@@ -52,7 +52,7 @@ layout: default
           {% endif %}
 
           {% if it.content %}
-            <div class="body">{{ it.content }}</div>
+            <div class="body">{% if page.lang == 'en' and it.content_en %}{{ it.content_en | markdownify }}{% else %}{{ it.content }}{% endif %}</div>
           {% endif %}
 
           <div class="links" style="margin-top:10px;">

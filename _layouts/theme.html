@@ -1,0 +1,14 @@
+---
+layout: default
+---
+{% assign theme = page %}
+{% if page.theme_slug %}
+  {% assign theme = site.themes | where: 'slug', page.theme_slug | first %}
+{% endif %}
+<article class="container" style="margin:24px 0;">
+  <h1>{% if page.lang == 'en' %}{{ theme.title_en }}{% else %}{{ theme.title }}{% endif %}</h1>
+  <img class="research-diagram" src="{{ theme.cover | relative_url }}" alt="{% if page.lang == 'en' %}{{ theme.title_en }}{% else %}{{ theme.title }}{% endif %}" />
+  <div class="content">
+    {% if page.lang == 'en' %}{{ theme.content_en | markdownify }}{% else %}{{ content }}{% endif %}
+  </div>
+</article>

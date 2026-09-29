@@ -96,12 +96,17 @@ layout: default
   </div>
   <div class="hscroll-wrap one">
     <div class="hscroll one" id="themes-hs">
-      {% for theme in site.themes limit:12 %}
+      {% assign ordered_themes = site.themes | sort: 'order' %}
+      {% for theme in ordered_themes limit:12 %}
         <article class="hcard card" data-i="{{ forloop.index0 }}">
           <img class="cover" src="{{ theme.cover | default: '/assets/images/placeholders/card-16x9.svg' | relative_url }}" alt="" aria-hidden="true" />
-          <h3><a href="{{ theme.url | relative_url }}">{{ theme.title }}</a></h3>
+          {% if page.lang == 'en' %}
+            <h3><a href="{{ '/en' | append: theme.url | relative_url }}">{{ theme.title_en }}</a></h3>
+          {% else %}
+            <h3><a href="{{ theme.url | relative_url }}">{{ theme.title }}</a></h3>
+          {% endif %}
           <p class="meta">{{ theme.keywords | array_to_sentence_string }}</p>
-          <p>{{ theme.intro | strip_html | truncate: 120 }}</p>
+          <p>{% if page.lang == 'en' %}{{ theme.intro_en | strip_html | truncate: 240 }}{% else %}{{ theme.intro | strip_html | truncate: 120 }}{% endif %}</p>
         </article>
       {% endfor %}
     </div>
@@ -201,9 +206,15 @@ layout: default
       {% if role_label == '' and p.role %}
         {% assign role_label = p.role | capitalize %}
       {% endif %}
-      <a class="mosaic-item" href="{{ p.url | relative_url }}" title="{{ p.name }}">
-        <img class="avatar-img" src="{{ avatar | relative_url }}" alt="{{ p.name }}" loading="lazy"/>
-        <span class="name">{{ p.name }}</span>
+      {% assign member_name = p.name %}
+      {% assign member_url = p.url %}
+      {% if page.lang == 'en' %}
+        {% assign member_name = p.name_en | default: p.name %}
+        {% assign member_url = '/en' | append: p.url %}
+      {% endif %}
+      <a class="mosaic-item" href="{{ member_url | relative_url }}" title="{{ member_name }}">
+        <img class="avatar-img" src="{{ avatar | relative_url }}" alt="{{ member_name }}" loading="lazy"/>
+        <span class="name">{{ member_name }}</span>
         {% if role_label %}<span class="role">{{ role_label }}</span>{% endif %}
       </a>
         {% assign displayed = displayed | plus: 1 %}
