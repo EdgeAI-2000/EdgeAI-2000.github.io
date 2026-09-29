@@ -144,12 +144,16 @@ window.EAISCreateSettings = function (endpoint) {
   let authVersion = 0;
   async function syncAccess(force = false) {
     const token = sessionToken();
-    if (!force && token === checkedToken) return;
+    const sessionChanged = token !== checkedToken;
+    if (!force && !sessionChanged) return;
     checkedToken = token;
     const version = ++authVersion;
-    allowed = false;
-    field('token').value = '';
-    renderRoute();
+    // Rechecking the same session must not unmount the page or reset its draft.
+    if (sessionChanged) {
+      allowed = false;
+      field('token').value = '';
+      renderRoute();
+    }
     if (!token) return;
     try {
       const response = await fetch('https://api.github.com/repos/EdgeAI-2000/EdgeAI-2000.github.io', {

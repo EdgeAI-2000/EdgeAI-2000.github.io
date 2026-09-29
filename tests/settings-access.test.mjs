@@ -14,7 +14,7 @@ function setup(fetch) {
   };
   const link = { setAttribute() {}, removeAttribute() {} };
   const item = { append() {} };
-  const form = { reset() {}, elements: { namedItem: field }, querySelectorAll: () => [], querySelector: () => ({}) };
+  const form = { reset() { for (const value of fields.values()) value.value = ''; }, elements: { namedItem: field }, querySelectorAll: () => [], querySelector: () => ({}) };
   const page = { querySelector: selector => selector === 'form' ? form : {} };
   const nav = { querySelector: () => ({ className: 'native-link' }), append(node) { node.parentElement = this; } };
   const events = {};
@@ -29,7 +29,7 @@ function setup(fetch) {
     localStorage: { getItem: () => session }, fetch,
   });
   window.EAISCreateSettings('https://worker.example');
-  return { item, page, field, poll: () => poll(),
+  return { item, page, field, poll: () => poll(), focus: () => events.focus(),
     navigate(hash) { window.location.hash = hash; events.hashchange(); },
     login(token) { session = token ? JSON.stringify({ backendName: 'github', token }) : null; },
   };
@@ -90,4 +90,40 @@ test('settings uses its own route and hides when navigating back to native conte
   assert.equal(state.field('token').value, '');
   state.navigate('#/image-settings');
   assert.equal(state.page.hidden, false);
+});
+
+
+test('refocusing with the same admin session preserves every unsaved field without reloading', async () => {
+  let loads = 0;
+  const state = setup(async url => {
+    if (url.includes('api.github.com')) return Response.json({ permissions: { push: true, admin: true } });
+    loads++;
+    return Response.json({ accountId: 'saved-account', accountHash: 'saved-hash', tokenConfigured: true, editable: true, variants: {} });
+  });
+  state.login('admin-token');
+  await state.poll();
+  state.navigate('#/image-settings');
+  await flush();
+  const draft = { accountId: 'new-account', accountHash: 'new-hash', token: 'unsaved-secret', 'avatar-width': '720' };
+  for (const [name, value] of Object.entries(draft)) state.field(name).value = value;
+  await state.focus();
+  await state.focus();
+  await flush();
+  assert.equal(state.page.hidden, false);
+  assert.equal(loads, 1);
+  for (const [name, value] of Object.entries(draft)) assert.equal(state.field(name).value, value, name);
+});
+
+test('refocusing still hides settings and clears secrets when admin permission is revoked', async () => {
+  let admin = true;
+  const state = setup(async () => Response.json({ permissions: { push: true, admin } }));
+  state.login('admin-token');
+  await state.poll();
+  state.navigate('#/image-settings');
+  state.field('token').value = 'unsaved-secret';
+  admin = false;
+  await state.focus();
+  assert.equal(state.page.hidden, true);
+  assert.equal(state.item.hidden, true);
+  assert.equal(state.field('token').value, '');
 });
