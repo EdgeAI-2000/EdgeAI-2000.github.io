@@ -9,7 +9,6 @@ keywords:
   - federated learning
   - large-small model collaboration
   - on-device inference
-platform: EdgeModelBridge
 cover: /assets/images/placeholders/card-16x9.svg
 ---
 
@@ -34,7 +33,3 @@ cover: /assets/images/placeholders/card-16x9.svg
 探索云-边-端三级协同推理架构，研究大模型与小模型之间的动态路由、蒸馏与投机解码。
 
 **关键技术：** 动态卸载 · 流水线并行 · Speculative Decoding · 端云分段推理
-
-## 支撑平台
-
-**EdgeModelBridge** 大小模型协同引擎，包含路由策略、蒸馏与量化工具链、端云协同模块与评测监控四大模块。

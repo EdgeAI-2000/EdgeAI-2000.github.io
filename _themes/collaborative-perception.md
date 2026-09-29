@@ -8,7 +8,6 @@ keywords:
   - heterogeneous alignment
   - task-aware communication
   - robust fusion
-platform: EdgeCoSense
 cover: /assets/images/research/multi-agent-collaborative-perception.png
 ---
 
@@ -33,7 +32,3 @@ cover: /assets/images/research/multi-agent-collaborative-perception.png
 针对位姿偏差与观测异步，研究位姿校正、时间对齐和可靠性加权，融合本地与邻居特征，支持三维目标检测、BEV 建图与三维高斯重建（3DGS）。
 
 **关键技术：** 时空误差补偿 · 可靠性加权融合 · 三维场景重建
-
-## 支撑平台
-
-**EdgeCoSense** 协同感知平台，包含数据标定、协同推理、通信调度与评测可视化四大模块。

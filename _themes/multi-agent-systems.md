@@ -9,7 +9,6 @@ keywords:
   - edge agent
   - UAV coordination
   - on-device fine-tuning
-platform: EdgeAgentWorks
 cover: /assets/images/placeholders/card-16x9.svg
 ---
 
@@ -34,7 +33,3 @@ cover: /assets/images/placeholders/card-16x9.svg
 面向学术场景的智能助手，支持论文检索与阅读、实验记录与代码评测的自动化。
 
 **关键技术：** 检索增强生成（RAG） · 代码自动评测 · 知识库构建
-
-## 支撑平台
-
-**EdgeAgentWorks** 边缘多智能体应用平台，包含 Agent 编排与工具插件、RAG 知识库、边缘模型定制与权限审计四大模块。
