@@ -432,3 +432,12 @@ h3 { font-size: 18px; font-weight: 700; }
   .footer-inner > nav { width: 100%; }
   .footer-inner ul { flex-wrap: wrap; }
 }
+
+/* Keep the collaborative perception diagram readable and uncropped. */
+img[src$="/research/multi-agent-collaborative-perception.png"] {
+  background: #fff;
+}
+.card .cover[src$="/research/multi-agent-collaborative-perception.png"] {
+  aspect-ratio: auto;
+  object-fit: contain;
+}

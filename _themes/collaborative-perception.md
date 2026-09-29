@@ -1,39 +1,38 @@
 ---
-title: 多模态协同感知
-title_en: Multimodal Collaborative Perception
-intro: 面向自动驾驶与无人系统，融合多传感器（Camera/LiDAR/Radar）实现车车（V2V）、车路（V2I）及多无人机编队协同感知与规划。
-intro_en: Fusing multi-sensor data (Camera/LiDAR/Radar) for V2V, V2I, and multi-UAV collaborative perception and planning in autonomous systems.
+title: 多智能体协同感知
+title_en: Multi-Agent Collaborative Perception
+intro: 面向车辆、路侧单元与无人机，研究异构特征对齐、任务驱动的高效通信与鲁棒融合，在遮挡、带宽受限和观测异步条件下支持三维检测、鸟瞰图建图与三维高斯重建。
+intro_en: Multi-agent perception across vehicles, roadside units, and UAVs through heterogeneous alignment, task-aware communication, and robust fusion for 3D detection, BEV mapping, and 3D Gaussian reconstruction.
 keywords:
-  - collaborative perception
-  - autonomous driving
-  - UAV
-  - sensor fusion
-  - V2V/V2I
+  - multi-agent perception
+  - heterogeneous alignment
+  - task-aware communication
+  - robust fusion
 platform: EdgeCoSense
-cover: /assets/images/placeholders/card-16x9.svg
+cover: /assets/images/research/multi-agent-collaborative-perception.png
 ---
 
 ## 研究方向概述
 
-本方向聚焦**多模态多视角协同感知**，面向自动驾驶与无人机系统两大应用场景。
+本方向聚焦**多智能体协同感知**，面向车辆、路侧单元与无人机的协同场景，研究如何在视角遮挡、传感器异构、通信带宽受限和观测不同步的条件下，实现准确、高效、鲁棒的场景理解。
 
-### 1.1 自动驾驶多车多模态感知
+### 1.1 异构感知与特征对齐
 
-基于 Camera、LiDAR、Radar 等多传感器融合，实现车与车（V2V）、车与基础设施（V2I）协同感知，提升复杂场景下的目标检测与场景理解能力。
+对相机、激光雷达与空中视角观测进行本地特征编码，将不同智能体的特征对齐至统一的鸟瞰图（BEV）空间，为跨模态、跨视角协作建立共同表征。
 
-**关键技术：** 多模态目标检测 · 3D 场景重建 · 协同感知误差补偿
+**关键技术：** 多模态特征编码 · 异构特征对齐 · 统一 BEV 表征
 
-### 1.2 基于无人机的协同感知与规划
+### 1.2 任务驱动的高效通信
 
-多无人机编队协同感知、实时建图与避障规划，突破单机视角局限。
+结合空间置信度与感知需求选择关键区域，通过稀疏消息传输与特征压缩减少通信开销，并利用感知需求反馈动态调整信息交换。
 
-**关键技术：** 分布式 SLAM · 协同路径规划 · 动态目标追踪
+**关键技术：** 需求感知区域选择 · 稀疏特征通信 · 带宽受限协作
 
-### 1.3 基于感知的 UAV 任务执行
+### 1.3 鲁棒融合与三维场景理解
 
-自然语言指令驱动的无人机导航与视觉语言导航（VLN），探索语义感知到任务执行的端到端方法。
+针对位姿偏差与观测异步，研究位姿校正、时间对齐和可靠性加权，融合本地与邻居特征，支持三维目标检测、BEV 建图与三维高斯重建（3DGS）。
 
-**关键技术：** 指令解析 · 语义地图构建 · 视觉语言对齐
+**关键技术：** 时空误差补偿 · 可靠性加权融合 · 三维场景重建
 
 ## 支撑平台
 
