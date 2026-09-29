@@ -88,9 +88,9 @@ layout: default
           {% if p.period %}<p class="meta">{% if page.lang == 'en' %}Class of {{ p.period | remove: '届' | escape }}{% else %}{{ p.period | escape }}{% endif %}</p>{% endif %}
           {% if person_destination %}<p class="meta">{{ person_destination | escape }}</p>{% endif %}
           {% if page.lang == 'en' %}
-            <p class="intro">{{ p.bio_en | default: p.bio_zh | truncate: 80 }}</p>
+            <p class="intro">{{ p.thesis_title_en | default: p.thesis_title | escape }}</p>
           {% else %}
-            <p class="intro">{{ p.bio_zh | default: p.bio_en | truncate: 80 }}</p>
+            <p class="intro">{{ p.thesis_title | default: p.thesis_title_en | escape }}</p>
           {% endif %}
         </a>
       {% endfor %}
