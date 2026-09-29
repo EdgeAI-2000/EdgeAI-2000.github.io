@@ -42,6 +42,7 @@ collections:
     summary: "{{name}} · {{role}} · {{status}}"
     fields:
       - { label: "姓名", name: "name", widget: "string", hint: "中文全名" }
+      - { label: "英文姓名", name: "name_en", widget: "string", required: false }
       - label: "角色"
         name: "role"
         widget: "select"
@@ -69,7 +70,8 @@ collections:
         media_library:
           config:
             multiple: false
-      - { label: "中文简介", name: "bio_zh", widget: "text", required: false, hint: "60-120 字，介绍研究方向与背景" }
+      - { label: "个人风采照片", name: "style_photo", widget: "image", required: false, hint: "展示在个人介绍中，头像仍使用证件照" }
+      - { label: "中文简介", name: "bio_zh", widget: "text", required: false, hint: "介绍研究方向与背景" }
       - { label: "English Bio", name: "bio_en", widget: "text", required: false }
       - label: "研究方向标签"
         name: "research_areas"
@@ -77,14 +79,23 @@ collections:
         required: false
         hint: "每行一个标签，如：协同感知、模型压缩"
         field: { label: "方向", name: "area", widget: "string" }
+      - label: "英文研究方向标签"
+        name: "research_areas_en"
+        widget: "list"
+        required: false
+        field: { label: "Research area", name: "area", widget: "string" }
       - { label: "邮箱", name: "email", widget: "string", required: false, pattern: ['^[^@]+@[^@]+\.[^@]+$', "请输入有效邮箱"] }
       - { label: "个人主页", name: "homepage", widget: "string", required: false }
       - { label: "Google Scholar", name: "scholar", widget: "string", required: false }
       - { label: "GitHub", name: "github", widget: "string", required: false }
       - { label: "DBLP", name: "dblp", widget: "string", required: false }
       - { label: "学院 / 单位", name: "affiliation", widget: "string", required: false }
+      - { label: "英文学院 / 单位", name: "affiliation_en", widget: "string", required: false }
       - { label: "在读时间", name: "period", widget: "string", required: false, hint: "如：2024 – 至今" }
       - { label: "毕业去向", name: "destination", widget: "string", required: false, hint: "仅校友填写" }
+      - { label: "英文毕业去向", name: "destination_en", widget: "string", required: false }
+      - { label: "学位论文题目", name: "thesis_title", widget: "string", required: false, hint: "仅校友填写" }
+      - { label: "英文学位论文题目", name: "thesis_title_en", widget: "string", required: false }
       - { label: "详细介绍（可选）", name: "body", widget: "markdown", required: false }
 
   # ── 新闻（导师/管理员发布） ────────────────────────────────

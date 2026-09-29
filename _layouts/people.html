@@ -9,6 +9,21 @@ layout: default
   {% assign roles = "pi,faculty,postdoc,phd,master,undergrad,engineer" | split: ',' %}
   {% for r in roles %}
     {% assign group = current | where: 'role', r %}
+    {% if r == 'phd' or r == 'master' or r == 'undergrad' %}
+      {% assign cohorts = group | group_by: 'period' | sort: 'name' %}
+      {% assign group = '' | split: ',' %}
+      {% assign ungraded = '' | split: ',' %}
+      {% for cohort in cohorts %}
+        {% comment %}Student slugs use family-name-first pinyin, e.g. li-hongjin.{% endcomment %}
+        {% assign classmates = cohort.items | sort: 'slug' %}
+        {% if cohort.name == '' %}
+          {% assign ungraded = classmates %}
+        {% else %}
+          {% assign group = group | concat: classmates %}
+        {% endif %}
+      {% endfor %}
+      {% assign group = group | concat: ungraded %}
+    {% endif %}
     {% if group and group.size > 0 %}
       {% assign role_label = r | upcase %}
       {% if page.lang == 'zh' %}
@@ -31,10 +46,19 @@ layout: default
       <h2 style="margin:18px 0 10px;">{{ role_label }}</h2>
       <div class="people-grid">
         {% for p in group %}
-          <a class="person-card" href="{{ p.url | relative_url }}">
-            <img class="avatar-img" src="{{ p.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url }}" alt="{{ p.name }}" loading="lazy"/>
-            <h3>{{ p.name }}</h3>
-            {% if p.research_areas %}<p class="meta">{{ p.research_areas | array_to_sentence_string }}</p>{% endif %}
+          {% assign person_url = p.url %}
+          {% assign person_name = p.name %}
+          {% assign person_research = p.research_areas %}
+          {% if page.lang == 'en' %}
+            {% assign person_url = '/en' | append: p.url %}
+            {% assign person_name = p.name_en | default: p.name %}
+            {% assign person_research = p.research_areas_en | default: p.research_areas %}
+          {% endif %}
+          <a class="person-card" href="{{ person_url | relative_url }}">
+            <img class="avatar-img" src="{{ p.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url }}" alt="{{ person_name | escape }}" loading="lazy"/>
+            <h3>{{ person_name | escape }}</h3>
+            {% if p.period %}<p class="meta">{% if page.lang == 'en' %}Entry year: {{ p.period | remove: '级' | escape }}{% else %}{{ p.period | escape }}{% endif %}</p>{% endif %}
+            {% if person_research %}<p class="meta">{{ person_research | join: ' · ' | escape }}</p>{% endif %}
             {% if page.lang == 'en' %}
               <p class="intro">{{ p.bio_en | default: p.bio_zh | truncate: 80 }}</p>
             {% else %}
@@ -50,10 +74,19 @@ layout: default
     <h2 style="margin:18px 0 10px;">{% if page.lang == 'en' %}Alumni{% else %}校友{% endif %}</h2>
     <div class="people-grid">
       {% for p in alumni %}
-        <a class="person-card" href="{{ p.url | relative_url }}">
-          <img class="avatar-img" src="{{ p.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url }}" alt="{{ p.name }}" loading="lazy"/>
-          <h3>{{ p.name }}</h3>
-          {% if p.destination %}<p class="meta">{{ p.destination }}</p>{% endif %}
+        {% assign person_url = p.url %}
+        {% assign person_name = p.name %}
+        {% assign person_destination = p.destination %}
+        {% if page.lang == 'en' %}
+          {% assign person_url = '/en' | append: p.url %}
+          {% assign person_name = p.name_en | default: p.name %}
+          {% assign person_destination = p.destination_en | default: p.destination %}
+        {% endif %}
+        <a class="person-card" href="{{ person_url | relative_url }}">
+          <img class="avatar-img" src="{{ p.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url }}" alt="{{ person_name | escape }}" loading="lazy"/>
+          <h3>{{ person_name | escape }}</h3>
+          {% if p.period %}<p class="meta">{% if page.lang == 'en' %}Class of {{ p.period | remove: '届' | escape }}{% else %}{{ p.period | escape }}{% endif %}</p>{% endif %}
+          {% if person_destination %}<p class="meta">{{ person_destination | escape }}</p>{% endif %}
           {% if page.lang == 'en' %}
             <p class="intro">{{ p.bio_en | default: p.bio_zh | truncate: 80 }}</p>
           {% else %}
@@ -63,4 +96,4 @@ layout: default
       {% endfor %}
     </div>
   {% endif %}
-</div> 
+</div>

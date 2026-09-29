@@ -1,29 +1,72 @@
 ---
 layout: default
 ---
+{% assign person = page %}
+{% if page.person_slug %}{% assign person = site.people | where: 'slug', page.person_slug | first %}{% endif %}
+{% assign person_name = person.name %}
+{% assign person_research = person.research_areas %}
+{% assign person_affiliation = person.affiliation %}
+{% assign person_destination = person.destination %}
+{% assign person_thesis = person.thesis_title %}
+{% if page.lang == 'en' %}
+  {% assign person_name = person.name_en | default: person.name %}
+  {% assign person_research = person.research_areas_en | default: person.research_areas %}
+  {% assign person_affiliation = person.affiliation_en | default: person.affiliation %}
+  {% assign person_destination = person.destination_en | default: person.destination %}
+  {% assign person_thesis = person.thesis_title_en | default: person.thesis_title %}
+{% endif %}
 <article class="container" style="margin:24px 0;">
   <div class="person-hero">
-    <img class="avatar-lg" src="{{ page.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url }}" alt="{{ page.name }}"/>
+    <img class="avatar-lg" src="{{ person.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url }}" alt="{{ person_name | escape }}"/>
     <div class="info">
-      <h1>{{ page.name }}</h1>
-      <p class="meta">{{ page.role | upcase }}{% if page.affiliation %} · {{ page.affiliation }}{% endif %}</p>
+      <h1>{{ person_name | escape }}</h1>
+      <p class="meta">
+        {% case person.role %}
+          {% when 'phd' %}{% if page.lang == 'en' %}PhD Student{% else %}博士研究生{% endif %}
+          {% when 'master' %}
+            {% if page.lang == 'en' %}Master’s {% if person.status == 'alumni' %}Graduate{% else %}Student{% endif %}
+            {% else %}硕士{% if person.status == 'alumni' %}毕业生{% else %}研究生{% endif %}{% endif %}
+          {% when 'faculty' %}{% if page.lang == 'en' %}Faculty{% else %}教师{% endif %}
+          {% when 'undergrad' %}{% if page.lang == 'en' %}Undergraduate Student{% else %}本科生{% endif %}
+          {% else %}{{ person.role | upcase }}
+        {% endcase %}
+        {% if person.period %} · {% if page.lang == 'en' %}{% if person.status == 'alumni' %}Class of {% else %}Entry year: {% endif %}{{ person.period | remove: '级' | remove: '届' | escape }}{% else %}{{ person.period | escape }}{% endif %}{% endif %}{% if person_affiliation %} · {{ person_affiliation | escape }}{% endif %}
+      </p>
+      {% if person_research %}<p class="meta">{{ person_research | join: ' · ' | escape }}</p>{% endif %}
+      {% if person_destination %}<p class="meta">{{ person_destination | escape }}</p>{% endif %}
       <div class="links">
-        {% if page.email %}<a href="mailto:{{ page.email }}">Email</a>{% endif %}
-        {% if page.homepage %} · <a href="{{ page.homepage }}" target="_blank">Homepage</a>{% endif %}
-        {% if page.scholar %} · <a href="{{ page.scholar }}" target="_blank">Scholar</a>{% endif %}
-        {% if page.dblp %} · <a href="{{ page.dblp }}" target="_blank">DBLP</a>{% endif %}
-        {% if page.github %} · <a href="{{ page.github }}" target="_blank">GitHub</a>{% endif %}
+        {% if person.email %}<a href="mailto:{{ person.email }}">Email</a>{% endif %}
+        {% if person.homepage %} · <a href="{{ person.homepage }}" target="_blank">Homepage</a>{% endif %}
+        {% if person.scholar %} · <a href="{{ person.scholar }}" target="_blank">Scholar</a>{% endif %}
+        {% if person.dblp %} · <a href="{{ person.dblp }}" target="_blank">DBLP</a>{% endif %}
+        {% if person.github %} · <a href="{{ person.github }}" target="_blank">GitHub</a>{% endif %}
       </div>
     </div>
   </div>
-  {% if page.bio_zh or page.bio_en %}
+  {% if person.bio_zh or person.bio_en %}
     <section class="content" style="margin-top:16px;">
       <h2>{% if page.lang == 'en' %}Bio{% else %}简介{% endif %}</h2>
-      <p>{{ page.bio_zh | default: page.bio_en }}</p>
+      {% if page.lang == 'en' %}
+        <p>{{ person.bio_en | default: person.bio_zh | escape | newline_to_br }}</p>
+      {% else %}
+        <p>{{ person.bio_zh | default: person.bio_en | escape | newline_to_br }}</p>
+      {% endif %}
+    </section>
+  {% endif %}
+  {% if person_thesis %}
+    <section class="content" style="margin-top:16px;">
+      <h2>{% if page.lang == 'en' %}Degree Thesis{% else %}学位论文{% endif %}</h2>
+      <p>{{ person_thesis | escape }}</p>
+    </section>
+  {% endif %}
+  {% if person.style_photo %}
+    <section class="person-style">
+      <h2>{% if page.lang == 'en' %}Beyond Research{% else %}个人风采{% endif %}</h2>
+      <img src="{{ person.style_photo | relative_url }}" alt="{{ person_name | escape }}{% if page.lang == 'en' %} — personal photo{% else %}的个人风采照片{% endif %}" loading="lazy" decoding="async"/>
     </section>
   {% endif %}
 
-  {% assign authored = site.publications | where_exp: 'p', 'p.authors contains page.name' %}
+  {% assign authored = site.publications | where_exp: 'p', 'p.authors contains person.name' %}
   {% if authored and authored.size > 0 %}
     <section style="margin-top:16px;">
       <h2>{% if page.lang == 'en' %}Publications{% else %}论文{% endif %}</h2>
@@ -37,4 +80,4 @@ layout: default
       </div>
     </section>
   {% endif %}
-</article> 
+</article>

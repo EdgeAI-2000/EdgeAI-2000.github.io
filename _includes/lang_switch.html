@@ -1,7 +1,16 @@
 <div class="lang-switch">
   {% assign current_lang = page.lang | default: site.lang | default: 'zh' %}
   {% assign pages_urls = site.pages | map: 'url' %}
-  {% if current_lang == 'zh' %}
+  {% if page.layout == 'person' %}
+    {% assign person_slug = page.person_slug | default: page.slug %}
+    {% if current_lang == 'en' %}
+      {% assign person_url = '/people/' | append: person_slug | append: '/' %}
+      <a href="{{ person_url | relative_url }}">中文</a>
+    {% else %}
+      {% assign person_url = '/en/people/' | append: person_slug | append: '/' %}
+      <a href="{{ person_url | relative_url }}">EN</a>
+    {% endif %}
+  {% elsif current_lang == 'zh' %}
     {% assign cand = '/en/' %}
     {% if page.url == '/zh/' %}
       {% assign cand = '/en/' %}
@@ -24,4 +33,4 @@
       <a href="{{ '/zh/' | relative_url }}">中文</a>
     {% endif %}
   {% endif %}
-</div> 
+</div>

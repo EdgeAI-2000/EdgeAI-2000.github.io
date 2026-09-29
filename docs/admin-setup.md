@@ -6,6 +6,18 @@
 
 可维护新闻、成员、项目、手工论文、专利。内容先保存草稿，再通过 Decap 的编辑工作流发布到 main，等待现有网站部署完成。后台预览不等同于完整网站预览。管理员具有整个仓库的写权限，不提供学生级别的行或字段权限。
 
+成员的中英文姓名、简介、研究方向、单位和校友信息统一保存在 `_people/<slug>.md`。中文个人页为 `/people/<slug>/`，英文个人页为 `/en/people/<slug>/`；更新成员资料时，两版页面读取同一份记录。新增成员时，同时添加 `en/people/<slug>.md` 英文入口，内容仅需下面的 front matter（替换 slug 和姓名），不要复制个人简介：
+
+```yaml
+---
+layout: person
+lang: en
+person_slug: he-chun
+title: Chun He
+permalink: /en/people/he-chun/
+---
+```
+
 手工论文位于 `_publications/manual/`；自动论文位于 `_publications/auto/`，不由本后台编辑，避免下次 Scholar 同步覆盖。新增前检查重复论文。当前论文页面仍保留原有筛选规则，部分未评级论文不会出现在默认列表。
 
 图片字段及 Markdown 编辑器的媒体选择器使用同一个上传窗口：选择用途、选择文件、上传并插入。也可粘贴已有 CDN URL 或 `/assets/...` 路径。上传成功后会验证图片可读取，再回填地址。旧图片保留原路径，无需批量迁移。
