@@ -1,7 +1,9 @@
 /* Scoped to the additional route in the pinned Decap 3.16.3 shell. */
+body.eais-media-inserting #nc-root,
+body.eais-media-route #nc-root header + div,
 body.eais-settings-route #nc-root header + div { display: none; }
-#eais-image-settings[hidden] { display: none; }
-#eais-image-settings {
+#eais-media[hidden], #eais-image-settings[hidden] { display: none; }
+#eais-media, #eais-image-settings {
   max-width: 1120px;
   margin: 0 auto;
   padding: 40px 32px 64px;
@@ -9,10 +11,10 @@ body.eais-settings-route #nc-root header + div { display: none; }
   font-family: inherit;
   line-height: 1.6;
 }
-#eais-image-settings h1 { font-size: 28px; margin: 0 0 12px; }
-#eais-image-settings form { max-width: 840px; }
-#eais-image-settings label { font-weight: 600; }
-#eais-image-settings input, #eais-image-settings select {
+#eais-media h1, #eais-image-settings h1 { font-size: 28px; margin: 0 0 12px; }
+#eais-media form, #eais-image-settings form { max-width: 840px; }
+#eais-media label, #eais-image-settings label { font-weight: 600; }
+#eais-media input, #eais-image-settings input, #eais-media select, #eais-image-settings select {
   box-sizing: border-box;
   padding: 10px 12px;
   margin-top: 6px;
@@ -22,8 +24,8 @@ body.eais-settings-route #nc-root header + div { display: none; }
   color: #313d3e;
   font: inherit;
 }
-#eais-image-settings fieldset { margin: 28px 0 12px; padding: 16px 20px; border: 1px solid #d5d9df; }
-#eais-image-settings button {
+#eais-media fieldset, #eais-image-settings fieldset { margin: 28px 0 12px; padding: 16px 20px; border: 1px solid #d5d9df; }
+#eais-media button, #eais-image-settings button {
   padding: 12px 20px;
   border: 0;
   border-radius: 4px;
@@ -32,12 +34,12 @@ body.eais-settings-route #nc-root header + div { display: none; }
   font: inherit;
   cursor: pointer;
 }
-#eais-image-settings button:disabled { opacity: .5; cursor: not-allowed; }
+#eais-media button:disabled, #eais-image-settings button:disabled { opacity: .5; cursor: not-allowed; }
 a.eais-settings-link[aria-current="page"] { color: #3a69c7; }
 @media (max-width: 600px) {
-  #eais-image-settings { padding: 24px 16px 40px; }
-  #eais-image-settings fieldset { padding: 12px; }
-  #eais-image-settings select { max-width: 100%; }
+  #eais-media, #eais-image-settings { padding: 24px 16px 40px; }
+  #eais-media fieldset, #eais-image-settings fieldset { padding: 12px; }
+  #eais-media input, #eais-media select, #eais-image-settings select { max-width: 100%; }
 }
 
 /* Keep the two independent settings forms visually distinct. */
