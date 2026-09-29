@@ -2,6 +2,7 @@ window.EAISCreateSettings = function (endpoint) {
   endpoint = endpoint?.replace(/\/$/, '');
   const button = document.createElement('button');
   button.type = 'button';
+  button.hidden = true;
   button.textContent = '图片服务设置';
   button.style.cssText = 'position:fixed;right:20px;bottom:20px;z-index:9999;padding:12px 18px;border:1px solid #ccc;border-radius:8px;background:white;color:#222;cursor:pointer';
   const dialog = document.createElement('dialog');
@@ -60,6 +61,7 @@ window.EAISCreateSettings = function (endpoint) {
     return result;
   }
   button.onclick = async () => {
+    if (button.hidden || !sessionToken()) return;
     form.reset();
     tokenStatus.textContent = '';
     status.textContent = '正在读取配置…';
@@ -104,4 +106,37 @@ window.EAISCreateSettings = function (endpoint) {
       lock(false);
     }
   };
+  // Decap has no public login/logout event; observe its pinned session format.
+  function sessionToken() {
+    try {
+      const user = JSON.parse(localStorage.getItem('decap-cms-user') || 'null');
+      return user?.backendName === 'github' && typeof user.token === 'string' ? user.token : '';
+    } catch { return ''; }
+  }
+  let checkedToken;
+  let authVersion = 0;
+  async function syncAccess(force = false) {
+    const token = sessionToken();
+    if (!force && token === checkedToken) return;
+    checkedToken = token;
+    const version = ++authVersion;
+    button.hidden = true;
+    field('token').value = '';
+    dialog.close();
+    if (!token) return;
+    try {
+      const response = await fetch('https://api.github.com/repos/EdgeAI-2000/EdgeAI-2000.github.io', {
+        headers: { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' },
+      });
+      const repository = response.ok ? await response.json() : null;
+      if (version === authVersion && token === sessionToken()) {
+        button.hidden = !(repository?.permissions?.push && repository.permissions.admin);
+      }
+    } catch { /* Keep the settings entry hidden until access can be verified. */ }
+  }
+  syncAccess();
+  window.addEventListener('storage', () => syncAccess());
+  window.addEventListener('focus', () => syncAccess(true));
+  window.setInterval(syncAccess, 1000);
+
 };
