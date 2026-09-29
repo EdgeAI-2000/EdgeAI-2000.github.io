@@ -63,6 +63,7 @@ layout: default
 </section>
 {% endif %}
 
+{% unless site.data.page_visibility.news == false %}
 <section class="container section-block">
   <div class="section-head">
     <h2>{% if page.lang == 'en' %}Latest News{% else %}最新新闻{% endif %}</h2>
@@ -83,6 +84,7 @@ layout: default
     {% endfor %}
   </ul>
 </section>
+{% endunless %}
 
 <section class="container section-block">
   <div class="section-head">
@@ -114,7 +116,7 @@ layout: default
 </section>
 
 {% assign featured_projects = site.projects | where: 'status', 'active' %}
-{% if featured_projects and featured_projects.size > 0 %}
+{% if site.data.page_visibility.projects != false and featured_projects and featured_projects.size > 0 %}
 <section class="container section-block">
   <div class="section-head">
     <h2>{% if page.lang == 'en' %}Featured Projects{% else %}重点项目{% endif %}</h2>
@@ -230,19 +232,23 @@ layout: default
     <div class="kpi-num">{{ pubs_ranked_recent }}</div>
     <div class="kpi-label">{% if page.lang == 'en' %}Publications{% else %}论文{% endif %}</div>
   </div>
+  {% unless site.data.page_visibility.projects == false %}
   <div class="kpi">
     <div class="kpi-num">{{ site.projects | size }}</div>
     <div class="kpi-label">{% if page.lang == 'en' %}Projects{% else %}项目{% endif %}</div>
   </div>
+  {% endunless %}
   <div class="kpi">
     {% assign members_current = site.people | where: 'status', 'current' %}
     <div class="kpi-num">{{ members_current | size }}</div>
     <div class="kpi-label">{% if page.lang == 'en' %}Members{% else %}成员{% endif %}</div>
   </div>
+  {% unless site.data.page_visibility.news == false %}
   <div class="kpi">
     <div class="kpi-num">{{ site.news | size }}</div>
     <div class="kpi-label">{% if page.lang == 'en' %}News{% else %}新闻{% endif %}</div>
   </div>
+  {% endunless %}
 </section>
 
  

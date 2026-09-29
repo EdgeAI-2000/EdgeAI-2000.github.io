@@ -13,11 +13,13 @@ permalink: /zh/research/
     <p><a class="link" href="{{ '/themes/' | relative_url }}">进入研究方向</a></p>
   </section>
 
+  {% unless site.data.page_visibility.projects == false %}
   <section style="margin-top:12px;">
     <h2>项目 Projects</h2>
     <p class="meta">工程与原型系统。</p>
     <p><a class="link" href="{{ '/projects/' | relative_url }}">进入项目</a></p>
   </section>
+  {% endunless %}
 
   <section style="margin-top:12px;">
     <h2>论文 Publications</h2>

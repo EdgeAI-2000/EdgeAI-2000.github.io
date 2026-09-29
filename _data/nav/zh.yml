@@ -11,11 +11,13 @@ main:
       - label: 招生
         url: /zh/admissions/
   - label: 新闻
+    visibility: news
     url: /zh/news/
   - label: 研究
     url: /zh/themes/
     children:
       - label: 项目
+        visibility: projects
         url: /zh/projects/
       - label: 基金
         url: /zh/funding/

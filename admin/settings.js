@@ -5,13 +5,17 @@ window.EAISCreateSettings = function (endpoint) {
   item.hidden = true;
   const link = document.createElement('a');
   link.href = route;
-  link.textContent = '图片服务设置';
+  link.textContent = '设置';
   item.append(link);
   const page = document.createElement('main');
   page.id = 'eais-image-settings';
   page.hidden = true;
   page.innerHTML = `
-    <h1>图片服务设置</h1>
+    <h1>设置</h1>
+    <h2>页面显示设置</h2>
+    <p><a href="#/collections/settings/entries/page_visibility">设置 News / 新闻和 Projects / 项目的显示开关</a></p>
+    <p>保存并发布后，中英文导航和首页对应板块将在网站部署完成后更新。隐藏不影响原有链接访问。</p>
+    <h2>图片服务设置</h2>
     <p>仅网站仓库管理员可配置。密钥加密保存在服务端，不会写入网站内容。</p>
     <p data-status role="status" aria-live="polite"></p>
     <form>

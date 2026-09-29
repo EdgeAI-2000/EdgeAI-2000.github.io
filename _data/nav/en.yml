@@ -11,11 +11,13 @@ main:
       - label: Admissions
         url: /en/admissions/
   - label: News
+    visibility: news
     url: /en/news/
   - label: Research
     url: /en/themes/
     children:
       - label: Projects
+        visibility: projects
         url: /en/projects/
       - label: Funding
         url: /en/funding/
