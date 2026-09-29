@@ -74,8 +74,12 @@ layout: default
   <ul class="news-list visual">
     {% assign items = site.news | sort: 'date' | reverse %}
     {% for item in items limit:8 %}
-      <li>
-        <img class="thumb" src="{{ item.cover | default: '/assets/images/placeholders/card-16x9.svg' | relative_url }}" alt="" loading="lazy"/>
+      {% assign news_cover = item.cover | default: '' | strip %}
+      {% if news_cover == '/assets/images/placeholders/card-16x9.svg' %}{% assign news_cover = '' %}{% endif %}
+      <li{% if news_cover == '' %} class="no-image"{% endif %}>
+        {% if news_cover != '' %}
+        <img class="thumb" src="{{ news_cover | relative_url }}" alt="" loading="lazy"/>
+        {% endif %}
         <div class="news-meta">
           {% assign t = item.type | default: 'news' %}
           <span class="badge-type">{% if t == 'press' %}{% if page.lang == 'en' %}Press{% else %}报道{% endif %}{% elsif t == 'award' %}{% if page.lang == 'en' %}Award{% else %}奖项{% endif %}{% else %}{% if page.lang == 'en' %}News{% else %}新闻{% endif %}{% endif %}</span>
