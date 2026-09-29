@@ -1,10 +1,10 @@
 ---
 layout: default
-lang: zh
+lang: en
 title: Redirect
 permalink: /
 ---
 
-<meta http-equiv="refresh" content="0; url={{ '/zh/' | relative_url }}" />
-<a href="{{ '/zh/' | relative_url }}">进入中文首页</a>
+<meta http-equiv="refresh" content="0; url={{ '/en/' | relative_url }}" />
+<a href="{{ '/en/' | relative_url }}">Enter the English homepage</a>
  
