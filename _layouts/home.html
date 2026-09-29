@@ -81,7 +81,9 @@ layout: default
           <span class="badge-type">{% if t == 'press' %}{% if page.lang == 'en' %}Press{% else %}报道{% endif %}{% elsif t == 'award' %}{% if page.lang == 'en' %}Award{% else %}奖项{% endif %}{% else %}{% if page.lang == 'en' %}News{% else %}新闻{% endif %}{% endif %}</span>
           <span class="date">{{ item.date | date: '%Y-%m-%d' }}</span>
         </div>
-        <a class="title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+        {% assign news_url = item.url %}
+        {% if page.lang == 'en' and item.content_en %}{% assign news_url = '/en' | append: item.url %}{% endif %}
+        <a class="title" href="{{ news_url | relative_url }}">{% if page.lang == 'en' %}{{ item.title_en | default: item.title }}{% else %}{{ item.title }}{% endif %}</a>
       </li>
     {% endfor %}
   </ul>

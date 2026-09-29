@@ -1,7 +1,13 @@
 <div class="lang-switch">
   {% assign current_lang = page.lang | default: site.lang | default: 'zh' %}
   {% assign pages_urls = site.pages | map: 'url' %}
-  {% if page.layout == 'theme' %}
+  {% if page.layout == 'news' %}
+    {% if current_lang == 'en' %}
+      <a href="{{ page.news_url | relative_url }}">中文</a>
+    {% else %}
+      <a href="{{ '/en' | append: page.url | relative_url }}">EN</a>
+    {% endif %}
+  {% elsif page.layout == 'theme' %}
     {% assign theme_slug = page.theme_slug | default: page.slug %}
     {% if current_lang == 'en' %}
       <a href="{{ '/themes/' | append: theme_slug | append: '/' | relative_url }}">中文</a>

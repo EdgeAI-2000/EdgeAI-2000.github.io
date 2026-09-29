@@ -1,0 +1,14 @@
+---
+layout: default
+---
+{% assign news = page %}
+{% if page.news_url %}
+  {% assign news = site.news | where: 'url', page.news_url | first %}
+{% endif %}
+<article class="container" style="margin:24px 0;">
+  <h1>{% if page.lang == 'en' %}{{ news.title_en | default: news.title }}{% else %}{{ news.title }}{% endif %}</h1>
+  <p class="meta">{{ news.date | date: '%Y-%m-%d' }}{% if news.venue %} · {{ news.venue }}{% endif %}</p>
+  <div class="content">
+    {% if page.lang == 'en' %}{{ news.content_en | markdownify }}{% else %}{{ content }}{% endif %}
+  </div>
+</article>

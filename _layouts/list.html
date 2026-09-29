@@ -18,6 +18,12 @@ layout: default
   <div class="list">
     {% for item in items %}
       <article class="card">
+        {% if coll_name == 'news' %}
+          {% assign news_url = item.url %}
+          {% if page.lang == 'en' and item.content_en %}{% assign news_url = '/en' | append: item.url %}{% endif %}
+          <h3><a href="{{ news_url | relative_url }}">{% if page.lang == 'en' %}{{ item.title_en | default: item.title }}{% else %}{{ item.title }}{% endif %}</a></h3>
+          <p>{% if page.lang == 'en' %}{{ item.summary_en | default: item.summary | truncate: 160 }}{% else %}{{ item.summary | default: item.summary_zh | truncate: 160 }}{% endif %}</p>
+        {% else %}
         <h3><a href="{{ item.url | relative_url }}">{{ item.title | default: item.name }}</a></h3>
         {% if item.summary_zh or item.summary_en %}
           <p>{{ item.summary_zh | default: item.summary_en | truncate: 160 }}</p>
@@ -25,6 +31,7 @@ layout: default
           <p>{{ item.abstract_zh | default: item.abstract_en | truncate: 160 }}</p>
         {% else %}
           <p class="meta">{{ item.date | default: item.year }}</p>
+        {% endif %}
         {% endif %}
       </article>
     {% endfor %}
