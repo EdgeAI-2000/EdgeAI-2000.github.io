@@ -1,5 +1,5 @@
-title: Edge AI Lab
-description: 边缘智能实验室官网（占位数据） | Edge AI Laboratory Website (Placeholder)
+title: EAIS LAB
+description: 边缘智能实验室官网（占位数据） | EAIS LAB Website (Placeholder)
 url: https://edgeai-2000.github.io
 baseurl: ""
 lang: zh
@@ -96,7 +96,7 @@ permalink: pretty
 
 # Social/meta for seo-tag
 social:
-  name: Edge AI Lab
+  name: EAIS LAB
   links:
     - https://github.com/EdgeAI-2000
 

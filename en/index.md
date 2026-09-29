@@ -1,5 +1,5 @@
 ---
 layout: home
 lang: en
-title: Edge AI Lab (Placeholder)
+title: EAIS LAB (Placeholder)
 --- 
