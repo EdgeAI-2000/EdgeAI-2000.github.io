@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import { readFileSync } from 'node:fs';
 const source = readFileSync(new URL('../admin/settings.js', import.meta.url), 'utf8');
 const flush = () => new Promise(resolve => setImmediate(resolve));
-function setup(fetch) {
+function setup(fetch, endpoint = 'https://worker.example') {
   let session = null;
   let poll;
   const fields = new Map();
@@ -14,8 +14,10 @@ function setup(fetch) {
   };
   const link = { setAttribute() {}, removeAttribute() {} };
   const item = { append() {} };
-  const form = { reset() { for (const value of fields.values()) value.value = ''; }, elements: { namedItem: field }, querySelectorAll: () => [], querySelector: () => ({}) };
-  const page = { querySelector: selector => selector === 'form' ? form : {} };
+  const submit = {};
+  const status = {};
+  const form = { reset() { for (const value of fields.values()) value.value = ''; }, elements: { namedItem: field }, querySelectorAll: () => [], querySelector: () => submit };
+  const page = { querySelector: selector => selector === 'form' ? form : selector === '[data-status]' ? status : {} };
   const nav = { querySelector: () => ({ className: 'native-link' }), append(node) { node.parentElement = this; } };
   const events = {};
   const window = { location: { hash: '#/collections/people' }, addEventListener(name, fn) { events[name] = fn; }, setInterval(fn) { poll = fn; } };
@@ -28,8 +30,8 @@ function setup(fetch) {
     MutationObserver: class { observe() {} },
     localStorage: { getItem: () => session }, fetch,
   });
-  window.EAISCreateSettings('https://worker.example');
-  return { item, page, field, poll: () => poll(), focus: () => events.focus(),
+  window.EAISCreateSettings(endpoint);
+  return { item, page, field, submit, status, poll: () => poll(), focus: () => events.focus(),
     navigate(hash) { window.location.hash = hash; events.hashchange(); },
     login(token) { session = token ? JSON.stringify({ backendName: 'github', token }) : null; },
   };
@@ -126,4 +128,30 @@ test('refocusing still hides settings and clears secrets when admin permission i
   assert.equal(state.page.hidden, true);
   assert.equal(state.item.hidden, true);
   assert.equal(state.field('token').value, '');
+});
+
+
+test('missing deployment clearly explains why saving is unavailable', async () => {
+  const state = setup(async () => Response.json({ permissions: { push: true, admin: true } }), '');
+  state.login('admin-token');
+  await state.poll();
+  state.navigate('#/image-settings');
+  await flush();
+  assert.equal(state.submit.disabled, true);
+  assert.equal(state.submit.textContent, '服务未部署，暂不能保存');
+  assert.match(state.status.textContent, /Cloudflare 登录授权和首次服务部署/);
+});
+
+test('ready service enables save and uninitialized storage explains the disabled state', async () => {
+  for (const editable of [true, false]) {
+    const state = setup(async url => Response.json(url.includes('api.github.com')
+      ? { permissions: { push: true, admin: true } }
+      : { accountId: '', accountHash: '', variants: {}, editable }));
+    state.login('admin-token');
+    await state.poll();
+    state.navigate('#/image-settings');
+    await flush();
+    assert.equal(state.submit.disabled, !editable);
+    assert.equal(state.submit.textContent, editable ? '验证并保存配置' : '存储未初始化，暂不能保存');
+  }
 });

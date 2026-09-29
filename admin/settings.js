@@ -13,6 +13,7 @@ window.EAISCreateSettings = function (endpoint) {
   page.innerHTML = `
     <h1>图片服务设置</h1>
     <p>仅网站仓库管理员可配置。密钥加密保存在服务端，不会写入网站内容。</p>
+    <p data-status role="status" aria-live="polite"></p>
     <form>
       <p><label>Cloudflare Account ID<br><input name="accountId" required pattern="[a-fA-F0-9]{32}" style="width:100%" autocomplete="off"></label></p>
       <p><label>Images Account Hash<br><input name="accountHash" required pattern="(?:[a-zA-Z0-9_]|-)+" style="width:100%" autocomplete="off"></label></p>
@@ -31,8 +32,7 @@ window.EAISCreateSettings = function (endpoint) {
       <p>保存时自动创建或更新以上公开规格。分发时自动优化格式，并移除 EXIF 信息。</p>
       <p>若该账号已有同名 avatar、cover、content 规格，保存会更新它们。</p>
       <button type="submit">验证并保存配置</button>
-    </form>
-    <p data-status role="status" aria-live="polite"></p>`;
+    </form>`;
   document.body.append(page);
   const form = page.querySelector('form');
   const status = page.querySelector('[data-status]');
@@ -100,11 +100,13 @@ window.EAISCreateSettings = function (endpoint) {
       status.textContent = result.editable ? '' : '服务端尚未启用设置存储，请完成首次部署。';
       lock(false);
       form.querySelector('[type=submit]').disabled = !result.editable;
+      form.querySelector('[type=submit]').textContent = result.editable ? '验证并保存配置' : '存储未初始化，暂不能保存';
     } catch (error) {
       if (version !== pageVersion || !active) return;
-      status.textContent = error.message;
+      status.textContent = endpoint ? error.message : '图片服务尚未部署，当前无法验证或保存配置。请先完成 Cloudflare 登录授权和首次服务部署；填写 Account ID 或 API Token 不能代替部署。';
       lock(false);
       form.querySelector('[type=submit]').disabled = true;
+      form.querySelector('[type=submit]').textContent = endpoint ? '读取失败，暂不能保存' : '服务未部署，暂不能保存';
     }
   };
   form.onsubmit = async event => {
