@@ -35,6 +35,4 @@ permalink: /en/contact/
       <p><a href="https://map.baidu.com/search/{{ '广东省深圳市龙华区观澜街道银星智界二期3号楼408' | uri_escape }}" target="_blank" rel="noopener noreferrer">Baidu Maps</a> · <a href="https://www.google.com/maps/search/?api=1&amp;query={{ '广东省深圳市龙华区观澜街道银星智界二期3号楼408' | uri_escape }}" target="_blank" rel="noopener noreferrer">Google Maps</a></p>
     </section>
   </div>
-  <p>Email: contact@example.edu</p>
-  <p>GitHub: <a href="https://github.com/EdgeAI-2000" target="_blank" rel="noopener">EdgeAI-2000</a></p>
 </div> 
