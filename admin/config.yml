@@ -26,7 +26,7 @@ media_library:
   name: cloudflare_images
   config:
     # 部署 workers/images 后填写 HTTPS 地址，不要填写密钥。
-    endpoint: ""
+    endpoint: "https://eais-cms-images.neardws.workers.dev"
 
 collections:
   # ── 成员信息（管理员维护） ──────────────────────────────
