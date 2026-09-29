@@ -24,6 +24,6 @@ permalink: /en/admissions/
   <p>Suggested email subject: <strong>Admissions Inquiry - PhD/Master's/Undergraduate - Name - University</strong>.</p>
   <p>We look forward to turning promising ideas into rigorous research with you, and bringing AI into the real world.</p>
 {% unless site.data.page_visibility.openings == false or site.data.page_visibility.about == false or site.data.page_visibility.admissions == false %}
-  <p><a class="link" href="{{ '/en/openings/' | relative_url }}">See current openings</a></p>
+  <p><a class="link" href="{{ '/en/openings/' | relative_url }}">View current openings and available positions</a></p>
 {% endunless %}
 </div>

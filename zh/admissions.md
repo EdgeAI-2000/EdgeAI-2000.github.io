@@ -23,4 +23,7 @@ permalink: /zh/admissions/
   <p>欢迎将个人简历、研究兴趣或简短自我介绍发送至：<a class="link" href="mailto:info@eaislab.com">info@eaislab.com</a>。如有成绩单、代表性论文、项目介绍或代码作品，也欢迎一并附上。</p>
   <p>邮件主题建议：<strong>招生咨询－博士/硕士/本科生－姓名－学校</strong>。</p>
   <p>期待与你相遇，一起把有趣的想法变成扎实的研究，让智能走向真实世界。</p>
+{% unless site.data.page_visibility.openings == false or site.data.page_visibility.about == false or site.data.page_visibility.admissions == false %}
+  <p><a class="link" href="{{ '/zh/openings/' | relative_url }}">查看具体招生信息与名额</a></p>
+{% endunless %}
 </div>
