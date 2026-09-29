@@ -3,7 +3,7 @@ about: true
 vision: true
 contact: true
 admissions: true
-news: false
+news: true
 themes: true
 research: true
 projects: false
