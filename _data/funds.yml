@@ -68,6 +68,17 @@ vertical:
         budget_en: 120,000 CNY
         description_zh: 项目编号：2019M660245。
         description_en: "Grant No. 2019M660245."
+      - title_zh: 深圳市高层次人才科研启动经费
+        title_en: Research Start-up Funding for Shenzhen High-Level Talent
+        period: 2025-12 至 2028-12
+        role_zh: 许新操，项目负责人
+        role_en: Xincao Xu, PI
+        sponsors_zh: 深圳市高层次人才计划（科研启动经费）
+        sponsors_en: Shenzhen High-Level Talent Program (Research Start-up Fund)
+        budget_zh: 300 万元
+        budget_en: 3,000,000 CNY
+        description_zh: 深圳市特聘岗位。
+        description_en: "Shenzhen Specially Appointed Post."
       - title_zh: 生成式模型驱动的车联网数字孪生关键技术研究
         title_en: Research on Key Techniques for Generative Model-based Vehicular Digital Twins
         period: 2025-01 至 2027-12
@@ -105,6 +116,15 @@ horizontal:
   - category_zh: 参与项目与开放合作
     category_en: Participated Programs & Open Collaborations
     items:
+      - title_zh: 骑行与驾驶职业群体安全健康防护技术与装备研究
+        title_en: Research on Safety and Health Protection Technologies and Equipment for Riding and Driving Occupational Groups
+        period: 2026-06 至 2029-06
+        partners_zh: 中华人民共和国科学技术部；许新操参与
+        partners_en: Ministry of Science and Technology of the People's Republic of China; Xincao Xu participated
+        budget_zh: 4028 万元
+        budget_en: 40,280,000 CNY
+        description_zh: 国家重点研发计划，项目编号：SQ2025YFC3300059。
+        description_en: "National Key R&D Program, Grant No. SQ2025YFC3300059."
       - title_zh: 车联网边缘智能计算模型部署与跨域协同优化
         title_en: Computing Model Deployment and Collaborative Cross Domain Optimization for Edge Intelligence of Internet of Vehicles
         period: 2022-01 至 2025-12
