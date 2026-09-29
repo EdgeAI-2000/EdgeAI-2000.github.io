@@ -9,6 +9,9 @@
     <div class="footer-mascot">{% include mascot.html pose='coffee' random=true id='footer' %}</div>
     <nav aria-label="Footer">
       <ul>
+        {% if page.layout == 'home' %}
+          <li><a href="{{ '/admin/' | relative_url }}">{% if page.lang == 'en' %}Admin Login{% else %}管理员入口{% endif %}</a></li>
+        {% endif %}
         {% assign current_lang = page.lang | default: site.lang | default: 'zh' %}
         {% assign nav = site.data.nav[current_lang] %}
         {% for item in nav.footer %}

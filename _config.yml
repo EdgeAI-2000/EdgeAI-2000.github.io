@@ -9,7 +9,6 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-feed
-  - jekyll-paginate
   - jekyll-titles-from-headings
 
 # Theme (use minima for a simple baseline)
@@ -86,10 +85,6 @@ defaults:
     values:
       layout: detail
       lang: zh
-
-# Pagination (used by news list if needed)
-paginate: 10
-paginate_path: "/news/page:num/"
 
 # Permalink defaults
 permalink: pretty

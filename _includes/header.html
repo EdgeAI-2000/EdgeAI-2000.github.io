@@ -36,9 +36,6 @@
     </div>
     <div class="actions">
       {% include lang_switch.html %}
-      {% if page.layout == 'home' %}
-        <a href="{{ '/admin/' | relative_url }}">{% if page.lang == 'en' %}Admin Login{% else %}管理员入口{% endif %}</a>
-      {% endif %}
     </div>
   </div>
 </header>

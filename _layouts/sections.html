@@ -16,7 +16,8 @@ layout: default
 
 <div class="features">
   {% for it in items %}
-    <section class="feature-section {% if forloop.index0 % 2 == 1 %}alt{% endif %}">
+    {% assign parity = forloop.index0 | modulo: 2 %}
+    <section class="feature-section {% if parity == 1 %}alt{% endif %}">
       <div class="container feature-inner">
         <div class="media">
           <img src="{{ it.cover | default: '/assets/images/placeholders/card-16x9.svg' | relative_url }}" alt="" loading="lazy"/>

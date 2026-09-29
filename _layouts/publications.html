@@ -57,7 +57,7 @@ layout: default
         {%- assign keep = '' -%}
         {%- assign hit_digit = false -%}
         {%- for w in words -%}
-          {%- if hit_digit == false and (w contains '0' or w contains '1' or w contains '2' or w contains '3' or w contains '4' or w contains '5' or w contains '6' or w contains '7' or w contains '8' or w contains '9') -%}
+          {%- if w contains '0' or w contains '1' or w contains '2' or w contains '3' or w contains '4' or w contains '5' or w contains '6' or w contains '7' or w contains '8' or w contains '9' -%}
             {%- assign hit_digit = true -%}
           {%- endif -%}
           {%- if hit_digit == false -%}
@@ -176,7 +176,7 @@ layout: default
           {% assign keep = '' %}
           {% assign hit_digit = false %}
           {% for w in words %}
-            {% if hit_digit == false and (w contains '0' or w contains '1' or w contains '2' or w contains '3' or w contains '4' or w contains '5' or w contains '6' or w contains '7' or w contains '8' or w contains '9') %}
+            {% if w contains '0' or w contains '1' or w contains '2' or w contains '3' or w contains '4' or w contains '5' or w contains '6' or w contains '7' or w contains '8' or w contains '9' %}
               {% assign hit_digit = true %}
             {% endif %}
             {% if hit_digit == false %}
@@ -199,13 +199,16 @@ layout: default
         {% assign venue_norm_final = venue_norm_final | strip | downcase %}
         {% assign venue_display_raw = pub.venue | split: ' (' | first %}
         {% assign vdisp_lc = venue_display_raw | downcase %}
-        {% assign vdisp_is_journal = vdisp_lc contains 'journal' or vdisp_lc contains 'transactions' or vdisp_lc contains 'magazine' or vdisp_lc contains 'letters' %}
+        {% assign vdisp_is_journal = false %}
+        {% if vdisp_lc contains 'journal' or vdisp_lc contains 'transactions' or vdisp_lc contains 'magazine' or vdisp_lc contains 'letters' %}
+          {% assign vdisp_is_journal = true %}
+        {% endif %}
         {% if vdisp_is_journal %}
           {% assign words = venue_display_raw | split: ' ' %}
           {% assign keep_disp = '' %}
           {% assign hit_digit_disp = false %}
           {% for w in words %}
-            {% if hit_digit_disp == false and (w contains '0' or w contains '1' or w contains '2' or w contains '3' or w contains '4' or w contains '5' or w contains '6' or w contains '7' or w contains '8' or w contains '9') %}
+            {% if w contains '0' or w contains '1' or w contains '2' or w contains '3' or w contains '4' or w contains '5' or w contains '6' or w contains '7' or w contains '8' or w contains '9' %}
               {% assign hit_digit_disp = true %}
             {% endif %}
             {% if hit_digit_disp == false %}
