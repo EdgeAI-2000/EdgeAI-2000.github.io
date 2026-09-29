@@ -1,8 +1,12 @@
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-meta">
+      <a class="footer-brand" href="{% if page.lang == 'zh' %}{{ '/zh/' | relative_url }}{% else %}{{ '/en/' | relative_url }}{% endif %}">
+        <img src="{{ '/assets/images/brand/wordmark.svg' | relative_url }}" width="2100" height="470" alt="{{ site.title }}" loading="lazy" />
+      </a>
       <p>© {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
     </div>
+    <div class="footer-mascot">{% include mascot.html pose='coffee' random=true id='footer' %}</div>
     <nav aria-label="Footer">
       <ul>
         {% assign current_lang = page.lang | default: site.lang | default: 'zh' %}

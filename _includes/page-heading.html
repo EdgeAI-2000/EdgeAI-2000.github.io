@@ -1,0 +1,8 @@
+<div class="page-heading">
+  <h1>{{ include.title | default: page.title }}</h1>
+  {% if page.mascot == 'badge' %}
+    <img class="page-badge" src="{{ '/assets/images/brand/badge.webp' | relative_url }}" width="1230" height="1278" alt="" aria-hidden="true" />
+  {% elsif page.mascot %}
+    {% include mascot.html pose=page.mascot %}
+  {% endif %}
+</div>

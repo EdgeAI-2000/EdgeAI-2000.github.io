@@ -2,7 +2,7 @@
 layout: default
 ---
 <div class="container" style="margin:24px 0;">
-  <h1>{{ page.title }}</h1>
+  {% include page-heading.html %}
   {% assign pubs = site.publications %}
   {% if pubs == nil or pubs.size == 0 %}
     {% assign pubs = site.collections | where: 'label', 'publications' | first | default: nil %}
@@ -129,7 +129,8 @@ layout: default
   {%- assign cas_values = cas_raw | split: '||' | uniq | sort -%}
   {%- assign ccf_values = ccf_raw | split: '||' | uniq | sort -%}
   
-  <div class="pub-filters sticky" id="pub-filters" role="region" aria-label="Publication filters">
+</div>
+  <div class="container pub-filters sticky" id="pub-filters" role="region" aria-label="Publication filters">
     <button class="filters-toggle" id="filters-toggle" aria-expanded="false" aria-controls="filters-fields">Filters</button>
     <div class="filters-fields" id="filters-fields">
       <label>
@@ -152,7 +153,6 @@ layout: default
       </label>
     </div>
   </div>
-</div>
 
 {% assign pubs_filtered = pubs | where_exp:'p','p.year >= 2020' %}
 {% assign pubs_sorted = pubs_filtered | sort: 'year' | reverse %}

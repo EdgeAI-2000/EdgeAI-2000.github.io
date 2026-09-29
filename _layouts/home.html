@@ -5,14 +5,16 @@ layout: default
 {% if page.lang == 'en' %}{% assign lp = '/en' %}{% else %}{% assign lp = '/zh' %}{% endif %}
 
 <section class="hero hero-large">
-  <div class="container">
-    <h1>{{ site.title }}</h1>
-    <p class="hero-sub">{% if page.lang == 'en' %}Edge AI via system–algorithm co-design{% else %}系统与算法协同驱动的边缘智能{% endif %}</p>
-    <div class="hero-cta">
-      <a class="btn" href="{{ lp | append: '/themes/' | relative_url }}">{% if page.lang == 'en' %}Explore Research{% else %}探索研究{% endif %}</a>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <h1>{{ site.title }}</h1>
+      <p class="hero-sub">{% if page.lang == 'en' %}Edge AI via system–algorithm co-design{% else %}系统与算法协同驱动的边缘智能{% endif %}</p>
+      <div class="hero-cta">
+        <a class="btn" href="{{ lp | append: '/themes/' | relative_url }}">{% if page.lang == 'en' %}Explore Research{% else %}探索研究{% endif %}</a>
+      </div>
     </div>
+    <img class="hero-mascot" src="{{ '/assets/images/brand/mascot.webp' | relative_url }}" width="1231" height="1277" alt="" aria-hidden="true" fetchpriority="high" />
   </div>
-  <img class="hero-visual" src="{{ '/assets/images/placeholders/hero-visual.svg' | relative_url }}" alt="" aria-hidden="true" />
 </section>
 
 {% assign meeting = site.data.lab_meeting %}
