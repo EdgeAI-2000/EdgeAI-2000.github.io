@@ -17,19 +17,28 @@ layout: default
       {% assign appno = p.application_no | default: p.application_number | default: p.app_no %}
       <article class="patent-card">
         <div class="patent-meta">
-          <span class="status {{ status }}">{{ status | capitalize }}</span>
+          <span class="status {{ status }}">{% if page.lang == 'zh' %}{% if status == 'granted' %}已授权{% else %}申请中{% endif %}{% else %}{{ status | capitalize }}{% endif %}</span>
           {% if p.year %}<span class="badge">{{ p.year }}</span>{% endif %}
         </div>
-        <h3>{{ p.title }}</h3>
+        <h3>{% if page.lang == 'en' %}{{ p.title_en | default: p.title }}{% else %}{{ p.title }}{% endif %}</h3>
         <div class="patent-fields">
+          {% if p.patent_type %}
+          <div class="row"><div class="label">{% if page.lang == 'zh' %}专利类型{% else %}Type{% endif %}</div><div class="value">{% if page.lang == 'en' %}{{ p.patent_type_en | default: p.patent_type }}{% else %}{{ p.patent_type }}{% endif %}</div></div>
+          {% endif %}
+          {% if p.number %}
+          <div class="row"><div class="label">{% if page.lang == 'zh' %}专利号{% else %}Patent No.{% endif %}</div><div class="value">{{ p.number }}</div></div>
+          {% endif %}
+          {% if p.publication_no %}
+          <div class="row"><div class="label">{% if page.lang == 'zh' %}授权公告号{% else %}Grant Publication No.{% endif %}</div><div class="value">{{ p.publication_no }}</div></div>
+          {% endif %}
           {% if appno %}
-          <div class="row"><div class="label">Application No.</div><div class="value">{{ appno }}</div></div>
+          <div class="row"><div class="label">{% if page.lang == 'zh' %}申请号{% else %}Application No.{% endif %}</div><div class="value">{{ appno }}</div></div>
           {% endif %}
           {% if inventors %}
-          <div class="row"><div class="label">Inventors</div><div class="value">{% if inventors.size %}{{ inventors | join: ', ' }}{% else %}{{ inventors }}{% endif %}</div></div>
+          <div class="row"><div class="label">{% if page.lang == 'zh' %}发明人{% else %}Inventors{% endif %}</div><div class="value">{{ inventors | join: ', ' | escape | replace: 'Xincao Xu', '<strong>Xincao Xu</strong>' }}</div></div>
           {% endif %}
           {% if assignee %}
-          <div class="row"><div class="label">Assignee</div><div class="value">{{ assignee }}</div></div>
+          <div class="row"><div class="label">{% if page.lang == 'zh' %}专利权人{% else %}Assignee{% endif %}</div><div class="value">{{ assignee }}</div></div>
           {% endif %}
         </div>
       </article>
