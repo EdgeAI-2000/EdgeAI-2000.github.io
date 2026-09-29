@@ -7,7 +7,7 @@ layout: default
 <section class="hero hero-large">
   <div class="container hero-inner">
     <div class="hero-copy">
-      <h1>{{ site.title }}</h1>
+      <h1><img class="hero-wordmark" src="{{ site.data.brand.wordmark }}" width="2100" height="470" alt="{{ site.title }}" fetchpriority="high" /></h1>
       <p class="hero-sub">{% if page.lang == 'en' %}Edge AI via system–algorithm co-design{% else %}系统与算法协同驱动的边缘智能{% endif %}</p>
       <div class="hero-cta">
         <a class="btn" href="{{ lp | append: '/themes/' | relative_url }}">{% if page.lang == 'en' %}Explore Research{% else %}探索研究{% endif %}</a>

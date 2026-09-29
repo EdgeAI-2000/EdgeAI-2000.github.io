@@ -9,8 +9,8 @@ not vector illustrations.
 
 ## Placement
 
-- Header/footer: horizontal wordmark. Keep names in body text and copyright as text.
-- Home: standard waving mascot, beside the research introduction.
+- Header: text name. Footer: horizontal wordmark. Keep names in body text and copyright as text.
+- Home: horizontal wordmark as the main heading, with the standard waving mascot beside the research introduction.
 - About: compact EAIS LAB badge.
 - Research: idea; projects: coding; publications/patents: reading.
 - Team: waving; admissions/contact: heart; vision: presenting; 404: thinking.
@@ -18,7 +18,9 @@ not vector illustrations.
   no-JavaScript fallback. Never rotate while a visitor is reading.
 - Browser icon: framed cat head; Apple touch icon: full badge.
 
-Preserve the site's quiet light surfaces and blue actions. Use one prominent
+Use deep blue text, blue actions and yellow accents on white and pale blue surfaces.
+Yellow highlights active navigation and key details; pair yellow fills with dark text.
+Use one prominent
 mascot per introductory section, never one per result card. Images are decorative
 unless they identify a link; brand links expose the text “EAIS LAB”. All artwork
 reserves its layout space. Mascots are static, including with reduced motion.
