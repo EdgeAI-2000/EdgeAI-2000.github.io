@@ -2,7 +2,7 @@
   <div class="container header-inner">
     <div class="brand">
       <a class="site-title" href="{% if page.lang == 'zh' %}{{ '/zh/' | relative_url }}{% else %}{{ '/en/' | relative_url }}{% endif %}">
-        <img src="{{ '/assets/images/brand/wordmark.svg' | relative_url }}" width="2100" height="470" alt="{{ site.title }}" />
+        <img src="{{ site.data.brand.wordmark }}" width="2100" height="470" alt="{{ site.title }}" />
       </a>
     </div>
     <div class="nav-center">

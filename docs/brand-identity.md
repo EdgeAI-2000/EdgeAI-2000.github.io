@@ -25,15 +25,27 @@ reserves its layout space. Mascots are static, including with reduced motion.
 
 ## Updating assets
 
+All brand images are hosted in Cloudflare Images. `_data/brand.json` contains the
+six public delivery URLs used by the website: wordmark, mascot, badge, expression
+sheet, favicon and Apple touch icon. Local files are retained as backups; templates
+load the CDN URLs directly, including the image inside each expression viewport.
+
 In the logos repository, run `node scripts/build-brand-assets.mjs` (requires
-ImageMagick's `convert`). Copy `mascot.webp`, `mascot-expressions.webp`,
-`wordmark.svg`, `badge.webp`, `favicon.svg` and `apple-touch-icon.png` from
-`eais-lab/web/` to `assets/images/brand/`. Copy `expressions.json` to
-`_data/mascots.json` at the same time.
+ImageMagick's `convert`), then `python3 scripts/upload-cloudflare-images.py`
+(requires `curl` and a GitHub CLI login with website repository write permission).
+The upload script uses the existing authenticated Images Worker and skips
+unchanged files. It never needs to read or store the Cloudflare API token.
+
+Copy the six resulting delivery URLs from `eais-lab/cloudflare-images.json` into
+`_data/brand.json`. Update the local backup files in `assets/images/brand/` and
+copy `eais-lab/web/expressions.json` to `_data/mascots.json` when artwork changes.
+The `content` variant preserves aspect ratio. Keep that variant in scale-down
+mode so the expression sheet's viewports remain aligned.
 
 `_includes/mascot.html` uses the shared sheet and the manifest's viewports, so
 multiple expressions reuse one cached image. The logos repository also provides
-20 self-contained individual SVGs for use outside this website. Set `mascot` in
+20 self-contained individual SVGs, also uploaded to Cloudflare Images, for use
+outside this website. Set `mascot` in
 page front matter and render `page-heading.html` for an introductory illustration.
 
 ## Verification
@@ -43,3 +55,9 @@ Check Chinese and English routes at desktop, 390px and 320px widths; confirm
 brand links, mobile dropdowns, sticky publication filters, transparent artwork,
 the no-JavaScript footer and all three random footer poses. Keep local generated
 output out of commits; GitHub Pages builds the source on `main`.
+
+After CDN changes, verify every URL resolves, check transparent areas and SVG
+embedded artwork, and confirm browser requests for brand images use
+`imagedelivery.net` rather than `/assets/images/brand/`. Cloudflare sanitizes SVGs
+and may transcode their embedded raster images; byte-for-byte equality is not
+expected ([format documentation](https://developers.cloudflare.com/images/get-started/limits/#svg)).
