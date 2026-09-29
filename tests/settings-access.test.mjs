@@ -20,7 +20,7 @@ function setup(fetch, endpoint = 'https://worker.example', visibilityFetch = asy
   const visibilityFields = {};
   const visibilityStatus = {};
   const visibilityReload = {};
-  const switches = { news: { checked: false }, projects: { checked: false } };
+  const switches = Object.fromEntries('home about vision contact admissions news themes research projects funding publications patents people openings privacy sitemap'.split(' ').map(name => [name, { checked: false, disabled: false }]));
   const visibilityForm = { querySelector: () => visibilityFields, elements: { namedItem: name => switches[name] } };
   const page = { querySelector: selector => ({ '[data-images-form]': form, '[data-status]': status,
     '[data-visibility-form]': visibilityForm, '[data-visibility-status]': visibilityStatus, '[data-visibility-reload]': visibilityReload })[selector] || {} };
@@ -187,7 +187,9 @@ test('inline switches load and publish on the same page even without an image se
   const payload = JSON.parse(calls[1].options.body);
   assert.equal(payload.sha, 'old');
   assert.equal(payload.branch, 'main');
-  assert.equal(atob(payload.content), 'news: false\nprojects: true\n');
+  assert.match(atob(payload.content), /^news: false$/m);
+  assert.match(atob(payload.content), /^projects: true$/m);
+  assert.equal(atob(payload.content).trim().split('\n').length, 16);
   assert.match(state.visibilityStatus.textContent, /已保存并发布/);
   await state.visibilityForm.onsubmit({ preventDefault() {} });
   assert.equal(JSON.parse(calls[2].options.body).sha, 'new');
@@ -242,4 +244,33 @@ test('late visibility reads cannot update the page after logout', async () => {
   assert.equal(state.page.hidden, true);
   await state.visibilityForm.onsubmit({ preventDefault() {} });
   assert.equal(writes, 0);
+});
+
+
+test('all page switches load legacy defaults and parents disable children recursively', async () => {
+  let saved;
+  const state = setup(async () => Response.json({ permissions: { push: true, admin: true } }), '', async (url, options) => {
+    if (options.method === 'PUT') { saved = atob(JSON.parse(options.body).content); return Response.json({ content: { sha: 'new' } }); }
+    return Response.json({ sha: 'old', content: btoa('news: false\nprojects: false\n') });
+  });
+  state.login('admin-token'); await state.poll(); state.navigate('#/image-settings'); await flush();
+  for (const [name, field] of Object.entries(state.switches)) assert.equal(field.checked, !['news', 'projects'].includes(name), name);
+  state.switches.about.checked = false;
+  state.switches.themes.checked = false;
+  state.visibilityForm.onchange();
+  const children = ['vision', 'contact', 'admissions', 'openings', 'research', 'projects', 'funding', 'publications', 'patents'];
+  for (const name of children) {
+    assert.equal(state.switches[name].checked, false, name);
+    assert.equal(state.switches[name].disabled, true, name);
+  }
+  await state.visibilityForm.onsubmit({ preventDefault() {} });
+  for (const name of children) assert.match(saved, new RegExp(`^${name}: false$`, 'm'));
+  state.switches.about.checked = true;
+  state.visibilityForm.onchange();
+  assert.equal(state.switches.vision.disabled, false);
+  assert.equal(state.switches.vision.checked, false);
+  assert.equal(state.switches.openings.disabled, true);
+  state.switches.admissions.checked = true;
+  state.visibilityForm.onchange();
+  assert.equal(state.switches.openings.disabled, false);
 });

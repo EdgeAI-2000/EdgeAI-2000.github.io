@@ -9,9 +9,11 @@ layout: default
     <div class="hero-copy">
       <h1><img class="hero-wordmark" src="{{ site.data.brand.wordmark }}" width="2100" height="470" alt="{{ site.title }}" fetchpriority="high" /></h1>
       <p class="hero-sub">{% if page.lang == 'en' %}Edge AI via system–algorithm co-design{% else %}系统与算法协同驱动的边缘智能{% endif %}</p>
-      <div class="hero-cta">
+      {% unless site.data.page_visibility.themes == false %}
+<div class="hero-cta">
         <a class="btn" href="{{ lp | append: '/themes/' | relative_url }}">{% if page.lang == 'en' %}Explore Research{% else %}探索研究{% endif %}</a>
       </div>
+{% endunless %}
     </div>
     <img class="hero-mascot" src="{{ site.data.brand.mascot }}" width="1231" height="1277" alt="" aria-hidden="true" fetchpriority="high" />
   </div>
@@ -49,7 +51,7 @@ layout: default
 {% endif %}
 
 {% assign v = site.data.vision %}
-{% if v %}
+{% if v and site.data.page_visibility.vision != false and site.data.page_visibility.about != false %}
 <section class="container section-block">
   <div class="vision-wrap">
     <div class="vision-text">
@@ -86,6 +88,7 @@ layout: default
 </section>
 {% endunless %}
 
+{% unless site.data.page_visibility.themes == false %}
 <section class="container section-block">
   <div class="section-head">
     <h2>{% if page.lang == 'en' %}Research Themes{% else %}研究方向{% endif %}</h2>
@@ -114,9 +117,10 @@ layout: default
     </div>
   </div>
 </section>
+{% endunless %}
 
 {% assign featured_projects = site.projects | where: 'status', 'active' %}
-{% if site.data.page_visibility.projects != false and featured_projects and featured_projects.size > 0 %}
+{% if site.data.page_visibility.projects != false and site.data.page_visibility.themes != false and featured_projects and featured_projects.size > 0 %}
 <section class="container section-block">
   <div class="section-head">
     <h2>{% if page.lang == 'en' %}Featured Projects{% else %}重点项目{% endif %}</h2>
@@ -153,6 +157,7 @@ layout: default
 </section>
 {% endif %}
 
+{% unless site.data.page_visibility.people == false %}
 <section class="container team-mosaic section-block">
   <div class="section-head">
     <h2>{% if page.lang == 'en' %}Team{% else %}团队{% endif %}</h2>
@@ -206,8 +211,10 @@ layout: default
     {% endfor %}
   </div>
 </section>
+{% endunless %}
 
 <section class="container kpis section-block">
+{% unless site.data.page_visibility.publications == false or site.data.page_visibility.themes == false %}
   <div class="kpi">
     {% assign pubs_ranked_recent = 0 %}
     {% for pub in site.publications %}
@@ -232,17 +239,20 @@ layout: default
     <div class="kpi-num">{{ pubs_ranked_recent }}</div>
     <div class="kpi-label">{% if page.lang == 'en' %}Publications{% else %}论文{% endif %}</div>
   </div>
-  {% unless site.data.page_visibility.projects == false %}
+{% endunless %}
+  {% unless site.data.page_visibility.projects == false or site.data.page_visibility.themes == false %}
   <div class="kpi">
     <div class="kpi-num">{{ site.projects | size }}</div>
     <div class="kpi-label">{% if page.lang == 'en' %}Projects{% else %}项目{% endif %}</div>
   </div>
   {% endunless %}
+{% unless site.data.page_visibility.people == false %}
   <div class="kpi">
     {% assign members_current = site.people | where: 'status', 'current' %}
     <div class="kpi-num">{{ members_current | size }}</div>
     <div class="kpi-label">{% if page.lang == 'en' %}Members{% else %}成员{% endif %}</div>
   </div>
+{% endunless %}
   {% unless site.data.page_visibility.news == false %}
   <div class="kpi">
     <div class="kpi-num">{{ site.news | size }}</div>

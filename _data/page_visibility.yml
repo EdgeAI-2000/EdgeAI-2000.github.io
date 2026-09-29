@@ -1,2 +1,16 @@
+home: true
+about: true
+vision: true
+contact: true
+admissions: true
 news: false
+themes: true
+research: true
 projects: false
+funding: true
+publications: true
+patents: true
+people: true
+openings: true
+privacy: true
+sitemap: true

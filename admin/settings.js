@@ -1,6 +1,25 @@
 window.EAISCreateSettings = function (endpoint) {
   endpoint = endpoint?.replace(/\/$/, '');
   const route = '#/image-settings';
+  const visibilityPages = [
+    ["home", "首页 / Home"],
+    ["about", "关于 / About"],
+    ["vision", "愿景 / Vision"],
+    ["contact", "联系我们 / Contact"],
+    ["admissions", "招生 / Admissions"],
+    ["news", "新闻 / News"],
+    ["themes", "研究方向 / Research Themes"],
+    ["research", "研究概览 / Research Overview"],
+    ["projects", "项目 / Projects"],
+    ["funding", "基金 / Funding"],
+    ["publications", "论文 / Publications"],
+    ["patents", "专利 / Patents"],
+    ["people", "团队 / People"],
+    ["openings", "招聘 / Openings"],
+    ["privacy", "隐私 / Privacy"],
+    ["sitemap", "站点地图 / Sitemap"],
+  ];
+  const visibilityNames = visibilityPages.map(([name]) => name);
   const item = document.createElement('li');
   item.hidden = true;
   const link = document.createElement('a');
@@ -14,11 +33,12 @@ window.EAISCreateSettings = function (endpoint) {
     <h1>设置</h1>
     <section class="eais-settings-section" aria-labelledby="visibility-heading">
     <h2 id="visibility-heading">页面显示设置</h2>
-    <p>控制中英文导航及首页对应板块。隐藏后原有链接仍可访问。</p>
+    <p>控制中英文导航及对应展示板块。隐藏后原有链接仍可访问。父菜单关闭时，子页面同步关闭；重新开启父菜单后，可逐一开启子页面。</p>
     <form data-visibility-form>
       <fieldset disabled>
-        <label class="eais-visibility-option"><input type="checkbox" name="news" role="switch"> 显示 News / 新闻</label>
-        <label class="eais-visibility-option"><input type="checkbox" name="projects" role="switch"> 显示 Projects / 项目</label>
+        <div class="eais-visibility-grid">
+        ${visibilityPages.map(([name, label]) => `<label class="eais-visibility-option"><input type="checkbox" name="${name}" role="switch"> ${label}</label>`).join('')}
+        </div>
         <button type="submit">保存并发布页面设置</button>
       </fieldset>
     </form>
@@ -159,6 +179,16 @@ window.EAISCreateSettings = function (endpoint) {
   const visibilityReload = page.querySelector('[data-visibility-reload]');
   const visibilityField = name => visibilityForm.elements.namedItem(name);
   const visibilityURL = 'https://api.github.com/repos/EdgeAI-2000/EdgeAI-2000.github.io/contents/_data/page_visibility.yml';
+  const visibilityChildren = { about: ['vision', 'contact', 'admissions'], admissions: ['openings'], themes: ['projects', 'funding', 'publications', 'patents', 'research'] };
+  function syncVisibilityChildren() {
+    for (const [parent, children] of Object.entries(visibilityChildren)) {
+      for (const name of children) {
+        visibilityField(name).disabled = !visibilityField(parent).checked;
+        if (!visibilityField(parent).checked) visibilityField(name).checked = false;
+      }
+    }
+  }
+  visibilityForm.onchange = syncVisibilityChildren;
   let visibilitySha = '';
   let visibilityBusy = false;
   async function visibilityAPI(method, body) {
@@ -185,9 +215,17 @@ window.EAISCreateSettings = function (endpoint) {
       const result = await visibilityAPI('GET');
       if (version !== pageVersion || !active) return;
       const content = atob(result.content.replace(/\s/g, ''));
-      const values = ['news', 'projects'].map(name => content.match(new RegExp(`^${name}:\\s*(true|false)\\s*$`, 'm')));
-      if (!result.sha || values.some(value => !value)) throw new Error('页面设置格式无法识别，请检查配置文件后重新读取。');
-      ['news', 'projects'].forEach((name, index) => { visibilityField(name).checked = values[index][1] === 'true'; });
+      if (!result.sha) throw new Error('页面设置版本缺失，请重新读取。');
+      const values = visibilityNames.map(name => {
+        const value = content.match(new RegExp(`^${name}:\\s*(true|false)\\s*$`, 'm'));
+        // Existing installations may still have only the original two switches.
+        if (!value && (['news', 'projects'].includes(name) || new RegExp(`^${name}:`, 'm').test(content))) {
+          throw new Error('页面设置格式无法识别，请检查配置文件后重新读取。');
+        }
+        return !value || value[1] === 'true';
+      });
+      visibilityNames.forEach((name, index) => { visibilityField(name).checked = values[index]; });
+      syncVisibilityChildren();
       visibilitySha = result.sha;
       visibilityStatus.textContent = '';
     } catch (error) {
@@ -210,7 +248,8 @@ window.EAISCreateSettings = function (endpoint) {
     visibilityReload.disabled = true;
     visibilityStatus.textContent = '正在保存并发布页面设置…';
     try {
-      const content = ['news', 'projects'].map(name => `${name}: ${visibilityField(name).checked}\n`).join('');
+      syncVisibilityChildren();
+      const content = visibilityNames.map(name => `${name}: ${visibilityField(name).checked}\n`).join('');
       const result = await visibilityAPI('PUT', {
         message: 'Update page visibility from admin settings', branch: 'main', sha: visibilitySha, content: btoa(content),
       });

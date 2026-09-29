@@ -1,34 +1,46 @@
 main:
   - label: Home
     url: /en/
+    visibility: home
   - label: About
     url: /en/about/
+    visibility: about
     children:
       - label: Vision
         url: /en/vision/
+        visibility: vision
       - label: Contact
         url: /en/contact/
+        visibility: contact
       - label: Admissions
         url: /en/admissions/
+        visibility: admissions
   - label: News
-    visibility: news
     url: /en/news/
+    visibility: news
   - label: Research
     url: /en/themes/
+    visibility: themes
     children:
       - label: Projects
-        visibility: projects
         url: /en/projects/
+        visibility: projects
       - label: Funding
         url: /en/funding/
+        visibility: funding
       - label: Publications
         url: /en/publications/
+        visibility: publications
       - label: Patents
         url: /en/patents/
+        visibility: patents
   - label: People
     url: /en/people/
+    visibility: people
 footer:
   - label: Privacy
     url: /en/privacy/
+    visibility: privacy
   - label: Sitemap
-    url: /sitemap.xml 
+    url: /sitemap.xml
+    visibility: sitemap

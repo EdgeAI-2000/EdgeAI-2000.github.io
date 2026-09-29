@@ -1,34 +1,46 @@
 main:
   - label: 主页
     url: /zh/
+    visibility: home
   - label: 关于
     url: /zh/about/
+    visibility: about
     children:
       - label: 愿景
         url: /zh/vision/
+        visibility: vision
       - label: 联系我们
         url: /zh/contact/
+        visibility: contact
       - label: 招生
         url: /zh/admissions/
+        visibility: admissions
   - label: 新闻
-    visibility: news
     url: /zh/news/
+    visibility: news
   - label: 研究
     url: /zh/themes/
+    visibility: themes
     children:
       - label: 项目
-        visibility: projects
         url: /zh/projects/
+        visibility: projects
       - label: 基金
         url: /zh/funding/
+        visibility: funding
       - label: 论文
         url: /zh/publications/
+        visibility: publications
       - label: 专利
         url: /zh/patents/
+        visibility: patents
   - label: 团队
     url: /zh/people/
+    visibility: people
 footer:
   - label: 隐私
     url: /zh/privacy/
+    visibility: privacy
   - label: 站点地图
-    url: /sitemap.xml 
+    url: /sitemap.xml
+    visibility: sitemap

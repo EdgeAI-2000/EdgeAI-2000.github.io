@@ -64,3 +64,8 @@ a.eais-settings-link[aria-current="page"] { color: #3a69c7; }
   #eais-image-settings .eais-settings-section { padding: 20px 16px; }
   #eais-image-settings .eais-settings-section h2 { font-size: 24px; }
 }
+
+#eais-image-settings .eais-visibility-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; margin-bottom: 20px; }
+@media (max-width: 600px) {
+  #eais-image-settings .eais-visibility-grid { grid-template-columns: 1fr; }
+}

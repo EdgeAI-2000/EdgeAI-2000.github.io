@@ -13,6 +13,7 @@
         {% assign current_lang = page.lang | default: site.lang | default: 'zh' %}
         {% assign nav = site.data.nav[current_lang] %}
         {% for item in nav.footer %}
+          {% if site.data.page_visibility[item.visibility] == false %}{% continue %}{% endif %}
           <li><a href="{{ item.url | relative_url }}">{{ item.label }}</a></li>
         {% endfor %}
       </ul>
