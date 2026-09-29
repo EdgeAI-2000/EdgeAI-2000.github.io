@@ -59,7 +59,7 @@ layout: default
       <p class="lead">{% if page.lang == 'en' %}{{ v.en }}{% else %}{{ v.zh }}{% endif %}</p>
     </div>
     <div class="vision-fig">
-      <img src="{{ '/assets/images/placeholders/vision-illustration.svg' | relative_url }}" alt="" loading="lazy"/>
+      <img src="{{ v.image | relative_url }}" alt="{% if page.lang == 'en' %}{{ v.alt_en }}{% else %}{{ v.alt_zh }}{% endif %}" loading="lazy"/>
     </div>
   </div>
 </section>

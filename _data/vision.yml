@@ -1,2 +1,5 @@
-zh: "我们致力于推动边缘智能在真实世界的规模化落地：以系统与算法协同为核心，面向低时延、低功耗与高可靠，打造可复用、可验证、可部署的 Edge AI 方案（占位）。"
-en: "We advance Edge AI for real-world deployment at scale: system–algorithm co-design for low latency, low power, and high reliability, building reusable, verifiable, and deployable solutions (placeholder)." 
+zh: "以系统与算法协同设计推动边缘智能走向真实世界：贯通硬件平台、系统软件、高效模型与资源调度，构建云边端协作的 AI 系统，在低时延、低功耗与高可靠目标下，形成可复用、可验证、可部署的解决方案，服务智能交通、空中与城市感知、工业巡检及具身智能，让研究成果惠及人、城市、产业与社会。"
+en: "We bring Edge AI into the real world through system–algorithm co-design. By jointly designing hardware platforms, system software, efficient models, and resource scheduling, we build collaborative device–edge–cloud AI systems targeting low latency, low power, and high reliability. Our goal is reusable, verifiable, and deployable solutions for intelligent transportation, aerial and urban sensing, industrial inspection, and embodied AI—with tangible benefits for people, cities, industries, and society."
+image: /assets/images/research/vision.png
+alt_zh: 系统与算法协同设计，通过云边端协作推动边缘智能规模化落地，服务人、城市、产业与社会
+alt_en: System–algorithm co-design and device–edge–cloud collaboration bring Edge AI to real-world applications for people, cities, industries, and society

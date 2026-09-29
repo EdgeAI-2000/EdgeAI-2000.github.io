@@ -305,8 +305,8 @@ h3 { font-size: 18px; font-weight: 700; }
 .section-block { margin: 56px auto 64px; }
 @media (max-width: 900px){ .section-block { margin: 32px auto 40px; } }
 
-.vision-wrap { display: grid; grid-template-columns: 1fr 420px; gap: 18px; align-items: center; }
-.vision-fig img { width: 100%; border-radius: 16px; border: 1px solid var(--border); }
+.vision-wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; align-items: center; }
+.vision-fig img { display: block; width: 100%; height: auto; background: #fff; border-radius: 16px; border: 1px solid var(--border); }
 @media (max-width: 900px){ .vision-wrap { grid-template-columns: 1fr; } }
 
 .news-list.visual { display: grid; gap: 12px; }
