@@ -8,7 +8,7 @@ permalink: /en/about/
 
 <div class="container" style="margin:24px 0;">
   {% include page-heading.html title="About the Lab" %}
-  <p class="lead">EAIS LAB brings Edge AI into the real world through system–algorithm co-design, pursuing research that benefits people, cities, industries, and society.</p>
+  <p class="lead">EAIS Lab (Edge AI &amp; Systems Lab) brings Edge AI into the real world through system–algorithm co-design, pursuing research that benefits people, cities, industries, and society.</p>
 
   <h2>Research and Vision</h2>
   <p>Our research focuses on multi-agent collaborative perception, large-model inference and deployment at the edge, and agentic AI. We bring together hardware platforms, system software, efficient models, and resource scheduling to build collaborative device–edge–cloud AI systems. From algorithm design to system implementation, we target low latency, low power, and high reliability, working toward reusable, verifiable, and deployable solutions.</p>
