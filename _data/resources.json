@@ -1,0 +1,327 @@
+{
+  "categories": [
+    {
+      "id": "experience",
+      "title_zh": "经验",
+      "title_en": "Experience",
+      "items": [
+        {
+          "category": "经验",
+          "url": "/assets/resources/why-we-block-our-path-hui-xiong.pdf",
+          "tag": "经验文章",
+          "notes": "",
+          "tag_en": "Experience article",
+          "notes_en": "",
+          "title_zh": "为什么人前进的路总是被自己挡住",
+          "title_en": "Why We Keep Blocking Our Own Path",
+          "author_zh": "熊辉",
+          "author_en": "Hui Xiong"
+        },
+        {
+          "category": "经验",
+          "url": "https://www.youtube.com/watch?v=leYITU7MdIE",
+          "tag": "人生经验",
+          "notes": "情绪调节",
+          "tag_en": "Life experience",
+          "notes_en": "Emotional regulation",
+          "title_zh": "情绪调节：改变人生的技能",
+          "title_en": "Emotional Regulation: A Life-Changing Skill",
+          "author_zh": "马克·布拉克特",
+          "author_en": "Marc Brackett"
+        }
+      ]
+    },
+    {
+      "id": "courses",
+      "title_zh": "课程",
+      "title_en": "Courses",
+      "items": [
+        {
+          "category": "课程",
+          "url": "https://www.bilibili.com/video/BV1fu41127MN",
+          "tag": "基础算法",
+          "notes": "算法入门",
+          "tag_en": "Algorithms",
+          "notes_en": "Introduction to algorithms",
+          "title_zh": "算法导论",
+          "title_en": "Introduction to Algorithms",
+          "author_zh": "麻省理工学院",
+          "author_en": "MIT"
+        },
+        {
+          "category": "课程",
+          "url": "https://www.bilibili.com/video/BV1J94y1f7u5",
+          "tag": "机器学习",
+          "notes": "经典课程",
+          "tag_en": "Machine learning",
+          "notes_en": "Classic course",
+          "title_zh": "机器学习",
+          "title_en": "Machine Learning",
+          "author_zh": "李宏毅",
+          "author_en": "Hung-yi Lee"
+        },
+        {
+          "category": "课程",
+          "url": "https://www.bilibili.com/video/BV12E411a7Xn",
+          "tag": "深度学习",
+          "notes": "体系化入门",
+          "tag_en": "Deep learning",
+          "notes_en": "Structured introduction",
+          "title_zh": "深度学习专项课程",
+          "title_en": "Deep Learning Specialization",
+          "author_zh": "吴恩达",
+          "author_en": "Andrew Ng"
+        },
+        {
+          "category": "课程",
+          "url": "https://www.bilibili.com/video/BV18h411r7Z7/?share_source=copy_web&vd_source=3b08b60168e4accc60d956cefb8311d7",
+          "tag": "深度学习",
+          "notes": "中文入门课程",
+          "tag_en": "Deep learning",
+          "notes_en": "Introductory course in Chinese",
+          "title_zh": "动手学深度学习",
+          "title_en": "Dive into Deep Learning",
+          "author_zh": "李沐",
+          "author_en": "Mu Li"
+        },
+        {
+          "category": "课程",
+          "url": "https://www.bilibili.com/video/BV12o4y197US/?share_source=copy_web&vd_source=3b08b60168e4accc60d956cefb8311d7",
+          "tag": "深度强化学习",
+          "notes": "强化学习课程",
+          "tag_en": "Deep reinforcement learning",
+          "notes_en": "Reinforcement learning course",
+          "title_zh": "深度强化学习",
+          "title_en": "Deep Reinforcement Learning",
+          "author_zh": "王树森",
+          "author_en": "Shusen Wang"
+        },
+        {
+          "category": "课程",
+          "url": "https://github.com/Lordog/dive-into-llms#%E6%95%99%E7%A8%8B%E7%9B%AE%E5%BD%95",
+          "tag": "大模型实践",
+          "notes": "开源教程，适合系统入门大模型开发与实践",
+          "tag_en": "LLM practice",
+          "notes_en": "Open source tutorial for LLM development and hands-on practice",
+          "title_zh": "动手学大模型",
+          "title_en": "Dive into Large Language Models"
+        }
+      ]
+    },
+    {
+      "id": "books",
+      "title_zh": "书籍",
+      "title_en": "Books",
+      "items": [
+        {
+          "category": "书籍",
+          "url": "https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/MLbook2016.htm",
+          "tag": "中文教材",
+          "notes": "机器学习基础",
+          "tag_en": "Chinese textbook",
+          "notes_en": "Machine learning fundamentals",
+          "title_zh": "机器学习",
+          "title_en": "Machine Learning",
+          "author_zh": "周志华",
+          "author_en": "Zhi-Hua Zhou"
+        },
+        {
+          "category": "书籍",
+          "url": "https://zh.d2l.ai",
+          "tag": "深度学习",
+          "notes": "可交互教材",
+          "tag_en": "Deep learning",
+          "notes_en": "Interactive textbook",
+          "title_zh": "动手学深度学习",
+          "title_en": "Dive into Deep Learning"
+        },
+        {
+          "category": "书籍",
+          "url": "https://www.deeplearningbook.org/",
+          "tag": "深度学习经典教材",
+          "notes": "",
+          "tag_en": "Classic deep learning textbook",
+          "notes_en": "",
+          "title_zh": "深度学习",
+          "title_en": "Deep Learning",
+          "author_zh": "伊恩·古德费洛、约书亚·本吉奥、亚伦·库维尔",
+          "author_en": "Ian Goodfellow, Yoshua Bengio and Aaron Courville"
+        },
+        {
+          "category": "书籍",
+          "url": "https://www.manning.com/books/build-a-large-language-model-from-scratch",
+          "tag": "大模型",
+          "notes": "从零理解 GPT 风格大模型的实现",
+          "tag_en": "Large language models",
+          "notes_en": "Understand GPT-style model implementation from scratch",
+          "title_zh": "从零构建大语言模型",
+          "title_en": "Build a Large Language Model from Scratch",
+          "author_zh": "塞巴斯蒂安·拉施卡",
+          "author_en": "Sebastian Raschka"
+        }
+      ]
+    },
+    {
+      "id": "research-tools",
+      "title_zh": "科研工具",
+      "title_en": "Research Tools",
+      "items": [
+        {
+          "category": "科研工具",
+          "url": "https://scholar.google.com",
+          "tag": "论文检索",
+          "notes": "常用入口",
+          "tag_en": "Paper search",
+          "notes_en": "Useful starting point",
+          "title_zh": "谷歌学术",
+          "title_en": "Google Scholar"
+        },
+        {
+          "category": "科研工具",
+          "url": "https://www.semanticscholar.org",
+          "tag": "学术搜索",
+          "notes": "适合快速追踪引用",
+          "tag_en": "Academic search",
+          "notes_en": "Explore citations",
+          "title_zh": "语义学者",
+          "title_en": "Semantic Scholar"
+        },
+        {
+          "category": "科研工具",
+          "url": "https://www.zotero.org",
+          "tag": "文献管理",
+          "notes": "文献整理与引用",
+          "tag_en": "Reference management",
+          "notes_en": "Organize and cite references",
+          "title_zh": "Zotero 文献管理",
+          "title_en": "Zotero Reference Management"
+        },
+        {
+          "category": "科研工具",
+          "url": "https://ccfddl.com/",
+          "tag": "截稿日历",
+          "notes": "会议截稿查询",
+          "tag_en": "Deadline calendar",
+          "notes_en": "Conference deadlines",
+          "title_zh": "CCF 会议截稿日历",
+          "title_en": "CCF Conference Deadlines"
+        },
+        {
+          "category": "科研工具",
+          "url": "https://texdoc.org/serve/lshort-zh-cn.pdf/0",
+          "tag": "LaTeX",
+          "notes": "中文入门手册",
+          "tag_en": "LaTeX",
+          "notes_en": "Introductory guide in Chinese",
+          "title_zh": "一份不太简短的 LaTeX 2ε 介绍",
+          "title_en": "The Not So Short Introduction to LaTeX 2ε"
+        }
+      ]
+    },
+    {
+      "id": "development",
+      "title_zh": "编程开发",
+      "title_en": "Programming & Development",
+      "items": [
+        {
+          "category": "编程开发",
+          "url": "https://docs.python.org/zh-cn/3/",
+          "tag": "Python",
+          "notes": "官方文档",
+          "tag_en": "Python",
+          "notes_en": "Official documentation",
+          "title_zh": "Python 文档",
+          "title_en": "Python Documentation"
+        },
+        {
+          "category": "编程开发",
+          "url": "https://pytorch.org/docs/stable/index.html",
+          "tag": "深度学习框架",
+          "notes": "官方文档",
+          "tag_en": "Deep learning framework",
+          "notes_en": "Official documentation",
+          "title_zh": "PyTorch 文档",
+          "title_en": "PyTorch Documentation"
+        },
+        {
+          "category": "编程开发",
+          "url": "https://docs.anthropic.com/en/docs/claude-code/overview",
+          "tag": "AI 编程助手",
+          "notes": "适合日常代码生成、重构与命令行协作开发",
+          "tag_en": "AI coding assistant",
+          "notes_en": "Code generation, refactoring and command-line development",
+          "title_zh": "Claude Code 编程助手",
+          "title_en": "Claude Code Coding Assistant"
+        },
+        {
+          "category": "编程开发",
+          "url": "https://github.com/openai/codex",
+          "tag": "AI 编程助手",
+          "notes": "适合终端内代码生成、修改与任务执行",
+          "tag_en": "AI coding assistant",
+          "notes_en": "Generate and edit code and run tasks in the terminal",
+          "title_zh": "Codex 命令行编程助手",
+          "title_en": "Codex CLI Coding Assistant"
+        },
+        {
+          "category": "编程开发",
+          "url": "https://git-scm.com/doc",
+          "tag": "版本管理",
+          "notes": "协作开发基础",
+          "tag_en": "Version control",
+          "notes_en": "Collaborative development basics",
+          "title_zh": "Git 文档",
+          "title_en": "Git Documentation"
+        },
+        {
+          "category": "编程开发",
+          "url": "https://liaoxuefeng.com/books/git/introduction/index.html",
+          "tag": "Git 教程",
+          "notes": "中文入门教程",
+          "tag_en": "Git tutorial",
+          "notes_en": "Introductory tutorial in Chinese",
+          "title_zh": "Git 教程",
+          "title_en": "Git Tutorial",
+          "author_zh": "廖雪峰",
+          "author_en": "Xuefeng Liao"
+        }
+      ]
+    },
+    {
+      "id": "open-source",
+      "title_zh": "开源工具",
+      "title_en": "Open Source Tools",
+      "items": [
+        {
+          "category": "开源工具",
+          "url": "https://huggingface.co/docs",
+          "tag": "模型与数据集",
+          "notes": "常用入口",
+          "tag_en": "Models and datasets",
+          "notes_en": "Useful starting point",
+          "title_zh": "Hugging Face 文档",
+          "title_en": "Hugging Face Documentation"
+        },
+        {
+          "category": "开源工具",
+          "url": "https://python.langchain.com/docs/introduction/",
+          "tag": "LLM 应用开发",
+          "notes": "智能体与检索增强生成常用工具",
+          "tag_en": "LLM application development",
+          "notes_en": "Tools for agents and retrieval-augmented generation",
+          "title_zh": "LangChain 文档",
+          "title_en": "LangChain Documentation"
+        }
+      ]
+    }
+  ],
+  "internal": [
+    {
+      "title_zh": "回复审稿意见模板",
+      "title_en": "Response Letter Template",
+      "url": "https://github.com/EdgeAI-2000/response-letter-template",
+      "notes_zh": "实验室论文返修与审稿回复模板。私有仓库需使用获授权的 GitHub 账号访问。",
+      "notes_en": "Lab template for manuscript revisions and reviewer responses. Private repositories require an authorized GitHub account."
+    }
+  ]
+}

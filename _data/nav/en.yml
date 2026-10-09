@@ -37,6 +37,9 @@ main:
   - label: People
     url: /en/people/
     visibility: people
+  - label: Resources
+    url: /en/resources/
+    visibility: resources
 footer:
   - label: Privacy
     url: /en/privacy/

@@ -15,6 +15,7 @@ window.EAISCreateSettings = function (endpoint) {
     ["publications", "论文 / Publications"],
     ["patents", "专利 / Patents"],
     ["people", "团队 / People"],
+    ["resources", "学习资源 / Resources"],
     ["openings", "招聘 / Openings"],
     ["privacy", "隐私 / Privacy"],
     ["sitemap", "站点地图 / Sitemap"],

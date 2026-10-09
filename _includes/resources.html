@@ -1,0 +1,44 @@
+{% assign resources = site.data.resources %}
+{% assign is_english = false %}
+{% if page.lang == 'en' %}{% assign is_english = true %}{% endif %}
+<div class="resources-page">
+  {% include page-heading.html title=page.title %}
+  <nav class="resources-topics" aria-label="{% if is_english %}Resource categories{% else %}资料分类{% endif %}">
+    {% for category in resources.categories %}
+      <a href="#{{ category.id }}">{% if is_english %}{{ category.title_en | escape }}{% else %}{{ category.title_zh | escape }}{% endif %}</a>
+    {% endfor %}
+    <a href="#internal">{% if is_english %}Internal Resources{% else %}内部资料{% endif %}</a>
+  </nav>
+  <div class="resources-grid">
+    {% for category in resources.categories %}
+      <section class="card resources-category" id="{{ category.id }}" aria-labelledby="{{ category.id }}-title">
+        <h2 id="{{ category.id }}-title">{% if is_english %}{{ category.title_en | escape }}{% else %}{{ category.title_zh | escape }}{% endif %}</h2>
+        <ul class="resources-list">
+          {% for item in category.items %}
+            <li>
+              {% if is_english %}{% assign title = item.title_en %}{% assign author = item.author_en %}{% else %}{% assign title = item.title_zh %}{% assign author = item.author_zh %}{% endif %}
+              {% assign resource_url = item.url %}
+              {% assign first_character = resource_url | slice: 0 %}
+              {% if first_character == '/' %}{% assign resource_url = resource_url | relative_url %}{% endif %}
+              <a class="link" href="{{ resource_url | escape }}" target="_blank" rel="noopener noreferrer">{{ title | escape }}</a>
+              {% if author and author != empty %}<p class="meta">{{ author | escape }}</p>{% endif %}
+              {% if is_english %}{% assign tag = item.tag_en %}{% assign notes = item.notes_en %}{% else %}{% assign tag = item.tag %}{% assign notes = item.notes %}{% endif %}
+              {% if tag != empty or notes != empty %}<p class="meta">{{ tag | escape }}{% if tag != empty and notes != empty %} · {% endif %}{{ notes | escape }}</p>{% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endfor %}
+  </div>
+  <section class="card resources-category resources-internal" id="internal" aria-labelledby="internal-title">
+    <h2 id="internal-title">{% if is_english %}Internal Resources{% else %}内部资料{% endif %}</h2>
+    <ul class="resources-list">
+      {% for item in resources.internal %}
+        <li>
+          <a class="link" href="{{ item.url | escape }}" target="_blank" rel="noopener noreferrer">{% if is_english %}{{ item.title_en | escape }}{% else %}{{ item.title_zh | escape }}{% endif %}</a>
+          <p class="meta">{% if is_english %}{{ item.notes_en | escape }}{% else %}{{ item.notes_zh | escape }}{% endif %}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+</div>

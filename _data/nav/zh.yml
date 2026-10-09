@@ -37,6 +37,9 @@ main:
   - label: 团队
     url: /zh/people/
     visibility: people
+  - label: 资源
+    url: /zh/resources/
+    visibility: resources
 footer:
   - label: 隐私
     url: /zh/privacy/
