@@ -3,6 +3,7 @@ layout: default
 ---
 <div class="container" style="margin:24px 0;">
   {% include page-heading.html %}
+  {% include member-submission.html %}
   {% assign current = site.people | where: 'status', 'current' %}
   {% assign alumni = site.people | where: 'status', 'alumni' %}
 

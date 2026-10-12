@@ -1,0 +1,10 @@
+{% if site.data.member_submission.enabled and site.data.member_submission.url != '' %}
+  <div class="member-submission" style="margin:16px 0;padding:14px 18px;border:1px solid #dce4ed;border-radius:8px;">
+    {% assign submission_lang = page.lang | default: 'zh' %}
+    <a href="{{ site.data.member_submission.url | escape }}?lang={{ submission_lang }}{% if include.slug %}&amp;slug={{ include.slug | url_encode }}{% endif %}">
+      {% if include.slug %}{% if page.lang == 'en' %}Update my profile{% else %}更新我的资料{% endif %}
+      {% else %}{% if page.lang == 'en' %}Add or update your profile{% else %}新增 / 更新个人信息{% endif %}{% endif %}
+    </a>
+    <p class="meta" style="margin:6px 0 0;">{% if page.lang == 'en' %}Faculty, current students and alumni can sign in with an email listed in the member directory. Submissions are reviewed before publication.{% else %}教师、在读成员和校友可使用成员名单中的邮箱登录，资料审核后发布。{% endif %}</p>
+  </div>
+{% endif %}

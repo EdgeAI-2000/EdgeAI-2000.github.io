@@ -16,6 +16,7 @@ layout: default
   {% assign person_thesis = person.thesis_title_en | default: person.thesis_title %}
 {% endif %}
 <article class="container" style="margin:24px 0;">
+  {% include member-submission.html slug=person.slug %}
   <div class="person-hero">
     <img class="avatar-lg" src="{{ person.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url }}" alt="{{ person_name | escape }}"/>
     <div class="info">

@@ -1,0 +1,3 @@
+# Public entry for the deployed, email-authenticated member profile service.
+enabled: true
+url: "https://services.eaislab.com/member-profile/"
