@@ -28,6 +28,7 @@ layout: default
           {% when 'master' %}
             {% if page.lang == 'en' %}Master’s {% if person.status == 'alumni' %}Graduate{% else %}Student{% endif %}
             {% else %}硕士{% if person.status == 'alumni' %}毕业生{% else %}研究生{% endif %}{% endif %}
+          {% when 'alumni' %}{% if page.lang == 'en' %}Alumni{% else %}校友{% endif %}
           {% when 'faculty' %}{% if page.lang == 'en' %}Faculty{% else %}教师{% endif %}
           {% when 'undergrad' %}{% if page.lang == 'en' %}Undergraduate Student{% else %}本科生{% endif %}
           {% else %}{{ person.role | upcase }}
