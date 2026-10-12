@@ -32,7 +32,10 @@ layout: default
           {% when 'undergrad' %}{% if page.lang == 'en' %}Undergraduate Student{% else %}本科生{% endif %}
           {% else %}{{ person.role | upcase }}
         {% endcase %}
-        {% if person.period %} · {% if page.lang == 'en' %}{% if person.status == 'alumni' %}Class of {% else %}Entry year: {% endif %}{{ person.period | remove: '级' | remove: '届' | escape }}{% else %}{{ person.period | escape }}{% endif %}{% endif %}{% if person_affiliation %} · {{ person_affiliation | escape }}{% endif %}
+        {% if person.entry_year or person.graduation_year %}
+          {% if person.entry_year %} · {% if page.lang == 'en' %}Entry year: {{ person.entry_year | escape }}{% else %}{{ person.entry_year | escape }}级入学{% endif %}{% endif %}
+          {% if person.graduation_year %} · {% if page.lang == 'en' %}Class of {{ person.graduation_year | escape }}{% else %}{{ person.graduation_year | escape }}届毕业{% endif %}{% endif %}
+        {% elsif person.period %} · {% if page.lang == 'en' %}{% if person.period contains '届' %}Class of {% else %}Entry year: {% endif %}{{ person.period | remove: '级' | remove: '届' | escape }}{% else %}{{ person.period | escape }}{% endif %}{% endif %}{% if person_affiliation %} · {{ person_affiliation | escape }}{% endif %}
       </p>
       {% if person_research %}<p class="meta">{{ person_research | join: ' · ' | escape }}</p>{% endif %}
       {% if person_destination %}<p class="meta">{{ person_destination | escape }}</p>{% endif %}
