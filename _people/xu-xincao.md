@@ -32,10 +32,13 @@ research_areas_en:
   - Agentic RL
 affiliation_en: Shenzhen Institute for Advanced Study, University of Electronic
   Science and Technology of China
-dblp: ""
+dblp: "https://dblp.uni-trier.de/pid/245/5645.html"
 style_photo: ""
 destination: ""
 destination_en: ""
 thesis_title: ""
 thesis_title_en: ""
+entry_year: ""
+graduation_year: ""
+period: ""
 ---
