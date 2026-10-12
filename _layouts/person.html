@@ -55,13 +55,13 @@ layout: default
       {% endif %}
     </section>
   {% endif %}
-  {% if person_thesis %}
+  {% if person_thesis and person.role != 'faculty' and person.role != 'pi' %}
     <section class="content" style="margin-top:16px;">
       <h2>{% if page.lang == 'en' %}Degree Thesis{% else %}学位论文{% endif %}</h2>
       <p>{{ person_thesis | escape }}</p>
     </section>
   {% endif %}
-  {% if person.style_photo %}
+  {% if person.style_photo and person.role != 'faculty' and person.role != 'pi' %}
     <section class="person-style">
       <h2>{% if page.lang == 'en' %}Beyond Research{% else %}个人风采{% endif %}</h2>
       <img src="{{ person.style_photo | relative_url }}" alt="{{ person_name | escape }}{% if page.lang == 'en' %} — personal photo{% else %}的个人风采照片{% endif %}" loading="lazy" decoding="async"/>
