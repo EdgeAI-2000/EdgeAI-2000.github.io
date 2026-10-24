@@ -18,7 +18,8 @@ layout: default
 <article class="container" style="margin:24px 0;">
   {% include member-submission.html slug=person.slug %}
   <div class="person-hero">
-    <img class="avatar-lg" src="{{ person.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url }}" alt="{{ person_name | escape }}"/>
+    {% assign avatar_src = person.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url %}
+    {% include img.html src=avatar_src class="avatar-lg" alt=person_name priority="eager" %}
     <div class="info">
       {% assign person_heading = person_name | escape %}
       {% include page-heading.html title=person_heading %}
@@ -78,7 +79,9 @@ layout: default
   {% if style_photo != '' and person.role != 'faculty' and person.role != 'pi' %}
     <section class="person-style">
       <h2>{% if page.lang == 'en' %}Beyond Research{% else %}个人风采{% endif %}</h2>
-      <img src="{{ style_photo | relative_url }}" alt="{{ person_name | escape }}{% if page.lang == 'en' %} — personal photo{% else %}的个人风采照片{% endif %}" loading="lazy" decoding="async"/>
+      {% assign style_src = style_photo | relative_url %}
+      {% if page.lang == 'en' %}{% assign style_alt = person_name | append: ' — personal photo' %}{% else %}{% assign style_alt = person_name | append: '的个人风采照片' %}{% endif %}
+      {% include img.html src=style_src alt=style_alt priority="lazy" %}
     </section>
   {% endif %}
 

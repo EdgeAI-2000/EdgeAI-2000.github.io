@@ -2,11 +2,11 @@
   <div class="container footer-inner">
     <div class="footer-meta">
       <a class="footer-brand" href="{% if page.lang == 'zh' %}{{ '/zh/' | relative_url }}{% else %}{{ '/en/' | relative_url }}{% endif %}">
-        <img src="{{ site.data.brand.wordmark }}" width="2100" height="470" alt="{{ site.title }}" loading="lazy" />
+        {% include img.html src=site.data.brand.wordmark width="2100" height="470" alt=site.title priority="lazy" %}
       </a>
       <p>© {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
     </div>
-    <div class="footer-mascot">{% include mascot.html pose='coffee' random=true id='footer' %}</div>
+    <div class="footer-mascot">{% include mascot.html pose='coffee' random=true id='footer' defer=true %}</div>
     <nav aria-label="Footer">
       <ul>
         <li><a href="{{ '/admin/' | relative_url }}">{% if page.lang == 'en' %}Admin Login{% else %}管理员入口{% endif %}</a></li>

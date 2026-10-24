@@ -1,0 +1,17 @@
+{%- comment -%}
+  Shared image policy for the zh and en sites.
+  priority="high": LCP hero image. Not lazy; fetchpriority high.
+  priority="eager": above-the-fold, but not the LCP candidate. Not lazy.
+  Any other priority, including omitted: loading="lazy" decoding="async".
+{%- endcomment -%}
+<img
+  {%- if include.class and include.class != '' %} class="{{ include.class }}"{% endif %}
+  src="{{ include.src | escape }}"
+  alt="{{ include.alt | default: '' | escape }}"
+  {%- if include.width %} width="{{ include.width }}"{% endif %}
+  {%- if include.height %} height="{{ include.height }}"{% endif %}
+  {%- if include.priority == 'high' %} fetchpriority="high" decoding="auto"
+  {%- elsif include.priority == 'eager' %} decoding="auto"
+  {%- else %} loading="lazy" decoding="async"
+  {%- endif %}
+  {%- if include.hidden == true or include.hidden == 'true' %} aria-hidden="true"{% endif %}>

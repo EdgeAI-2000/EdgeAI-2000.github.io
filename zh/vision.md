@@ -11,7 +11,8 @@ permalink: /zh/vision/
   {% assign v = site.data.vision %}
   <p class="lead">{{ v.zh }}</p>
   <div class="vision-fig">
-    <img src="{{ v.image | relative_url }}" alt="{{ v.alt_zh }}" loading="lazy" />
+    {% assign vision_src = v.image | relative_url %}
+    {% include img.html src=vision_src alt=v.alt_zh priority="lazy" %}
   </div>
 
   <h2>系统与算法协同设计</h2>

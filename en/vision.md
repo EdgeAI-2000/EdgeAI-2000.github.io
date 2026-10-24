@@ -11,7 +11,8 @@ permalink: /en/vision/
   {% assign v = site.data.vision %}
   <p class="lead">{{ v.en }}</p>
   <div class="vision-fig">
-    <img src="{{ v.image | relative_url }}" alt="{{ v.alt_en }}" loading="lazy" />
+    {% assign vision_src = v.image | relative_url %}
+    {% include img.html src=vision_src alt=v.alt_en priority="lazy" %}
   </div>
 
   <h2>System–Algorithm Co-Design</h2>
