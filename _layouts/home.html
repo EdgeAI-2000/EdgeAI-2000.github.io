@@ -7,7 +7,7 @@ layout: default
 <section class="hero hero-large">
   <div class="container hero-inner">
     <div class="hero-copy">
-      <h1><img class="hero-wordmark" src="{{ site.data.brand.wordmark }}" width="2100" height="470" alt="{{ site.title }}" fetchpriority="high" /></h1>
+      <h1>{% include img.html src=site.data.brand.wordmark class="hero-wordmark" width="2100" height="470" alt=site.title priority="high" %}</h1>
       <p class="hero-sub">{% if page.lang == 'en' %}Edge AI via system–algorithm co-design{% else %}系统与算法协同驱动的边缘智能{% endif %}</p>
       {% unless site.data.page_visibility.themes == false %}
 <div class="hero-cta">
@@ -15,7 +15,7 @@ layout: default
       </div>
 {% endunless %}
     </div>
-    <img class="hero-mascot" src="{{ site.data.brand.mascot }}" width="1231" height="1277" alt="" aria-hidden="true" fetchpriority="high" />
+    {% include img.html src=site.data.brand.mascot class="hero-mascot" width="1231" height="1277" alt="" hidden=true priority="high" %}
   </div>
 </section>
 
@@ -59,7 +59,9 @@ layout: default
       <p class="lead">{% if page.lang == 'en' %}{{ v.en }}{% else %}{{ v.zh }}{% endif %}</p>
     </div>
     <div class="vision-fig">
-      <img src="{{ v.image | relative_url }}" alt="{% if page.lang == 'en' %}{{ v.alt_en }}{% else %}{{ v.alt_zh }}{% endif %}" loading="lazy"/>
+      {% assign vision_src = v.image | relative_url %}
+      {% if page.lang == 'en' %}{% assign vision_alt = v.alt_en %}{% else %}{% assign vision_alt = v.alt_zh %}{% endif %}
+      {% include img.html src=vision_src alt=vision_alt priority="lazy" %}
     </div>
   </div>
 </section>
@@ -78,7 +80,8 @@ layout: default
       {% if news_cover == '/assets/images/placeholders/card-16x9.svg' %}{% assign news_cover = '' %}{% endif %}
       <li{% if news_cover == '' %} class="no-image"{% endif %}>
         {% if news_cover != '' %}
-        <img class="thumb" src="{{ news_cover | relative_url }}" alt="" loading="lazy"/>
+        {% assign news_src = news_cover | relative_url %}
+        {% include img.html src=news_src class="thumb" alt="" priority="lazy" %}
         {% endif %}
         <div class="news-meta">
           {% assign t = item.type | default: 'news' %}
@@ -105,7 +108,8 @@ layout: default
       {% assign ordered_themes = site.themes | sort: 'order' %}
       {% for theme in ordered_themes limit:12 %}
         <article class="hcard card theme-card" data-i="{{ forloop.index0 }}">
-          <img class="cover" src="{{ theme.cover | default: '/assets/images/placeholders/card-16x9.svg' | relative_url }}" alt="" aria-hidden="true" />
+          {% assign cover_src = theme.cover | default: '/assets/images/placeholders/card-16x9.svg' | relative_url %}
+          {% include img.html src=cover_src class="cover" alt="" hidden=true priority="lazy" %}
           <div class="theme-copy">
           {% if page.lang == 'en' %}
             <h3><a href="{{ '/en' | append: theme.url | relative_url }}">{{ theme.title_en }}</a></h3>
@@ -149,7 +153,8 @@ layout: default
           {% assign summary = project.summary_zh | default: project.summary_en | default: project.intro | default: project.content %}
         {% endif %}
         <article class="hcard card project-card" data-i="{{ forloop.index0 }}">
-          <img class="cover" src="{{ cover | relative_url }}" alt="" aria-hidden="true" />
+          {% assign project_cover_src = cover | relative_url %}
+          {% include img.html src=project_cover_src class="cover" alt="" hidden=true priority="lazy" %}
           <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
           {% if project.themes %}<p class="meta">{{ project.themes | array_to_sentence_string }}</p>{% endif %}
           {% if summary %}<p>{{ summary | strip_html | truncate: 120 }}</p>{% endif %}
@@ -236,7 +241,8 @@ layout: default
         {% assign member_url = '/en' | append: p.url %}
       {% endif %}
       <a class="mosaic-item" href="{{ member_url | relative_url }}" title="{{ member_name }}">
-        <img class="avatar-img" src="{{ avatar | relative_url }}" alt="{{ member_name }}" loading="lazy"/>
+        {% assign avatar_src = avatar | relative_url %}
+        {% include img.html src=avatar_src class="avatar-img" alt=member_name priority="lazy" %}
         <span class="name">{{ member_name }}</span>
         {% if role_label %}<span class="role">{{ role_label }}</span>{% endif %}
       </a>

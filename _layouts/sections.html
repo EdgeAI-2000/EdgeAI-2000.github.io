@@ -20,7 +20,9 @@ layout: default
     <section class="feature-section {% if parity == 1 %}alt{% endif %}">
       <div class="container feature-inner">
         <div class="media">
-          <img src="{{ it.cover | default: '/assets/images/placeholders/card-16x9.svg' | relative_url }}" alt="" loading="lazy"/>
+          {% if forloop.first %}{% assign cover_priority = 'eager' %}{% else %}{% assign cover_priority = 'lazy' %}{% endif %}
+          {% assign cover_src = it.cover | default: '/assets/images/placeholders/card-16x9.svg' | relative_url %}
+          {% include img.html src=cover_src alt="" priority=cover_priority %}
         </div>
         <div class="content">
           <h2>{% if page.lang == 'en' %}{{ it.title_en | default: it.title }}{% else %}{{ it.title }}{% endif %}</h2>

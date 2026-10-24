@@ -1,7 +1,9 @@
 {% assign pose = site.data.mascots[include.pose] %}
 {% assign bounds = pose.viewBox | split: ' ' %}
 {% assign clip_id = include.id | default: include.pose | prepend: 'mascot-clip-' %}
-<svg class="mascot" viewBox="{{ pose.viewBox }}" width="160" height="160" aria-hidden="true" focusable="false"{% if include.random %} data-mascot-random data-poses='{{ site.data.mascots | jsonify | escape }}'{% endif %}>
+{% assign defer_sprite = false %}
+{% if include.defer == true or include.defer == 'true' %}{% assign defer_sprite = true %}{% endif %}
+<svg class="mascot" viewBox="{{ pose.viewBox }}" width="160" height="160" aria-hidden="true" focusable="false"{% if include.random %} data-mascot-random data-poses='{{ site.data.mascots | jsonify | escape }}'{% endif %}{% if defer_sprite %} data-mascot-defer{% endif %}>
   <defs><clipPath id="{{ clip_id }}"><rect x="{{ bounds[0] }}" y="{{ bounds[1] }}" width="{{ bounds[2] }}" height="{{ bounds[3] }}" /></clipPath></defs>
-  <image href="{{ site.data.brand.expressions }}" width="1536" height="1024" clip-path="url(#{{ clip_id }})" />
+  <image {% if defer_sprite %}data-src{% else %}href{% endif %}="{{ site.data.brand.expressions }}" width="1536" height="1024" clip-path="url(#{{ clip_id }})" />
 </svg>
