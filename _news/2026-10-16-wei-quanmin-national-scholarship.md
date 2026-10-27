@@ -7,7 +7,7 @@ date: 2026-10-16
 type: award
 summary: "西南交通大学计算机与人工智能学院完成2026年博士研究生国家奖学金评选与公示，实验室博士生韦全敏入选推荐名单。"
 summary_en: "SWJTU's School of Computing and Artificial Intelligence published its 2026 doctoral National Scholarship notice. Ph.D. student Quanmin Wei is on the recommendation list."
-cover: /assets/images/news/2026-10-16-wei-quanmin-national-scholarship/scholarship-defense-wei-quanmin.jpg
+cover: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-news-2026-10-16-scholarship-defense-wei-quanmin/cover
 authors:
   - 韦全敏
 link: https://scai.swjtu.edu.cn/web/page-newsDetail.html?nid=6340be7d-5fe4-4fa1-ba03-9b800930a638
@@ -16,7 +16,7 @@ content_en: |
 
   At the scholarship review, Quanmin presented his research results. The slide on the screen is titled “Scientific Research Results” (科研成果). It lists 4 first-author CCF-A papers and 1 granted invention patent.
 
-  ![Quanmin Wei presenting research results at the doctoral National Scholarship review](/assets/images/news/2026-10-16-wei-quanmin-national-scholarship/scholarship-defense-wei-quanmin.jpg){: .news-photo}
+  ![Quanmin Wei presenting research results at the doctoral National Scholarship review](https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-news-2026-10-16-scholarship-defense-wei-quanmin/content){: .news-photo}
 
   *Quanmin Wei at the doctoral National Scholarship review, presenting the “Scientific Research Results” slide: 4 first-author CCF-A papers and 1 granted invention patent.*
   {: .news-caption}
@@ -31,7 +31,7 @@ content_en: |
 
 国家奖学金评审现场，韦全敏介绍了自己的科研成果。屏幕上的幻灯片题为「科研成果」，列出 4 篇第一作者 CCF-A 类论文和 1 项授权发明专利。
 
-![韦全敏在国家奖学金评审现场介绍科研成果](/assets/images/news/2026-10-16-wei-quanmin-national-scholarship/scholarship-defense-wei-quanmin.jpg){: .news-photo}
+![韦全敏在国家奖学金评审现场介绍科研成果](https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-news-2026-10-16-scholarship-defense-wei-quanmin/content){: .news-photo}
 
 *韦全敏在博士研究生国家奖学金评审现场介绍科研成果。幻灯片题为「科研成果」，列出 4 篇第一作者 CCF-A 类论文和 1 项授权发明专利。*
 {: .news-caption}
