@@ -21,6 +21,13 @@ layout: default
         {% if coll_name == 'news' %}
           {% assign news_url = item.url %}
           {% if page.lang == 'en' and item.content_en %}{% assign news_url = '/en' | append: item.url %}{% endif %}
+          {% assign news_cover = item.cover | default: '' | strip %}
+          {% if news_cover == '/assets/images/placeholders/card-16x9.svg' %}{% assign news_cover = '' %}{% endif %}
+          {% if news_cover != '' %}
+            {% assign news_cover_src = news_cover | relative_url %}
+            <a href="{{ news_url | relative_url }}">{% include img.html src=news_cover_src class="cover" alt="" priority="lazy" %}</a>
+          {% endif %}
+          <p class="meta">{{ item.date | date: '%Y-%m-%d' }}</p>
           <h3><a class="link" href="{{ news_url | relative_url }}">{% if page.lang == 'en' %}{{ item.title_en | default: item.title }}{% else %}{{ item.title }}{% endif %}</a></h3>
           <p>{% if page.lang == 'en' %}{{ item.summary_en | default: item.summary | truncate: 160 }}{% else %}{{ item.summary | default: item.summary_zh | truncate: 160 }}{% endif %}</p>
         {% else %}
