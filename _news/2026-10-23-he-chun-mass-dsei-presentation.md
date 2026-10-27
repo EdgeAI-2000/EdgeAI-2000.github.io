@@ -7,7 +7,7 @@ date: 2026-10-23
 type: news
 summary: "实验室硕士生何春在香港理工大学举行的 DSEI 2026 上作口头报告，介绍动态边缘环境中的可靠协同 DNN 推理。"
 summary_en: "Master's student Chun He gave an oral presentation at DSEI 2026, held with IEEE MASS 2026 at PolyU, on reliable collaborative DNN inference at the edge."
-cover: /assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/he-chun-presentation.jpg
+cover: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-news-2026-10-23-he-chun-presentation/cover
 authors:
   - 何春
 venue: IEEE MASS 2026 / DSEI 2026
@@ -16,21 +16,21 @@ content_en: |
 
   The talk, **Adaptive Redundant Partitioning for Reliable Collaborative DNN Inference at the Edge**, is by Chun He and [Penglin Dai](/en/people/dai-penglin/) (Southwest Jiaotong University), [Xincao Xu](/en/people/xu-xincao/) (University of Electronic Science and Technology of China), and Hualing Ren (Chongqing University of Posts and Telecommunications). It discusses reliable collaborative deep neural network inference in dynamic edge environments, focusing on adaptive redundant partitioning and dynamic execution selection.
 
-  ![Chun He presenting the DSEI 2026 title slide](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/he-chun-presentation.jpg){: .news-photo}
+  ![Chun He presenting the DSEI 2026 title slide](https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-news-2026-10-23-he-chun-presentation/content){: .news-photo}
 
   *Chun He giving the oral presentation at DSEI 2026. The title slide reads “Adaptive Redundant Partitioning for Reliable Collaborative DNN Inference at the Edge.”*
   {: .news-caption}
 
   He attended as a master's student of Southwest Jiaotong University. His conference badge names He, Chun, Southwest Jiaotong University, China.
 
-  ![Chun He's IEEE MASS 2026 conference badge](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/he-chun-badge.jpg){: .news-photo}
+  ![Chun He's IEEE MASS 2026 conference badge](https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-news-2026-10-23-he-chun-badge/content){: .news-photo}
 
   *Chun He's IEEE MASS 2026 badge: He, Chun, Southwest Jiaotong University, 21–23 October, Hong Kong.*
   {: .news-caption}
 
   After the talk, Chun He spoke with researchers and students at the workshop, including Professor Chunhui Liu and students at The Hong Kong Polytechnic University, on edge intelligence, collaborative inference, and distributed AI. The group also stopped at the “I ❤️ POLYU” sign on campus.
 
-  ![Group photo at the I love POLYU sign](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/group-i-heart-polyu.jpg){: .news-photo}
+  ![Group photo at the I love POLYU sign](https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-news-2026-10-23-group-i-heart-polyu/content){: .news-photo}
 
   *Participants on the trip at the “I ❤️ POLYU” sign, The Hong Kong Polytechnic University.*
   {: .news-caption}
@@ -68,21 +68,21 @@ content_en: |
 
 报告题目为 **Adaptive Redundant Partitioning for Reliable Collaborative DNN Inference at the Edge**。作者为何春、[戴朋林](/people/dai-penglin/)（西南交通大学），[许新操](/people/xu-xincao/)（电子科技大学）与 Hualing Ren（重庆邮电大学）。报告讨论动态边缘环境中的可靠协同深度神经网络推理，重点是自适应冗余划分与动态执行选择。
 
-![何春在 DSEI 2026 作口头报告](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/he-chun-presentation.jpg){: .news-photo}
+![何春在 DSEI 2026 作口头报告](https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-news-2026-10-23-he-chun-presentation/content){: .news-photo}
 
 *何春在 DSEI 2026 会场作口头报告。屏幕上的题目为 “Adaptive Redundant Partitioning for Reliable Collaborative DNN Inference at the Edge”。*
 {: .news-caption}
 
 何春以西南交通大学计算机与人工智能学院硕士研究生身份参会。胸牌上的姓名为 He, Chun，单位为 Southwest Jiaotong University。
 
-![何春的 IEEE MASS 2026 参会胸牌](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/he-chun-badge.jpg){: .news-photo}
+![何春的 IEEE MASS 2026 参会胸牌](https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-news-2026-10-23-he-chun-badge/content){: .news-photo}
 
 *何春的 IEEE MASS 2026 胸牌，写明 He, Chun，Southwest Jiaotong University，会议时间为 10 月 21–23 日，地点为香港。*
 {: .news-caption}
 
 报告之后，何春与参会的研究人员和学生交流，并与香港理工大学 Chunhui Liu 教授及其学生讨论了边缘智能、协同推理与分布式人工智能。一行还在校园的「I ❤️ POLYU」标志前合影。
 
-![参会人员在香港理工大学 I love POLYU 标志前合影](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/group-i-heart-polyu.jpg){: .news-photo}
+![参会人员在香港理工大学 I love POLYU 标志前合影](https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-news-2026-10-23-group-i-heart-polyu/content){: .news-photo}
 
 *参会人员在香港理工大学「I ❤️ POLYU」标志前合影。*
 {: .news-caption}
