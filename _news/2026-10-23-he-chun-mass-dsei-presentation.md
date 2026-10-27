@@ -16,7 +16,7 @@ content_en: |
 
   The talk, **Adaptive Redundant Partitioning for Reliable Collaborative DNN Inference at the Edge**, is by Chun He and [Penglin Dai](/en/people/dai-penglin/) (Southwest Jiaotong University), [Xincao Xu](/en/people/xu-xincao/) (University of Electronic Science and Technology of China), and Hualing Ren (Chongqing University of Posts and Telecommunications). It discusses reliable collaborative deep neural network inference in dynamic edge environments, focusing on adaptive redundant partitioning and dynamic execution selection.
 
-  Chun He also spoke with researchers and students at the workshop, including Professor Chunhui Liu and students at The Hong Kong Polytechnic University, on edge intelligence, collaborative inference, and distributed AI. Chao Ma joined the trip as well.
+  Chun He also spoke with researchers and students at the workshop, including Professor Chunhui Liu and students at The Hong Kong Polytechnic University, on edge intelligence, collaborative inference, and distributed AI. Lab member [Quanmin Wei](/en/people/wei-quanmin/) and Chao Ma also joined the trip.
 
   ![Chun He presenting at the DSEI 2026 workshop](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/he-chun-presentation.jpg){: .news-photo}
 
@@ -31,6 +31,11 @@ content_en: |
   ![Group photo at the I love POLYU sign](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/group-i-heart-polyu.jpg){: .news-photo}
 
   *At the “I ❤️ POLYU” sign, The Hong Kong Polytechnic University.*
+  {: .news-caption}
+
+  ![Lab member Quanmin Wei at the POLYU sign](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/polyu-wei-quanmin-sign.jpg){: .news-photo}
+
+  *Lab member Quanmin Wei on the IEEE MASS 2026 trip, at the POLYU sign.*
   {: .news-caption}
 
   ![Chao Ma at the IEEE MASS 2026 banner](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/ma-chao-banner.jpg){: .news-photo}
@@ -55,7 +60,7 @@ content_en: |
 
 报告题目为 **Adaptive Redundant Partitioning for Reliable Collaborative DNN Inference at the Edge**。作者为何春、[戴朋林](/people/dai-penglin/)（西南交通大学），[许新操](/people/xu-xincao/)（电子科技大学）与 Hualing Ren（重庆邮电大学）。报告讨论动态边缘环境中的可靠协同深度神经网络推理，重点是自适应冗余划分与动态执行选择。
 
-何春还与参会的研究人员和学生交流，并与香港理工大学 Chunhui Liu 教授及其学生讨论了边缘智能、协同推理与分布式人工智能。马超一同参加了此次行程。
+何春还与参会的研究人员和学生交流，并与香港理工大学 Chunhui Liu 教授及其学生讨论了边缘智能、协同推理与分布式人工智能。实验室成员[韦全敏](/people/wei-quanmin/)与马超一同参加了此次行程。
 
 ![何春在 DSEI 2026 作口头报告](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/he-chun-presentation.jpg){: .news-photo}
 
@@ -70,6 +75,11 @@ content_en: |
 ![香港理工大学 I love POLYU 合影](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/group-i-heart-polyu.jpg){: .news-photo}
 
 *香港理工大学「I ❤️ POLYU」标志前合影。*
+{: .news-caption}
+
+![实验室成员韦全敏在 POLYU 标志前](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/polyu-wei-quanmin-sign.jpg){: .news-photo}
+
+*实验室成员韦全敏参加 IEEE MASS 2026 行程，摄于香港理工大学 POLYU 标志前。*
 {: .news-caption}
 
 ![马超在 IEEE MASS 2026 背景板前](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/ma-chao-banner.jpg){: .news-photo}
