@@ -16,36 +16,44 @@ content_en: |
 
   The talk, **Adaptive Redundant Partitioning for Reliable Collaborative DNN Inference at the Edge**, is by Chun He and [Penglin Dai](/en/people/dai-penglin/) (Southwest Jiaotong University), [Xincao Xu](/en/people/xu-xincao/) (University of Electronic Science and Technology of China), and Hualing Ren (Chongqing University of Posts and Telecommunications). It discusses reliable collaborative deep neural network inference in dynamic edge environments, focusing on adaptive redundant partitioning and dynamic execution selection.
 
-  Chun He also spoke with researchers and students at the workshop, including Professor Chunhui Liu and students at The Hong Kong Polytechnic University, on edge intelligence, collaborative inference, and distributed AI. Lab member [Quanmin Wei](/en/people/wei-quanmin/) and Chao Ma also joined the trip.
+  ![Chun He presenting the DSEI 2026 title slide](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/he-chun-presentation.jpg){: .news-photo}
 
-  ![Chun He presenting at the DSEI 2026 workshop](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/he-chun-presentation.jpg){: .news-photo}
-
-  *Chun He presenting “Adaptive Redundant Partitioning for Reliable Collaborative DNN Inference at the Edge” at DSEI 2026.*
+  *Chun He giving the oral presentation at DSEI 2026. The title slide reads “Adaptive Redundant Partitioning for Reliable Collaborative DNN Inference at the Edge.”*
   {: .news-caption}
 
-  ![Chun He's IEEE MASS 2026 badge](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/he-chun-badge.jpg){: .news-photo}
+  He attended as a master's student of Southwest Jiaotong University. His conference badge names He, Chun, Southwest Jiaotong University, China.
 
-  *Chun He's IEEE MASS 2026 badge.*
+  ![Chun He's IEEE MASS 2026 conference badge](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/he-chun-badge.jpg){: .news-photo}
+
+  *Chun He's IEEE MASS 2026 badge: He, Chun, Southwest Jiaotong University, 21–23 October, Hong Kong.*
   {: .news-caption}
+
+  After the talk, Chun He spoke with researchers and students at the workshop, including Professor Chunhui Liu and students at The Hong Kong Polytechnic University, on edge intelligence, collaborative inference, and distributed AI. The group also stopped at the “I ❤️ POLYU” sign on campus.
 
   ![Group photo at the I love POLYU sign](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/group-i-heart-polyu.jpg){: .news-photo}
 
-  *At the “I ❤️ POLYU” sign, The Hong Kong Polytechnic University.*
+  *Participants on the trip at the “I ❤️ POLYU” sign, The Hong Kong Polytechnic University.*
   {: .news-caption}
 
-  ![Lab member Quanmin Wei at the POLYU sign](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/polyu-wei-quanmin-sign.jpg){: .news-photo}
+  Lab member [Quanmin Wei](/en/people/wei-quanmin/) joined the same trip and was photographed at the POLYU letters.
 
-  *Lab member Quanmin Wei on the IEEE MASS 2026 trip, at the POLYU sign.*
+  ![Lab member Quanmin Wei at the POLYU sign during the MASS trip](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/polyu-wei-quanmin-sign.jpg){: .news-photo}
+
+  *Lab member Quanmin Wei on the IEEE MASS 2026 trip, beside the POLYU sign at The Hong Kong Polytechnic University.*
   {: .news-caption}
+
+  Chao Ma joined the trip as well and stood by the conference banner.
 
   ![Chao Ma at the IEEE MASS 2026 banner](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/ma-chao-banner.jpg){: .news-photo}
 
-  *Chao Ma, who also joined the trip, at the IEEE MASS 2026 banner.*
+  *Chao Ma, who also joined the trip, at the IEEE MASS 2026 banner. The banner gives the conference dates as 21–23 October in Hong Kong.*
   {: .news-caption}
 
-  ![A food and wine hyperspectral imaging demo at PolyU](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/polyu-food-hsi-demo.jpg){: .news-photo}
+  The visit also included a stop at a PolyU laboratory demo on food and wine hyperspectral imaging. Sample labels on the table cover real or fake wine, brand, grape type, and year. This is the host lab's demonstration, not work from EAIS Lab.
 
-  *A food and wine hyperspectral imaging demo seen on campus. It belongs to a PolyU lab, not to EAIS Lab.*
+  ![Host-lab food and wine hyperspectral imaging demo at PolyU](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/polyu-food-hsi-demo.jpg){: .news-photo}
+
+  *A food and wine hyperspectral imaging demo at a PolyU lab, seen during the visit. It is the host lab's demonstration, not an EAIS Lab demo.*
   {: .news-caption}
 
   - **Presenter:** [Chun He](/en/people/he-chun/)
@@ -60,36 +68,44 @@ content_en: |
 
 报告题目为 **Adaptive Redundant Partitioning for Reliable Collaborative DNN Inference at the Edge**。作者为何春、[戴朋林](/people/dai-penglin/)（西南交通大学），[许新操](/people/xu-xincao/)（电子科技大学）与 Hualing Ren（重庆邮电大学）。报告讨论动态边缘环境中的可靠协同深度神经网络推理，重点是自适应冗余划分与动态执行选择。
 
-何春还与参会的研究人员和学生交流，并与香港理工大学 Chunhui Liu 教授及其学生讨论了边缘智能、协同推理与分布式人工智能。实验室成员[韦全敏](/people/wei-quanmin/)与马超一同参加了此次行程。
-
 ![何春在 DSEI 2026 作口头报告](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/he-chun-presentation.jpg){: .news-photo}
 
-*何春在 DSEI 2026 报告 “Adaptive Redundant Partitioning for Reliable Collaborative DNN Inference at the Edge”。*
+*何春在 DSEI 2026 会场作口头报告。屏幕上的题目为 “Adaptive Redundant Partitioning for Reliable Collaborative DNN Inference at the Edge”。*
 {: .news-caption}
+
+何春以西南交通大学计算机与人工智能学院硕士研究生身份参会。胸牌上的姓名为 He, Chun，单位为 Southwest Jiaotong University。
 
 ![何春的 IEEE MASS 2026 参会胸牌](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/he-chun-badge.jpg){: .news-photo}
 
-*何春的 IEEE MASS 2026 参会胸牌。*
+*何春的 IEEE MASS 2026 胸牌，写明 He, Chun，Southwest Jiaotong University，会议时间为 10 月 21–23 日，地点为香港。*
 {: .news-caption}
 
-![香港理工大学 I love POLYU 合影](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/group-i-heart-polyu.jpg){: .news-photo}
+报告之后，何春与参会的研究人员和学生交流，并与香港理工大学 Chunhui Liu 教授及其学生讨论了边缘智能、协同推理与分布式人工智能。一行还在校园的「I ❤️ POLYU」标志前合影。
 
-*香港理工大学「I ❤️ POLYU」标志前合影。*
+![参会人员在香港理工大学 I love POLYU 标志前合影](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/group-i-heart-polyu.jpg){: .news-photo}
+
+*参会人员在香港理工大学「I ❤️ POLYU」标志前合影。*
 {: .news-caption}
+
+实验室成员[韦全敏](/people/wei-quanmin/)也参加了这次行程，在校园的 POLYU 立体字母前留影。
 
 ![实验室成员韦全敏在 POLYU 标志前](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/polyu-wei-quanmin-sign.jpg){: .news-photo}
 
 *实验室成员韦全敏参加 IEEE MASS 2026 行程，摄于香港理工大学 POLYU 标志前。*
 {: .news-caption}
 
+马超一同参加了此次行程，在会议背景板前留影。背景板写明 IEEE MASS 2026 于 10 月 21–23 日在香港举行。
+
 ![马超在 IEEE MASS 2026 背景板前](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/ma-chao-banner.jpg){: .news-photo}
 
 *马超一同参加此次行程，摄于 IEEE MASS 2026 会议背景板前。*
 {: .news-caption}
 
-![香港理工大学食品与酒类高光谱成像演示](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/polyu-food-hsi-demo.jpg){: .news-photo}
+行程中还参观了香港理工大学实验室的食品与酒类高光谱成像演示。展台标签包括酒的真伪、品牌、葡萄品种和年份。这是接待方实验室的演示，不是 EAIS LAB 的工作。
 
-*校园里见到的食品与酒类高光谱成像演示，来自香港理工大学的实验室，并非 EAIS LAB 的工作。*
+![香港理工大学实验室的食品高光谱成像演示](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/polyu-food-hsi-demo.jpg){: .news-photo}
+
+*访问期间见到的香港理工大学实验室食品与酒类高光谱成像演示，不是 EAIS LAB 的演示。*
 {: .news-caption}
 
 - **报告人：**[何春](/people/he-chun/)
