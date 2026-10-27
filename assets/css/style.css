@@ -77,8 +77,9 @@ section .section-title { font-size: 22px; margin: 0 0 12px; }
 .link { color: var(--primary); text-decoration: none; font-weight: 600; }
 .link:hover { text-decoration: underline; }
 
-.news-card { display: grid; grid-template-columns: 2fr 3fr; gap: 12px; align-items: start; }
-.news-card .cover { aspect-ratio: 16 / 9; }
+.news-card { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 16px; align-items: center; }
+.news-card .news-copy { min-width: 0; }
+.news-card .news-copy > :first-child { margin-top: 0; }
 .date-badge { width: 64px; height: 64px; border: 1px solid var(--border); border-radius: 12px; display: grid; place-items: center; background: var(--surface); }
 .date-badge .day { font-size: 18px; font-weight: 800; line-height: 1; }
 .date-badge .mon { font-size: 12px; color: var(--muted); text-transform: uppercase; }
@@ -497,4 +498,26 @@ img[src*="/images/research/"] {
   color: var(--muted);
   font-size: 14px;
   text-align: center;
+}
+
+/* News index only: a 16:9 thumbnail beside the copy.
+   2fr/3fr was wider than the date/title/summary block on this page.
+   Theme and project cards keep the full-width .card .cover rule.
+   Homepage latest news keeps .news-list.visual .thumb. */
+.news-card > .news-cover { display: block; width: 240px; max-width: 100%; line-height: 0; }
+.news-card .cover {
+  display: block;
+  width: 240px;
+  height: 135px;
+  max-width: 100%;
+  margin: 0;
+  border-radius: 10px;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+.news-cover:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 10px; }
+@media (max-width: 600px) {
+  .news-card { grid-template-columns: minmax(0, 1fr); gap: 10px; align-items: start; }
+  .news-card > .news-cover,
+  .news-card .cover { width: 100%; max-width: none; height: auto; aspect-ratio: 16 / 9; }
 }

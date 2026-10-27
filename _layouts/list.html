@@ -17,19 +17,25 @@ layout: default
 
   <div class="list">
     {% for item in items %}
-      <article class="card">
+      {% assign news_cover = '' %}
+      {% if coll_name == 'news' %}
+        {% assign news_cover = item.cover | default: '' | strip %}
+        {% if news_cover == '/assets/images/placeholders/card-16x9.svg' %}{% assign news_cover = '' %}{% endif %}
+      {% endif %}
+      <article class="card{% if news_cover != '' %} news-card{% endif %}">
         {% if coll_name == 'news' %}
           {% assign news_url = item.url %}
           {% if page.lang == 'en' and item.content_en %}{% assign news_url = '/en' | append: item.url %}{% endif %}
-          {% assign news_cover = item.cover | default: '' | strip %}
-          {% if news_cover == '/assets/images/placeholders/card-16x9.svg' %}{% assign news_cover = '' %}{% endif %}
+          {% if page.lang == 'en' %}{% assign news_title = item.title_en | default: item.title %}{% else %}{% assign news_title = item.title %}{% endif %}
           {% if news_cover != '' %}
             {% assign news_cover_src = news_cover | relative_url %}
-            <a href="{{ news_url | relative_url }}">{% include img.html src=news_cover_src class="cover" alt="" priority="lazy" %}</a>
+            <a class="news-cover" href="{{ news_url | relative_url }}">{% include img.html src=news_cover_src class="cover" alt=news_title priority="lazy" %}</a>
           {% endif %}
-          <p class="meta">{{ item.date | date: '%Y-%m-%d' }}</p>
-          <h3><a class="link" href="{{ news_url | relative_url }}">{% if page.lang == 'en' %}{{ item.title_en | default: item.title }}{% else %}{{ item.title }}{% endif %}</a></h3>
-          <p>{% if page.lang == 'en' %}{{ item.summary_en | default: item.summary | truncate: 160 }}{% else %}{{ item.summary | default: item.summary_zh | truncate: 160 }}{% endif %}</p>
+          <div class="news-copy">
+            <p class="meta">{{ item.date | date: '%Y-%m-%d' }}</p>
+            <h3><a class="link" href="{{ news_url | relative_url }}">{{ news_title }}</a></h3>
+            <p>{% if page.lang == 'en' %}{{ item.summary_en | default: item.summary | truncate: 160 }}{% else %}{{ item.summary | default: item.summary_zh | truncate: 160 }}{% endif %}</p>
+          </div>
         {% else %}
         <h3><a class="link" href="{{ item.url | relative_url }}">{{ item.title | default: item.name }}</a></h3>
         {% if item.summary_zh or item.summary_en %}
