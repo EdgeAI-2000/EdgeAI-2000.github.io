@@ -32,7 +32,7 @@ content_en: |
 
   ![Group photo at the I love POLYU sign](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/group-i-heart-polyu.jpg){: .news-photo}
 
-  *Chun He and fellow participants at the “I ❤️ POLYU” sign, The Hong Kong Polytechnic University.*
+  *Chun He and fellow attendees at the “I ❤️ POLYU” sign, The Hong Kong Polytechnic University.*
   {: .news-caption}
 
   - **Presenter:** [Chun He](/en/people/he-chun/)
@@ -63,7 +63,7 @@ content_en: |
 
 ![参会人员在香港理工大学 I love POLYU 标志前合影](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/group-i-heart-polyu.jpg){: .news-photo}
 
-*何春与同行人员在香港理工大学「I ❤️ POLYU」标志前合影。*
+*何春与参会人员在香港理工大学「I ❤️ POLYU」标志前合影。*
 {: .news-caption}
 
 - **报告人：**[何春](/people/he-chun/)
