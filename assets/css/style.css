@@ -318,13 +318,22 @@ h3 { font-size: 18px; font-weight: 700; }
 @media (max-width: 900px){ .vision-wrap { grid-template-columns: 1fr; } }
 
 .news-list.visual { display: grid; gap: 12px; }
-.news-list.visual li { display: grid; grid-template-columns: 96px 1fr; gap: 12px; align-items: start; border: 1px solid var(--border); border-radius: 12px; padding: 10px; background: var(--bg); }
-.news-list.visual .thumb { width: 96px; height: 54px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
-.news-list.visual .news-meta { display: flex; gap: 8px; align-items: center; }
+.news-list.visual li { display: grid; grid-template-columns: 96px 1fr; column-gap: 12px; row-gap: 4px; align-items: start; border: 1px solid var(--border); border-radius: 12px; padding: 10px; background: var(--bg); }
+.news-list.visual .thumb { width: 96px; height: 54px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); grid-row: 1 / span 2; align-self: center; }
+.news-list.visual .news-meta { display: flex; gap: 8px; align-items: center; align-self: end; }
 .badge-type { display: inline-block; padding: 2px 8px; border: 1px solid var(--border); border-radius: 999px; font-size: 12px; color: var(--muted); background: var(--surface); }
-.news-list.visual .title { display: block; grid-column: 2 / -1; } 
+.news-list.visual .title { display: block; grid-column: 2 / -1; grid-row: 2; margin: 0; align-self: start; }
 .news-list.visual li.no-image { grid-template-columns: 1fr; }
 .news-list.visual .no-image .title { grid-column: 1 / -1; }
+
+/* News index cards: thumbnail only when the post has a real cover. */
+.card.has-cover { display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: 16px; align-items: start; }
+.card.has-cover .news-list-thumb { display: block; width: 168px; height: 94px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
+.card.has-cover .news-list-copy { min-width: 0; }
+@media (max-width: 600px) {
+  .card.has-cover { grid-template-columns: 96px minmax(0, 1fr); gap: 12px; }
+  .card.has-cover .news-list-thumb { width: 96px; height: 54px; }
+}
 
 /* Publications: sticky/collapsible filters */
 .pub-filters.sticky { position: sticky; top: var(--header-height, 64px); background: var(--bg); z-index: 9; padding: 8px 20px; border-bottom: 1px solid var(--border); }
