@@ -28,32 +28,11 @@ content_en: |
   *Chun He's IEEE MASS 2026 badge: He, Chun, Southwest Jiaotong University, 21–23 October, Hong Kong.*
   {: .news-caption}
 
-  After the talk, Chun He spoke with researchers and students at the workshop, including Professor Chunhui Liu and students at The Hong Kong Polytechnic University, on edge intelligence, collaborative inference, and distributed AI. The group also stopped at the “I ❤️ POLYU” sign on campus.
+  After the talk, Chun He spoke with researchers and students at the workshop, including postdoctoral researcher Chunhui Liu and students at The Hong Kong Polytechnic University, on edge intelligence, collaborative inference, and distributed AI. Chun He also appears in a group photo at the “I ❤️ POLYU” sign on campus.
 
-  ![Group photo at the I love POLYU sign](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/group-i-heart-polyu.jpg){: .news-photo}
+  ![Group photo including Chun He at the I love POLYU sign](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/group-i-heart-polyu.jpg){: .news-photo}
 
-  *Participants on the trip at the “I ❤️ POLYU” sign, The Hong Kong Polytechnic University.*
-  {: .news-caption}
-
-  Lab member [Quanmin Wei](/en/people/wei-quanmin/) joined the same trip and was photographed at the POLYU letters.
-
-  ![Lab member Quanmin Wei at the POLYU sign during the MASS trip](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/polyu-wei-quanmin-sign.jpg){: .news-photo}
-
-  *Lab member Quanmin Wei on the IEEE MASS 2026 trip, beside the POLYU sign at The Hong Kong Polytechnic University.*
-  {: .news-caption}
-
-  Chao Ma joined the trip as well and stood by the conference banner.
-
-  ![Chao Ma at the IEEE MASS 2026 banner](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/ma-chao-banner.jpg){: .news-photo}
-
-  *Chao Ma, who also joined the trip, at the IEEE MASS 2026 banner. The banner gives the conference dates as 21–23 October in Hong Kong.*
-  {: .news-caption}
-
-  The visit also included a stop at a PolyU laboratory demo on food and wine hyperspectral imaging. Sample labels on the table cover real or fake wine, brand, grape type, and year. This is the host lab's demonstration, not work from EAIS Lab.
-
-  ![Host-lab food and wine hyperspectral imaging demo at PolyU](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/polyu-food-hsi-demo.jpg){: .news-photo}
-
-  *A food and wine hyperspectral imaging demo at a PolyU lab, seen during the visit. It is the host lab's demonstration, not an EAIS Lab demo.*
+  *Group photo including Chun He at the “I ❤️ POLYU” sign, The Hong Kong Polytechnic University.*
   {: .news-caption}
 
   - **Presenter:** [Chun He](/en/people/he-chun/)
@@ -80,32 +59,11 @@ content_en: |
 *何春的 IEEE MASS 2026 胸牌，写明 He, Chun，Southwest Jiaotong University，会议时间为 10 月 21–23 日，地点为香港。*
 {: .news-caption}
 
-报告之后，何春与参会的研究人员和学生交流，并与香港理工大学 Chunhui Liu 教授及其学生讨论了边缘智能、协同推理与分布式人工智能。一行还在校园的「I ❤️ POLYU」标志前合影。
+报告之后，何春与参会的研究人员和学生交流，并与香港理工大学 Chunhui Liu 博士后研究员及其学生讨论了边缘智能、协同推理与分布式人工智能。何春也出现在校园「I ❤️ POLYU」标志前的合影中。
 
-![参会人员在香港理工大学 I love POLYU 标志前合影](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/group-i-heart-polyu.jpg){: .news-photo}
+![合影包括何春，摄于香港理工大学 I love POLYU 标志前](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/group-i-heart-polyu.jpg){: .news-photo}
 
-*参会人员在香港理工大学「I ❤️ POLYU」标志前合影。*
-{: .news-caption}
-
-实验室成员[韦全敏](/people/wei-quanmin/)也参加了这次行程，在校园的 POLYU 立体字母前留影。
-
-![实验室成员韦全敏在 POLYU 标志前](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/polyu-wei-quanmin-sign.jpg){: .news-photo}
-
-*实验室成员韦全敏参加 IEEE MASS 2026 行程，摄于香港理工大学 POLYU 标志前。*
-{: .news-caption}
-
-马超一同参加了此次行程，在会议背景板前留影。背景板写明 IEEE MASS 2026 于 10 月 21–23 日在香港举行。
-
-![马超在 IEEE MASS 2026 背景板前](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/ma-chao-banner.jpg){: .news-photo}
-
-*马超一同参加此次行程，摄于 IEEE MASS 2026 会议背景板前。*
-{: .news-caption}
-
-行程中还参观了香港理工大学实验室的食品与酒类高光谱成像演示。展台标签包括酒的真伪、品牌、葡萄品种和年份。这是接待方实验室的演示，不是 EAIS LAB 的工作。
-
-![香港理工大学实验室的食品高光谱成像演示](/assets/images/news/2026-10-23-he-chun-mass-dsei-presentation/polyu-food-hsi-demo.jpg){: .news-photo}
-
-*访问期间见到的香港理工大学实验室食品与酒类高光谱成像演示，不是 EAIS LAB 的演示。*
+*合影包括何春，摄于香港理工大学「I ❤️ POLYU」标志前。*
 {: .news-caption}
 
 - **报告人：**[何春](/people/he-chun/)
