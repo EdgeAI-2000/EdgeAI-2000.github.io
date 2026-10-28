@@ -28,7 +28,7 @@ content_en: |
   *Chun He's IEEE MASS 2026 badge: He, Chun, Southwest Jiaotong University, 21–23 October, Hong Kong.*
   {: .news-caption}
 
-  After the talk, Chun He spoke with researchers and students at the workshop, including postdoctoral researcher Chunhui Liu and students at The Hong Kong Polytechnic University, on edge intelligence, collaborative inference, and distributed AI. The group also stopped at the “I ❤️ POLYU” sign on campus.
+  After the talk, Chun He spoke with researchers and students at the workshop, including postdoctoral researcher Chunhui Liu and others at The Hong Kong Polytechnic University, on edge intelligence, collaborative inference, and distributed AI. The group also stopped at the “I ❤️ POLYU” sign on campus.
 
   ![Group photo at the I love POLYU sign](https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-news-2026-10-23-group-i-heart-polyu/content){: .news-photo}
 
@@ -59,7 +59,7 @@ content_en: |
 *何春的 IEEE MASS 2026 胸牌，写明 He, Chun，Southwest Jiaotong University，会议时间为 10 月 21–23 日，地点为香港。*
 {: .news-caption}
 
-报告之后，何春与参会的研究人员和学生交流，并与香港理工大学 Chunhui Liu 博士后研究员及其学生讨论了边缘智能、协同推理与分布式人工智能。一行还在校园的「I ❤️ POLYU」标志前合影。
+报告之后，何春与参会的研究人员和学生交流，并与香港理工大学 Chunhui Liu 博士后研究员等人讨论了边缘智能、协同推理与分布式人工智能。一行还在校园的「I ❤️ POLYU」标志前合影。
 
 ![参会人员在香港理工大学 I love POLYU 标志前合影](https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-news-2026-10-23-group-i-heart-polyu/content){: .news-photo}
 
