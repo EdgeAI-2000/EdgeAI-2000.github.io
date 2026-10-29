@@ -8,7 +8,7 @@ keywords:
   - resource-aware scheduling
   - model sharding
   - speculative decoding
-cover: /assets/images/research/edge-llm-inference.png
+cover: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-research-edge-llm-inference/cover
 order: 2
 layout: theme
 content_en: |

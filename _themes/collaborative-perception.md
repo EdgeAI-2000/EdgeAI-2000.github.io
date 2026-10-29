@@ -8,7 +8,7 @@ keywords:
   - heterogeneous alignment
   - task-aware communication
   - robust fusion
-cover: /assets/images/research/multi-agent-collaborative-perception.png
+cover: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-research-multi-agent-collaborative-perception/cover
 order: 1
 layout: theme
 content_en: |
