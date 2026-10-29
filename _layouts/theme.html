@@ -11,7 +11,7 @@ layout: default
   {% include page-heading.html title=theme_title %}
   {% assign diagram_src = theme.cover | relative_url %}
   {% if page.lang == 'en' %}{% assign diagram_alt = theme.title_en %}{% else %}{% assign diagram_alt = theme.title %}{% endif %}
-  {% include img.html src=diagram_src class="research-diagram" alt=diagram_alt priority="eager" %}
+  {% include img.html src=diagram_src class="research-diagram" alt=diagram_alt width=theme.cover_width height=theme.cover_height priority="eager" %}
   <div class="content">
     {% if page.lang == 'en' %}{{ theme.content_en | markdownify }}{% else %}{{ content }}{% endif %}
   </div>

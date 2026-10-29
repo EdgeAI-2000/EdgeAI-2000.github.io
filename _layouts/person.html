@@ -19,7 +19,7 @@ layout: default
   {% include member-submission.html slug=person.slug %}
   <div class="person-hero">
     {% assign avatar_src = person.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url %}
-    {% include img.html src=avatar_src class="avatar-lg" alt=person_name priority="eager" %}
+    {% include img.html src=avatar_src class="avatar-lg" alt=person_name width="112" height="112" priority="eager" %}
     <div class="info">
       {% assign person_heading = person_name | escape %}
       {% include page-heading.html title=person_heading %}

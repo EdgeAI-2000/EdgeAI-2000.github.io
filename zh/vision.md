@@ -12,7 +12,7 @@ permalink: /zh/vision/
   <p class="lead">{{ v.zh }}</p>
   <div class="vision-fig">
     {% assign vision_src = v.image | relative_url %}
-    {% include img.html src=vision_src alt=v.alt_zh priority="lazy" %}
+    {% include img.html src=vision_src alt=v.alt_zh width=v.image_width height=v.image_height priority="lazy" %}
   </div>
 
   <h2>系统与算法协同设计</h2>

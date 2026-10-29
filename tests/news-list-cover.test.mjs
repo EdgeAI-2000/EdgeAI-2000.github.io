@@ -19,7 +19,8 @@ test('news index covers are compact thumbnails beside the copy', () => {
   assert.match(list, /class="card\{% if news_cover != '' %\} news-card\{% endif %\}"/);
   assert.match(list, /class="news-cover"/);
   assert.match(list, /class="news-copy"/);
-  assert.match(list, /class="cover" alt=news_title priority="lazy"/);
+  assert.match(list, /cf-variant\.html src=news_cover variant='thumb'/);
+  assert.match(list, /class="cover" alt=news_title width="240" height="135" priority="lazy"/);
   assert.match(list, /card-16x9\.svg/);
 
   const grid = block(css, '.news-card {');
@@ -43,6 +44,6 @@ test('other cover patterns stay as they are', () => {
   assert.match(block(css, '.content img.news-photo {'), /max-height:\s*720px/);
   assert.match(block(css, '.news-list.visual .thumb {'), /width:\s*96px/);
   assert.match(block(css, '.news-list.visual .thumb {'), /height:\s*54px/);
-  assert.match(home, /class="thumb"/);
+  assert.match(home, /class="thumb" alt="" width="96" height="54"/);
   assert.doesNotMatch(home, /news-card/);
 });

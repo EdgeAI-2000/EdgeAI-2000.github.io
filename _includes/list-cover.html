@@ -1,0 +1,24 @@
+{%- comment -%}
+  Card and feature-list cover. A trailing Cloudflare /cover becomes /thumb
+  (480×270). Local diagrams keep the width and height passed in, which must
+  match that file. The shared 16:9 placeholder is 1280×720.
+{%- endcomment -%}
+{%- assign list_raw = include.src | default: '' -%}
+{%- assign list_class = include.class -%}
+{%- assign list_alt = include.alt | default: '' -%}
+{%- assign list_hidden = include.hidden -%}
+{%- assign list_priority = include.priority -%}
+{%- assign list_w = include.width -%}
+{%- assign list_h = include.height -%}
+{%- include cf-variant.html src=list_raw variant='thumb' -%}
+{%- if cf_src != list_raw -%}
+  {%- assign list_w = 480 -%}
+  {%- assign list_h = 270 -%}
+{%- elsif list_w == nil or list_w == '' -%}
+  {%- if list_raw == '/assets/images/placeholders/card-16x9.svg' -%}
+    {%- assign list_w = 1280 -%}
+    {%- assign list_h = 720 -%}
+  {%- endif -%}
+{%- endif -%}
+{%- assign list_src = cf_src | relative_url -%}
+{%- include img.html src=list_src class=list_class alt=list_alt width=list_w height=list_h hidden=list_hidden priority=list_priority -%}

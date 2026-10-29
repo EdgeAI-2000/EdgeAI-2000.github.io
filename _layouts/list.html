@@ -28,8 +28,9 @@ layout: default
           {% if page.lang == 'en' and item.content_en %}{% assign news_url = '/en' | append: item.url %}{% endif %}
           {% if page.lang == 'en' %}{% assign news_title = item.title_en | default: item.title %}{% else %}{% assign news_title = item.title %}{% endif %}
           {% if news_cover != '' %}
-            {% assign news_cover_src = news_cover | relative_url %}
-            <a class="news-cover" href="{{ news_url | relative_url }}">{% include img.html src=news_cover_src class="cover" alt=news_title priority="lazy" %}</a>
+            {% include cf-variant.html src=news_cover variant='thumb' %}
+            {% assign news_cover_src = cf_src | relative_url %}
+            <a class="news-cover" href="{{ news_url | relative_url }}">{% include img.html src=news_cover_src class="cover" alt=news_title width="240" height="135" priority="lazy" %}</a>
           {% endif %}
           <div class="news-copy">
             <p class="meta">{{ item.date | date: '%Y-%m-%d' }}</p>

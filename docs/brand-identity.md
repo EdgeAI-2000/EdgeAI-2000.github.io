@@ -46,7 +46,11 @@ Copy the six resulting delivery URLs from `eais-lab/cloudflare-images.json` into
 `_data/brand.json`. Update the local backup files in `assets/images/brand/` and
 copy `eais-lab/web/expressions.json` to `_data/mascots.json` when artwork changes.
 The `content` variant preserves aspect ratio. Keep that variant in scale-down
-mode so the expression sheet's viewports remain aligned.
+mode so the expression sheet's viewports remain aligned. The public wordmark
+uses the `logo` variant and the favicon uses the `icon` variant; both are
+compressed rasters. Mascot, badge, expression sheet, and Apple touch icon stay
+on `content`. List pages request the `thumb` and `face` variants instead of
+`cover` and `avatar`; article heroes and profile photos do not.
 
 `_includes/mascot.html` uses the shared sheet and the manifest's viewports, so
 multiple expressions reuse one cached image. The logos repository also provides

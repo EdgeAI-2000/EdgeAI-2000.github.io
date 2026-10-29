@@ -7,7 +7,7 @@ layout: default
 <section class="hero hero-large">
   <div class="container hero-inner">
     <div class="hero-copy">
-      <h1>{% include img.html src=site.data.brand.wordmark class="hero-wordmark" width="2100" height="470" alt=site.title priority="high" %}</h1>
+      <h1>{% include img.html src=site.data.brand.wordmark class="hero-wordmark" width="685" height="228" alt=site.title priority="high" %}</h1>
       <p class="hero-sub">{% if page.lang == 'en' %}Edge AI via system–algorithm co-design{% else %}系统与算法协同驱动的边缘智能{% endif %}</p>
       {% unless site.data.page_visibility.themes == false %}
 <div class="hero-cta">
@@ -15,7 +15,7 @@ layout: default
       </div>
 {% endunless %}
     </div>
-    {% include img.html src=site.data.brand.mascot class="hero-mascot" width="1231" height="1277" alt="" hidden=true priority="high" %}
+    {% include img.html src=site.data.brand.mascot class="hero-mascot" width="1231" height="1277" alt="" hidden=true priority="eager" %}
   </div>
 </section>
 
@@ -61,7 +61,7 @@ layout: default
     <div class="vision-fig">
       {% assign vision_src = v.image | relative_url %}
       {% if page.lang == 'en' %}{% assign vision_alt = v.alt_en %}{% else %}{% assign vision_alt = v.alt_zh %}{% endif %}
-      {% include img.html src=vision_src alt=vision_alt priority="lazy" %}
+      {% include img.html src=vision_src alt=vision_alt width=v.image_width height=v.image_height priority="lazy" %}
     </div>
   </div>
 </section>
@@ -80,8 +80,9 @@ layout: default
       {% if news_cover == '/assets/images/placeholders/card-16x9.svg' %}{% assign news_cover = '' %}{% endif %}
       <li{% if news_cover == '' %} class="no-image"{% endif %}>
         {% if news_cover != '' %}
-        {% assign news_src = news_cover | relative_url %}
-        {% include img.html src=news_src class="thumb" alt="" priority="lazy" %}
+        {% include cf-variant.html src=news_cover variant='thumb' %}
+        {% assign news_src = cf_src | relative_url %}
+        {% include img.html src=news_src class="thumb" alt="" width="96" height="54" priority="lazy" %}
         {% endif %}
         <div class="news-body">
           <div class="news-meta">
@@ -110,8 +111,8 @@ layout: default
       {% assign ordered_themes = site.themes | sort: 'order' %}
       {% for theme in ordered_themes limit:12 %}
         <article class="hcard card theme-card" data-i="{{ forloop.index0 }}">
-          {% assign cover_src = theme.cover | default: '/assets/images/placeholders/card-16x9.svg' | relative_url %}
-          {% include img.html src=cover_src class="cover" alt="" hidden=true priority="lazy" %}
+          {% assign cover_raw = theme.cover | default: '/assets/images/placeholders/card-16x9.svg' %}
+          {% include list-cover.html src=cover_raw class="cover" alt="" hidden=true priority="lazy" width=theme.cover_width height=theme.cover_height %}
           <div class="theme-copy">
           {% if page.lang == 'en' %}
             <h3><a href="{{ '/en' | append: theme.url | relative_url }}">{{ theme.title_en }}</a></h3>
@@ -155,8 +156,7 @@ layout: default
           {% assign summary = project.summary_zh | default: project.summary_en | default: project.intro | default: project.content %}
         {% endif %}
         <article class="hcard card project-card" data-i="{{ forloop.index0 }}">
-          {% assign project_cover_src = cover | relative_url %}
-          {% include img.html src=project_cover_src class="cover" alt="" hidden=true priority="lazy" %}
+          {% include list-cover.html src=cover class="cover" alt="" hidden=true priority="lazy" width=project.cover_width height=project.cover_height %}
           <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
           {% if project.themes %}<p class="meta">{{ project.themes | array_to_sentence_string }}</p>{% endif %}
           {% if summary %}<p>{{ summary | strip_html | truncate: 120 }}</p>{% endif %}
@@ -243,8 +243,9 @@ layout: default
         {% assign member_url = '/en' | append: p.url %}
       {% endif %}
       <a class="mosaic-item" href="{{ member_url | relative_url }}" title="{{ member_name }}">
-        {% assign avatar_src = avatar | relative_url %}
-        {% include img.html src=avatar_src class="avatar-img" alt=member_name priority="lazy" %}
+        {% include cf-variant.html src=avatar variant='face' %}
+        {% assign avatar_src = cf_src | relative_url %}
+        {% include img.html src=avatar_src class="avatar-img" alt=member_name width="68" height="68" priority="lazy" %}
         <span class="name">{{ member_name }}</span>
         {% if role_label %}<span class="role">{{ role_label }}</span>{% endif %}
       </a>

@@ -12,7 +12,7 @@ permalink: /en/vision/
   <p class="lead">{{ v.en }}</p>
   <div class="vision-fig">
     {% assign vision_src = v.image | relative_url %}
-    {% include img.html src=vision_src alt=v.alt_en priority="lazy" %}
+    {% include img.html src=vision_src alt=v.alt_en width=v.image_width height=v.image_height priority="lazy" %}
   </div>
 
   <h2>System–Algorithm Co-Design</h2>
