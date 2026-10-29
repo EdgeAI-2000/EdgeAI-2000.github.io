@@ -1,10 +1,6 @@
 ---
-layout: default
+layout: home
 lang: en
-title: Redirect
+title: EAIS LAB
 permalink: /
 ---
-
-<meta http-equiv="refresh" content="0; url={{ '/en/' | relative_url }}" />
-<a href="{{ '/en/' | relative_url }}">Enter the English homepage</a>
- 
