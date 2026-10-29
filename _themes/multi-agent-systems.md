@@ -9,7 +9,7 @@ keywords:
   - hierarchical memory
   - embodied intelligence
   - policy learning
-cover: /assets/images/research/agentic-ai.png
+cover: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-research-agentic-ai/cover
 order: 3
 layout: theme
 content_en: |
