@@ -12,8 +12,9 @@ document.querySelectorAll('[data-mascot-random]').forEach((mascot) => {
 });
 
 // The expression sheet is one full-size CDN image. SVG <image> does not
-// honor loading="lazy", so the below-fold footer copy waits until it is near
-// the viewport. Heading mascots stay immediate.
+// honor loading="lazy", so every deferred mascot — the page heading and the
+// footer — waits until it is near the viewport. A heading at the top of the
+// page is inside the root margin and loads as soon as this script runs.
 function revealDeferredMascot(mascot) {
   const image = mascot.querySelector('image[data-src]');
   if (!image) return;

@@ -10,6 +10,8 @@ keywords:
   - embodied intelligence
   - policy learning
 cover: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-research-agentic-ai/cover
+cover_width: 1200
+cover_height: 675
 order: 3
 layout: theme
 content_en: |

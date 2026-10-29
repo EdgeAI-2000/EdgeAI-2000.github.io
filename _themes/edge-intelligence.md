@@ -9,6 +9,8 @@ keywords:
   - model sharding
   - speculative decoding
 cover: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-research-edge-llm-inference/cover
+cover_width: 1200
+cover_height: 675
 order: 2
 layout: theme
 content_en: |

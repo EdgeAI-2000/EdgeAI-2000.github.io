@@ -58,8 +58,10 @@ layout: default
           {% endif %}
           <a class="person-card" href="{{ person_url | relative_url }}">
             {% if eager_avatars > 0 %}{% assign img_priority = 'eager' %}{% assign eager_avatars = eager_avatars | minus: 1 %}{% else %}{% assign img_priority = 'lazy' %}{% endif %}
-            {% assign avatar_src = p.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url %}
-            {% include img.html src=avatar_src class="avatar-img" alt=person_name priority=img_priority %}
+            {% assign avatar_raw = p.avatar | default: '/assets/images/placeholders/avatar.svg' %}
+            {% include cf-variant.html src=avatar_raw variant='face' %}
+            {% assign avatar_src = cf_src | relative_url %}
+            {% include img.html src=avatar_src class="avatar-img" alt=person_name width="88" height="88" priority=img_priority %}
             <h3>{{ person_name | escape }}</h3>
             {% if p.period %}<p class="meta">{% if page.lang == 'en' %}Entry year: {{ p.period | remove: '级' | escape }}{% else %}{{ p.period | escape }}{% endif %}</p>{% endif %}
             {% if person_research %}<p class="meta">{{ person_research | join: ' · ' | escape }}</p>{% endif %}
@@ -88,8 +90,10 @@ layout: default
         {% endif %}
         <a class="person-card" href="{{ person_url | relative_url }}">
           {% if eager_avatars > 0 %}{% assign img_priority = 'eager' %}{% assign eager_avatars = eager_avatars | minus: 1 %}{% else %}{% assign img_priority = 'lazy' %}{% endif %}
-          {% assign avatar_src = p.avatar | default: '/assets/images/placeholders/avatar.svg' | relative_url %}
-          {% include img.html src=avatar_src class="avatar-img" alt=person_name priority=img_priority %}
+          {% assign avatar_raw = p.avatar | default: '/assets/images/placeholders/avatar.svg' %}
+          {% include cf-variant.html src=avatar_raw variant='face' %}
+          {% assign avatar_src = cf_src | relative_url %}
+          {% include img.html src=avatar_src class="avatar-img" alt=person_name width="88" height="88" priority=img_priority %}
           <h3>{{ person_name | escape }}</h3>
           {% if p.period %}<p class="meta">{% if page.lang == 'en' %}Class of {{ p.period | remove: '届' | escape }}{% else %}{{ p.period | escape }}{% endif %}</p>{% endif %}
           {% if person_destination %}<p class="meta">{{ person_destination | escape }}</p>{% endif %}

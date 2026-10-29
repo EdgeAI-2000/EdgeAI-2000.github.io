@@ -3,6 +3,6 @@
   {% if page.mascot == 'badge' %}
     {% include img.html src=site.data.brand.badge class="page-badge" width="1230" height="1278" alt="" hidden=true priority="eager" %}
   {% elsif page.mascot %}
-    {% include mascot.html pose=page.mascot %}
+    {% include mascot.html pose=page.mascot defer=true %}
   {% endif %}
 </div>

@@ -2,7 +2,7 @@
   <div class="container footer-inner">
     <div class="footer-meta">
       <a class="footer-brand" href="{% if page.lang == 'zh' %}{{ '/zh/' | relative_url }}{% else %}{{ '/en/' | relative_url }}{% endif %}">
-        {% include img.html src=site.data.brand.wordmark width="2100" height="470" alt=site.title priority="lazy" %}
+        {% include img.html src=site.data.brand.wordmark width="685" height="228" alt=site.title priority="lazy" %}
       </a>
       <p>© {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
     </div>

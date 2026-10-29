@@ -9,6 +9,8 @@ keywords:
   - task-aware communication
   - robust fusion
 cover: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-research-multi-agent-collaborative-perception/cover
+cover_width: 1200
+cover_height: 675
 order: 1
 layout: theme
 content_en: |

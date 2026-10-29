@@ -21,8 +21,8 @@ layout: default
       <div class="container feature-inner">
         <div class="media">
           {% if forloop.first %}{% assign cover_priority = 'eager' %}{% else %}{% assign cover_priority = 'lazy' %}{% endif %}
-          {% assign cover_src = it.cover | default: '/assets/images/placeholders/card-16x9.svg' | relative_url %}
-          {% include img.html src=cover_src alt="" priority=cover_priority %}
+          {% assign cover_raw = it.cover | default: '/assets/images/placeholders/card-16x9.svg' %}
+          {% include list-cover.html src=cover_raw alt="" priority=cover_priority width=it.cover_width height=it.cover_height %}
         </div>
         <div class="content">
           <h2>{% if page.lang == 'en' %}{{ it.title_en | default: it.title }}{% else %}{{ it.title }}{% endif %}</h2>

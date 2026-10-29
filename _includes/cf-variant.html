@@ -1,0 +1,16 @@
+{%- comment -%}
+  Rewrite a trailing Cloudflare Images variant for a small list slot.
+  thumb replaces a trailing /cover. face replaces a trailing /avatar.
+  Local paths and other variants (/content, /logo, /icon) stay unchanged.
+  Sets cf_src for the caller. Detail pages should not include this.
+{%- endcomment -%}
+{%- assign cf_src = include.src | default: '' -%}
+{%- assign cf_variant = include.variant | default: '' -%}
+{%- if cf_variant == 'thumb' or cf_variant == 'face' -%}
+  {%- assign cf_marked = cf_src | append: '|' -%}
+  {%- if cf_variant == 'thumb' -%}
+    {%- assign cf_src = cf_marked | replace: '/cover|', '/thumb|' | split: '|' | first -%}
+  {%- else -%}
+    {%- assign cf_src = cf_marked | replace: '/avatar|', '/face|' | split: '|' | first -%}
+  {%- endif -%}
+{%- endif -%}
