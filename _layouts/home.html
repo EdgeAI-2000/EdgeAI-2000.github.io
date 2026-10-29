@@ -8,7 +8,7 @@ layout: default
   <div class="container hero-inner">
     <div class="hero-copy">
       <h1>{% include img.html src=site.data.brand.wordmark class="hero-wordmark" width="685" height="228" alt=site.title priority="high" %}</h1>
-      <p class="hero-sub">{% if page.lang == 'en' %}Edge AI via system–algorithm co-design{% else %}系统与算法协同驱动的边缘智能{% endif %}</p>
+      <p class="hero-sub">{% if page.lang == 'en' %}Co-designed Edge Intelligence that works in the wild{% else %}协同设计，让边缘智能真正落地{% endif %}</p>
       {% unless site.data.page_visibility.themes == false %}
 <div class="hero-cta">
         <a class="btn" href="{{ lp | append: '/themes/' | relative_url }}">{% if page.lang == 'en' %}Explore Research{% else %}探索研究{% endif %}</a>
