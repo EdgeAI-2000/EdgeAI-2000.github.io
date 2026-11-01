@@ -107,5 +107,6 @@ permalink: /zh/newcomers/
       </tbody>
     </table>
   </div>
+  <p>也可以直接在微信群里找到相关人员，并在群里联系他们。</p>
   <p>对不上负责人，或暂时联系不上时，写到 <a class="link" href="mailto:info@eaislab.com">info@eaislab.com</a>。</p>
 </div>
