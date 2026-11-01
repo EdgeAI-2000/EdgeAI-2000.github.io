@@ -476,6 +476,20 @@ img[src*="/images/research/"] {
 .owner-table th, .owner-table td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--border); }
 .owner-table th { color: var(--heading); background: var(--surface); font-weight: 700; }
 .owner-table a, .newcomers-guide a { overflow-wrap: anywhere; }
+.newcomers-guide { margin: 24px 0 48px; }
+.newcomers-guide > h2 { margin: 32px 0 10px; }
+.newcomers-guide h3 { margin: 22px 0 8px; }
+.newcomers-guide p { margin: 0 0 10px; }
+.newcomers-guide .lead { max-width: 68ch; }
+.newcomers-guide .guide-steps { list-style: none; margin: 20px 0 4px; padding: 0; counter-reset: guide-step; display: grid; gap: 14px; }
+.newcomers-guide .guide-steps > li { counter-increment: guide-step; border: 1px solid var(--border); border-top: 4px solid var(--accent); border-radius: 16px; padding: 16px 18px 8px; background: var(--bg); }
+.newcomers-guide .guide-steps > li > h2 { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; font-size: 22px; }
+.newcomers-guide .guide-steps > li > h2::before { content: counter(guide-step); flex: 0 0 auto; width: 28px; height: 28px; display: inline-grid; place-items: center; border-radius: 999px; background: var(--accent); color: var(--heading); font-size: 14px; line-height: 1; font-weight: 800; }
+.newcomers-guide ul, .newcomers-guide .guide-steps ol { margin: 8px 0 12px; padding-left: 1.3rem; }
+.newcomers-guide ul li + li, .newcomers-guide .guide-steps ol li + li { margin-top: 6px; }
+.newcomers-guide .owner-table-wrap { margin-bottom: 12px; }
+.newcomers-guide .guide-notes { margin: 0; padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+.newcomers-guide .guide-notes p:last-child { margin-bottom: 0; }
 @media (max-width: 600px) {
   .owner-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .owner-table, .owner-table tbody, .owner-table tr, .owner-table td { display: block; width: 100%; }

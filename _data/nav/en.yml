@@ -40,6 +40,10 @@ main:
   - label: Resources
     url: /en/resources/
     visibility: resources
+    children:
+      - label: Newcomers
+        url: /en/newcomers/
+        visibility: newcomers
 footer:
   - label: Privacy
     url: /en/privacy/
