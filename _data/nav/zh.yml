@@ -40,6 +40,10 @@ main:
   - label: 资源
     url: /zh/resources/
     visibility: resources
+    children:
+      - label: 新生指南
+        url: /zh/newcomers/
+        visibility: newcomers
 footer:
   - label: 隐私
     url: /zh/privacy/

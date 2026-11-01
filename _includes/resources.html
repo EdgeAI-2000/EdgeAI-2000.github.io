@@ -3,6 +3,13 @@
 {% if page.lang == 'en' %}{% assign is_english = true %}{% endif %}
 <div class="resources-page">
   {% include page-heading.html title=page.title %}
+  {% unless is_english or site.data.page_visibility.newcomers == false %}
+  <section class="card resources-newcomer" id="newcomers" aria-labelledby="newcomers-title">
+    <h2 id="newcomers-title">新生指南</h2>
+    <p>还打不开 EAIS Services 时，先看公开的加入步骤：联系负责人加入 GitHub 组织后，再用 GitHub 登录门户。</p>
+    <p><a class="link" href="{{ '/zh/newcomers/' | relative_url }}">打开新生指南</a></p>
+  </section>
+  {% endunless %}
   <nav class="resources-topics" aria-label="{% if is_english %}Resource categories{% else %}资料分类{% endif %}">
     {% for category in resources.categories %}
       <a href="#{{ category.id }}">{% if is_english %}{{ category.title_en | escape }}{% else %}{{ category.title_zh | escape }}{% endif %}</a>
