@@ -26,6 +26,7 @@ permalink: /zh/newcomers/
 
   <h2>第二步：登录 EAIS Services</h2>
   <p>确认自己已经在组织里之后，打开 <a class="link" href="https://services.eaislab.com" target="_blank" rel="noopener noreferrer">https://services.eaislab.com</a>，用 GitHub 登录。登录后能看到服务入口；下面几项的具体操作也都在门户里。</p>
+  <p>登录之后，先在 <a class="link" href="https://services.eaislab.com/contacts/" target="_blank" rel="noopener noreferrer">https://services.eaislab.com/contacts/</a> 填写联系方式，再到官网团队页面 <a class="link" href="https://eaislab.com/zh/people/" target="_blank" rel="noopener noreferrer">https://eaislab.com/zh/people/</a> 添加或更新个人信息。</p>
 
   <h2>常用服务怎么开</h2>
 
