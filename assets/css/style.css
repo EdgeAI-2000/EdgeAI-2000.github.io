@@ -466,6 +466,23 @@ img[src*="/images/research/"] {
 .resources-list li:last-child { margin-bottom: 0; }
 .resources-list .meta { margin: 4px 0 0; font-size: 14px; }
 .resources-internal { margin-top: 24px; }
+.resources-newcomer { margin: 8px 0 4px; border-left: 4px solid var(--accent); background: linear-gradient(120deg, var(--accent-soft), var(--bg)); }
+.resources-newcomer h2 { margin: 0 0 8px; font-size: 20px; }
+.resources-newcomer p { margin: 0 0 8px; }
+.resources-newcomer p:last-child { margin: 0; }
+.owner-table-wrap { overflow-x: auto; margin: 12px 0 20px; }
+.owner-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.owner-table caption { caption-side: bottom; text-align: left; margin-top: 8px; }
+.owner-table th, .owner-table td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--border); }
+.owner-table th { color: var(--heading); background: var(--surface); font-weight: 700; }
+.owner-table a, .newcomers-guide a { overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .owner-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .owner-table, .owner-table tbody, .owner-table tr, .owner-table td { display: block; width: 100%; }
+  .owner-table tr { padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .owner-table td { border: 0; padding: 2px 0; }
+  .owner-table td:first-child { color: var(--heading); font-weight: 700; }
+}
 .resources-source { margin-top: 24px; }
 @media (max-width: 720px) { .resources-grid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 600px) {

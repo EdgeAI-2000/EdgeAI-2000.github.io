@@ -16,6 +16,7 @@ window.EAISCreateSettings = function (endpoint) {
     ["patents", "专利 / Patents"],
     ["people", "团队 / People"],
     ["resources", "学习资源 / Resources"],
+    ["newcomers", "新生指南 / Newcomers"],
     ["openings", "招聘 / Openings"],
     ["privacy", "隐私 / Privacy"],
     ["sitemap", "站点地图 / Sitemap"],
@@ -180,7 +181,7 @@ window.EAISCreateSettings = function (endpoint) {
   const visibilityReload = page.querySelector('[data-visibility-reload]');
   const visibilityField = name => visibilityForm.elements.namedItem(name);
   const visibilityURL = 'https://api.github.com/repos/EdgeAI-2000/EdgeAI-2000.github.io/contents/_data/page_visibility.yml';
-  const visibilityChildren = { about: ['vision', 'contact', 'admissions'], admissions: ['openings'], themes: ['projects', 'funding', 'publications', 'patents', 'research'] };
+  const visibilityChildren = { about: ['vision', 'contact', 'admissions'], admissions: ['openings'], themes: ['projects', 'funding', 'publications', 'patents', 'research'], resources: ['newcomers'] };
   function syncVisibilityChildren() {
     for (const [parent, children] of Object.entries(visibilityChildren)) {
       for (const name of children) {
