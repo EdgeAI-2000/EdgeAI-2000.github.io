@@ -59,8 +59,6 @@ badges:
     src_zh: "https://img.shields.io/badge/%E9%A1%B9%E7%9B%AE-%E4%B8%BB%E9%A1%B5-0e7c66?style=flat"
     alt_en: Project page
     alt_zh: 项目主页
-demo_lead_zh: "看完就懂。"
-demo_lead_en: "Watch it once and the idea is clear."
 demo_caption_zh: "共享字典原子留在每辆车上，在线只传输稀疏参数。参数先在空间位置与字典原子上稀疏化，再经参数共享与低比特量化；接收端用本地字典重建协同特征。"
 demo_caption_en: "Shared dictionary atoms stay on each vehicle, and only sparse parameters are sent. Those parameters are sparsified over space and dictionary atoms, then shared and quantized. The receiver rebuilds collaborative features from its local dictionary."
 key_results:

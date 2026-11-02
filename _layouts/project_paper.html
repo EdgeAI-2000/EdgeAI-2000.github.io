@@ -6,6 +6,7 @@ layout: default
   {% assign project = site.projects | where: 'slug', page.project_slug | first %}
 {% endif %}
 {% assign lang = page.lang | default: project.lang | default: 'zh' %}
+{% assign paper_slug = page.project_slug | default: project.slug | default: page.slug %}
 {% if lang == 'en' %}
   {% assign list_url = '/en/project/' %}
 {% else %}
@@ -290,7 +291,9 @@ layout: default
       </section>
     {% endif %}
 
+    {% unless paper_slug == 'paracomm' %}
     <p class="paper-back"><a class="link" href="{{ list_url | relative_url }}">{{ back_label }}</a></p>
+    {% endunless %}
   {% endunless %}
 </article>
 {% if project.bibtex %}

@@ -97,11 +97,24 @@ test('concept and framework figures stay, and the demo is captioned without extr
   assert.match(project, /figure_method: \/assets\/images\/projects\/paracomm\/framework\.png/);
   assert.match(project, /demo_video: https:\/\/files\.eaislab\.com\/projects\/paracomm\/demo\.mp4/);
   assert.match(project, /demo_poster: https:\/\/files\.eaislab\.com\/projects\/paracomm\/demo-poster\.jpg/);
-  assert.match(project, /demo_lead_zh: "看完就懂。"/);
-  assert.match(project, /demo_lead_en: "Watch it once and the idea is clear\."/);
+  assert.doesNotMatch(project, /demo_lead/);
+  assert.doesNotMatch(project, /看完就懂/);
+  assert.doesNotMatch(project, /Watch it once and the idea is clear/);
+  assert.match(project, /demo_caption_en:/);
   assert.match(layout, /figure_concept/);
   assert.match(layout, /figure_method/);
   assert.doesNotMatch(layout, /placeholder|picsum|unsplash/i);
+});
+
+test('ParaComm paper pages omit the back-to-projects footer link', () => {
+  assert.match(layout, /assign paper_slug = page\.project_slug \| default: project\.slug \| default: page\.slug/);
+  assert.match(layout, /assign back_label = 'Back to projects'/);
+  assert.match(layout, /assign back_label = '返回项目列表'/);
+  const gated = layout.match(/\{% unless paper_slug == 'paracomm' %\}([\s\S]*?)\{% endunless %\}/);
+  assert.ok(gated, 'back link must be skipped when the paper slug is paracomm');
+  assert.match(gated[1], /class="paper-back"/);
+  assert.match(gated[1], /list_url/);
+  assert.equal((layout.match(/class="paper-back"/g) || []).length, 1);
 });
 
 test('the paper page drops rounded section cards and accent underlines', () => {
