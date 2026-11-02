@@ -96,7 +96,13 @@ layout: default
         {% else %}
           {% assign demo_src = demo | relative_url %}
         {% endif %}
-        <video class="paper-video" controls playsinline preload="metadata" src="{{ demo_src | escape }}">
+        {% assign poster = project.demo_poster | default: '' | strip %}
+        {% if poster contains '://' %}
+          {% assign poster_src = poster %}
+        {% elsif poster != '' %}
+          {% assign poster_src = poster | relative_url %}
+        {% endif %}
+        <video class="paper-video" controls playsinline preload="metadata" src="{{ demo_src | escape }}"{% if poster != '' %} poster="{{ poster_src | escape }}"{% endif %}>
           {% if lang == 'en' %}Your browser cannot play this demo video.{% else %}当前浏览器无法播放该演示视频。{% endif %}
         </video>
       {% elsif demo_kind == 'link' %}

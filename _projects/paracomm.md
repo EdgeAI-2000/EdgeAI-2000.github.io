@@ -32,6 +32,7 @@ paper: https://doi.org/10.1109/TMC.2026.3741641
 code: https://github.com/fengxueguiren/ParaComm
 project_page: https://weiquanmin.github.io/ParaComm/
 demo_video: https://files.eaislab.com/projects/paracomm/demo.mp4
+demo_poster: https://files.eaislab.com/projects/paracomm/demo-poster.jpg
 summary_zh: "面向自动驾驶协同感知的参数中心通信框架。共享字典原子留在本地，在线只传输稀疏参数。"
 summary_en: "A parameter-centric framework for collaborative perception. Shared dictionary atoms stay on each agent, and only sparse parameters are sent online."
 themes:
