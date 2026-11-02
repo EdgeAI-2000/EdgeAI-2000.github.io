@@ -20,6 +20,9 @@
             {% if page.url == item.url or page.url == item.url | append: 'index.html' %}
               {% assign is_active = true %}
             {% endif %}
+            {% if item.visibility == 'projects' and page.url contains '/project/' %}
+              {% assign is_active = true %}
+            {% endif %}
             <li class="nav-item{% if visible_children > 0 %} has-children{% endif %}" data-nav-item>
               <a href="{{ item.url | relative_url }}" class="{% if is_active %}active{% endif %}" aria-current="{% if is_active %}page{% endif %}">{{ item.label }}</a>
               {% if visible_children > 0 %}

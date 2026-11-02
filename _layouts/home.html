@@ -140,7 +140,7 @@ layout: default
 {% endunless %}
 
 {% assign featured_projects = site.projects | where: 'status', 'active' | sort: 'date' | reverse %}
-{% if site.data.page_visibility.projects != false and site.data.page_visibility.themes != false and featured_projects and featured_projects.size > 0 %}
+{% if site.data.page_visibility.projects != false and featured_projects and featured_projects.size > 0 %}
 <section class="container section-block">
   <div class="section-head">
     <h2>{% if page.lang == 'en' %}Featured Projects{% else %}重点项目{% endif %}</h2>
@@ -301,7 +301,7 @@ layout: default
     <div class="kpi-label">{% if page.lang == 'en' %}Publications{% else %}论文{% endif %}</div>
   </div>
 {% endunless %}
-  {% unless site.data.page_visibility.projects == false or site.data.page_visibility.themes == false %}
+  {% unless site.data.page_visibility.projects == false %}
   <div class="kpi">
     <div class="kpi-num">{{ site.projects | size }}</div>
     <div class="kpi-label">{% if page.lang == 'en' %}Projects{% else %}项目{% endif %}</div>

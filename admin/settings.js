@@ -181,7 +181,7 @@ window.EAISCreateSettings = function (endpoint) {
   const visibilityReload = page.querySelector('[data-visibility-reload]');
   const visibilityField = name => visibilityForm.elements.namedItem(name);
   const visibilityURL = 'https://api.github.com/repos/EdgeAI-2000/EdgeAI-2000.github.io/contents/_data/page_visibility.yml';
-  const visibilityChildren = { about: ['vision', 'contact', 'admissions'], admissions: ['openings'], themes: ['projects', 'funding', 'publications', 'patents', 'research'], resources: ['newcomers'] };
+  const visibilityChildren = { about: ['vision', 'contact', 'admissions'], admissions: ['openings'], themes: ['funding', 'publications', 'patents', 'research'], resources: ['newcomers'] };
   function syncVisibilityChildren() {
     for (const [parent, children] of Object.entries(visibilityChildren)) {
       for (const name of children) {

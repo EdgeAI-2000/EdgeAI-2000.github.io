@@ -10,6 +10,7 @@
 - 中文首页 `/zh/`，英文首页 `/en/`；根路径 `/` 的源码使用 HTML 跳转到英文首页，尽管全局 `lang` 为 `zh`。
 - 研究方向：多智能体协同感知、边缘大模型推理与部署、代理式人工智能。
 - 项目展示：仅论文项目页 ParaComm（`_layouts/project_paper.html`）。列表为 `/zh/project/` 与 `/en/project/`，只收录 ParaComm。中文页 `/zh/project/paracomm/`，英文页 `/en/project/paracomm/`，根路径 `/project/paracomm/` 跳转到英文页。演示视频为 `https://files.eaislab.com/projects/paracomm/demo.mp4`，封面为 `https://files.eaislab.com/projects/paracomm/demo-poster.jpg`。
+- 导航：顶栏为「主页、关于、新闻、研究、项目、团队、资源」（英文 Home、About、News、Research、Projects、People、Resources）。「项目」与「研究」并列，入口 `/zh/project/`、`/en/project/`。「研究」子菜单为「主题、基金、论文、专利」（英文 Themes、Funding、Publications、Patents）；「研究」与「主题」都进入 `/zh/themes/`、`/en/themes/`。
 
 ## 技术组成
 
