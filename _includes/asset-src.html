@@ -1,0 +1,13 @@
+{%- comment -%}
+  Resolve include.src into asset_src.
+  Absolute URLs (Cloudflare Images, R2, and other https hosts) are returned
+  unchanged so the site base is not prepended. Site paths go through relative_url.
+{%- endcomment -%}
+{%- assign asset_raw = include.src | default: '' | strip -%}
+{%- if asset_raw contains '://' -%}
+  {%- assign asset_src = asset_raw -%}
+{%- elsif asset_raw != '' -%}
+  {%- assign asset_src = asset_raw | relative_url -%}
+{%- else -%}
+  {%- assign asset_src = '' -%}
+{%- endif -%}

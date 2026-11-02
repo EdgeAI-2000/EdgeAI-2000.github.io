@@ -637,7 +637,7 @@ img[src*="/images/research/"] {
   font-size: 13px;
   line-height: 1.4;
 }
-.paper-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 18px; }
+.paper-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-top: 18px; }
 .paper-actions .btn {
   background: var(--button);
   color: #fff;
@@ -646,6 +646,12 @@ img[src*="/images/research/"] {
   box-shadow: none;
 }
 .paper-actions .btn:hover { background: var(--button-hover); color: #fff; }
+.paper-badge { display: inline-flex; line-height: 0; border-radius: 3px; outline-offset: 3px; }
+.paper-badge img { display: block; height: 20px; width: auto; }
+.paper-badge:hover { opacity: 0.88; }
+.paper-badge:focus-visible { outline: 2px solid var(--primary); }
+.paper-results { display: grid; gap: 28px; margin-top: 8px; }
+.paper-results .paper-figure-block { margin: 0; }
 .paper-block { margin-top: 80px; padding: 0; border: 0; background: transparent; box-shadow: none; scroll-margin-top: 80px; }
 .paper-block h2 { margin: 0 0 18px; font-size: 28px; font-weight: 750; text-align: center; }
 .paper-block h2::after { content: none; }

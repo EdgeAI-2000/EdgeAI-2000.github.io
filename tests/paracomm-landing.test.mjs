@@ -40,8 +40,13 @@ test('video is its own section immediately after the action buttons', () => {
   assert.doesNotMatch(layout, /paper-figure-card|paper-stage|paper-demo-pending/);
 });
 
-test('Paper, PDF, Code, Video, and Project Page are the same primary button', () => {
+test('ParaComm uses shields, and projects without badges keep equal buttons', () => {
   const actions = layout.slice(layout.indexOf('class="paper-actions"'), layout.indexOf('</header>'));
+  assert.match(actions, /class="paper-badge"/);
+  assert.match(actions, /project\.badges/);
+  assert.match(actions, /when 'pdf'[\s\S]*project\.pdf/);
+  assert.match(actions, /when 'code'[\s\S]*project\.code/);
+  assert.match(actions, /when 'video'[\s\S]*#paper-demo/);
   assert.match(actions, /class="btn"/);
   assert.doesNotMatch(actions, /btn secondary/);
   assert.match(layout, /assign paper_label = 'Paper'/);
@@ -49,9 +54,31 @@ test('Paper, PDF, Code, Video, and Project Page are the same primary button', ()
   assert.match(layout, /assign video_label = 'Video'/);
   assert.match(layout, /assign page_label = 'Project Page'/);
   assert.match(actions, />PDF</);
+  assert.match(css, /\.paper-badge/);
   assert.match(css, /\.paper-actions \.btn\s*\{[^}]*background:\s*var\(--button\)/);
   assert.match(css, /\.paper-actions \.btn\s*\{[^}]*box-shadow:\s*none/);
   assert.doesNotMatch(css, /\.paper-actions \.btn:not\(\.secondary\)/);
+});
+
+test('PDF, code, and result figures use the lab hosts', () => {
+  assert.match(project, /pdf:\s*https:\/\/files\.eaislab\.com\/projects\/paracomm\/paper\.pdf/);
+  assert.match(project, /code:\s*https:\/\/github\.com\/EdgeAI-2000\/ParaComm/);
+  assert.match(project, /doi:\s*https:\/\/doi\.org\/10\.1109\/TMC\.2026\.3741641/);
+  assert.doesNotMatch(project, /fengxueguiren\/ParaComm/);
+  assert.doesNotMatch(project, /weiquanmin\.github\.io\/ParaComm\/static\/pdfs/);
+  assert.match(project, /642abaca-b080-4ed2-a207-36f189f0fa00\/public/);
+  assert.match(project, /00a974fb-07ad-4887-9d08-8c9a6a07f200\/public/);
+  assert.match(project, /width:\s*1620/);
+  assert.match(project, /height:\s*766/);
+  assert.match(project, /results_lead_en:.*qualitative comparison \(Fig\. 7\).*trade-off analysis \(Fig\. 8\)/);
+  assert.match(project, /results_lead_zh:.*定性对比（图 7）.*折中分析（图 8）/);
+  assert.match(project, /caption_en:.*atom top-k/);
+  assert.match(project, /caption_zh:.*原子 top-k/);
+  assert.match(layout, /include asset-src\.html src=fig\.src/);
+  assert.match(layout, /id="results"/);
+  const assetSrc = read('../_includes/asset-src.html');
+  assert.match(assetSrc, /contains ':\/\/'/);
+  assert.match(assetSrc, /relative_url/);
 });
 
 test('key results are taken from the abstract, including the OPV2V reduction', () => {
@@ -61,7 +88,8 @@ test('key results are taken from the abstract, including the OPV2V reduction', (
   assert.match(project, /OPV2V、V2XSet、DAIR-V2X/);
   assert.match(project, /相对全特征协同/);
   assert.match(project, /Versus full-feature collaboration/);
-  assert.doesNotMatch(project, /\d+(?:\.\d+)?%/);
+  const withoutBadgeArt = project.replace(/^.*img\.shields\.io.*$/gm, '');
+  assert.doesNotMatch(withoutBadgeArt, /\d+(?:\.\d+)?%/);
 });
 
 test('concept and framework figures stay, and the demo is captioned without extra art', () => {
