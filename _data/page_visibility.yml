@@ -6,7 +6,7 @@ admissions: true
 news: true
 themes: true
 research: true
-projects: false
+projects: true
 funding: true
 publications: true
 patents: true

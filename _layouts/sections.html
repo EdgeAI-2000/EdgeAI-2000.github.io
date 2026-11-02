@@ -25,12 +25,28 @@ layout: default
           {% include list-cover.html src=cover_raw alt="" priority=cover_priority width=it.cover_width height=it.cover_height %}
         </div>
         <div class="content">
-          <h2>{% if page.lang == 'en' %}{{ it.title_en | default: it.title }}{% else %}{{ it.title }}{% endif %}</h2>
           {% if page.lang == 'en' %}
+            {% assign item_title = it.title_en | default: it.title %}
             {% assign lead = it.summary_en | default: it.intro_en | default: it.summary_zh | default: it.intro %}
+            {% assign item_highlights = it.highlights_en | default: it.highlights %}
+            {% assign item_themes = it.themes_en | default: it.themes %}
           {% else %}
+            {% assign item_title = it.title %}
             {% assign lead = it.summary_zh | default: it.summary_en | default: it.intro %}
+            {% assign item_highlights = it.highlights %}
+            {% assign item_themes = it.themes %}
           {% endif %}
+          {% if it.layout == 'project_paper' %}
+            {% if page.lang == 'en' %}
+              {% assign item_href = '/en/project/' | append: it.slug | append: '/' %}
+            {% else %}
+              {% assign item_href = it.url %}
+            {% endif %}
+            <h2><a href="{{ item_href | relative_url }}">{{ item_title }}</a></h2>
+          {% else %}
+            <h2>{{ item_title }}</h2>
+          {% endif %}
+          {% if it.venue %}<p class="meta">{{ it.venue }}</p>{% endif %}
           {% if lead %}<p class="lead">{{ lead }}</p>{% endif %}
 
           {% if it.metrics %}
@@ -41,26 +57,30 @@ layout: default
             </div>
           {% endif %}
 
-          {% if it.highlights %}
+          {% if item_highlights %}
             <ul class="highlights" style="margin:8px 0 0 0;padding-left:1.2em;">
-              {% for h in it.highlights %}<li>{{ h }}</li>{% endfor %}
+              {% for h in item_highlights %}<li>{{ h }}</li>{% endfor %}
             </ul>
           {% endif %}
 
-          {% if it.themes %}
+          {% if item_themes %}
             <div class="tags" style="margin-top:8px;">
-              {% for t in it.themes %}<span class="tag">{{ t }}</span>{% endfor %}
+              {% for t in item_themes %}<span class="tag">{{ t }}</span>{% endfor %}
             </div>
           {% endif %}
 
-          {% if it.content %}
-            <div class="body">{% if page.lang == 'en' and it.content_en %}{{ it.content_en | markdownify }}{% else %}{{ it.content }}{% endif %}</div>
+          {% assign item_body = it.content | strip %}
+          {% if page.lang == 'en' and it.content_en %}
+            <div class="body">{{ it.content_en | markdownify }}</div>
+          {% elsif item_body != '' %}
+            <div class="body">{{ it.content }}</div>
           {% endif %}
 
           <div class="links" style="margin-top:10px;">
-            {% if it.pdf %}<a class="link" href="{{ it.pdf }}" target="_blank">PDF</a>{% endif %}
-            {% if it.code %}{% if it.pdf %} · {% endif %}<a class="link" href="{{ it.code }}" target="_blank">Code</a>{% endif %}
-            {% if it.demo_video %}{% if it.pdf or it.code %} · {% endif %}<a class="link" href="{{ it.demo_video }}" target="_blank">Video</a>{% endif %}
+            {% if it.pdf %}<a class="link" href="{{ it.pdf }}" target="_blank" rel="noopener noreferrer">PDF</a>{% endif %}
+            {% if it.code %}{% if it.pdf %} · {% endif %}<a class="link" href="{{ it.code }}" target="_blank" rel="noopener noreferrer">Code</a>{% endif %}
+            {% if it.demo_video %}{% if it.pdf or it.code %} · {% endif %}<a class="link" href="{{ it.demo_video }}" target="_blank" rel="noopener noreferrer">Video</a>{% endif %}
+            {% if it.layout == 'project_paper' %}{% if it.pdf or it.code or it.demo_video %} · {% endif %}<a class="link" href="{{ item_href | relative_url }}">{% if page.lang == 'en' %}Project page{% else %}项目页面{% endif %}</a>{% endif %}
           </div>
         </div>
       </div>

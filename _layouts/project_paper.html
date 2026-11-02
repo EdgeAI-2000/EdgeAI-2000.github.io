@@ -1,0 +1,234 @@
+---
+layout: default
+---
+{% assign project = page %}
+{% if page.project_slug %}
+  {% assign project = site.projects | where: 'slug', page.project_slug | first %}
+{% endif %}
+{% assign lang = page.lang | default: project.lang | default: 'zh' %}
+{% if lang == 'en' %}
+  {% assign list_url = '/en/project/' %}
+{% else %}
+  {% assign list_url = '/zh/project/' %}
+{% endif %}
+
+<article class="paper-project">
+  {% unless project %}
+    <p>{% if lang == 'en' %}This project page could not be found.{% else %}未找到该项目页面。{% endif %}</p>
+  {% else %}
+    {% assign paper_title = project.paper_title | default: project.title_en | default: project.title %}
+    {% assign demo = project.demo_video | default: '' | strip %}
+    {% assign demo_kind = '' %}
+    {% if demo != '' %}
+      {% assign demo_lower = demo | downcase %}
+      {% if demo_lower contains '.mp4' or demo_lower contains '.webm' or demo_lower contains '.ogg' %}
+        {% assign demo_kind = 'file' %}
+      {% else %}
+        {% assign demo_kind = 'link' %}
+      {% endif %}
+    {% endif %}
+
+    <header class="paper-hero">
+      <p class="paper-kicker">{{ project.short_name | default: 'ParaComm' | escape }}{% if project.venue %} · {{ project.venue | escape }}{% endif %}</p>
+      <h1>{{ paper_title | escape }}</h1>
+      {% if lang != 'en' and project.paper_title_zh %}
+        <p class="paper-subtitle">{{ project.paper_title_zh | escape }}</p>
+      {% endif %}
+
+      {% if project.authors %}
+        <p class="paper-authors">
+          {%- for author in project.authors -%}
+            {%- if lang == 'en' -%}
+              {%- assign author_name = author.name -%}
+            {%- else -%}
+              {%- assign author_name = author.name_zh | default: author.name -%}
+            {%- endif -%}
+            {%- unless forloop.first -%}, {% endunless -%}
+            {%- if author.slug -%}
+              {%- if lang == 'en' -%}
+                {%- assign author_href = '/en/people/' | append: author.slug | append: '/' -%}
+              {%- else -%}
+                {%- assign author_href = '/people/' | append: author.slug | append: '/' -%}
+              {%- endif -%}
+              <a href="{{ author_href | relative_url }}">{{ author_name | escape }}</a>
+            {%- else -%}
+              <span>{{ author_name | escape }}</span>
+            {%- endif -%}
+            {%- if author.corresponding -%}<sup class="paper-corresponding">*</sup>{%- endif -%}
+          {%- endfor -%}
+        </p>
+        <p class="meta"><sup>*</sup> {% if lang == 'en' %}Corresponding author{% else %}通讯作者{% endif %}</p>
+      {% endif %}
+
+      {% if lang == 'en' %}
+        {% assign affil = project.affiliations_en | default: project.affiliations %}
+      {% else %}
+        {% assign affil = project.affiliations_zh | default: project.affiliations_en | default: project.affiliations %}
+      {% endif %}
+      {% if affil %}<p class="paper-affil meta">{{ affil | escape }}</p>{% endif %}
+
+      <div class="paper-actions">
+        {% assign paper_url = project.paper | default: project.doi %}
+        {% if paper_url %}
+          <a class="btn" href="{{ paper_url }}" target="_blank" rel="noopener noreferrer">{% if lang == 'en' %}Paper{% else %}论文{% endif %}</a>
+        {% endif %}
+        {% if project.pdf %}
+          <a class="btn secondary" href="{{ project.pdf }}" target="_blank" rel="noopener noreferrer">PDF</a>
+        {% endif %}
+        {% if project.code %}
+          <a class="btn secondary" href="{{ project.code }}" target="_blank" rel="noopener noreferrer">{% if lang == 'en' %}Code{% else %}代码{% endif %}</a>
+        {% endif %}
+        {% if demo_kind == 'file' %}
+          <a class="btn secondary" href="#paper-demo">{% if lang == 'en' %}Video{% else %}视频{% endif %}</a>
+        {% elsif demo_kind == 'link' %}
+          <a class="btn secondary" href="{{ demo }}" target="_blank" rel="noopener noreferrer">{% if lang == 'en' %}Video{% else %}视频{% endif %}</a>
+        {% endif %}
+        {% if project.project_page %}
+          <a class="btn secondary" href="{{ project.project_page }}" target="_blank" rel="noopener noreferrer">{% if lang == 'en' %}Project Page{% else %}项目主页{% endif %}</a>
+        {% endif %}
+      </div>
+    </header>
+
+    <div class="paper-stage" id="paper-demo">
+      {% if demo_kind == 'file' %}
+        {% if demo contains '://' %}
+          {% assign demo_src = demo %}
+        {% else %}
+          {% assign demo_src = demo | relative_url %}
+        {% endif %}
+        {% assign poster = project.demo_poster | default: '' | strip %}
+        {% if poster contains '://' %}
+          {% assign poster_src = poster %}
+        {% elsif poster != '' %}
+          {% assign poster_src = poster | relative_url %}
+        {% endif %}
+        <video class="paper-video" controls playsinline preload="metadata" src="{{ demo_src | escape }}"{% if poster != '' %} poster="{{ poster_src | escape }}"{% endif %}>
+          {% if lang == 'en' %}Your browser cannot play this demo video.{% else %}当前浏览器无法播放该演示视频。{% endif %}
+        </video>
+      {% elsif demo_kind == 'link' %}
+        <div class="paper-demo-pending">
+          <p class="paper-demo-label">Demo</p>
+          <h2>{% if lang == 'en' %}Watch the demo{% else %}观看演示{% endif %}</h2>
+          <p><a class="btn" href="{{ demo }}" target="_blank" rel="noopener noreferrer">{% if lang == 'en' %}Open video{% else %}打开视频{% endif %}</a></p>
+        </div>
+      {% else %}
+        <div class="paper-demo-pending" role="status">
+          <p class="paper-demo-label">Demo</p>
+          <h2>{% if lang == 'en' %}Demo video coming soon{% else %}演示视频即将上线{% endif %}</h2>
+          <p class="meta">{% if lang == 'en' %}A walkthrough of ParaComm will appear in this space.{% else %}ParaComm 的演示将显示在这里。{% endif %}</p>
+        </div>
+      {% endif %}
+
+      {% if project.figure_concept %}
+        {% if lang == 'en' %}
+          {% assign concept_alt = project.figure_concept_alt_en | default: project.figure_concept_alt | default: paper_title %}
+          {% assign concept_caption = project.figure_concept_caption_en | default: project.figure_concept_caption %}
+        {% else %}
+          {% assign concept_alt = project.figure_concept_alt_zh | default: project.figure_concept_alt_en | default: project.paper_title_zh | default: paper_title %}
+          {% assign concept_caption = project.figure_concept_caption_zh | default: project.figure_concept_caption_en %}
+        {% endif %}
+        <figure class="paper-figure-card">
+          {% assign concept_src = project.figure_concept | relative_url %}
+          {% include img.html src=concept_src class="paper-figure" alt=concept_alt width=project.figure_concept_width height=project.figure_concept_height priority="eager" %}
+          {% if concept_caption %}<figcaption>{{ concept_caption | escape }}</figcaption>{% endif %}
+        </figure>
+      {% endif %}
+    </div>
+
+    {% if lang == 'en' %}
+      {% assign abstract = project.abstract_en | default: project.abstract_zh %}
+      {% assign method = project.method_en | default: project.method_zh %}
+      {% assign method_alt = project.figure_method_alt_en | default: project.figure_method_alt | default: 'ParaComm framework' %}
+      {% assign method_caption = project.figure_method_caption_en | default: project.figure_method_caption %}
+      {% assign abstract_heading = 'Abstract' %}
+      {% assign method_heading = 'Method' %}
+      {% assign bibtex_heading = 'BibTeX' %}
+      {% assign copy_label = 'Copy BibTeX' %}
+      {% assign copied_label = 'Copied' %}
+      {% assign back_label = 'Back to projects' %}
+    {% else %}
+      {% assign abstract = project.abstract_zh | default: project.abstract_en %}
+      {% assign method = project.method_zh | default: project.method_en %}
+      {% assign method_alt = project.figure_method_alt_zh | default: project.figure_method_alt_en | default: 'ParaComm 整体框架' %}
+      {% assign method_caption = project.figure_method_caption_zh | default: project.figure_method_caption_en %}
+      {% assign abstract_heading = '摘要' %}
+      {% assign method_heading = '方法' %}
+      {% assign bibtex_heading = 'BibTeX' %}
+      {% assign copy_label = '复制 BibTeX' %}
+      {% assign copied_label = '已复制' %}
+      {% assign back_label = '返回项目列表' %}
+    {% endif %}
+
+    {% if abstract %}
+      <section class="paper-section" id="abstract">
+        <h2>{{ abstract_heading }}</h2>
+        <p>{{ abstract | escape }}</p>
+      </section>
+    {% endif %}
+
+    {% if method or project.figure_method %}
+      <section class="paper-section" id="method">
+        <h2>{{ method_heading }}</h2>
+        {% if method %}<p>{{ method | escape }}</p>{% endif %}
+        {% if project.figure_method %}
+          <figure class="paper-figure-card">
+            {% assign method_src = project.figure_method | relative_url %}
+            {% include img.html src=method_src class="paper-figure" alt=method_alt width=project.figure_method_width height=project.figure_method_height priority="lazy" %}
+            {% if method_caption %}<figcaption>{{ method_caption | escape }}</figcaption>{% endif %}
+          </figure>
+        {% endif %}
+      </section>
+    {% endif %}
+
+    {% if project.bibtex %}
+      <section class="paper-section" id="bibtex">
+        <div class="paper-bibtex-bar">
+          <h2>{{ bibtex_heading }}</h2>
+          <button type="button" class="btn secondary" data-bibtex-copy data-copied-label="{{ copied_label | escape }}">{{ copy_label }}</button>
+        </div>
+        <pre class="paper-bibtex"><code>{{ project.bibtex | escape }}</code></pre>
+        <p class="paper-copy-status meta" data-bibtex-status aria-live="polite"></p>
+      </section>
+    {% endif %}
+
+    <p class="paper-back"><a class="link" href="{{ list_url | relative_url }}">{{ back_label }}</a></p>
+  {% endunless %}
+</article>
+{% if project.bibtex %}
+<script>
+(function () {
+  var root = document.querySelector('.paper-project');
+  if (!root) return;
+  var button = root.querySelector('[data-bibtex-copy]');
+  var code = root.querySelector('.paper-bibtex');
+  var status = root.querySelector('[data-bibtex-status]');
+  if (!button || !code) return;
+  var idle = button.textContent;
+  var done = button.getAttribute('data-copied-label') || 'Copied';
+  button.addEventListener('click', function () {
+    var text = code.textContent.replace(/^\s+|\s+$/g, '');
+    var mark = function () {
+      button.textContent = done;
+      if (status) status.textContent = done;
+      window.setTimeout(function () { button.textContent = idle; if (status) status.textContent = ''; }, 2000);
+    };
+    var fallback = function () {
+      var area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.left = '-9999px';
+      document.body.appendChild(area);
+      area.select();
+      try { document.execCommand('copy'); mark(); } catch (error) { if (status) status.textContent = idle; }
+      document.body.removeChild(area);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(mark).catch(fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
+</script>
+{% endif %}

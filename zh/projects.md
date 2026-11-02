@@ -2,10 +2,10 @@
 layout: sections
 lang: zh
 mascot: coding
-title: 系统平台
-description: 实验室三大落地平台，覆盖协同感知、大小模型协同与多智能体边缘应用，将研究成果转化为可部署的系统能力。
+title: 项目
+description: 实验室的系统平台与研究项目页面，包括可部署的协同感知、大小模型协同与多智能体边缘应用系统，以及学术论文项目。
 collection: projects
 sort_by: date
 reverse: true
-permalink: /zh/projects/
+permalink: /zh/project/
 ---

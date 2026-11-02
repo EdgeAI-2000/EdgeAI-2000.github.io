@@ -9,7 +9,7 @@
 - `_config.yml` 的 `url` 仍为 `https://edgeai-2000.github.io`，`baseurl` 为空；维护 SEO、规范链接和站点地图时应核对这一配置与自定义域名的关系。
 - 中文首页 `/zh/`，英文首页 `/en/`；根路径 `/` 的源码使用 HTML 跳转到英文首页，尽管全局 `lang` 为 `zh`。
 - 研究方向：多智能体协同感知、边缘大模型推理与部署、代理式人工智能。
-- 项目展示：EdgeCoSense 协同感知平台、EdgeModelBridge 大小模型协同引擎、EdgeAgentWorks 边缘多智能体应用平台。
+- 项目展示：EdgeCoSense 协同感知平台、EdgeModelBridge 大小模型协同引擎、EdgeAgentWorks 边缘多智能体应用平台，以及论文项目页 ParaComm（`_layouts/project_paper.html`）。列表为 `/zh/project/` 与 `/en/project/`。ParaComm 中文页 `/zh/project/paracomm/`，英文页 `/en/project/paracomm/`，根路径 `/project/paracomm/` 跳转到英文页。
 
 ## 技术组成
 
@@ -170,7 +170,7 @@ permalink: /en/news/2026-10-13-example-news/
 
 ### 页面显示
 
-当前 `_data/page_visibility.yml` 中 `projects: false`，其余已列开关为 `true`，包括 `news: true`。现有后台说明中的 News 默认关闭描述不代表当前配置。
+当前 `_data/page_visibility.yml` 中已列开关均为 `true`，包括 `projects: true` 与 `news: true`。现有后台说明中的 News 默认关闭描述不代表当前配置。
 
 开关影响导航、首页板块及相关入口；隐藏页面的原 URL 仍可访问，不能用于权限控制。后台页面设置由仓库 Admin 保存，直接更新 `main`，不经过内容草稿发布流程。
 
