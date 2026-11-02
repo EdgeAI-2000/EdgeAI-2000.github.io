@@ -33,6 +33,27 @@ code: https://github.com/fengxueguiren/ParaComm
 project_page: https://weiquanmin.github.io/ParaComm/
 demo_video: https://files.eaislab.com/projects/paracomm/demo.mp4
 demo_poster: https://files.eaislab.com/projects/paracomm/demo-poster.jpg
+demo_lead_zh: "看完就懂。"
+demo_lead_en: "Watch it once and the idea is clear."
+demo_caption_zh: "共享字典原子留在每辆车上，在线只传输稀疏参数。参数先在空间位置与字典原子上稀疏化，再经参数共享与低比特量化；接收端用本地字典重建协同特征。"
+demo_caption_en: "Shared dictionary atoms stay on each vehicle, and only sparse parameters are sent. Those parameters are sparsified over space and dictionary atoms, then shared and quantized. The receiver rebuilds collaborative features from its local dictionary."
+key_results:
+  - value: ">350×"
+    label_zh: "OPV2V 压缩"
+    label_en: "OPV2V compression"
+    detail_zh: "34.375 MB → 99.688 KB"
+    detail_en: "34.375 MB → 99.688 KB"
+  - value_zh: "提升"
+    value_en: "Improves"
+    label_zh: "检测精度"
+    label_en: "Detection"
+    detail_zh: "相对全特征协同"
+    detail_en: "Versus full-feature collaboration"
+  - value: "3"
+    label_zh: "数据集"
+    label_en: "Datasets"
+    detail_zh: "OPV2V、V2XSet、DAIR-V2X"
+    detail_en: "OPV2V, V2XSet, DAIR-V2X"
 summary_zh: "面向自动驾驶协同感知的参数中心通信框架。共享字典原子留在本地，在线只传输稀疏参数。"
 summary_en: "A parameter-centric framework for collaborative perception. Shared dictionary atoms stay on each agent, and only sparse parameters are sent online."
 themes:
@@ -62,8 +83,8 @@ figure_method_width: 1593
 figure_method_height: 629
 figure_method_alt_zh: "ParaComm 整体框架：发送端由通信骨干、空间头与参数头得到空间分数和稠密参数，经联合稀疏化、分块共享和量化后传输；接收端用共享字典显式重建并精炼特征。"
 figure_method_alt_en: "Overall ParaComm framework. The sender turns BEV features into sparse quantized parameters; the receiver reconstructs features with the shared dictionary and a refinement head."
-figure_method_caption_zh: "图：ParaComm 整体框架。"
-figure_method_caption_en: "Figure: overall framework of ParaComm."
+figure_method_caption_zh: "发送端输出稀疏量化参数；接收端用本地共享字典重建，并由精炼头复用通信骨干。"
+figure_method_caption_en: "The sender emits sparse quantized parameters. The receiver reconstructs features with the local shared dictionary and a refinement head that reuses the communication backbone."
 abstract_zh: "协同感知通过让智能体共享互补的感知信息来增强自动驾驶。现有方法通常采用以特征为中心的通信（Feature-Centric Communication, FCC）视角，重点在于选择或压缩待传输的特征表示。共享的表示基为减少在线通信量提供了机会：可以用紧凑参数来编码观测。基于这一想法，我们提出以参数为中心的通信（Parameter-Centric Communication, PCC）视角，其中这些参数描述各智能体本地保留的表示基如何组合。我们将 PCC 实例化为 ParaComm，一个由可学习字典驱动、面向通信高效协同感知的框架。在 ParaComm 中，从 BEV 特征学习得到的连续参数指定如何组合共享字典原子，以形成当前的协同表示。为降低传输量，ParaComm 在空间位置与字典原子两个维度上逐步稀疏化这些参数，并进一步通过参数共享与低比特量化加以压缩。接收端再用传来的参数及其本地保存的共享字典，显式重建协同特征。在 OPV2V、V2XSet 与 DAIR-V2X 上的大量实验验证了 ParaComm 的有效性与通用性。例如在 OPV2V 上，它将通信量从 34.375 MB 降至 99.688 KB，压缩超过 350×，同时相对于标准的全特征协同仍提升了检测精度。"
 abstract_en: "Collaborative perception enhances autonomous driving by allowing agents to share complementary perceptual information. Existing methods typically adopt a Feature-Centric Communication (FCC) perspective that focuses on selecting or compressing feature representations for transmission. A shared representational basis offers an opportunity to reduce online communication by encoding observations through compact parameters. Building on this idea, we introduce a Parameter-Centric Communication (PCC) perspective, in which these parameters specify the composition of representational bases retained locally at each agent. We instantiate PCC as ParaComm, a learnable dictionary-driven framework for communication-efficient collaborative perception. In ParaComm, continuous parameters learned from BEV features specify how shared dictionary atoms are combined to form the current collaborative representation. To reduce transmission volume, ParaComm progressively sparsifies these parameters across spatial locations and dictionary atoms and further compacts them through parameter sharing and low-bit quantization. The receiver then explicitly reconstructs collaborative features using the transmitted parameters and its local copy of the shared dictionary. Extensive experiments on OPV2V, V2XSet, and DAIR-V2X validate the effectiveness and generality of ParaComm. On OPV2V, for example, it reduces the communication volume from 34.375 MB to 99.688 KB, corresponding to over 350× compression, while still improving detection accuracy relative to standard full-feature collaboration."
 method_zh: "ParaComm 是一条面向协同感知的、以参数为中心的通信流水线。在发送端，共享的通信骨干网络（Communication Backbone）与空间头（Space Head）、原子头（Atom Head）共同产生空间分数和原子级稠密参数。空间分数用于联合空间-原子稀疏化（Joint Space-Atom Sparsification），以稀疏化稠密参数；这些参数再经可变分块参数共享（Variable-Tile Parameter Sharing）和量化表示（Quantized Representation）进一步压缩，形成待传输参数。待传输参数送到接收端后，接收端使用本地共享的字典原子进行显式重建，并由轻量的精炼头（Refinement Head）进一步精炼。精炼阶段复用通信骨干网络，从而减少额外参数与计算，同时提升特征质量。"
