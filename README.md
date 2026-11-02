@@ -9,7 +9,7 @@
 - `_config.yml` 的 `url` 仍为 `https://edgeai-2000.github.io`，`baseurl` 为空；维护 SEO、规范链接和站点地图时应核对这一配置与自定义域名的关系。
 - 中文首页 `/zh/`，英文首页 `/en/`；根路径 `/` 的源码使用 HTML 跳转到英文首页，尽管全局 `lang` 为 `zh`。
 - 研究方向：多智能体协同感知、边缘大模型推理与部署、代理式人工智能。
-- 项目展示：EdgeCoSense 协同感知平台、EdgeModelBridge 大小模型协同引擎、EdgeAgentWorks 边缘多智能体应用平台，以及论文项目页 ParaComm（`_layouts/project_paper.html`）。列表为 `/zh/project/` 与 `/en/project/`。ParaComm 中文页 `/zh/project/paracomm/`，英文页 `/en/project/paracomm/`，根路径 `/project/paracomm/` 跳转到英文页。
+- 项目展示：仅论文项目页 ParaComm（`_layouts/project_paper.html`）。列表为 `/zh/project/` 与 `/en/project/`，只收录 ParaComm。中文页 `/zh/project/paracomm/`，英文页 `/en/project/paracomm/`，根路径 `/project/paracomm/` 跳转到英文页。演示视频为 `https://files.eaislab.com/projects/paracomm/demo.mp4`，封面为 `https://files.eaislab.com/projects/paracomm/demo-poster.jpg`。
 
 ## 技术组成
 
@@ -58,7 +58,7 @@
 | `docs/brand-identity.md` | 品牌资源来源、更新和视觉检查说明 |
 | `_site/` | 已跟踪的构建输出，不作为内容编辑入口；`vendor/` 和 `.sass-cache/` 为可能产生的本地依赖和缓存目录 |
 
-截至本次源码核对（2026-10-13），共有 43 份成员记录、89 份 `auto` 论文记录、3 个研究方向、3 个项目、2 条新闻、4 项专利；统计排除了下划线开头的模板，**不等于网站实际显示数量**。
+截至本次源码核对（2026-10-13），共有 43 份成员记录、89 份 `auto` 论文记录、3 个研究方向、2 条新闻、4 项专利；`_projects/` 现仅 ParaComm。统计排除了下划线开头的模板，**不等于网站实际显示数量**。
 
 ## 本地运行与验证
 
