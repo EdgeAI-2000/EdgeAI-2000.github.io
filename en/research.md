@@ -20,7 +20,7 @@ permalink: /en/research/
   {% unless site.data.page_visibility.projects == false or site.data.page_visibility.themes == false %}
   <section style="margin-top:12px;">
     <h2>Projects</h2>
-    <p class="meta">Engineering and prototypes.</p>
+    <p class="meta">Systems platforms and research project pages.</p>
     <p><a class="link" href="{{ '/en/projects/' | relative_url }}">Browse Projects</a></p>
   </section>
   {% endunless %}

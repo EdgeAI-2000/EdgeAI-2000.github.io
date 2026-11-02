@@ -139,7 +139,7 @@ layout: default
 </section>
 {% endunless %}
 
-{% assign featured_projects = site.projects | where: 'status', 'active' %}
+{% assign featured_projects = site.projects | where: 'status', 'active' | sort: 'date' | reverse %}
 {% if site.data.page_visibility.projects != false and site.data.page_visibility.themes != false and featured_projects and featured_projects.size > 0 %}
 <section class="container section-block">
   <div class="section-head">
@@ -148,29 +148,33 @@ layout: default
   </div>
   <div class="hscroll-wrap one">
     <div class="hscroll one" id="projects-hs">
-      {% for project in featured_projects limit:12 %}
+      {% assign shown_projects = featured_projects | slice: 0, 12 %}
+      {% for project in shown_projects %}
         {% assign cover = project.cover | default: '/assets/images/placeholders/card-16x9.svg' %}
+        {% assign project_href = project.url %}
         {% if page.lang == 'en' %}
           {% assign summary = project.summary_en | default: project.summary_zh | default: project.intro | default: project.content %}
+          {% assign project_title = project.title_en | default: project.title %}
+          {% assign project_themes = project.themes_en | default: project.themes %}
+          {% assign en_project_url = '/en/projects/' | append: project.slug | append: '/' %}
+          {% assign en_project_page = site.pages | where: 'url', en_project_url | first %}
+          {% if en_project_page %}{% assign project_href = en_project_page.url %}{% endif %}
         {% else %}
           {% assign summary = project.summary_zh | default: project.summary_en | default: project.intro | default: project.content %}
+          {% assign project_title = project.title %}
+          {% assign project_themes = project.themes %}
         {% endif %}
         <article class="hcard card project-card" data-i="{{ forloop.index0 }}">
           {% include list-cover.html src=cover class="cover" alt="" hidden=true priority="lazy" width=project.cover_width height=project.cover_height %}
-          <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
-          {% if project.themes %}<p class="meta">{{ project.themes | array_to_sentence_string }}</p>{% endif %}
+          <h3><a href="{{ project_href | relative_url }}">{{ project_title }}</a></h3>
+          {% if project_themes %}<p class="meta">{{ project_themes | array_to_sentence_string }}</p>{% endif %}
           {% if summary %}<p>{{ summary | strip_html | truncate: 120 }}</p>{% endif %}
         </article>
       {% endfor %}
     </div>
     <div class="dots" data-for="projects-hs">
-      {% assign total_projects = featured_projects | size %}
-      {% for g in (0..2) %}
-        {% if g < total_projects %}
-          <button class="dot" data-g="{{ g }}" aria-label="{{ 'page ' | append: g }}"></button>
-        {% else %}
-          <button class="dot" data-g="{{ g }}" disabled aria-hidden="true"></button>
-        {% endif %}
+      {% for project in shown_projects %}
+        <button class="dot" data-g="{{ forloop.index0 }}" aria-label="{{ 'page ' | append: forloop.index }}"></button>
       {% endfor %}
     </div>
   </div>
