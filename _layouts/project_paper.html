@@ -38,6 +38,8 @@ layout: default
       {% assign method_caption = project.figure_method_caption_en | default: project.figure_method_caption %}
       {% assign abstract_heading = 'Abstract' %}
       {% assign method_heading = 'Method' %}
+      {% assign results_heading = 'Experimental Results' %}
+      {% assign results_lead = project.results_lead_en | default: project.results_lead %}
       {% assign bibtex_heading = 'BibTeX' %}
       {% assign copy_label = 'Copy BibTeX' %}
       {% assign copied_label = 'Copied' %}
@@ -58,6 +60,8 @@ layout: default
       {% assign method_caption = project.figure_method_caption_zh | default: project.figure_method_caption_en %}
       {% assign abstract_heading = '摘要' %}
       {% assign method_heading = '方法' %}
+      {% assign results_heading = '实验结果' %}
+      {% assign results_lead = project.results_lead_zh | default: project.results_lead_en | default: project.results_lead %}
       {% assign bibtex_heading = 'BibTeX' %}
       {% assign copy_label = '复制 BibTeX' %}
       {% assign copied_label = '已复制' %}
@@ -132,23 +136,57 @@ layout: default
       {% endif %}
 
       <div class="paper-actions">
-        {% assign paper_url = project.paper | default: project.doi %}
-        {% if paper_url %}
-          <a class="btn" href="{{ paper_url }}" target="_blank" rel="noopener noreferrer">{{ paper_label }}</a>
-        {% endif %}
-        {% if project.pdf %}
-          <a class="btn" href="{{ project.pdf }}" target="_blank" rel="noopener noreferrer">PDF</a>
-        {% endif %}
-        {% if project.code %}
-          <a class="btn" href="{{ project.code }}" target="_blank" rel="noopener noreferrer">{{ code_label }}</a>
-        {% endif %}
-        {% if demo_kind == 'file' %}
-          <a class="btn" href="#paper-demo">{{ video_label }}</a>
-        {% elsif demo_kind == 'link' %}
-          <a class="btn" href="{{ demo }}" target="_blank" rel="noopener noreferrer">{{ video_label }}</a>
-        {% endif %}
-        {% if project.project_page %}
-          <a class="btn" href="{{ project.project_page }}" target="_blank" rel="noopener noreferrer">{{ page_label }}</a>
+        {% if project.badges %}
+          {% for badge in project.badges %}
+            {% assign badge_href = badge.href | default: '' %}
+            {% case badge.key %}
+              {% when 'paper' %}
+                {% assign badge_href = project.paper | default: project.doi | default: '' %}
+              {% when 'pdf' %}
+                {% assign badge_href = project.pdf | default: '' %}
+              {% when 'code' %}
+                {% assign badge_href = project.code | default: '' %}
+              {% when 'video' %}
+                {% if demo_kind == 'file' %}
+                  {% assign badge_href = '#paper-demo' %}
+                {% elsif demo_kind == 'link' %}
+                  {% assign badge_href = demo %}
+                {% else %}
+                  {% assign badge_href = '' %}
+                {% endif %}
+              {% when 'project' %}
+                {% assign badge_href = project.project_page | default: '' %}
+            {% endcase %}
+            {% if lang == 'en' %}
+              {% assign badge_src = badge.src_en | default: badge.src | default: '' %}
+              {% assign badge_alt = badge.alt_en | default: badge.alt | default: '' %}
+            {% else %}
+              {% assign badge_src = badge.src_zh | default: badge.src_en | default: badge.src | default: '' %}
+              {% assign badge_alt = badge.alt_zh | default: badge.alt_en | default: badge.alt | default: '' %}
+            {% endif %}
+            {% if badge_href != '' and badge_src != '' %}
+              <a class="paper-badge" href="{{ badge_href | escape }}"{% if badge_href contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}><img src="{{ badge_src | escape }}" alt="{{ badge_alt | escape }}" height="20" decoding="async"></a>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          {% assign paper_url = project.paper | default: project.doi %}
+          {% if paper_url %}
+            <a class="btn" href="{{ paper_url }}" target="_blank" rel="noopener noreferrer">{{ paper_label }}</a>
+          {% endif %}
+          {% if project.pdf %}
+            <a class="btn" href="{{ project.pdf }}" target="_blank" rel="noopener noreferrer">PDF</a>
+          {% endif %}
+          {% if project.code %}
+            <a class="btn" href="{{ project.code }}" target="_blank" rel="noopener noreferrer">{{ code_label }}</a>
+          {% endif %}
+          {% if demo_kind == 'file' %}
+            <a class="btn" href="#paper-demo">{{ video_label }}</a>
+          {% elsif demo_kind == 'link' %}
+            <a class="btn" href="{{ demo }}" target="_blank" rel="noopener noreferrer">{{ video_label }}</a>
+          {% endif %}
+          {% if project.project_page %}
+            <a class="btn" href="{{ project.project_page }}" target="_blank" rel="noopener noreferrer">{{ page_label }}</a>
+          {% endif %}
         {% endif %}
       </div>
     </header>
@@ -190,8 +228,8 @@ layout: default
       <section class="paper-block" id="concept" aria-labelledby="paper-concept-title">
         <h2 id="paper-concept-title">{{ concept_heading }}</h2>
         <figure class="paper-figure-block">
-          {% assign concept_src = project.figure_concept | relative_url %}
-          {% include img.html src=concept_src class="paper-figure" alt=concept_alt width=project.figure_concept_width height=project.figure_concept_height priority="lazy" %}
+          {% include asset-src.html src=project.figure_concept %}
+          {% include img.html src=asset_src class="paper-figure" alt=concept_alt width=project.figure_concept_width height=project.figure_concept_height priority="lazy" %}
           {% if concept_caption %}<figcaption>{{ concept_caption | escape }}</figcaption>{% endif %}
         </figure>
       </section>
@@ -210,11 +248,34 @@ layout: default
         {% if method %}<div class="paper-prose"><p>{{ method | escape }}</p></div>{% endif %}
         {% if project.figure_method %}
           <figure class="paper-figure-block">
-            {% assign method_src = project.figure_method | relative_url %}
-            {% include img.html src=method_src class="paper-figure" alt=method_alt width=project.figure_method_width height=project.figure_method_height priority="lazy" %}
+            {% include asset-src.html src=project.figure_method %}
+            {% include img.html src=asset_src class="paper-figure" alt=method_alt width=project.figure_method_width height=project.figure_method_height priority="lazy" %}
             {% if method_caption %}<figcaption>{{ method_caption | escape }}</figcaption>{% endif %}
           </figure>
         {% endif %}
+      </section>
+    {% endif %}
+
+    {% if project.figure_results and project.figure_results.size > 0 %}
+      <section class="paper-block" id="results">
+        <h2>{{ results_heading }}</h2>
+        {% if results_lead %}<p class="paper-lead">{{ results_lead | escape }}</p>{% endif %}
+        <div class="paper-results">
+          {% for fig in project.figure_results %}
+            {% if lang == 'en' %}
+              {% assign fig_alt = fig.alt_en | default: fig.alt | default: fig.caption_en | default: '' %}
+              {% assign fig_caption = fig.caption_en | default: fig.caption %}
+            {% else %}
+              {% assign fig_alt = fig.alt_zh | default: fig.alt_en | default: fig.alt | default: fig.caption_zh | default: '' %}
+              {% assign fig_caption = fig.caption_zh | default: fig.caption_en | default: fig.caption %}
+            {% endif %}
+            <figure class="paper-figure-block">
+              {% include asset-src.html src=fig.src %}
+              {% include img.html src=asset_src class="paper-figure" alt=fig_alt width=fig.width height=fig.height priority="lazy" %}
+              {% if fig_caption %}<figcaption>{{ fig_caption | escape }}</figcaption>{% endif %}
+            </figure>
+          {% endfor %}
+        </div>
       </section>
     {% endif %}
 
