@@ -22,9 +22,9 @@ main:
     url: /zh/themes/
     visibility: themes
     children:
-      - label: 项目
-        url: /zh/project/
-        visibility: projects
+      - label: 主题
+        url: /zh/themes/
+        visibility: themes
       - label: 基金
         url: /zh/funding/
         visibility: funding
@@ -34,6 +34,9 @@ main:
       - label: 专利
         url: /zh/patents/
         visibility: patents
+  - label: 项目
+    url: /zh/project/
+    visibility: projects
   - label: 团队
     url: /zh/people/
     visibility: people

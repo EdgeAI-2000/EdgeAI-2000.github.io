@@ -17,13 +17,6 @@ permalink: /zh/research/
   </section>
   {% endunless %}
 
-  {% unless site.data.page_visibility.projects == false or site.data.page_visibility.themes == false %}
-  <section style="margin-top:12px;">
-    <h2>项目 Projects</h2>
-    <p><a class="link" href="{{ '/zh/project/' | relative_url }}">进入项目</a></p>
-  </section>
-  {% endunless %}
-
   {% unless site.data.page_visibility.publications == false or site.data.page_visibility.themes == false %}
   <section style="margin-top:12px;">
     <h2>论文 Publications</h2>

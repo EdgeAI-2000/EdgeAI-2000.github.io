@@ -22,9 +22,9 @@ main:
     url: /en/themes/
     visibility: themes
     children:
-      - label: Projects
-        url: /en/project/
-        visibility: projects
+      - label: Themes
+        url: /en/themes/
+        visibility: themes
       - label: Funding
         url: /en/funding/
         visibility: funding
@@ -34,6 +34,9 @@ main:
       - label: Patents
         url: /en/patents/
         visibility: patents
+  - label: Projects
+    url: /en/project/
+    visibility: projects
   - label: People
     url: /en/people/
     visibility: people

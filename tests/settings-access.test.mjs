@@ -260,11 +260,13 @@ test('all page switches load legacy defaults and parents disable children recurs
   state.switches.about.checked = false;
   state.switches.themes.checked = false;
   state.visibilityForm.onchange();
-  const children = ['vision', 'contact', 'admissions', 'openings', 'research', 'projects', 'funding', 'publications', 'patents'];
+  const children = ['vision', 'contact', 'admissions', 'openings', 'research', 'funding', 'publications', 'patents'];
   for (const name of children) {
     assert.equal(state.switches[name].checked, false, name);
     assert.equal(state.switches[name].disabled, true, name);
   }
+  assert.equal(state.switches.projects.checked, false);
+  assert.equal(state.switches.projects.disabled, false);
   await state.visibilityForm.onsubmit({ preventDefault() {} });
   for (const name of children) assert.match(saved, new RegExp(`^${name}: false$`, 'm'));
   state.switches.about.checked = true;
