@@ -112,16 +112,16 @@ figure_method_caption_en: "The sender emits sparse quantized parameters. The rec
 results_lead_zh: "下图为定性对比（图 7）与设计选择的折中分析（图 8）。"
 results_lead_en: "The figures below are a qualitative comparison (Fig. 7) and a trade-off analysis (Fig. 8)."
 figure_results:
-  - src: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/642abaca-b080-4ed2-a207-36f189f0fa00/public
-    width: 2400
-    height: 854
+  - src: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/paracomm-fig7-pdf/public
+    width: 1366
+    height: 486
     alt_zh: "ParaComm 与基线协同感知方法的鸟瞰定性对比，面板标出漏检、不准确预测和错误预测。"
     alt_en: "Qualitative bird's-eye-view comparison of ParaComm against baseline methods, with missed, inaccurate, and incorrect predictions marked."
     caption_zh: "图 7. 鸟瞰（BEV）检测的定性对比。ParaComm 与基线协同感知方法并排展示，面板标出漏检、不准确预测和错误预测。"
     caption_en: "Fig. 7. Qualitative comparison of bird's-eye-view detection. ParaComm is shown alongside baseline collaborative perception methods, and the panels mark missed, inaccurate, and incorrect predictions."
-  - src: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/00a974fb-07ad-4887-9d08-8c9a6a07f200/public
-    width: 1620
-    height: 766
+  - src: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/paracomm-fig8-pdf/public
+    width: 1366
+    height: 508
     alt_zh: "图 8 关键设计选择的折中分析：原子 top-k、可变分块大小与字典大小，比较 AP@70 与通信量。"
     alt_en: "Fig. 8 trade-off analysis of key design choices (atom top-k, variable-tile size, and dictionary size), relating AP@70 to communication volume."
     caption_zh: "图 8. 关键设计选择的折中分析，包括原子 top-k、可变分块大小和字典大小，并比较 AP@70 与通信量。"

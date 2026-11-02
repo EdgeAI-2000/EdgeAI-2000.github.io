@@ -66,10 +66,13 @@ test('PDF, code, and result figures use the lab hosts', () => {
   assert.match(project, /doi:\s*https:\/\/doi\.org\/10\.1109\/TMC\.2026\.3741641/);
   assert.doesNotMatch(project, /fengxueguiren\/ParaComm/);
   assert.doesNotMatch(project, /weiquanmin\.github\.io\/ParaComm\/static\/pdfs/);
-  assert.match(project, /642abaca-b080-4ed2-a207-36f189f0fa00\/public/);
-  assert.match(project, /00a974fb-07ad-4887-9d08-8c9a6a07f200\/public/);
-  assert.match(project, /width:\s*1620/);
-  assert.match(project, /height:\s*766/);
+  assert.match(project, /src: https:\/\/imagedelivery\.net\/FNBuifN30Gov-zkgIT2tCQ\/paracomm-fig7-pdf\/public/);
+  assert.match(project, /src: https:\/\/imagedelivery\.net\/FNBuifN30Gov-zkgIT2tCQ\/paracomm-fig8-pdf\/public/);
+  assert.doesNotMatch(project, /642abaca-b080-4ed2-a207-36f189f0fa00/);
+  assert.doesNotMatch(project, /00a974fb-07ad-4887-9d08-8c9a6a07f200/);
+  assert.match(project, /width:\s*1366/);
+  assert.match(project, /height:\s*486/);
+  assert.match(project, /height:\s*508/);
   assert.match(project, /results_lead_en:.*qualitative comparison \(Fig\. 7\).*trade-off analysis \(Fig\. 8\)/);
   assert.match(project, /results_lead_zh:.*定性对比（图 7）.*折中分析（图 8）/);
   assert.match(project, /caption_en:.*atom top-k/);
