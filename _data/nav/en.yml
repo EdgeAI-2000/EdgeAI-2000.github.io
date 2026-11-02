@@ -23,7 +23,7 @@ main:
     visibility: themes
     children:
       - label: Projects
-        url: /en/projects/
+        url: /en/project/
         visibility: projects
       - label: Funding
         url: /en/funding/

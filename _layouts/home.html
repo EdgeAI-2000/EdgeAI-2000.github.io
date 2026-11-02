@@ -144,7 +144,7 @@ layout: default
 <section class="container section-block">
   <div class="section-head">
     <h2>{% if page.lang == 'en' %}Featured Projects{% else %}重点项目{% endif %}</h2>
-    <a class="link" href="{{ lp | append: '/projects/' | relative_url }}">{% if page.lang == 'en' %}View all{% else %}查看全部{% endif %}</a>
+    <a class="link" href="{{ lp | append: '/project/' | relative_url }}">{% if page.lang == 'en' %}View all{% else %}查看全部{% endif %}</a>
   </div>
   <div class="hscroll-wrap one">
     <div class="hscroll one" id="projects-hs">
@@ -156,7 +156,7 @@ layout: default
           {% assign summary = project.summary_en | default: project.summary_zh | default: project.intro | default: project.content %}
           {% assign project_title = project.title_en | default: project.title %}
           {% assign project_themes = project.themes_en | default: project.themes %}
-          {% assign en_project_url = '/en/projects/' | append: project.slug | append: '/' %}
+          {% assign en_project_url = '/en/project/' | append: project.slug | append: '/' %}
           {% assign en_project_page = site.pages | where: 'url', en_project_url | first %}
           {% if en_project_page %}{% assign project_href = en_project_page.url %}{% endif %}
         {% else %}

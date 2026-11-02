@@ -7,5 +7,5 @@ description: 实验室的系统平台与研究项目页面，包括可部署的�
 collection: projects
 sort_by: date
 reverse: true
-permalink: /zh/projects/
+permalink: /zh/project/
 ---

@@ -23,7 +23,7 @@ main:
     visibility: themes
     children:
       - label: 项目
-        url: /zh/projects/
+        url: /zh/project/
         visibility: projects
       - label: 基金
         url: /zh/funding/

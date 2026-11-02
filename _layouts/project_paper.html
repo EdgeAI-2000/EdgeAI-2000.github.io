@@ -7,9 +7,9 @@ layout: default
 {% endif %}
 {% assign lang = page.lang | default: project.lang | default: 'zh' %}
 {% if lang == 'en' %}
-  {% assign list_url = '/en/projects/' %}
+  {% assign list_url = '/en/project/' %}
 {% else %}
-  {% assign list_url = '/zh/projects/' %}
+  {% assign list_url = '/zh/project/' %}
 {% endif %}
 
 <article class="paper-project">

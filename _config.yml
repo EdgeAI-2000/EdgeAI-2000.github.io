@@ -27,7 +27,7 @@ collections:
     permalink: /publications/:year/:name/
   projects:
     output: true
-    permalink: /projects/:name/
+    permalink: /project/:name/
   news:
     output: true
     permalink: /news/:path/

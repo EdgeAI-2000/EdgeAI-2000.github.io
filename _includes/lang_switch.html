@@ -17,9 +17,9 @@
   {% elsif page.layout == 'project_paper' %}
     {% assign project_slug = page.project_slug | default: page.slug %}
     {% if current_lang == 'en' %}
-      <a href="{{ '/projects/' | append: project_slug | append: '/' | relative_url }}">中文</a>
+      <a href="{{ '/zh/project/' | append: project_slug | append: '/' | relative_url }}">中文</a>
     {% else %}
-      <a href="{{ '/en/projects/' | append: project_slug | append: '/' | relative_url }}">EN</a>
+      <a href="{{ '/en/project/' | append: project_slug | append: '/' | relative_url }}">EN</a>
     {% endif %}
   {% elsif page.layout == 'person' %}
     {% assign person_slug = page.person_slug | default: page.slug %}

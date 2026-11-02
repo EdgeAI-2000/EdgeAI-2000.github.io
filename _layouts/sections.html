@@ -38,7 +38,7 @@ layout: default
           {% endif %}
           {% if it.layout == 'project_paper' %}
             {% if page.lang == 'en' %}
-              {% assign item_href = '/en/projects/' | append: it.slug | append: '/' %}
+              {% assign item_href = '/en/project/' | append: it.slug | append: '/' %}
             {% else %}
               {% assign item_href = it.url %}
             {% endif %}

@@ -21,7 +21,7 @@ permalink: /zh/research/
   <section style="margin-top:12px;">
     <h2>项目 Projects</h2>
     <p class="meta">系统平台与研究项目页面。</p>
-    <p><a class="link" href="{{ '/zh/projects/' | relative_url }}">进入项目</a></p>
+    <p><a class="link" href="{{ '/zh/project/' | relative_url }}">进入项目</a></p>
   </section>
   {% endunless %}
 

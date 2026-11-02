@@ -1,6 +1,7 @@
 ---
 layout: project_paper
 lang: zh
+permalink: /zh/project/paracomm/
 title: "ParaComm：重新思考协同感知应当通信什么"
 title_en: "ParaComm: Rethinking What to Communicate for Collaborative Perception"
 description: "ParaComm 从参数视角重新思考协同感知通信：共享字典留在本地，只传输稀疏参数。TMC 2026。"
@@ -30,6 +31,7 @@ doi: https://doi.org/10.1109/TMC.2026.3741641
 paper: https://doi.org/10.1109/TMC.2026.3741641
 code: https://github.com/fengxueguiren/ParaComm
 project_page: https://weiquanmin.github.io/ParaComm/
+demo_video: https://files.eaislab.com/projects/paracomm/demo.mp4
 summary_zh: "面向自动驾驶协同感知的参数中心通信框架。共享字典原子留在本地，在线只传输稀疏参数。"
 summary_en: "A parameter-centric framework for collaborative perception. Shared dictionary atoms stay on each agent, and only sparse parameters are sent online."
 themes:

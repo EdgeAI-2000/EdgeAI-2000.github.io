@@ -9,7 +9,7 @@
 - `_config.yml` 的 `url` 仍为 `https://edgeai-2000.github.io`，`baseurl` 为空；维护 SEO、规范链接和站点地图时应核对这一配置与自定义域名的关系。
 - 中文首页 `/zh/`，英文首页 `/en/`；根路径 `/` 的源码使用 HTML 跳转到英文首页，尽管全局 `lang` 为 `zh`。
 - 研究方向：多智能体协同感知、边缘大模型推理与部署、代理式人工智能。
-- 项目展示：EdgeCoSense 协同感知平台、EdgeModelBridge 大小模型协同引擎、EdgeAgentWorks 边缘多智能体应用平台，以及论文项目页 ParaComm（`_layouts/project_paper.html`，中文 `/projects/paracomm/`，英文 `/en/projects/paracomm/`）。
+- 项目展示：EdgeCoSense 协同感知平台、EdgeModelBridge 大小模型协同引擎、EdgeAgentWorks 边缘多智能体应用平台，以及论文项目页 ParaComm（`_layouts/project_paper.html`）。列表为 `/zh/project/` 与 `/en/project/`。ParaComm 中文页 `/zh/project/paracomm/`，英文页 `/en/project/paracomm/`，根路径 `/project/paracomm/` 跳转到英文页。
 
 ## 技术组成
 

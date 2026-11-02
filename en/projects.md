@@ -7,5 +7,5 @@ description: Lab systems and research project pages, including deployable platfo
 collection: projects
 sort_by: date
 reverse: true
-permalink: /en/projects/
+permalink: /en/project/
 ---
