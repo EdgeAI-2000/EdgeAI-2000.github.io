@@ -27,12 +27,55 @@ layout: default
         {% assign demo_kind = 'link' %}
       {% endif %}
     {% endif %}
+    {% if lang == 'en' %}
+      {% assign demo_lead = project.demo_lead_en | default: project.demo_lead %}
+      {% assign demo_caption = project.demo_caption_en | default: project.demo_caption %}
+      {% assign video_heading = 'Video' %}
+      {% assign concept_heading = 'Concept' %}
+      {% assign abstract = project.abstract_en | default: project.abstract_zh %}
+      {% assign method = project.method_en | default: project.method_zh %}
+      {% assign method_alt = project.figure_method_alt_en | default: project.figure_method_alt | default: 'ParaComm framework' %}
+      {% assign method_caption = project.figure_method_caption_en | default: project.figure_method_caption %}
+      {% assign abstract_heading = 'Abstract' %}
+      {% assign method_heading = 'Method' %}
+      {% assign bibtex_heading = 'BibTeX' %}
+      {% assign copy_label = 'Copy BibTeX' %}
+      {% assign copied_label = 'Copied' %}
+      {% assign back_label = 'Back to projects' %}
+      {% assign paper_label = 'Paper' %}
+      {% assign code_label = 'Code' %}
+      {% assign video_label = 'Video' %}
+      {% assign page_label = 'Project Page' %}
+      {% assign corresponding_label = 'Corresponding author' %}
+    {% else %}
+      {% assign demo_lead = project.demo_lead_zh | default: project.demo_lead_en %}
+      {% assign demo_caption = project.demo_caption_zh | default: project.demo_caption_en %}
+      {% assign video_heading = '演示' %}
+      {% assign concept_heading = '概念' %}
+      {% assign abstract = project.abstract_zh | default: project.abstract_en %}
+      {% assign method = project.method_zh | default: project.method_en %}
+      {% assign method_alt = project.figure_method_alt_zh | default: project.figure_method_alt_en | default: 'ParaComm 整体框架' %}
+      {% assign method_caption = project.figure_method_caption_zh | default: project.figure_method_caption_en %}
+      {% assign abstract_heading = '摘要' %}
+      {% assign method_heading = '方法' %}
+      {% assign bibtex_heading = 'BibTeX' %}
+      {% assign copy_label = '复制 BibTeX' %}
+      {% assign copied_label = '已复制' %}
+      {% assign back_label = '返回项目列表' %}
+      {% assign paper_label = '论文' %}
+      {% assign code_label = '代码' %}
+      {% assign video_label = '视频' %}
+      {% assign page_label = '项目主页' %}
+      {% assign corresponding_label = '通讯作者' %}
+    {% endif %}
 
     <header class="paper-hero">
-      <p class="paper-kicker">{{ project.short_name | default: 'ParaComm' | escape }}{% if project.venue %} · {{ project.venue | escape }}{% endif %}</p>
-      <h1>{{ paper_title | escape }}</h1>
-      {% if lang != 'en' and project.paper_title_zh %}
-        <p class="paper-subtitle">{{ project.paper_title_zh | escape }}</p>
+      {% if project.venue %}<p class="paper-kicker">{{ project.venue | escape }}</p>{% endif %}
+      {% if lang == 'en' %}
+        <h1>{{ paper_title | escape }}</h1>
+      {% else %}
+        <h1>{{ project.paper_title_zh | default: paper_title | escape }}</h1>
+        <p class="paper-subtitle">{{ paper_title | escape }}</p>
       {% endif %}
 
       {% if project.authors %}
@@ -43,7 +86,7 @@ layout: default
             {%- else -%}
               {%- assign author_name = author.name_zh | default: author.name -%}
             {%- endif -%}
-            {%- unless forloop.first -%}, {% endunless -%}
+            {%- unless forloop.first -%}<span class="paper-author-sep" aria-hidden="true">, </span>{%- endunless -%}
             {%- if author.slug -%}
               {%- if lang == 'en' -%}
                 {%- assign author_href = '/en/people/' | append: author.slug | append: '/' -%}
@@ -57,7 +100,7 @@ layout: default
             {%- if author.corresponding -%}<sup class="paper-corresponding">*</sup>{%- endif -%}
           {%- endfor -%}
         </p>
-        <p class="meta"><sup>*</sup> {% if lang == 'en' %}Corresponding author{% else %}通讯作者{% endif %}</p>
+        <p class="paper-corresponding-note"><sup>*</sup> {{ corresponding_label }}</p>
       {% endif %}
 
       {% if lang == 'en' %}
@@ -65,31 +108,54 @@ layout: default
       {% else %}
         {% assign affil = project.affiliations_zh | default: project.affiliations_en | default: project.affiliations %}
       {% endif %}
-      {% if affil %}<p class="paper-affil meta">{{ affil | escape }}</p>{% endif %}
+      {% if affil %}<p class="paper-affil">{{ affil | escape }}</p>{% endif %}
+
+      {% if project.key_results %}
+        <ul class="paper-stats">
+          {% for item in project.key_results %}
+            {% if lang == 'en' %}
+              {% assign stat_value = item.value_en | default: item.value %}
+              {% assign stat_label = item.label_en | default: item.label %}
+              {% assign stat_detail = item.detail_en | default: item.detail %}
+            {% else %}
+              {% assign stat_value = item.value_zh | default: item.value %}
+              {% assign stat_label = item.label_zh | default: item.label %}
+              {% assign stat_detail = item.detail_zh | default: item.detail %}
+            {% endif %}
+            <li class="paper-stat">
+              {% if stat_label %}<span class="paper-stat-label">{{ stat_label | escape }}</span>{% endif %}
+              <span class="paper-stat-value">{{ stat_value | escape }}</span>
+              {% if stat_detail %}<span class="paper-stat-detail">{{ stat_detail | escape }}</span>{% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
 
       <div class="paper-actions">
         {% assign paper_url = project.paper | default: project.doi %}
         {% if paper_url %}
-          <a class="btn" href="{{ paper_url }}" target="_blank" rel="noopener noreferrer">{% if lang == 'en' %}Paper{% else %}论文{% endif %}</a>
+          <a class="btn" href="{{ paper_url }}" target="_blank" rel="noopener noreferrer">{{ paper_label }}</a>
         {% endif %}
         {% if project.pdf %}
-          <a class="btn secondary" href="{{ project.pdf }}" target="_blank" rel="noopener noreferrer">PDF</a>
+          <a class="btn" href="{{ project.pdf }}" target="_blank" rel="noopener noreferrer">PDF</a>
         {% endif %}
         {% if project.code %}
-          <a class="btn secondary" href="{{ project.code }}" target="_blank" rel="noopener noreferrer">{% if lang == 'en' %}Code{% else %}代码{% endif %}</a>
+          <a class="btn" href="{{ project.code }}" target="_blank" rel="noopener noreferrer">{{ code_label }}</a>
         {% endif %}
         {% if demo_kind == 'file' %}
-          <a class="btn secondary" href="#paper-demo">{% if lang == 'en' %}Video{% else %}视频{% endif %}</a>
+          <a class="btn" href="#paper-demo">{{ video_label }}</a>
         {% elsif demo_kind == 'link' %}
-          <a class="btn secondary" href="{{ demo }}" target="_blank" rel="noopener noreferrer">{% if lang == 'en' %}Video{% else %}视频{% endif %}</a>
+          <a class="btn" href="{{ demo }}" target="_blank" rel="noopener noreferrer">{{ video_label }}</a>
         {% endif %}
         {% if project.project_page %}
-          <a class="btn secondary" href="{{ project.project_page }}" target="_blank" rel="noopener noreferrer">{% if lang == 'en' %}Project Page{% else %}项目主页{% endif %}</a>
+          <a class="btn" href="{{ project.project_page }}" target="_blank" rel="noopener noreferrer">{{ page_label }}</a>
         {% endif %}
       </div>
     </header>
 
-    <div class="paper-stage" id="paper-demo">
+    <section class="paper-block paper-video-block" id="paper-demo" aria-labelledby="paper-demo-title">
+      <h2 id="paper-demo-title">{{ video_heading }}</h2>
+      {% if demo_lead %}<p class="paper-lead">{{ demo_lead | escape }}</p>{% endif %}
       {% if demo_kind == 'file' %}
         {% if demo contains '://' %}
           {% assign demo_src = demo %}
@@ -106,72 +172,44 @@ layout: default
           {% if lang == 'en' %}Your browser cannot play this demo video.{% else %}当前浏览器无法播放该演示视频。{% endif %}
         </video>
       {% elsif demo_kind == 'link' %}
-        <div class="paper-demo-pending">
-          <p class="paper-demo-label">Demo</p>
-          <h2>{% if lang == 'en' %}Watch the demo{% else %}观看演示{% endif %}</h2>
-          <p><a class="btn" href="{{ demo }}" target="_blank" rel="noopener noreferrer">{% if lang == 'en' %}Open video{% else %}打开视频{% endif %}</a></p>
-        </div>
+        <p class="paper-caption"><a class="btn" href="{{ demo }}" target="_blank" rel="noopener noreferrer">{% if lang == 'en' %}Open video{% else %}打开视频{% endif %}</a></p>
       {% else %}
-        <div class="paper-demo-pending" role="status">
-          <p class="paper-demo-label">Demo</p>
-          <h2>{% if lang == 'en' %}Demo video coming soon{% else %}演示视频即将上线{% endif %}</h2>
-          <p class="meta">{% if lang == 'en' %}A walkthrough of ParaComm will appear in this space.{% else %}ParaComm 的演示将显示在这里。{% endif %}</p>
-        </div>
+        <p class="paper-caption">{% if lang == 'en' %}A walkthrough of this project will appear here.{% else %}项目演示将显示在这里。{% endif %}</p>
       {% endif %}
+      {% if demo_caption %}<p class="paper-caption">{{ demo_caption | escape }}</p>{% endif %}
+    </section>
 
-      {% if project.figure_concept %}
-        {% if lang == 'en' %}
-          {% assign concept_alt = project.figure_concept_alt_en | default: project.figure_concept_alt | default: paper_title %}
-          {% assign concept_caption = project.figure_concept_caption_en | default: project.figure_concept_caption %}
-        {% else %}
-          {% assign concept_alt = project.figure_concept_alt_zh | default: project.figure_concept_alt_en | default: project.paper_title_zh | default: paper_title %}
-          {% assign concept_caption = project.figure_concept_caption_zh | default: project.figure_concept_caption_en %}
-        {% endif %}
-        <figure class="paper-figure-card">
+    {% if project.figure_concept %}
+      {% if lang == 'en' %}
+        {% assign concept_alt = project.figure_concept_alt_en | default: project.figure_concept_alt | default: paper_title %}
+        {% assign concept_caption = project.figure_concept_caption_en | default: project.figure_concept_caption %}
+      {% else %}
+        {% assign concept_alt = project.figure_concept_alt_zh | default: project.figure_concept_alt_en | default: project.paper_title_zh | default: paper_title %}
+        {% assign concept_caption = project.figure_concept_caption_zh | default: project.figure_concept_caption_en %}
+      {% endif %}
+      <section class="paper-block" id="concept" aria-labelledby="paper-concept-title">
+        <h2 id="paper-concept-title">{{ concept_heading }}</h2>
+        <figure class="paper-figure-block">
           {% assign concept_src = project.figure_concept | relative_url %}
-          {% include img.html src=concept_src class="paper-figure" alt=concept_alt width=project.figure_concept_width height=project.figure_concept_height priority="eager" %}
+          {% include img.html src=concept_src class="paper-figure" alt=concept_alt width=project.figure_concept_width height=project.figure_concept_height priority="lazy" %}
           {% if concept_caption %}<figcaption>{{ concept_caption | escape }}</figcaption>{% endif %}
         </figure>
-      {% endif %}
-    </div>
-
-    {% if lang == 'en' %}
-      {% assign abstract = project.abstract_en | default: project.abstract_zh %}
-      {% assign method = project.method_en | default: project.method_zh %}
-      {% assign method_alt = project.figure_method_alt_en | default: project.figure_method_alt | default: 'ParaComm framework' %}
-      {% assign method_caption = project.figure_method_caption_en | default: project.figure_method_caption %}
-      {% assign abstract_heading = 'Abstract' %}
-      {% assign method_heading = 'Method' %}
-      {% assign bibtex_heading = 'BibTeX' %}
-      {% assign copy_label = 'Copy BibTeX' %}
-      {% assign copied_label = 'Copied' %}
-      {% assign back_label = 'Back to projects' %}
-    {% else %}
-      {% assign abstract = project.abstract_zh | default: project.abstract_en %}
-      {% assign method = project.method_zh | default: project.method_en %}
-      {% assign method_alt = project.figure_method_alt_zh | default: project.figure_method_alt_en | default: 'ParaComm 整体框架' %}
-      {% assign method_caption = project.figure_method_caption_zh | default: project.figure_method_caption_en %}
-      {% assign abstract_heading = '摘要' %}
-      {% assign method_heading = '方法' %}
-      {% assign bibtex_heading = 'BibTeX' %}
-      {% assign copy_label = '复制 BibTeX' %}
-      {% assign copied_label = '已复制' %}
-      {% assign back_label = '返回项目列表' %}
+      </section>
     {% endif %}
 
     {% if abstract %}
-      <section class="paper-section" id="abstract">
+      <section class="paper-block" id="abstract">
         <h2>{{ abstract_heading }}</h2>
-        <p>{{ abstract | escape }}</p>
+        <div class="paper-prose"><p>{{ abstract | escape }}</p></div>
       </section>
     {% endif %}
 
     {% if method or project.figure_method %}
-      <section class="paper-section" id="method">
+      <section class="paper-block" id="method">
         <h2>{{ method_heading }}</h2>
-        {% if method %}<p>{{ method | escape }}</p>{% endif %}
+        {% if method %}<div class="paper-prose"><p>{{ method | escape }}</p></div>{% endif %}
         {% if project.figure_method %}
-          <figure class="paper-figure-card">
+          <figure class="paper-figure-block">
             {% assign method_src = project.figure_method | relative_url %}
             {% include img.html src=method_src class="paper-figure" alt=method_alt width=project.figure_method_width height=project.figure_method_height priority="lazy" %}
             {% if method_caption %}<figcaption>{{ method_caption | escape }}</figcaption>{% endif %}
@@ -181,13 +219,13 @@ layout: default
     {% endif %}
 
     {% if project.bibtex %}
-      <section class="paper-section" id="bibtex">
+      <section class="paper-block" id="bibtex">
         <div class="paper-bibtex-bar">
           <h2>{{ bibtex_heading }}</h2>
           <button type="button" class="btn secondary" data-bibtex-copy data-copied-label="{{ copied_label | escape }}">{{ copy_label }}</button>
         </div>
         <pre class="paper-bibtex"><code>{{ project.bibtex | escape }}</code></pre>
-        <p class="paper-copy-status meta" data-bibtex-status aria-live="polite"></p>
+        <p class="paper-copy-status" data-bibtex-status aria-live="polite"></p>
       </section>
     {% endif %}
 
