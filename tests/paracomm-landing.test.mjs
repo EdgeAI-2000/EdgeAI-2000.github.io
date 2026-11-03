@@ -131,4 +131,12 @@ test('the paper page drops rounded section cards and accent underlines', () => {
   assert.doesNotMatch(paperCss, /linear-gradient/);
   assert.match(paperCss, /\.paper-block h2::after\s*\{\s*content:\s*none/);
   assert.match(paperCss, /\.paper-block\s*\{[^}]*background:\s*transparent/);
+  for (const rule of ['.paper-video', '.paper-figure', '.paper-bibtex', '.paper-stat']) {
+    const block = paperCss.match(new RegExp(`${rule.replace('.', '\\.')}\\s*\\{[^}]*\\}`));
+    assert.ok(block, `${rule} rule`);
+    assert.match(block[0], /border:\s*0/);
+    assert.match(block[0], /background:\s*transparent/);
+    assert.match(block[0], /box-shadow:\s*none/);
+    assert.doesNotMatch(block[0], /border:\s*1px/);
+  }
 });
