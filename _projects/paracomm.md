@@ -23,9 +23,7 @@ authors:
   - name: Wei Li
   - name: Xiao Wu
   - name: Chao Chen
-    name_zh: 陈超
   - name: Zhaofei Yu
-    name_zh: 余兆飞
 affiliations_zh: "西南交通大学、重庆大学、北京大学"
 affiliations_en: "Southwest Jiaotong University, Chongqing University, Peking University"
 pdf: https://dl.eaislab.com/projects/paracomm/paper.pdf
