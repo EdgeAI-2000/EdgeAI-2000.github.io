@@ -83,9 +83,15 @@ test('PDF, code, and result figures use the lab hosts', () => {
   assert.match(project, /results_lead_zh:.*定性对比（图 7）.*折中分析（图 8）/);
   assert.match(project, /caption_en: "Fig\. 8\. Trade-off of atom top-k, variable-tile size, and dictionary size\."/);
   assert.match(project, /caption_zh: "图 8\. 原子 top-k、可变分块大小与字典大小的折中。"/);
-  assert.doesNotMatch(project, /Therefore, PCC concentrates/);
-  assert.match(project, /figure_concept_caption_en: "FCC sends features;/);
-  assert.match(project, /method_en: "The sender sparsifies parameters/);
+  assert.match(project, /figure_concept_caption_zh: "以特征为中心的通信（FCC）与以参数为中心的通信（PCC）/);
+  assert.match(project, /figure_concept_caption_en: "Feature-Centric Communication \(FCC\) versus Parameter-Centric Communication \(PCC\)/);
+  assert.match(project, /Therefore, PCC concentrates/);
+  assert.match(project, /figure_method_caption_zh: "发送端输出稀疏量化参数/);
+  assert.match(project, /figure_method_caption_en: "The sender emits sparse quantized parameters/);
+  assert.match(project, /method_zh: "ParaComm 是一条面向协同感知的、以参数为中心的通信流水线/);
+  assert.match(project, /Joint Space-Atom Sparsification/);
+  assert.match(project, /Variable-Tile Parameter Sharing/);
+  assert.match(project, /Refinement Head/);
   assert.match(layout, /include asset-src\.html src=fig\.src/);
   assert.match(layout, /id="results"/);
   const assetSrc = read('../_includes/asset-src.html');
