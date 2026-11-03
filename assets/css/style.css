@@ -662,7 +662,6 @@ img[src*="/images/research/"] {
 .paper-lead {
   margin: 0 auto 12px;
   max-width: 720px;
-  text-align: center;
   color: var(--heading);
   font-size: 18px;
   line-height: 1.5;
@@ -682,7 +681,6 @@ img[src*="/images/research/"] {
 .paper-caption {
   margin: 14px auto 0;
   max-width: 720px;
-  text-align: center;
   color: var(--muted);
   font-size: 15px;
   line-height: 1.65;
@@ -706,6 +704,14 @@ img[src*="/images/research/"] {
   color: var(--muted);
   font-size: 14px;
   line-height: 1.65;
+}
+.paper-prose p,
+.paper-lead,
+.paper-caption,
+.paper-figure-block figcaption {
+  text-align: justify;
+  text-align-last: start;
+  hyphens: auto;
 }
 .paper-bibtex-bar {
   display: flex;

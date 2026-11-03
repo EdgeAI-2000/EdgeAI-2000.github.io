@@ -141,6 +141,11 @@ test('the paper page drops rounded section cards and accent underlines', () => {
   assert.match(paperCss, /\.paper-stats\s*\{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(paperCss, /\.paper-actions\s*\{[^}]*margin-top:\s*8px/);
   assert.match(paperCss, /\.paper-prose\s*\{[^}]*max-width:\s*720px/);
+  assert.match(paperCss, /\.paper-prose p,\s*\.paper-lead,\s*\.paper-caption,\s*\.paper-figure-block figcaption\s*\{[^}]*text-align:\s*justify/);
+  assert.match(paperCss, /\.paper-block h2\s*\{[^}]*text-align:\s*center/);
+  assert.match(paperCss, /\.paper-stat\s*\{[^}]*text-align:\s*center/);
+  assert.doesNotMatch(paperCss.match(/\.paper-bibtex\s*\{[^}]*\}/)[0], /text-align:\s*justify/);
+  assert.doesNotMatch(paperCss.match(/\.paper-authors\s*\{[^}]*\}/)[0], /text-align:\s*justify/);
   assert.match(paperCss, /\.paper-video\s*\{[^}]*width:\s*100%/);
   assert.match(paperCss, /\.paper-figure\s*\{[^}]*width:\s*100%/);
   assert.match(paperCss, /\.paper-bibtex\s*\{[^}]*font-family:\s*ui-monospace/);
