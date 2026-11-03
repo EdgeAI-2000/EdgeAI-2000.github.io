@@ -80,8 +80,8 @@ demo_caption_zh: "共享字典原子留在每辆车上，链路上只传输稀�
 demo_caption_en: "Shared dictionary atoms stay on each vehicle, and only sparse parameters are sent. Those parameters are sparsified across spatial locations and dictionary atoms, then compacted by parameter sharing and low-bit quantization. The receiver rebuilds collaborative features from the received parameters and its local dictionary."
 key_results:
   - value: ">350×"
-    label_zh: "OPV2V 压缩"
-    label_en: "OPV2V compression"
+    label_zh: "压缩"
+    label_en: "compression"
     detail_zh: "34.375 MB → 99.688 KB"
     detail_en: "34.375 MB → 99.688 KB"
   - value_zh: "提升"
@@ -130,6 +130,233 @@ figure_method_caption_zh: "发送端输出稀疏量化参数；接收端用本�
 figure_method_caption_en: "The sender emits sparse quantized parameters. The receiver rebuilds features with its local dictionary, and the Refinement Head reuses the Communication Backbone."
 results_lead_zh: "图 7 把 ParaComm 与基线协同检测方法的鸟瞰结果并排展示，并标出漏检、不准确预测和错误预测。图 8 扫描原子 top-k、可变分块大小和字典大小，比较 AP@70 与通信量。两图合在一起，用来看减少报文之后检测是否仍然可用。"
 results_lead_en: "Fig. 7 places ParaComm beside baseline collaborative detectors in bird's-eye view and marks missed, inaccurate, and incorrect predictions. Fig. 8 sweeps atom top-k, variable-tile size, and dictionary size, relating AP@70 to communication volume. Read together, they show whether cutting the message still leaves the detections usable."
+results_table:
+  caption_en: "Table I. Quantitative comparison on three representative datasets. Communication-efficient methods use the same CoAlign backbone. Best and second-best AP values are highlighted."
+  caption_zh: "表 I. 三个代表性数据集上的定量对比。通信高效方法均使用同一 CoAlign 骨干。最优与次优 AP 以浅底色标出。"
+  headers_en:
+    - Dataset
+    - Communication Method
+    - Publication
+    - Comm. Volume
+    - AP@30
+    - AP@50
+    - AP@70
+  headers_zh:
+    - 数据集
+    - 通信方法
+    - 发表
+    - 通信量
+    - AP@30
+    - AP@50
+    - AP@70
+  groups:
+    - dataset: OPV2V
+      rows:
+        - method: No Communication
+          publication: "/"
+          volume: "0"
+          ap30: "0.8657 ± 0.0029"
+          ap50: "0.8470 ± 0.0015"
+          ap70: "0.7274 ± 0.0051"
+        - method: Late Collaboration
+          publication: "/"
+          volume: "7.031 KB"
+          ap30: "0.9627 ± 0.0014"
+          ap50: "0.9491 ± 0.0028"
+          ap70: "0.8506 ± 0.0030"
+        - method: Standard Collaboration
+          publication: ICRA 2023
+          volume: "34.375 MB"
+          ap30: "0.9705 ± 0.0018"
+          ap50: "0.9656 ± 0.0012"
+          ap70: "0.9221 ± 0.0024"
+          ap70_mark: second
+        - method: Where2comm
+          publication: NeurIPS 2022
+          volume: "3.468 / 3.437 MB"
+          ap30: "0.9539 ± 0.0032"
+          ap50: "0.9469 ± 0.0025"
+          ap70: "0.8805 ± 0.0055"
+        - method: ERMVP
+          publication: CVPR 2024
+          volume: "0.771 / 0.688 MB"
+          ap30: "0.9624 ± 0.0026"
+          ap50: "0.9550 ± 0.0031"
+          ap70: "0.9136 ± 0.0046"
+        - method: GenComm
+          publication: NeurIPS 2025
+          volume: "1.074 / 1.074 MB"
+          ap30: "0.9713 ± 0.0013"
+          ap50: "0.9646 ± 0.0017"
+          ap70: "0.9072 ± 0.0032"
+        - method: PragComm
+          publication: TPAMI 2026
+          volume: "0.732 / 0.671 MB"
+          ap30: "0.9724 ± 0.0016"
+          ap50: "0.9659 ± 0.0030"
+          ap70: "0.9153 ± 0.0025"
+          ap30_mark: second
+        - method: PragComm*
+          publication: ""
+          volume: "89.375 / 27.500 KB"
+          ap30: "0.9663 ± 0.0030"
+          ap50: "0.9618 ± 0.0027"
+          ap70: "0.9087 ± 0.0052"
+        - method: InfoCom
+          publication: AAAI 2026
+          volume: "38.813 / 7.875 KB"
+          ap30: "0.9707 ± 0.0023"
+          ap50: "0.9662 ± 0.0026"
+          ap70: "0.9208 ± 0.0022"
+          ap50_mark: second
+        - method: ParaComm (Ours)
+          ours: true
+          publication: "/"
+          volume: "99.688 / 27.500 KB"
+          ap30: "0.9732 ± 0.0005"
+          ap50: "0.9672 ± 0.0010"
+          ap70: "0.9261 ± 0.0028"
+          ap30_mark: best
+          ap50_mark: best
+          ap70_mark: best
+    - dataset: V2XSet
+      rows:
+        - method: No Communication
+          publication: "/"
+          volume: "0"
+          ap30: "0.8025 ± 0.0027"
+          ap50: "0.7728 ± 0.0032"
+          ap70: "0.6209 ± 0.0049"
+        - method: Late Collaboration
+          publication: "/"
+          volume: "7.031 KB"
+          ap30: "0.9327 ± 0.0016"
+          ap50: "0.9069 ± 0.0024"
+          ap70: "0.7135 ± 0.0054"
+        - method: Standard Collaboration
+          publication: ICRA 2023
+          volume: "34.375 MB"
+          ap30: "0.9312 ± 0.0025"
+          ap50: "0.9216 ± 0.0013"
+          ap70: "0.8418 ± 0.0031"
+        - method: Where2comm
+          publication: NeurIPS 2022
+          volume: "3.468 / 3.437 MB"
+          ap30: "0.8844 ± 0.0033"
+          ap50: "0.8595 ± 0.0029"
+          ap70: "0.7401 ± 0.0056"
+        - method: ERMVP
+          publication: CVPR 2024
+          volume: "0.771 / 0.688 MB"
+          ap30: OOM
+          ap50: OOM
+          ap70: OOM
+        - method: GenComm
+          publication: NeurIPS 2025
+          volume: "1.074 / 1.074 MB"
+          ap30: "0.9352 ± 0.0012"
+          ap50: "0.9241 ± 0.0018"
+          ap70: "0.8451 ± 0.0026"
+        - method: PragComm
+          publication: TPAMI 2026
+          volume: "0.732 / 0.671 MB"
+          ap30: "0.9371 ± 0.0024"
+          ap50: "0.9257 ± 0.0015"
+          ap70: "0.8394 ± 0.0047"
+          ap30_mark: second
+        - method: PragComm*
+          publication: ""
+          volume: "89.375 / 27.500 KB"
+          ap30: "0.9331 ± 0.0031"
+          ap50: "0.9213 ± 0.0026"
+          ap70: "0.8236 ± 0.0050"
+        - method: InfoCom
+          publication: AAAI 2026
+          volume: "38.813 / 7.875 KB"
+          ap30: "0.9364 ± 0.0015"
+          ap50: "0.9270 ± 0.0011"
+          ap70: "0.8483 ± 0.0023"
+          ap50_mark: second
+          ap70_mark: second
+        - method: ParaComm (Ours)
+          ours: true
+          publication: "/"
+          volume: "99.688 / 27.500 KB"
+          ap30: "0.9403 ± 0.0014"
+          ap50: "0.9292 ± 0.0004"
+          ap70: "0.8513 ± 0.0012"
+          ap30_mark: best
+          ap50_mark: best
+          ap70_mark: best
+    - dataset: DAIR-V2X
+      rows:
+        - method: No Communication
+          publication: "/"
+          volume: "0"
+          ap30: "0.7286 ± 0.0030"
+          ap50: "0.6838 ± 0.0025"
+          ap70: "0.5679 ± 0.0053"
+        - method: Late Collaboration
+          publication: "/"
+          volume: "7.031 KB"
+          ap30: "0.7987 ± 0.0017"
+          ap50: "0.6718 ± 0.0033"
+          ap70: "0.4693 ± 0.0055"
+        - method: Standard Collaboration
+          publication: ICRA 2023
+          volume: "24.609 MB"
+          ap30: "0.8298 ± 0.0013"
+          ap50: "0.7838 ± 0.0016"
+          ap70: "0.6361 ± 0.0027"
+          ap30_mark: best
+        - method: Where2comm
+          publication: NeurIPS 2022
+          volume: "2.481 / 2.461 MB"
+          ap30: "0.8039 ± 0.0032"
+          ap50: "0.7547 ± 0.0028"
+          ap70: "0.6058 ± 0.0048"
+        - method: ERMVP
+          publication: CVPR 2024
+          volume: "0.551 / 0.492 MB"
+          ap30: "0.8223 ± 0.0024"
+          ap50: "0.7787 ± 0.0014"
+          ap70: "0.6331 ± 0.0025"
+        - method: GenComm
+          publication: NeurIPS 2025
+          volume: "0.769 / 0.769 MB"
+          ap30: "0.8103 ± 0.0015"
+          ap50: "0.7660 ± 0.0027"
+          ap70: "0.6225 ± 0.0044"
+        - method: PragComm
+          publication: TPAMI 2026
+          volume: "0.522 / 0.481 MB"
+          ap30: "0.8254 ± 0.0012"
+          ap50: "0.7859 ± 0.0013"
+          ap70: "0.6405 ± 0.0021"
+          ap50_mark: second
+          ap70_mark: second
+        - method: PragComm*
+          publication: ""
+          volume: "61.523 / 19.688 KB"
+          ap30: "0.8082 ± 0.0029"
+          ap50: "0.7656 ± 0.0031"
+          ap70: "0.6270 ± 0.0052"
+        - method: InfoCom
+          publication: AAAI 2026
+          volume: "26.840 / 5.922 KB"
+          ap30: "0.8231 ± 0.0018"
+          ap50: "0.7794 ± 0.0023"
+          ap70: "0.6380 ± 0.0030"
+        - method: ParaComm (Ours)
+          ours: true
+          publication: "/"
+          volume: "70.137 / 19.688 KB"
+          ap30: "0.8282 ± 0.0012"
+          ap50: "0.7873 ± 0.0011"
+          ap70: "0.6499 ± 0.0030"
+          ap30_mark: second
+          ap50_mark: best
+          ap70_mark: best
 figure_results:
   - src: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/paracomm-fig7-v4/public
     width: 1366
