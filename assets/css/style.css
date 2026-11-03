@@ -809,6 +809,33 @@ img[src*="/images/research/"] {
 .paper-table-ours td:first-of-type { font-weight: 750; }
 .paper-table-best { background: #e5f3ea; }
 .paper-table-second { background: #eef1f4; }
+.paper-cite-link,
+.paper-cite-num {
+  color: var(--heading);
+  font-weight: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.paper-cite-num { margin-left: 0.25em; white-space: nowrap; }
+.paper-cite-link:hover,
+.paper-cite-num:hover { color: var(--primary); }
+.paper-table-refs {
+  width: 100%;
+  max-width: none;
+  user-select: text;
+  -webkit-user-select: text;
+}
+.paper-table-refs h2 { text-align: center; }
+.paper-ref-list {
+  margin: 0;
+  padding-left: 2.6em;
+  color: var(--heading);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.paper-ref-list li { margin: 0 0 10px; overflow-wrap: anywhere; scroll-margin-top: 88px; }
+.paper-ref-list li:last-child { margin-bottom: 0; }
+.paper-ref-list a { font-weight: 500; }
 .paper-prose p,
 .paper-lead,
 .paper-caption,

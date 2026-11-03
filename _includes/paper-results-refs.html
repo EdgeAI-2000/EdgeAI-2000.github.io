@@ -1,0 +1,25 @@
+{% assign table = project.results_table %}
+{% if lang == 'en' %}
+  {% assign refs_heading = table.refs_heading_en | default: 'References' %}
+{% else %}
+  {% assign refs_heading = table.refs_heading_zh | default: table.refs_heading_en | default: '参考文献' %}
+{% endif %}
+<section class="paper-block paper-table-refs" id="references">
+  <h2>{{ refs_heading | escape }}</h2>
+  <ol class="paper-ref-list">
+    {% for ref in table.refs %}
+      {% if lang == 'en' %}
+        {% assign ref_text = ref.text_en | default: ref.text %}
+      {% else %}
+        {% assign ref_text = ref.text_zh | default: ref.text_en | default: ref.text %}
+      {% endif %}
+      <li id="ref-{{ ref.id | escape }}" value="{{ ref.id | escape }}">
+        {% if ref.href %}
+          <a class="paper-cite-link" href="{{ ref.href | escape }}" target="_blank" rel="noopener noreferrer">{{ ref_text | escape }}</a>
+        {% else %}
+          {{ ref_text | escape }}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</section>
