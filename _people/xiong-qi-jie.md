@@ -16,7 +16,8 @@ homepage: ""
 scholar: ""
 dblp: ""
 github: https://github.com/Chance-XO45B
-avatar: ""
+avatar: "https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/eais-member-photo-153\
+  98d81-d556-4d05-8c1d-85eb2d075d83/avatar"
 style_photo: ""
 destination: ""
 destination_en: ""
