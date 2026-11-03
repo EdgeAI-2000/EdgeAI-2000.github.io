@@ -142,7 +142,7 @@ layout: default
             {% assign badge_href = badge.href | default: '' %}
             {% case badge.key %}
               {% when 'paper' %}
-                {% assign badge_href = project.paper | default: project.doi | default: '' %}
+                {% assign badge_href = project.scholar_url | default: project.paper | default: project.doi | default: '' %}
               {% when 'tmc' %}
                 {% assign badge_href = project.doi | default: project.paper | default: badge.href %}
               {% when 'pdf' %}
@@ -174,6 +174,7 @@ layout: default
             {% assign stat_many = '' %}
             {% assign stat_unit = '' %}
             {% assign download_stats = '' %}
+            {% assign citation_stats = '' %}
             {% if badge.key == 'pdf' %}
               {% assign download_stats = project.pdf_stats_url | default: '' | strip %}
               {% if download_stats != '' %}
@@ -198,6 +199,7 @@ layout: default
               {% assign stat_unit = stat_many %}
             {% elsif badge_stat == 'citations' %}
               {% assign stat_mode = 'citations' %}
+              {% assign citation_stats = project.citation_stats_url | default: '' | strip %}
               {% if lang == 'en' %}
                 {% assign stat_one = 'citation' %}
                 {% assign stat_many = 'citations' %}
@@ -213,11 +215,11 @@ layout: default
               {% endunless %}
             {% endif %}
             {% if badge_href != '' and badge_label != '' %}
-              <a class="paper-badge" href="{{ badge_href | escape }}"{% if badge_href contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}{% if stat_mode == 'stars' %} data-paper-stars data-repo="{{ project.code | escape }}"{% endif %}{% if stat_mode == 'citations' %} data-paper-citations{% endif %}{% if download_stats != '' %} data-paper-downloads data-stats-url="{{ download_stats | escape }}"{% endif %}>
+              <a class="paper-badge" href="{{ badge_href | escape }}"{% if badge_href contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}{% if stat_mode == 'stars' %} data-paper-stars data-repo="{{ project.code | escape }}"{% endif %}{% if stat_mode == 'citations' %} data-paper-citations{% if citation_stats != '' %} data-citation-stats-url="{{ citation_stats | escape }}"{% endif %}{% endif %}{% if download_stats != '' %} data-paper-downloads data-stats-url="{{ download_stats | escape }}"{% endif %}>
                 <span class="paper-badge-label">{{ badge_label | escape }}</span>
                 {% if stat_mode != '' %}
                   <span class="paper-badge-stat">
-                    <span class="paper-badge-value"{% if stat_mode == 'stars' %} data-paper-stat-value aria-live="polite"{% endif %}>{{ stat_value | escape }}</span>
+                    <span class="paper-badge-value"{% if stat_mode == 'stars' or stat_mode == 'citations' %} data-paper-stat-value aria-live="polite"{% endif %}>{{ stat_value | escape }}</span>
                     <span class="paper-badge-unit" data-one="{{ stat_one | escape }}" data-many="{{ stat_many | escape }}">{{ stat_unit | escape }}</span>
                   </span>
                 {% elsif badge_detail != '' %}
@@ -427,6 +429,23 @@ layout: default
       }).catch(function () {
         var value = stars.querySelector('[data-paper-stat-value]');
         if (value) value.textContent = '\u2014';
+      });
+    }
+  }
+  var cites = document.querySelector('[data-paper-citations]');
+  if (cites) {
+    var citeUrl = cites.getAttribute('data-citation-stats-url') || '';
+    if (citeUrl && cites.querySelector('[data-paper-stat-value]')) {
+      fetch(citeUrl, { headers: { Accept: 'application/json' } }).then(function (res) {
+        if (!res.ok) throw new Error('citations');
+        return res.json();
+      }).then(function (data) {
+        var count = data && data.citations;
+        if (typeof count !== 'number' || !isFinite(count) || count < 0) throw new Error('citations');
+        showCount(cites, count);
+      }).catch(function () {
+        var value = cites.querySelector('[data-paper-stat-value]');
+        if (value && !/^\d+$/.test(value.textContent.trim())) value.textContent = '\u2014';
       });
     }
   }

@@ -1,3 +1,5 @@
 .DS_Store
 workers/images/.dev.vars
 workers/images/.wrangler/
+workers/scholar-citations/.dev.vars
+workers/scholar-citations/.wrangler/
