@@ -26,14 +26,18 @@ test('hero is a centered paper landing with a quiet venue line', () => {
   assert.match(css, /\.paper-project h1\s*\{[^}]*clamp\(34px,\s*4\.6vw,\s*52px\)/);
 });
 
-test('video is its own section immediately after the action buttons', () => {
+test('abstract follows the hero, then video, concept, method, results, and bibtex', () => {
   const actions = layout.indexOf('class="paper-actions"');
   const headerEnd = layout.indexOf('</header>');
+  const abstract = layout.indexOf('id="abstract"');
   const video = layout.indexOf('id="paper-demo"');
   const concept = layout.indexOf('id="concept"');
-  const abstract = layout.indexOf('id="abstract"');
-  assert.ok(actions > 0 && headerEnd > actions && video > headerEnd);
-  assert.ok(concept > video && abstract > concept);
+  const method = layout.indexOf('id="method"');
+  const results = layout.indexOf('id="results"');
+  const bibtex = layout.indexOf('id="bibtex"');
+  assert.ok(actions > 0 && headerEnd > actions);
+  assert.ok(headerEnd < abstract && abstract < video && video < concept && concept < method && method < results && results < bibtex);
+  assert.equal((layout.match(/id="abstract"/g) || []).length, 1);
   assert.match(layout, /assign video_heading = 'Video'/);
   assert.match(layout, /assign video_heading = '演示'/);
   assert.match(layout, /class="paper-video"/);
@@ -77,8 +81,11 @@ test('PDF, code, and result figures use the lab hosts', () => {
   assert.match(project, /height:\s*387/);
   assert.match(project, /results_lead_en:.*qualitative comparison \(Fig\. 7\).*trade-off analysis \(Fig\. 8\)/);
   assert.match(project, /results_lead_zh:.*定性对比（图 7）.*折中分析（图 8）/);
-  assert.match(project, /caption_en:.*atom top-k/);
-  assert.match(project, /caption_zh:.*原子 top-k/);
+  assert.match(project, /caption_en: "Fig\. 8\. Trade-off of atom top-k, variable-tile size, and dictionary size\."/);
+  assert.match(project, /caption_zh: "图 8\. 原子 top-k、可变分块大小与字典大小的折中。"/);
+  assert.doesNotMatch(project, /Therefore, PCC concentrates/);
+  assert.match(project, /figure_concept_caption_en: "FCC sends features;/);
+  assert.match(project, /method_en: "The sender sparsifies parameters/);
   assert.match(layout, /include asset-src\.html src=fig\.src/);
   assert.match(layout, /id="results"/);
   const assetSrc = read('../_includes/asset-src.html');
@@ -131,6 +138,14 @@ test('the paper page drops rounded section cards and accent underlines', () => {
   assert.doesNotMatch(paperCss, /linear-gradient/);
   assert.match(paperCss, /\.paper-block h2::after\s*\{\s*content:\s*none/);
   assert.match(paperCss, /\.paper-block\s*\{[^}]*background:\s*transparent/);
+  assert.match(paperCss, /\.paper-stats\s*\{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(paperCss, /\.paper-actions\s*\{[^}]*margin-top:\s*8px/);
+  assert.match(paperCss, /\.paper-prose\s*\{[^}]*max-width:\s*720px/);
+  assert.match(paperCss, /\.paper-video\s*\{[^}]*width:\s*100%/);
+  assert.match(paperCss, /\.paper-figure\s*\{[^}]*width:\s*100%/);
+  assert.match(paperCss, /\.paper-bibtex\s*\{[^}]*font-family:\s*ui-monospace/);
+  assert.match(paperCss, /\.paper-bibtex\s*\{[^}]*font-size:\s*12px/);
+  assert.match(paperCss, /\.paper-bibtex-bar\s*\{[^}]*justify-content:\s*space-between/);
   for (const rule of ['.paper-video', '.paper-figure', '.paper-bibtex', '.paper-stat']) {
     const block = paperCss.match(new RegExp(`${rule.replace('.', '\\.')}\\s*\\{[^}]*\\}`));
     assert.ok(block, `${rule} rule`);
