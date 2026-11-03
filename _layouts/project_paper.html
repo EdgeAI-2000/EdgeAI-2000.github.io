@@ -143,6 +143,8 @@ layout: default
             {% case badge.key %}
               {% when 'paper' %}
                 {% assign badge_href = project.paper | default: project.doi | default: '' %}
+              {% when 'tmc' %}
+                {% assign badge_href = project.doi | default: project.paper | default: badge.href %}
               {% when 'pdf' %}
                 {% assign badge_href = project.pdf | default: '' %}
               {% when 'code' %}
@@ -159,14 +161,75 @@ layout: default
                 {% assign badge_href = project.project_page | default: '' %}
             {% endcase %}
             {% if lang == 'en' %}
-              {% assign badge_src = badge.src_en | default: badge.src | default: '' %}
-              {% assign badge_alt = badge.alt_en | default: badge.alt | default: '' %}
+              {% assign badge_label = badge.label_en | default: badge.label | default: '' %}
+              {% assign badge_detail = badge.detail_en | default: badge.detail | default: '' %}
             {% else %}
-              {% assign badge_src = badge.src_zh | default: badge.src_en | default: badge.src | default: '' %}
-              {% assign badge_alt = badge.alt_zh | default: badge.alt_en | default: badge.alt | default: '' %}
+              {% assign badge_label = badge.label_zh | default: badge.label_en | default: badge.label | default: '' %}
+              {% assign badge_detail = badge.detail_zh | default: badge.detail_en | default: badge.detail | default: '' %}
             {% endif %}
-            {% if badge_href != '' and badge_src != '' %}
-              <a class="paper-badge" href="{{ badge_href | escape }}"{% if badge_href contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}><img src="{{ badge_src | escape }}" alt="{{ badge_alt | escape }}" height="20" decoding="async"></a>
+            {% assign badge_stat = badge.stat | default: '' %}
+            {% assign stat_mode = '' %}
+            {% assign stat_value = '—' %}
+            {% assign stat_one = '' %}
+            {% assign stat_many = '' %}
+            {% assign stat_unit = '' %}
+            {% assign download_stats = '' %}
+            {% if badge.key == 'pdf' %}
+              {% assign download_stats = project.pdf_stats_url | default: '' | strip %}
+              {% if download_stats != '' %}
+                {% if lang == 'en' %}
+                  {% assign stat_one = 'download' %}
+                  {% assign stat_many = 'downloads' %}
+                {% else %}
+                  {% assign stat_one = '次下载' %}
+                  {% assign stat_many = '次下载' %}
+                {% endif %}
+              {% endif %}
+            {% endif %}
+            {% if badge_stat == 'stars' %}
+              {% assign stat_mode = 'stars' %}
+              {% if lang == 'en' %}
+                {% assign stat_one = 'star' %}
+                {% assign stat_many = 'stars' %}
+              {% else %}
+                {% assign stat_one = '星标' %}
+                {% assign stat_many = '星标' %}
+              {% endif %}
+              {% assign stat_unit = stat_many %}
+            {% elsif badge_stat == 'citations' %}
+              {% assign stat_mode = 'citations' %}
+              {% if lang == 'en' %}
+                {% assign stat_one = 'citation' %}
+                {% assign stat_many = 'citations' %}
+              {% else %}
+                {% assign stat_one = '被引' %}
+                {% assign stat_many = '被引' %}
+              {% endif %}
+              {% assign stat_unit = stat_many %}
+              {% unless project.citations == nil or project.citations == '' %}
+                {% assign stat_value = project.citations %}
+                {% assign stat_count = project.citations | plus: 0 %}
+                {% if stat_count == 1 %}{% assign stat_unit = stat_one %}{% endif %}
+              {% endunless %}
+            {% endif %}
+            {% if badge_href != '' and badge_label != '' %}
+              <a class="paper-badge" href="{{ badge_href | escape }}"{% if badge_href contains '://' %} target="_blank" rel="noopener noreferrer"{% endif %}{% if stat_mode == 'stars' %} data-paper-stars data-repo="{{ project.code | escape }}"{% endif %}{% if stat_mode == 'citations' %} data-paper-citations{% endif %}{% if download_stats != '' %} data-paper-downloads data-stats-url="{{ download_stats | escape }}"{% endif %}>
+                <span class="paper-badge-label">{{ badge_label | escape }}</span>
+                {% if stat_mode != '' %}
+                  <span class="paper-badge-stat">
+                    <span class="paper-badge-value"{% if stat_mode == 'stars' %} data-paper-stat-value aria-live="polite"{% endif %}>{{ stat_value | escape }}</span>
+                    <span class="paper-badge-unit" data-one="{{ stat_one | escape }}" data-many="{{ stat_many | escape }}">{{ stat_unit | escape }}</span>
+                  </span>
+                {% elsif badge_detail != '' %}
+                  <span class="paper-badge-detail"{% if download_stats != '' %} data-paper-download-label{% endif %}>{{ badge_detail | escape }}</span>
+                  {% if download_stats != '' %}
+                    <span class="paper-badge-stat" hidden>
+                      <span class="paper-badge-value" data-paper-stat-value aria-live="polite"></span>
+                      <span class="paper-badge-unit" data-one="{{ stat_one | escape }}" data-many="{{ stat_many | escape }}"></span>
+                    </span>
+                  {% endif %}
+                {% endif %}
+              </a>
             {% endif %}
           {% endfor %}
         {% else %}
@@ -333,6 +396,58 @@ layout: default
     } else {
       fallback();
     }
+  });
+})();
+</script>
+{% endif %}
+{% if project.badges %}
+<script>
+(function () {
+  function showCount(badge, count) {
+    var value = badge.querySelector('[data-paper-stat-value]');
+    var unit = badge.querySelector('[data-one]');
+    if (!value) return;
+    value.textContent = String(count);
+    if (unit) unit.textContent = count === 1 ? (unit.getAttribute('data-one') || '') : (unit.getAttribute('data-many') || '');
+  }
+  var stars = document.querySelector('[data-paper-stars]');
+  if (stars) {
+    var repo = stars.getAttribute('data-repo') || '';
+    var match = repo.match(/github\.com\/([^\/?#]+)\/([^\/?#]+)/i);
+    if (match && stars.querySelector('[data-paper-stat-value]')) {
+      fetch('https://api.github.com/repos/' + match[1] + '/' + match[2].replace(/\.git$/, ''), {
+        headers: { Accept: 'application/vnd.github+json' }
+      }).then(function (res) {
+        if (!res.ok) throw new Error('stars');
+        return res.json();
+      }).then(function (data) {
+        var count = data && data.stargazers_count;
+        if (typeof count !== 'number' || !isFinite(count) || count < 0) throw new Error('stars');
+        showCount(stars, count);
+      }).catch(function () {
+        var value = stars.querySelector('[data-paper-stat-value]');
+        if (value) value.textContent = '\u2014';
+      });
+    }
+  }
+  var pdf = document.querySelector('[data-paper-downloads]');
+  if (!pdf) return;
+  var statsUrl = pdf.getAttribute('data-stats-url') || '';
+  var stat = pdf.querySelector('.paper-badge-stat');
+  var label = pdf.querySelector('[data-paper-download-label]');
+  if (!statsUrl || !stat) return;
+  fetch(statsUrl, { headers: { Accept: 'application/json' } }).then(function (res) {
+    if (!res.ok) throw new Error('downloads');
+    return res.json();
+  }).then(function (data) {
+    var count = data && data.downloads;
+    if (typeof count !== 'number' || !isFinite(count) || count < 0) throw new Error('downloads');
+    showCount(pdf, count);
+    stat.hidden = false;
+    if (label) label.hidden = true;
+  }).catch(function () {
+    stat.hidden = true;
+    if (label) label.hidden = false;
   });
 })();
 </script>

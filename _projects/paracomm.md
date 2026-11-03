@@ -23,42 +23,54 @@ authors:
   - name: Wei Li
   - name: Xiao Wu
   - name: Chao Chen
-  - name: Zhaofei Yu
-affiliations_zh: "西南交通大学、重庆大学、北京大学"
-affiliations_en: "Southwest Jiaotong University, Chongqing University, Peking University"
-pdf: https://files.eaislab.com/projects/paracomm/paper.pdf
+affiliations_zh: "西南交通大学、重庆大学"
+affiliations_en: "Southwest Jiaotong University, Chongqing University"
+pdf: https://dl.eaislab.com/projects/paracomm/paper.pdf
 doi: https://doi.org/10.1109/TMC.2026.3741641
 paper: https://doi.org/10.1109/TMC.2026.3741641
 code: https://github.com/EdgeAI-2000/ParaComm
 project_page: https://weiquanmin.github.io/ParaComm/
 demo_video: https://files.eaislab.com/projects/paracomm/demo.mp4
 demo_poster: https://files.eaislab.com/projects/paracomm/demo-poster.jpg
+# Paper badge citation count. Set a non-negative integer from Google Scholar
+# when you refresh it. Leave blank to show an em dash — do not guess a number.
+# The Paper badge still opens the DOI. Stars are not stored here; the Code
+# badge reads them from the public GitHub API for EdgeAI-2000/ParaComm.
+citations:
+# PDF download count. pdf_stats_url returns CORS JSON
+# { "path": "projects/paracomm/paper.pdf", "downloads": N }
+# with Access-Control-Allow-Origin: *. The badge shows downloads.
+# A failed or non-numeric response hides the number.
+pdf_stats_url: https://dl.eaislab.com/stats/projects/paracomm/paper.json
 badges:
   - key: paper
-    src_en: "https://img.shields.io/badge/Paper-IEEE%20TMC-0867b2?style=flat&logo=ieee&logoColor=white"
-    src_zh: "https://img.shields.io/badge/%E8%AE%BA%E6%96%87-IEEE%20TMC-0867b2?style=flat&logo=ieee&logoColor=white"
-    alt_en: Paper
-    alt_zh: 论文
+    label_en: Paper
+    label_zh: 论文
+    stat: citations
+  - key: tmc
+    label_en: TMC
+    label_zh: TMC
+    detail_en: 10.1109/TMC.2026.3741641
+    detail_zh: 10.1109/TMC.2026.3741641
   - key: pdf
-    src_en: "https://img.shields.io/badge/PDF-Download-b31b1b?style=flat"
-    src_zh: "https://img.shields.io/badge/PDF-%E4%B8%8B%E8%BD%BD-b31b1b?style=flat"
-    alt_en: PDF
-    alt_zh: PDF
+    label_en: PDF
+    label_zh: PDF
+    detail_en: Download
+    detail_zh: 下载
   - key: code
-    src_en: "https://img.shields.io/badge/Code-GitHub-181717?style=flat&logo=github&logoColor=white"
-    src_zh: "https://img.shields.io/badge/%E4%BB%A3%E7%A0%81-GitHub-181717?style=flat&logo=github&logoColor=white"
-    alt_en: Code
-    alt_zh: 代码
+    label_en: Code
+    label_zh: 代码
+    stat: stars
   - key: video
-    src_en: "https://img.shields.io/badge/Video-Demo-0b6e99?style=flat"
-    src_zh: "https://img.shields.io/badge/%E8%A7%86%E9%A2%91-%E6%BC%94%E7%A4%BA-0b6e99?style=flat"
-    alt_en: Video
-    alt_zh: 视频
+    label_en: Video
+    label_zh: 视频
+    detail_en: Demo
+    detail_zh: 演示
   - key: project
-    src_en: "https://img.shields.io/badge/Project-Page-0e7c66?style=flat"
-    src_zh: "https://img.shields.io/badge/%E9%A1%B9%E7%9B%AE-%E4%B8%BB%E9%A1%B5-0e7c66?style=flat"
-    alt_en: Project page
-    alt_zh: 项目主页
+    label_en: Project
+    label_zh: 项目
+    detail_en: Page
+    detail_zh: 主页
 demo_caption_zh: "共享字典原子留在每辆车上，链路上只传输稀疏参数。这些参数先在空间位置与字典原子上稀疏化，再经参数共享和低比特量化压缩。接收端用收到的参数和本地字典重建协同特征。"
 demo_caption_en: "Shared dictionary atoms stay on each vehicle, and only sparse parameters are sent. Those parameters are sparsified across spatial locations and dictionary atoms, then compacted by parameter sharing and low-bit quantization. The receiver rebuilds collaborative features from the received parameters and its local dictionary."
 key_results:
@@ -133,10 +145,14 @@ abstract_en: "Collaborative perception enhances autonomous driving by allowing a
 method_zh: "ParaComm 是面向协同感知的、以参数为中心的通信流水线。在发送端，共享的通信骨干（Communication Backbone）与空间头（Space Head）、原子头（Atom Head）一起产生空间分数，以及字典原子上的稠密参数。联合空间-原子稀疏化（Joint Space-Atom Sparsification）用空间分数在位置和原子两个维度上稀疏这些参数。可变分块参数共享（Variable-Tile Parameter Sharing）和量化表示（Quantized Representation）再把它们压成待传输参数。接收端用传来的参数和本地字典原子显式重建协同特征。轻量的精炼头（Refinement Head）复用通信骨干，在不再引入第二套骨干网络的情况下提升特征质量。"
 method_en: "ParaComm is a parameter-centric communication pipeline for collaborative perception. On the sender, a shared Communication Backbone, together with the Space Head and the Atom Head, produces a spatial score and dense parameters over dictionary atoms. Joint Space-Atom Sparsification uses that score to thin the parameters across locations and atoms. Variable-Tile Parameter Sharing and Quantized Representation then compact them into the transmitted message. The receiver reconstructs collaborative features from the message and its local dictionary atoms. A lightweight Refinement Head, which reuses the Communication Backbone, improves those features without a second full backbone."
 bibtex: |
-  @article{wei2026paracomm,
-    title = {Rethinking What to Communicate for Collaborative Perception: A Parameter-Centric Perspective},
-    author = {Wei, Quanmin and Dai, Penglin and Li, Wei and Wu, Xiao and Chen, Chao and Yu, Zhaofei},
-    journal = {IEEE Transactions on Mobile Computing},
-    year = {2026}
-  }
+  @ARTICLE{11727060,
+    author={Wei, Quanmin and Dai, Penglin and Li, Wei and Wu, Xiao and Chen, Chao},
+    journal={IEEE Transactions on Mobile Computing}, 
+    title={Rethinking What to Communicate for Collaborative Perception: A Parameter-Centric Perspective}, 
+    year={2026},
+    volume={},
+    number={},
+    pages={1-15},
+    keywords={Atoms;Dictionaries;Collaboration;Tiles;Modeling;Standards;Educational institutions;Conferences;Computers;Receivers;Collaborative perception;communication-efficient collaboration;autonomous driving},
+    doi={10.1109/TMC.2026.3741641}}
 ---
