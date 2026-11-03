@@ -363,8 +363,15 @@ test('Table I baselines keep PDF citation markers and official paper links', () 
   assert.match(refs, /id: 8[\s\S]*datasets:[\s\S]*V2XSet[\s\S]*doi\.org\/10\.1007\/978-3-031-19842-7_7/);
   assert.match(refs, /id: 9[\s\S]*datasets:[\s\S]*DAIR-V2X[\s\S]*doi\.org\/10\.1109\/CVPR52688\.2022\.02067/);
   assert.match(refs, /in International Conference on Robotics and Automation \(ICRA\), 2021, pp\. 2583–2589/);
+  assert.match(refs, /in International Conference on Robotics and Automation \(ICRA\), 2023\./);
+  assert.match(refs, /in Advances in Neural Information Processing Systems \(NeurIPS\), 2022\./);
+  assert.match(refs, /in IEEE\/CVF Conference on Computer Vision and Pattern Recognition \(CVPR\), 2024\./);
+  assert.match(refs, /in Advances in Neural Information Processing Systems \(NeurIPS\), 2025\./);
+  assert.match(refs, /IEEE Transactions on Pattern Analysis and Machine Intelligence \(TPAMI\), 2026\./);
+  assert.match(refs, /in AAAI Conference on Artificial Intelligence \(AAAI\), 2026\./);
   assert.match(refs, /in European Conference on Computer Vision \(ECCV\), 2022, pp\. 107–124/);
   assert.match(refs, /in IEEE\/CVF Conference on Computer Vision and Pattern Recognition \(CVPR\), 2022, pp\. 21361–21370/);
+  assert.doesNotMatch(refs, /,” (?:ICRA|NeurIPS|CVPR|AAAI) \d{4}\./);
   assert.ok(refs.indexOf('id: 1') < refs.indexOf('id: 2') && refs.indexOf('id: 2') < refs.indexOf('id: 3') && refs.indexOf('id: 3') < refs.indexOf('id: 4') && refs.indexOf('id: 4') < refs.indexOf('id: 5') && refs.indexOf('id: 5') < refs.indexOf('id: 6') && refs.indexOf('id: 6') < refs.indexOf('id: 7') && refs.indexOf('id: 7') < refs.indexOf('id: 8') && refs.indexOf('id: 8') < refs.indexOf('id: 9'));
   assert.doesNotMatch(refs, /id: (?:12|13|14|16|37|39|46|47|48)\b/);
   assert.doesNotMatch(refs, /ParaComm/);
