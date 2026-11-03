@@ -227,14 +227,17 @@ layout: default
 
     {% if project.figure_concept %}
       {% if lang == 'en' %}
+        {% assign concept_body = project.concept_en | default: project.concept %}
         {% assign concept_alt = project.figure_concept_alt_en | default: project.figure_concept_alt | default: paper_title %}
         {% assign concept_caption = project.figure_concept_caption_en | default: project.figure_concept_caption %}
       {% else %}
+        {% assign concept_body = project.concept_zh | default: project.concept_en | default: project.concept %}
         {% assign concept_alt = project.figure_concept_alt_zh | default: project.figure_concept_alt_en | default: project.paper_title_zh | default: paper_title %}
         {% assign concept_caption = project.figure_concept_caption_zh | default: project.figure_concept_caption_en %}
       {% endif %}
       <section class="paper-block" id="concept" aria-labelledby="paper-concept-title">
         <h2 id="paper-concept-title">{{ concept_heading }}</h2>
+        {% if concept_body %}<div class="paper-prose"><p>{{ concept_body | escape }}</p></div>{% endif %}
         <figure class="paper-figure-block">
           {% include asset-src.html src=project.figure_concept %}
           {% include img.html src=asset_src class="paper-figure" alt=concept_alt width=project.figure_concept_width height=project.figure_concept_height priority="lazy" %}
