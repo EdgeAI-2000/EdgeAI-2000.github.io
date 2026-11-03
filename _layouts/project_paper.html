@@ -6,6 +6,7 @@ layout: default
   {% assign project = site.projects | where: 'slug', page.project_slug | first %}
 {% endif %}
 {% assign lang = page.lang | default: project.lang | default: 'zh' %}
+{% assign paper_slug = page.project_slug | default: project.slug | default: page.slug %}
 {% if lang == 'en' %}
   {% assign list_url = '/en/project/' %}
 {% else %}
@@ -191,6 +192,13 @@ layout: default
       </div>
     </header>
 
+    {% if abstract %}
+      <section class="paper-block" id="abstract">
+        <h2>{{ abstract_heading }}</h2>
+        <div class="paper-prose"><p>{{ abstract | escape }}</p></div>
+      </section>
+    {% endif %}
+
     <section class="paper-block paper-video-block" id="paper-demo" aria-labelledby="paper-demo-title">
       <h2 id="paper-demo-title">{{ video_heading }}</h2>
       {% if demo_lead %}<p class="paper-lead">{{ demo_lead | escape }}</p>{% endif %}
@@ -232,13 +240,6 @@ layout: default
           {% include img.html src=asset_src class="paper-figure" alt=concept_alt width=project.figure_concept_width height=project.figure_concept_height priority="lazy" %}
           {% if concept_caption %}<figcaption>{{ concept_caption | escape }}</figcaption>{% endif %}
         </figure>
-      </section>
-    {% endif %}
-
-    {% if abstract %}
-      <section class="paper-block" id="abstract">
-        <h2>{{ abstract_heading }}</h2>
-        <div class="paper-prose"><p>{{ abstract | escape }}</p></div>
       </section>
     {% endif %}
 
@@ -290,7 +291,9 @@ layout: default
       </section>
     {% endif %}
 
+    {% unless paper_slug == 'paracomm' %}
     <p class="paper-back"><a class="link" href="{{ list_url | relative_url }}">{{ back_label }}</a></p>
+    {% endunless %}
   {% endunless %}
 </article>
 {% if project.bibtex %}
