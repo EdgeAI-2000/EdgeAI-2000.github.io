@@ -157,6 +157,8 @@ test('PDF, code, and result figures use the lab hosts', () => {
   assert.match(project, /width:\s*1366/);
   assert.match(project, /height:\s*453/);
   assert.match(project, /height:\s*387/);
+  assert.match(project, /results_table_lead_en:.*Table I is the quantitative comparison on OPV2V, V2XSet, and DAIR-V2X/);
+  assert.match(project, /results_table_lead_zh:.*表 I 在 OPV2V、V2XSet 与 DAIR-V2X 上做定量对比/);
   assert.match(project, /results_lead_en:.*Fig\. 7 places ParaComm.*Fig\. 8 sweeps atom top-k/);
   assert.match(project, /results_lead_zh:.*图 7 把 ParaComm.*图 8 扫描原子 top-k/);
   assert.match(project, /caption_en: "Fig\. 8\. Atom top-k, variable-tile size, and dictionary size: AP@70 against communication volume\."/);
@@ -267,10 +269,15 @@ test('the paper page drops rounded section cards and accent underlines', () => {
 test('Results include paper Table I before the figures, copyable and bilingual', () => {
   const tableInclude = read('../_includes/paper-results-table.html');
   const results = layout.indexOf('id="results"');
-  const includeAt = layout.indexOf('paper-results-table.html');
-  const figures = layout.indexOf('class="paper-results"');
-  assert.ok(results > 0 && includeAt > results && includeAt < figures);
+  const resultsSection = layout.slice(results);
+  const tableLead = resultsSection.indexOf('results_table_lead');
+  const includeAt = resultsSection.indexOf('paper-results-table.html');
+  const figureLead = resultsSection.indexOf('results_lead');
+  const figures = resultsSection.indexOf('class="paper-results"');
+  assert.ok(results > 0 && tableLead >= 0 && includeAt > tableLead && figureLead > includeAt && figures > figureLead);
   assert.match(layout, /project\.results_table/);
+  assert.match(layout, /assign results_table_lead = project\.results_table_lead_en/);
+  assert.match(layout, /assign results_table_lead = project\.results_table_lead_zh/);
   assert.match(tableInclude, /class="paper-table-scroll"/);
   assert.match(tableInclude, /class="paper-table"/);
   assert.match(tableInclude, /<table/);
@@ -293,6 +300,8 @@ test('Results include paper Table I before the figures, copyable and bilingual',
   assert.match(project, /ap50: "0\.7873 ± 0\.0011"/);
   assert.match(project, /ap70: "0\.6499 ± 0\.0030"/);
   assert.match(project, /ap30: OOM/);
+  assert.match(project, /results_table_lead_en:.*same CoAlign backbone.*ParaComm is strongest/);
+  assert.match(project, /results_table_lead_zh:.*同一 CoAlign 骨干.*ParaComm 检测精度最高/);
   assert.match(project, /results_lead_en:.*Fig\. 7 places ParaComm.*Fig\. 8 sweeps atom top-k/);
   assert.match(project, /results_lead_zh:.*图 7 把 ParaComm.*图 8 扫描原子 top-k/);
 });

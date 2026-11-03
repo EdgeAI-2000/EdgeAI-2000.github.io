@@ -40,6 +40,7 @@ layout: default
       {% assign abstract_heading = 'Abstract' %}
       {% assign method_heading = 'Method' %}
       {% assign results_heading = 'Experimental Results' %}
+      {% assign results_table_lead = project.results_table_lead_en | default: project.results_table_lead %}
       {% assign results_lead = project.results_lead_en | default: project.results_lead %}
       {% assign bibtex_heading = 'BibTeX' %}
       {% assign copy_label = 'Copy BibTeX' %}
@@ -62,6 +63,7 @@ layout: default
       {% assign abstract_heading = '摘要' %}
       {% assign method_heading = '方法' %}
       {% assign results_heading = '实验结果' %}
+      {% assign results_table_lead = project.results_table_lead_zh | default: project.results_table_lead_en | default: project.results_table_lead %}
       {% assign results_lead = project.results_lead_zh | default: project.results_lead_en | default: project.results_lead %}
       {% assign bibtex_heading = 'BibTeX' %}
       {% assign copy_label = '复制 BibTeX' %}
@@ -332,10 +334,11 @@ layout: default
     {% if has_results_figures or project.results_table %}
       <section class="paper-block" id="results">
         <h2>{{ results_heading }}</h2>
-        {% if results_lead %}<p class="paper-lead">{{ results_lead | escape }}</p>{% endif %}
+        {% if results_table_lead %}<p class="paper-lead">{{ results_table_lead | escape }}</p>{% endif %}
         {% if project.results_table %}
           {% include paper-results-table.html %}
         {% endif %}
+        {% if results_lead %}<p class="paper-lead">{{ results_lead | escape }}</p>{% endif %}
         <div class="paper-results">
           {% for fig in project.figure_results %}
             {% if lang == 'en' %}

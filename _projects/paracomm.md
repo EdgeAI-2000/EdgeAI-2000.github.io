@@ -128,6 +128,8 @@ figure_method_alt_zh: "ParaComm 整体框架：发送端由通信骨干、空间
 figure_method_alt_en: "Overall ParaComm framework. The sender turns BEV features into sparse quantized parameters; the receiver reconstructs features with the shared dictionary and a refinement head."
 figure_method_caption_zh: "发送端输出稀疏量化参数；接收端用本地字典重建，精炼头复用通信骨干。"
 figure_method_caption_en: "The sender emits sparse quantized parameters. The receiver rebuilds features with its local dictionary, and the Refinement Head reuses the Communication Backbone."
+results_table_lead_zh: "表 I 在 OPV2V、V2XSet 与 DAIR-V2X 上做定量对比。通信高效方法共用同一 CoAlign 骨干；其中 ParaComm 检测精度最高，通信量也更低。"
+results_table_lead_en: "Table I is the quantitative comparison on OPV2V, V2XSet, and DAIR-V2X. Communication-efficient methods share the same CoAlign backbone; among them, ParaComm is strongest on detection accuracy at a much smaller communication volume."
 results_lead_zh: "图 7 把 ParaComm 与基线协同检测方法的鸟瞰结果并排展示，并标出漏检、不准确预测和错误预测。图 8 扫描原子 top-k、可变分块大小和字典大小，比较 AP@70 与通信量。两图合在一起，用来看减少报文之后检测是否仍然可用。"
 results_lead_en: "Fig. 7 places ParaComm beside baseline collaborative detectors in bird's-eye view and marks missed, inaccurate, and incorrect predictions. Fig. 8 sweeps atom top-k, variable-tile size, and dictionary size, relating AP@70 to communication volume. Read together, they show whether cutting the message still leaves the detections usable."
 results_table:
