@@ -51,8 +51,8 @@ badges:
   - key: tmc
     label_en: TMC
     label_zh: TMC
-    detail_en: IEEE
-    detail_zh: IEEE
+    detail_en: 10.1109/TMC.2026.3741641
+    detail_zh: 10.1109/TMC.2026.3741641
   - key: pdf
     label_en: PDF
     label_zh: PDF

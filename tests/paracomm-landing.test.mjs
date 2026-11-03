@@ -89,7 +89,8 @@ test('ParaComm uses site-styled text badges, and projects without badges keep eq
   assert.match(project, /label_zh: 论文/);
   assert.match(project, /key: tmc/);
   assert.match(project, /label_en: TMC/);
-  assert.match(project, /detail_en: IEEE/);
+  assert.match(project, /detail_en: 10\.1109\/TMC\.2026\.3741641/);
+  assert.match(project, /detail_zh: 10\.1109\/TMC\.2026\.3741641/);
   const badgeOrder = project.slice(project.indexOf('badges:'), project.indexOf('demo_caption_zh:'));
   assert.ok(badgeOrder.indexOf('key: paper') < badgeOrder.indexOf('key: tmc'));
   assert.ok(badgeOrder.indexOf('key: tmc') < badgeOrder.indexOf('key: pdf'));
