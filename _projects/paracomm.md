@@ -109,10 +109,10 @@ highlights_en:
   - Parameter-centric communication keeps the shared dictionary local
   - Sparsify across space and dictionary atoms, then share and quantize parameters
   - "OPV2V: 34.375 MB → 99.688 KB (over 350× compression) while improving detection"
-cover: /assets/images/projects/paracomm/fcc-vs-pcc.png
+cover: https://files.eaislab.com/projects/paracomm/fcc-vs-pcc.jpg
 cover_width: 843
 cover_height: 498
-figure_concept: /assets/images/projects/paracomm/fcc-vs-pcc.png
+figure_concept: https://files.eaislab.com/projects/paracomm/fcc-vs-pcc.jpg
 figure_concept_width: 843
 figure_concept_height: 498
 figure_concept_alt_zh: "示意图：以特征为中心的通信传输 BEV 特征或压缩特征；以参数为中心的通信只传输相对共享字典原子的稀疏参数。"
@@ -121,7 +121,7 @@ concept_zh: "以特征为中心的通信（FCC）传输 BEV 特征或其压缩�
 concept_en: "Feature-Centric Communication (FCC) transmits BEV features or their compressed representations. Those features still mix shared semantic bases with observation-specific variations, so much of the message repeats structure every agent could store locally. Parameter-Centric Communication (PCC) keeps the shared bases locally as dictionary atoms and sends only sparse parameters for the variations. Communication is then spent on the differences that matter for collaboration."
 figure_concept_caption_zh: "FCC 传输特征或压缩特征；PCC 只传输相对共享字典原子的稀疏参数。"
 figure_concept_caption_en: "FCC transmits features or compressed features; PCC transmits sparse parameters over shared dictionary atoms."
-figure_method: /assets/images/projects/paracomm/framework.png
+figure_method: https://files.eaislab.com/projects/paracomm/framework.jpg
 figure_method_width: 1593
 figure_method_height: 629
 figure_method_alt_zh: "ParaComm 整体框架：发送端由通信骨干、空间头与参数头得到空间分数和稠密参数，经联合稀疏化、分块共享和量化后传输；接收端用共享字典显式重建并精炼特征。"
@@ -153,42 +153,60 @@ results_table:
   refs_heading_zh: 参考文献
   refs:
     - id: 1
+      datasets:
+        - OPV2V
+      href: https://doi.org/10.1109/ICRA46639.2022.9812038
+      text_en: 'R. Xu, H. Xiang, X. Xia, X. Han, J. Liu, and J. Ma, “Opv2v: An open benchmark dataset and fusion pipeline for perception with vehicle-to-vehicle communication,” in International Conference on Robotics and Automation (ICRA), 2021, pp. 2583–2589.'
+      text_zh: 'R. Xu, H. Xiang, X. Xia, X. Han, J. Liu, and J. Ma, “Opv2v: An open benchmark dataset and fusion pipeline for perception with vehicle-to-vehicle communication,” in International Conference on Robotics and Automation (ICRA), 2021, pp. 2583–2589.'
+    - id: 2
       methods:
         - Standard Collaboration
       href: https://doi.org/10.1109/ICRA48891.2023.10160546
       text_en: 'Y. Lu, Q. Li, B. Liu, M. Dianat, C. Feng, S. Chen, and Y. Wang, “Robust collaborative 3D object detection in presence of pose errors,” ICRA 2023.'
       text_zh: 'Y. Lu, Q. Li, B. Liu, M. Dianat, C. Feng, S. Chen, and Y. Wang, “Robust collaborative 3D object detection in presence of pose errors,” ICRA 2023.'
-    - id: 2
+    - id: 3
       methods:
         - Where2comm
       href: https://proceedings.neurips.cc/paper_files/paper/2022/hash/1f5c5cd01b864d53cc5fa0a3472e152e-Abstract-Conference.html
       text_en: 'Y. Hu, S. Fang, Z. Lei, Y. Zhong, and S. Chen, “Where2comm: Communication-efficient collaborative perception via spatial confidence maps,” NeurIPS 2022.'
       text_zh: 'Y. Hu, S. Fang, Z. Lei, Y. Zhong, and S. Chen, “Where2comm: Communication-efficient collaborative perception via spatial confidence maps,” NeurIPS 2022.'
-    - id: 3
+    - id: 4
       methods:
         - ERMVP
       href: https://openaccess.thecvf.com/content/CVPR2024/html/Zhang_ERMVP_Communication-Efficient_and_Collaboration-Robust_Multi-Vehicle_Perception_in_Challenging_Environments_CVPR_2024_paper.html
       text_en: 'J. Zhang, K. Yang, Y. Wang, H. Wang, P. Sun, and L. Song, “ERMVP: Communication-efficient and collaboration-robust multi-vehicle perception in challenging environments,” CVPR 2024.'
       text_zh: 'J. Zhang, K. Yang, Y. Wang, H. Wang, P. Sun, and L. Song, “ERMVP: Communication-efficient and collaboration-robust multi-vehicle perception in challenging environments,” CVPR 2024.'
-    - id: 4
+    - id: 5
       methods:
         - GenComm
       href: https://proceedings.neurips.cc/paper_files/paper/2025/hash/4e6e0b561c00b3159b7c1c5cf4b0c9d3-Abstract-Conference.html
       text_en: 'J. Zhou, P. Dai, Q. Wei, B. Liu, X. Wu, and J. Wang, “Pragmatic heterogeneous collaborative perception via generative communication mechanism,” NeurIPS 2025.'
       text_zh: 'J. Zhou, P. Dai, Q. Wei, B. Liu, X. Wu, and J. Wang, “Pragmatic heterogeneous collaborative perception via generative communication mechanism,” NeurIPS 2025.'
-    - id: 5
+    - id: 6
       methods:
         - PragComm
         - PragComm*
       href: https://doi.org/10.1109/TPAMI.2026.3680062
       text_en: 'Y. Hu, X. Pang, X. Qin, Y. C. Eldar, S. Chen, P. Zhang, and W. Zhang, “Pragmatic communication in multi-agent collaborative perception,” IEEE Transactions on Pattern Analysis and Machine Intelligence, 2026.'
       text_zh: 'Y. Hu, X. Pang, X. Qin, Y. C. Eldar, S. Chen, P. Zhang, and W. Zhang, “Pragmatic communication in multi-agent collaborative perception,” IEEE Transactions on Pattern Analysis and Machine Intelligence, 2026.'
-    - id: 6
+    - id: 7
       methods:
         - InfoCom
       href: https://ojs.aaai.org/index.php/AAAI/article/view/40218
       text_en: 'Q. Wei, P. Dai, W. Li, B. Liu, and X. Wu, “Infocom: Kilobyte-scale communication-efficient collaborative perception with information bottleneck,” AAAI 2026.'
       text_zh: 'Q. Wei, P. Dai, W. Li, B. Liu, and X. Wu, “Infocom: Kilobyte-scale communication-efficient collaborative perception with information bottleneck,” AAAI 2026.'
+    - id: 8
+      datasets:
+        - V2XSet
+      href: https://doi.org/10.1007/978-3-031-19842-7_7
+      text_en: 'R. Xu, H. Xiang, Z. Tu, X. Xia, M.-H. Yang, and J. Ma, “V2x-vit: Vehicle-to-everything cooperative perception with vision transformer,” in European Conference on Computer Vision (ECCV), 2022, pp. 107–124.'
+      text_zh: 'R. Xu, H. Xiang, Z. Tu, X. Xia, M.-H. Yang, and J. Ma, “V2x-vit: Vehicle-to-everything cooperative perception with vision transformer,” in European Conference on Computer Vision (ECCV), 2022, pp. 107–124.'
+    - id: 9
+      datasets:
+        - DAIR-V2X
+      href: https://doi.org/10.1109/CVPR52688.2022.02067
+      text_en: 'H. Yu, Y. Luo, M. Shu, Y. Huo, Z. Yang, Y. Shi, Z. Guo, H. Li, X. Hu, J. Yuan et al., “Dair-v2x: A large-scale dataset for vehicle-infrastructure cooperative 3d object detection,” in IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2022, pp. 21361–21370.'
+      text_zh: 'H. Yu, Y. Luo, M. Shu, Y. Huo, Z. Yang, Y. Shi, Z. Guo, H. Li, X. Hu, J. Yuan et al., “Dair-v2x: A large-scale dataset for vehicle-infrastructure cooperative 3d object detection,” in IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2022, pp. 21361–21370.'
   groups:
     - dataset: OPV2V
       rows:

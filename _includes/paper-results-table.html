@@ -19,6 +19,13 @@
       </thead>
       <tbody>
         {% for group in table.groups %}
+          {% assign dataset_name = group.dataset %}
+          {% assign dataset_ref = nil %}
+          {% for item in table.refs %}
+            {% if item.datasets contains dataset_name %}
+              {% assign dataset_ref = item %}
+            {% endif %}
+          {% endfor %}
           {% for row in group.rows %}
             {% assign method_name = row.method_en | default: row.method %}
             {% assign method_ref = nil %}
@@ -29,7 +36,11 @@
             {% endfor %}
             <tr{% if row.ours %} class="paper-table-ours"{% endif %}>
               {% if forloop.first %}
-                <th scope="rowgroup" rowspan="{{ group.rows.size }}">{{ group.dataset | escape }}</th>
+                <th scope="rowgroup" rowspan="{{ group.rows.size }}">{% if dataset_ref %}
+                {% if dataset_ref.href %}<a class="paper-cite-link" href="{{ dataset_ref.href | escape }}" target="_blank" rel="noopener noreferrer">{{ dataset_name | escape }}</a>{% else %}{{ dataset_name | escape }}{% endif %}<a class="paper-cite-num" href="#ref-{{ dataset_ref.id | escape }}">[{{ dataset_ref.id | escape }}]</a>
+              {% else %}
+                {{ dataset_name | escape }}
+              {% endif %}</th>
               {% endif %}
               <td>{% if method_ref %}
                 {% if method_ref.href %}<a class="paper-cite-link" href="{{ method_ref.href | escape }}" target="_blank" rel="noopener noreferrer">{{ method_name | escape }}</a>{% else %}{{ method_name | escape }}{% endif %}<a class="paper-cite-num" href="#ref-{{ method_ref.id | escape }}">[{{ method_ref.id | escape }}]</a>
