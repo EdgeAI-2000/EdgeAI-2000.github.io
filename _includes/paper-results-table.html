@@ -20,11 +20,22 @@
       <tbody>
         {% for group in table.groups %}
           {% for row in group.rows %}
+            {% assign method_name = row.method_en | default: row.method %}
+            {% assign method_ref = nil %}
+            {% for item in table.refs %}
+              {% if item.methods contains method_name %}
+                {% assign method_ref = item %}
+              {% endif %}
+            {% endfor %}
             <tr{% if row.ours %} class="paper-table-ours"{% endif %}>
               {% if forloop.first %}
                 <th scope="rowgroup" rowspan="{{ group.rows.size }}">{{ group.dataset | escape }}</th>
               {% endif %}
-              <td>{% if lang == 'en' %}{{ row.method_en | default: row.method | escape }}{% else %}{{ row.method_zh | default: row.method_en | default: row.method | escape }}{% endif %}</td>
+              <td>{% if method_ref %}
+                {% if method_ref.href %}<a class="paper-cite-link" href="{{ method_ref.href | escape }}" target="_blank" rel="noopener noreferrer">{{ method_name | escape }}</a>{% else %}{{ method_name | escape }}{% endif %}<a class="paper-cite-num" href="#ref-{{ method_ref.id | escape }}">[{{ method_ref.id | escape }}]</a>
+              {% else %}
+                {{ method_name | escape }}
+              {% endif %}</td>
               <td>{{ row.publication | escape }}</td>
               <td>{{ row.volume | escape }}</td>
               <td{% if row.ap30_mark %} class="paper-table-{{ row.ap30_mark }}"{% endif %}>{{ row.ap30 | escape }}</td>

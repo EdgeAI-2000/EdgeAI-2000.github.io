@@ -366,6 +366,10 @@ layout: default
       </section>
     {% endif %}
 
+    {% if project.results_table.refs and project.results_table.refs.size > 0 %}
+      {% include paper-results-refs.html %}
+    {% endif %}
+
     {% unless paper_slug == 'paracomm' %}
     <p class="paper-back"><a class="link" href="{{ list_url | relative_url }}">{{ back_label }}</a></p>
     {% endunless %}

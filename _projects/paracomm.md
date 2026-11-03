@@ -149,6 +149,46 @@ results_table:
     - AP@30
     - AP@50
     - AP@70
+  refs_heading_en: References
+  refs_heading_zh: 参考文献
+  refs:
+    - id: 13
+      methods:
+        - Where2comm
+      href: https://proceedings.neurips.cc/paper_files/paper/2022/hash/1f5c5cd01b864d53cc5fa0a3472e152e-Abstract-Conference.html
+      text_en: 'Y. Hu, S. Fang, Z. Lei, Y. Zhong, and S. Chen, “Where2comm: Communication-efficient collaborative perception via spatial confidence maps,” NeurIPS 2022.'
+      text_zh: 'Y. Hu, S. Fang, Z. Lei, Y. Zhong, and S. Chen, “Where2comm: Communication-efficient collaborative perception via spatial confidence maps,” NeurIPS 2022.'
+    - id: 14
+      methods:
+        - InfoCom
+      href: https://ojs.aaai.org/index.php/AAAI/article/view/40218
+      text_en: 'Q. Wei, P. Dai, W. Li, B. Liu, and X. Wu, “Infocom: Kilobyte-scale communication-efficient collaborative perception with information bottleneck,” AAAI 2026.'
+      text_zh: 'Q. Wei, P. Dai, W. Li, B. Liu, and X. Wu, “Infocom: Kilobyte-scale communication-efficient collaborative perception with information bottleneck,” AAAI 2026.'
+    - id: 16
+      methods:
+        - PragComm
+        - PragComm*
+      href: https://doi.org/10.1109/TPAMI.2026.3680062
+      text_en: 'Y. Hu, X. Pang, X. Qin, Y. C. Eldar, S. Chen, P. Zhang, and W. Zhang, “Pragmatic communication in multi-agent collaborative perception,” IEEE Transactions on Pattern Analysis and Machine Intelligence, 2026.'
+      text_zh: 'Y. Hu, X. Pang, X. Qin, Y. C. Eldar, S. Chen, P. Zhang, and W. Zhang, “Pragmatic communication in multi-agent collaborative perception,” IEEE Transactions on Pattern Analysis and Machine Intelligence, 2026.'
+    - id: 37
+      methods:
+        - ERMVP
+      href: https://openaccess.thecvf.com/content/CVPR2024/html/Zhang_ERMVP_Communication-Efficient_and_Collaboration-Robust_Multi-Vehicle_Perception_in_Challenging_Environments_CVPR_2024_paper.html
+      text_en: 'J. Zhang, K. Yang, Y. Wang, H. Wang, P. Sun, and L. Song, “ERMVP: Communication-efficient and collaboration-robust multi-vehicle perception in challenging environments,” CVPR 2024.'
+      text_zh: 'J. Zhang, K. Yang, Y. Wang, H. Wang, P. Sun, and L. Song, “ERMVP: Communication-efficient and collaboration-robust multi-vehicle perception in challenging environments,” CVPR 2024.'
+    - id: 39
+      methods:
+        - GenComm
+      href: https://proceedings.neurips.cc/paper_files/paper/2025/hash/4e6e0b561c00b3159b7c1c5cf4b0c9d3-Abstract-Conference.html
+      text_en: 'J. Zhou, P. Dai, Q. Wei, B. Liu, X. Wu, and J. Wang, “Pragmatic heterogeneous collaborative perception via generative communication mechanism,” NeurIPS 2025.'
+      text_zh: 'J. Zhou, P. Dai, Q. Wei, B. Liu, X. Wu, and J. Wang, “Pragmatic heterogeneous collaborative perception via generative communication mechanism,” NeurIPS 2025.'
+    - id: 46
+      methods:
+        - Standard Collaboration
+      href: https://doi.org/10.1109/ICRA48891.2023.10160546
+      text_en: 'Y. Lu, Q. Li, B. Liu, M. Dianat, C. Feng, S. Chen, and Y. Wang, “Robust collaborative 3D object detection in presence of pose errors,” ICRA 2023.'
+      text_zh: 'Y. Lu, Q. Li, B. Liu, M. Dianat, C. Feng, S. Chen, and Y. Wang, “Robust collaborative 3D object detection in presence of pose errors,” ICRA 2023.'
   groups:
     - dataset: OPV2V
       rows:
