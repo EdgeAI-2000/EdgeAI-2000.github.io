@@ -597,6 +597,7 @@ img[src*="/images/research/"] {
 .paper-stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
   gap: 4px 12px;
   width: 100%;
   max-width: 880px;
@@ -605,6 +606,10 @@ img[src*="/images/research/"] {
   list-style: none;
 }
 .paper-stat {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  justify-items: center;
+  align-items: start;
   min-width: 0;
   max-width: none;
   margin: 0;
@@ -617,26 +622,33 @@ img[src*="/images/research/"] {
 }
 .paper-stat-label {
   display: block;
+  width: 100%;
   color: var(--muted);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.04em;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 .paper-stat-value {
   display: block;
+  width: 100%;
   margin-top: 2px;
   color: var(--primary);
   font-size: 30px;
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 .paper-stat-detail {
   display: block;
+  width: 100%;
   margin-top: 4px;
   color: var(--heading);
   font-size: 13px;
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }
 .paper-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: stretch; gap: 12px; margin-top: 14px; }
 .paper-actions .btn {
@@ -653,6 +665,7 @@ img[src*="/images/research/"] {
   align-items: center;
   justify-content: center;
   gap: 2px;
+  box-sizing: border-box;
   min-width: 7.6rem;
   min-height: 64px;
   padding: 9px 14px 10px;
@@ -667,7 +680,8 @@ img[src*="/images/research/"] {
   line-height: 1.15;
   text-align: center;
   text-decoration: none;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
   transition: transform .15s ease, background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
 }
 .paper-badge-label {
@@ -678,7 +692,7 @@ img[src*="/images/research/"] {
   text-transform: uppercase;
 }
 :lang(zh) .paper-badge-label { letter-spacing: 0.02em; text-transform: none; font-size: 12px; }
-.paper-badge-detail { color: var(--heading); font-size: 13px; font-weight: 700; }
+.paper-badge-detail { color: var(--heading); font-size: 13px; font-weight: 700; overflow-wrap: anywhere; }
 .paper-badge-stat { display: inline-flex; align-items: baseline; justify-content: center; gap: 4px; }
 .paper-badge-stat[hidden], .paper-badge-detail[hidden] { display: none; }
 .paper-badge-value {
@@ -707,8 +721,9 @@ img[src*="/images/research/"] {
 .paper-video-block { margin-top: 28px; }
 .paper-video-block h2 { margin-bottom: 8px; }
 .paper-lead {
-  margin: 0 auto 12px;
-  max-width: 720px;
+  width: 100%;
+  max-width: none;
+  margin: 0 0 12px;
   color: var(--heading);
   font-size: 18px;
   line-height: 1.5;
@@ -726,15 +741,16 @@ img[src*="/images/research/"] {
   box-shadow: none;
 }
 .paper-caption {
-  margin: 14px auto 0;
-  max-width: 720px;
+  width: 100%;
+  max-width: none;
+  margin: 14px 0 0;
   color: var(--muted);
   font-size: 15px;
   line-height: 1.65;
 }
-.paper-prose { max-width: 720px; margin: 0 auto; }
+.paper-prose { width: 100%; max-width: none; margin: 0; }
 .paper-prose p { margin: 0; font-size: 17px; line-height: 1.75; }
-.paper-figure-block { margin: 8px 0 0; padding: 0; border: 0; background: none; box-shadow: none; }
+.paper-figure-block { width: 100%; max-width: none; margin: 8px 0 0; padding: 0; border: 0; background: none; box-shadow: none; }
 .paper-figure {
   display: block;
   width: 100%;
@@ -746,12 +762,53 @@ img[src*="/images/research/"] {
   box-shadow: none;
 }
 .paper-figure-block figcaption {
-  margin: 12px auto 0;
-  max-width: 720px;
+  width: 100%;
+  max-width: none;
+  margin: 12px 0 0;
   color: var(--muted);
   font-size: 14px;
   line-height: 1.65;
 }
+.paper-table-block { width: 100%; max-width: none; margin: 8px 0 28px; padding: 0; border: 0; background: none; box-shadow: none; }
+.paper-table-block .paper-caption { margin: 0 0 12px; }
+.paper-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.paper-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  color: var(--heading);
+  font-size: 13px;
+  line-height: 1.45;
+  user-select: text;
+  -webkit-user-select: text;
+}
+.paper-table th,
+.paper-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.paper-table thead th {
+  background: var(--surface);
+  color: var(--heading);
+  font-weight: 700;
+}
+.paper-table tbody th[scope="rowgroup"] {
+  background: transparent;
+  color: var(--heading);
+  font-weight: 800;
+  vertical-align: middle;
+}
+.paper-table-ours td:first-of-type { font-weight: 750; }
+.paper-table-best { background: #e5f3ea; }
+.paper-table-second { background: #eef1f4; }
 .paper-prose p,
 .paper-lead,
 .paper-caption,
@@ -800,8 +857,8 @@ img[src*="/images/research/"] {
   .paper-hero { padding-top: 8px; }
   .paper-project h1 { font-size: 30px; }
   .paper-subtitle { font-size: 15px; }
-  .paper-stats { gap: 2px 6px; max-width: none; }
-  .paper-stat { max-width: none; padding: 0 2px; }
+  .paper-stats { gap: 8px 10px; max-width: none; }
+  .paper-stat { max-width: none; padding: 0; }
   .paper-stat-value { font-size: 22px; }
   .paper-stat-label, .paper-stat-detail { font-size: 11px; line-height: 1.35; }
   .paper-block { margin-top: 40px; }
@@ -810,8 +867,23 @@ img[src*="/images/research/"] {
   .paper-bibtex-bar { flex-direction: row; }
   .paper-bibtex-bar h2 { font-size: 24px; text-align: left; }
   .paper-actions .btn { text-align: center; }
+  .paper-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: stretch;
+    gap: 10px;
+    width: 100%;
+  }
+  .paper-badge {
+    min-width: 0;
+    width: 100%;
+    padding: 10px 12px 11px;
+  }
+}
+@media (max-width: 360px) {
   .paper-actions { gap: 8px; }
-  .paper-badge { min-width: 6.6rem; padding: 8px 10px 9px; }
+  .paper-badge { padding: 8px 10px 9px; }
+  .paper-stat-value { font-size: 20px; }
 }
 @media (max-width: 600px) {
   .news-card { grid-template-columns: minmax(0, 1fr); gap: 10px; align-items: start; }

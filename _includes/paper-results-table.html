@@ -1,0 +1,39 @@
+{% assign table = project.results_table %}
+{% if lang == 'en' %}
+  {% assign table_caption = table.caption_en | default: table.caption %}
+  {% assign table_headers = table.headers_en | default: table.headers %}
+{% else %}
+  {% assign table_caption = table.caption_zh | default: table.caption_en | default: table.caption %}
+  {% assign table_headers = table.headers_zh | default: table.headers_en | default: table.headers %}
+{% endif %}
+<figure class="paper-table-block">
+  {% if table_caption %}<figcaption class="paper-caption">{{ table_caption | escape }}</figcaption>{% endif %}
+  <div class="paper-table-scroll" tabindex="0">
+    <table class="paper-table">
+      <thead>
+        <tr>
+          {% for header in table_headers %}
+            <th scope="col">{{ header | escape }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for group in table.groups %}
+          {% for row in group.rows %}
+            <tr{% if row.ours %} class="paper-table-ours"{% endif %}>
+              {% if forloop.first %}
+                <th scope="rowgroup" rowspan="{{ group.rows.size }}">{{ group.dataset | escape }}</th>
+              {% endif %}
+              <td>{% if lang == 'en' %}{{ row.method_en | default: row.method | escape }}{% else %}{{ row.method_zh | default: row.method_en | default: row.method | escape }}{% endif %}</td>
+              <td>{{ row.publication | escape }}</td>
+              <td>{{ row.volume | escape }}</td>
+              <td{% if row.ap30_mark %} class="paper-table-{{ row.ap30_mark }}"{% endif %}>{{ row.ap30 | escape }}</td>
+              <td{% if row.ap50_mark %} class="paper-table-{{ row.ap50_mark }}"{% endif %}>{{ row.ap50 | escape }}</td>
+              <td{% if row.ap70_mark %} class="paper-table-{{ row.ap70_mark }}"{% endif %}>{{ row.ap70 | escape }}</td>
+            </tr>
+          {% endfor %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</figure>

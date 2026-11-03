@@ -325,10 +325,17 @@ layout: default
       </section>
     {% endif %}
 
+    {% assign has_results_figures = false %}
     {% if project.figure_results and project.figure_results.size > 0 %}
+      {% assign has_results_figures = true %}
+    {% endif %}
+    {% if has_results_figures or project.results_table %}
       <section class="paper-block" id="results">
         <h2>{{ results_heading }}</h2>
         {% if results_lead %}<p class="paper-lead">{{ results_lead | escape }}</p>{% endif %}
+        {% if project.results_table %}
+          {% include paper-results-table.html %}
+        {% endif %}
         <div class="paper-results">
           {% for fig in project.figure_results %}
             {% if lang == 'en' %}
