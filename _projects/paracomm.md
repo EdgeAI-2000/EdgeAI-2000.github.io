@@ -23,20 +23,27 @@ authors:
   - name: Wei Li
   - name: Xiao Wu
   - name: Chao Chen
-affiliations_zh: "西南交通大学、重庆大学"
-affiliations_en: "Southwest Jiaotong University, Chongqing University"
+    name_zh: 陈超
+  - name: Zhaofei Yu
+    name_zh: 余兆飞
+affiliations_zh: "西南交通大学、重庆大学、北京大学"
+affiliations_en: "Southwest Jiaotong University, Chongqing University, Peking University"
 pdf: https://dl.eaislab.com/projects/paracomm/paper.pdf
 doi: https://doi.org/10.1109/TMC.2026.3741641
 paper: https://doi.org/10.1109/TMC.2026.3741641
+# Paper badge opens this Scholar result page. Cluster id was not available
+# from this agent (Scholar 403/429). TMC badge still uses the DOI above.
+scholar_url: https://scholar.google.com/scholar?q=%22Rethinking+What+to+Communicate+for+Collaborative+Perception%3A+A+Parameter-Centric+Perspective%22
 code: https://github.com/EdgeAI-2000/ParaComm
 project_page: https://weiquanmin.github.io/ParaComm/
 demo_video: https://files.eaislab.com/projects/paracomm/demo.mp4
 demo_poster: https://files.eaislab.com/projects/paracomm/demo-poster.jpg
-# Paper badge citation count. Set a non-negative integer from Google Scholar
-# when you refresh it. Leave blank to show an em dash — do not guess a number.
-# The Paper badge still opens the DOI. Stars are not stored here; the Code
-# badge reads them from the public GitHub API for EdgeAI-2000/ParaComm.
+# Do not put a guessed citation number here. The Paper badge starts as an
+# em dash, then reads citation_stats_url (Google Scholar via the
+# eais-scholar-citations Worker, same CORS JSON pattern as PDF downloads).
+# A failed or non-numeric response keeps the em dash.
 citations:
+citation_stats_url: https://dl.eaislab.com/stats/projects/paracomm/citations.json
 # PDF download count. pdf_stats_url returns CORS JSON
 # { "path": "projects/paracomm/paper.pdf", "downloads": N }
 # with Access-Control-Allow-Origin: *. The badge shows downloads.

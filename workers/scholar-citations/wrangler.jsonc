@@ -1,0 +1,17 @@
+// Deploy from this folder after Cloudflare login:
+//   npx wrangler secret put SERPAPI_API_KEY
+//   npx wrangler kv namespace create CACHE   # optional, then add kv_namespaces
+//   npx wrangler deploy
+// Route GET /stats/projects/paracomm/citations.json onto dl.eaislab.com
+// (same host as eais-file-downloads PDF stats) or a workers.dev preview.
+{
+  "name": "eais-scholar-citations",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-11-03",
+  "account_id": "6d03d35ec17b9be9e4febd16c6799b50",
+  "vars": {
+    "SCHOLAR_QUERY": "\"Rethinking What to Communicate for Collaborative Perception: A Parameter-Centric Perspective\"",
+    "SCHOLAR_URL": "https://scholar.google.com/scholar?q=%22Rethinking+What+to+Communicate+for+Collaborative+Perception%3A+A+Parameter-Centric+Perspective%22",
+    "CACHE_TTL_SECONDS": "43200"
+  }
+}
