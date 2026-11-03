@@ -115,6 +115,14 @@ test('ParaComm uses site-styled text badges, and projects without badges keep eq
   assert.match(bib, /doi=\{10\.1109\/TMC\.2026\.3741641\}/);
   assert.match(bib, /pages=\{1-15\}/);
   assert.doesNotMatch(bib, /Yu, Zhaofei/);
+  assert.doesNotMatch(project, /Zhaofei Yu|余兆飞/);
+  assert.match(project, /name: Quanmin Wei/);
+  assert.match(project, /name: Penglin Dai[\s\S]*corresponding: true/);
+  assert.match(project, /name: Wei Li/);
+  assert.match(project, /name: Xiao Wu/);
+  assert.match(project, /name: Chao Chen/);
+  assert.match(project, /affiliations_en: "Southwest Jiaotong University, Chongqing University"/);
+  assert.doesNotMatch(project, /北京大学|Peking University/);
 });
 
 test('PDF, code, and result figures use the lab hosts', () => {
