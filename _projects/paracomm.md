@@ -26,7 +26,7 @@ authors:
   - name: Zhaofei Yu
 affiliations_zh: "西南交通大学、重庆大学、北京大学"
 affiliations_en: "Southwest Jiaotong University, Chongqing University, Peking University"
-pdf: https://files.eaislab.com/projects/paracomm/paper.pdf
+pdf: https://dl.eaislab.com/projects/paracomm/paper.pdf
 doi: https://doi.org/10.1109/TMC.2026.3741641
 paper: https://doi.org/10.1109/TMC.2026.3741641
 code: https://github.com/EdgeAI-2000/ParaComm
@@ -38,11 +38,11 @@ demo_poster: https://files.eaislab.com/projects/paracomm/demo-poster.jpg
 # The Paper badge still opens the DOI. Stars are not stored here; the Code
 # badge reads them from the public GitHub API for EdgeAI-2000/ParaComm.
 citations:
-# PDF download count. The URL must return CORS-enabled JSON
-# (Access-Control-Allow-Origin: *) with a downloads field that is a
-# non-negative integer. Leave blank to keep the PDF badge as a link with no
-# count. A failed or non-numeric response also hides the number.
-pdf_stats_url: https://files.eaislab.com/stats/projects/paracomm/paper.json
+# PDF download count. pdf_stats_url returns CORS JSON
+# { "path": "projects/paracomm/paper.pdf", "downloads": N }
+# with Access-Control-Allow-Origin: *. The badge shows downloads.
+# A failed or non-numeric response hides the number.
+pdf_stats_url: https://dl.eaislab.com/stats/projects/paracomm/paper.json
 badges:
   - key: paper
     label_en: Paper

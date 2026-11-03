@@ -92,7 +92,7 @@ test('ParaComm uses site-styled text badges, and projects without badges keep eq
   assert.doesNotMatch(project, /img\.shields\.io/);
   assert.doesNotMatch(project, /^citations:\s*\d+/m);
   assert.doesNotMatch(project, /stars:\s*\d+/);
-  assert.match(project, /pdf_stats_url:\s*https:\/\/files\.eaislab\.com\/stats\/projects\/paracomm\/paper\.json/);
+  assert.match(project, /pdf_stats_url:\s*https:\/\/dl\.eaislab\.com\/stats\/projects\/paracomm\/paper\.json/);
   assert.doesNotMatch(project, /^downloads:\s*\d+/m);
   const badgeBlock = project.slice(project.indexOf('badges:'), project.indexOf('demo_caption_zh:'));
   assert.doesNotMatch(badgeBlock, />350×/);
@@ -101,7 +101,7 @@ test('ParaComm uses site-styled text badges, and projects without badges keep eq
 });
 
 test('PDF, code, and result figures use the lab hosts', () => {
-  assert.match(project, /pdf:\s*https:\/\/files\.eaislab\.com\/projects\/paracomm\/paper\.pdf/);
+  assert.match(project, /pdf:\s*https:\/\/dl\.eaislab\.com\/projects\/paracomm\/paper\.pdf/);
   assert.match(project, /code:\s*https:\/\/github\.com\/EdgeAI-2000\/ParaComm/);
   assert.match(project, /doi:\s*https:\/\/doi\.org\/10\.1109\/TMC\.2026\.3741641/);
   assert.doesNotMatch(project, /fengxueguiren\/ParaComm/);
