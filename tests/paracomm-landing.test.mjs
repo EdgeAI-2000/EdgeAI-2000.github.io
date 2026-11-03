@@ -159,10 +159,18 @@ test('PDF, code, and result figures use the lab hosts', () => {
   assert.match(project, /height:\s*387/);
   assert.match(project, /results_table_lead_en:.*Table I is the quantitative comparison on OPV2V, V2XSet, and DAIR-V2X/);
   assert.match(project, /results_table_lead_zh:.*表 I 在 OPV2V、V2XSet 与 DAIR-V2X 上做定量对比/);
-  assert.match(project, /results_lead_en:.*Fig\. 7 places ParaComm.*Fig\. 8 sweeps atom top-k/);
-  assert.match(project, /results_lead_zh:.*图 7 把 ParaComm.*图 8 扫描原子 top-k/);
-  assert.match(project, /caption_en: "Fig\. 8\. Atom top-k, variable-tile size, and dictionary size: AP@70 against communication volume\."/);
-  assert.match(project, /caption_zh: "图 8\. 原子 top-k、可变分块大小与字典大小：AP@70 对通信量。"/);
+  assert.match(project, /lead_en: "Fig\. 1 places ParaComm beside baseline collaborative detectors/);
+  assert.match(project, /lead_en: "Fig\. 2 sweeps atom top-k, variable-tile size, and dictionary size/);
+  assert.match(project, /lead_zh: "图1 把 ParaComm 与基线协同检测方法的鸟瞰结果并排展示/);
+  assert.match(project, /lead_zh: "图2 扫描原子 top-k、可变分块大小和字典大小/);
+  assert.match(project, /caption_en: "Fig\. 1\. Qualitative bird's-eye-view comparison/);
+  assert.match(project, /caption_en: "Fig\. 2\. Atom top-k, variable-tile size, and dictionary size: AP@70 against communication volume\."/);
+  assert.match(project, /caption_zh: "图1\. 鸟瞰定性对比，标出漏检、不准确预测和错误预测。"/);
+  assert.match(project, /caption_zh: "图2\. 原子 top-k、可变分块大小与字典大小：AP@70 对通信量。"/);
+  const projectCopy = project.replace(/paracomm-fig[78]-v4/g, 'paracomm-figN-v4');
+  assert.doesNotMatch(projectCopy, /Fig\. [78]/);
+  assert.doesNotMatch(projectCopy, /图 ?[78]/);
+  assert.doesNotMatch(project, /results_lead_/);
   assert.match(project, /concept_en: "Feature-Centric Communication \(FCC\) transmits BEV features/);
   assert.match(project, /concept_zh: "以特征为中心的通信（FCC）传输 BEV 特征/);
   assert.match(layout, /assign concept_body = project\.concept_en/);
@@ -272,12 +280,16 @@ test('Results include paper Table I before the figures, copyable and bilingual',
   const resultsSection = layout.slice(results);
   const tableLead = resultsSection.indexOf('results_table_lead');
   const includeAt = resultsSection.indexOf('paper-results-table.html');
-  const figureLead = resultsSection.indexOf('results_lead');
   const figures = resultsSection.indexOf('class="paper-results"');
-  assert.ok(results > 0 && tableLead >= 0 && includeAt > tableLead && figureLead > includeAt && figures > figureLead);
+  const figLead = resultsSection.indexOf('fig_lead');
+  const figCaption = resultsSection.indexOf('fig_caption');
+  const figImg = resultsSection.indexOf('img.html');
+  assert.ok(results > 0 && tableLead >= 0 && includeAt > tableLead && figures > includeAt);
+  assert.ok(figLead > figures && figCaption > figLead && figImg > figCaption);
   assert.match(layout, /project\.results_table/);
   assert.match(layout, /assign results_table_lead = project\.results_table_lead_en/);
   assert.match(layout, /assign results_table_lead = project\.results_table_lead_zh/);
+  assert.doesNotMatch(resultsSection, /results_lead/);
   assert.match(tableInclude, /class="paper-table-scroll"/);
   assert.match(tableInclude, /class="paper-table"/);
   assert.match(tableInclude, /<table/);
@@ -302,8 +314,10 @@ test('Results include paper Table I before the figures, copyable and bilingual',
   assert.match(project, /ap30: OOM/);
   assert.match(project, /results_table_lead_en:.*same CoAlign backbone.*ParaComm is strongest/);
   assert.match(project, /results_table_lead_zh:.*同一 CoAlign 骨干.*ParaComm 检测精度最高/);
-  assert.match(project, /results_lead_en:.*Fig\. 7 places ParaComm.*Fig\. 8 sweeps atom top-k/);
-  assert.match(project, /results_lead_zh:.*图 7 把 ParaComm.*图 8 扫描原子 top-k/);
+  assert.match(project, /lead_en: "Fig\. 1 places ParaComm/);
+  assert.match(project, /lead_en: "Fig\. 2 sweeps atom top-k/);
+  assert.match(project, /lead_zh: "图1 把 ParaComm/);
+  assert.match(project, /lead_zh: "图2 扫描原子 top-k/);
 });
 
 test('Table I baselines keep PDF citation markers and official paper links', () => {

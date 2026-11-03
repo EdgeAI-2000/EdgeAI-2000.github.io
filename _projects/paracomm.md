@@ -130,8 +130,6 @@ figure_method_caption_zh: "发送端输出稀疏量化参数；接收端用本�
 figure_method_caption_en: "The sender emits sparse quantized parameters. The receiver rebuilds features with its local dictionary, and the Refinement Head reuses the Communication Backbone."
 results_table_lead_zh: "表 I 在 OPV2V、V2XSet 与 DAIR-V2X 上做定量对比。通信高效方法共用同一 CoAlign 骨干；其中 ParaComm 检测精度最高，通信量也更低。"
 results_table_lead_en: "Table I is the quantitative comparison on OPV2V, V2XSet, and DAIR-V2X. Communication-efficient methods share the same CoAlign backbone; among them, ParaComm is strongest on detection accuracy at a much smaller communication volume."
-results_lead_zh: "图 7 把 ParaComm 与基线协同检测方法的鸟瞰结果并排展示，并标出漏检、不准确预测和错误预测。图 8 扫描原子 top-k、可变分块大小和字典大小，比较 AP@70 与通信量。两图合在一起，用来看减少报文之后检测是否仍然可用。"
-results_lead_en: "Fig. 7 places ParaComm beside baseline collaborative detectors in bird's-eye view and marks missed, inaccurate, and incorrect predictions. Fig. 8 sweeps atom top-k, variable-tile size, and dictionary size, relating AP@70 to communication volume. Read together, they show whether cutting the message still leaves the detections usable."
 results_table:
   caption_en: "Table I. Quantitative comparison on three representative datasets. Communication-efficient methods use the same CoAlign backbone. Best and second-best AP values are highlighted."
   caption_zh: "表 I. 三个代表性数据集上的定量对比。通信高效方法均使用同一 CoAlign 骨干。最优与次优 AP 以浅底色标出。"
@@ -403,17 +401,21 @@ figure_results:
   - src: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/paracomm-fig7-v4/public
     width: 1366
     height: 453
-    alt_zh: "ParaComm 与基线协同感知方法的鸟瞰定性对比，面板标出漏检、不准确预测和错误预测。"
-    alt_en: "Qualitative bird's-eye-view comparison of ParaComm against baseline methods, with missed, inaccurate, and incorrect predictions marked."
-    caption_zh: "图 7. 鸟瞰定性对比，标出漏检、不准确预测和错误预测。"
-    caption_en: "Fig. 7. Qualitative bird's-eye-view comparison, with missed, inaccurate, and incorrect predictions marked."
+    lead_zh: "图1 把 ParaComm 与基线协同检测方法的鸟瞰结果并排展示，并标出漏检、不准确预测和错误预测。"
+    lead_en: "Fig. 1 places ParaComm beside baseline collaborative detectors in bird's-eye view and marks missed, inaccurate, and incorrect predictions."
+    alt_zh: "图1 ParaComm 与基线协同感知方法的鸟瞰定性对比，面板标出漏检、不准确预测和错误预测。"
+    alt_en: "Fig. 1. Qualitative bird's-eye-view comparison of ParaComm against baseline methods, with missed, inaccurate, and incorrect predictions marked."
+    caption_zh: "图1. 鸟瞰定性对比，标出漏检、不准确预测和错误预测。"
+    caption_en: "Fig. 1. Qualitative bird's-eye-view comparison, with missed, inaccurate, and incorrect predictions marked."
   - src: https://imagedelivery.net/FNBuifN30Gov-zkgIT2tCQ/paracomm-fig8-v4/public
     width: 1366
     height: 387
-    alt_zh: "图 8 关键设计选择的折中分析：原子 top-k、可变分块大小与字典大小，比较 AP@70 与通信量。"
-    alt_en: "Fig. 8 trade-off analysis of key design choices (atom top-k, variable-tile size, and dictionary size), relating AP@70 to communication volume."
-    caption_zh: "图 8. 原子 top-k、可变分块大小与字典大小：AP@70 对通信量。"
-    caption_en: "Fig. 8. Atom top-k, variable-tile size, and dictionary size: AP@70 against communication volume."
+    lead_zh: "图2 扫描原子 top-k、可变分块大小和字典大小，比较 AP@70 与通信量。两图合在一起，用来看减少报文之后检测是否仍然可用。"
+    lead_en: "Fig. 2 sweeps atom top-k, variable-tile size, and dictionary size, relating AP@70 to communication volume. Read together, they show whether cutting the message still leaves the detections usable."
+    alt_zh: "图2 关键设计选择的折中分析：原子 top-k、可变分块大小与字典大小，比较 AP@70 与通信量。"
+    alt_en: "Fig. 2 trade-off analysis of key design choices (atom top-k, variable-tile size, and dictionary size), relating AP@70 to communication volume."
+    caption_zh: "图2. 原子 top-k、可变分块大小与字典大小：AP@70 对通信量。"
+    caption_en: "Fig. 2. Atom top-k, variable-tile size, and dictionary size: AP@70 against communication volume."
 abstract_zh: "协同感知通过让智能体共享互补的感知信息来增强自动驾驶。现有方法通常采用以特征为中心的通信（Feature-Centric Communication, FCC）视角，重点在于选择或压缩待传输的特征表示。共享的表示基为减少在线通信量提供了机会：可以用紧凑参数来编码观测。基于这一想法，我们提出以参数为中心的通信（Parameter-Centric Communication, PCC）视角，其中这些参数描述各智能体本地保留的表示基如何组合。我们将 PCC 实例化为 ParaComm，一个由可学习字典驱动、面向通信高效协同感知的框架。在 ParaComm 中，从 BEV 特征学习得到的连续参数指定如何组合共享字典原子，以形成当前的协同表示。为降低传输量，ParaComm 在空间位置与字典原子两个维度上逐步稀疏化这些参数，并进一步通过参数共享与低比特量化加以压缩。接收端再用传来的参数及其本地保存的共享字典，显式重建协同特征。在 OPV2V、V2XSet 与 DAIR-V2X 上的大量实验验证了 ParaComm 的有效性与通用性。例如在 OPV2V 上，它将通信量从 34.375 MB 降至 99.688 KB，压缩超过 350×，同时相对于标准的全特征协同仍提升了检测精度。"
 abstract_en: "Collaborative perception enhances autonomous driving by allowing agents to share complementary perceptual information. Existing methods typically adopt a Feature-Centric Communication (FCC) perspective that focuses on selecting or compressing feature representations for transmission. A shared representational basis offers an opportunity to reduce online communication by encoding observations through compact parameters. Building on this idea, we introduce a Parameter-Centric Communication (PCC) perspective, in which these parameters specify the composition of representational bases retained locally at each agent. We instantiate PCC as ParaComm, a learnable dictionary-driven framework for communication-efficient collaborative perception. In ParaComm, continuous parameters learned from BEV features specify how shared dictionary atoms are combined to form the current collaborative representation. To reduce transmission volume, ParaComm progressively sparsifies these parameters across spatial locations and dictionary atoms and further compacts them through parameter sharing and low-bit quantization. The receiver then explicitly reconstructs collaborative features using the transmitted parameters and its local copy of the shared dictionary. Extensive experiments on OPV2V, V2XSet, and DAIR-V2X validate the effectiveness and generality of ParaComm. On OPV2V, for example, it reduces the communication volume from 34.375 MB to 99.688 KB, corresponding to over 350× compression, while still improving detection accuracy relative to standard full-feature collaboration."
 method_zh: "ParaComm 是面向协同感知的、以参数为中心的通信流水线。在发送端，共享的通信骨干（Communication Backbone）与空间头（Space Head）、原子头（Atom Head）一起产生空间分数，以及字典原子上的稠密参数。联合空间-原子稀疏化（Joint Space-Atom Sparsification）用空间分数在位置和原子两个维度上稀疏这些参数。可变分块参数共享（Variable-Tile Parameter Sharing）和量化表示（Quantized Representation）再把它们压成待传输参数。接收端用传来的参数和本地字典原子显式重建协同特征。轻量的精炼头（Refinement Head）复用通信骨干，在不再引入第二套骨干网络的情况下提升特征质量。"
