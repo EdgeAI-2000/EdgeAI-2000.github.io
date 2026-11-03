@@ -750,7 +750,7 @@ img[src*="/images/research/"] {
 }
 .paper-prose { width: 100%; max-width: none; margin: 0; }
 .paper-prose p { margin: 0; font-size: 17px; line-height: 1.75; }
-.paper-figure-block { width: 100%; max-width: none; margin: 8px 0 0; padding: 0; border: 0; background: none; box-shadow: none; }
+.paper-figure-block { width: 100%; max-width: none; margin: 16px 0 0; padding: 0; border: 0; background: none; box-shadow: none; }
 .paper-figure {
   display: block;
   width: 100%;
@@ -813,14 +813,13 @@ img[src*="/images/research/"] {
 .paper-table-second { background: #eef1f4; }
 .paper-cite-link,
 .paper-cite-num {
-  color: var(--heading);
+  color: var(--primary);
   font-weight: inherit;
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  text-decoration: none;
 }
 .paper-cite-num { margin-left: 0.25em; white-space: nowrap; }
 .paper-cite-link:hover,
-.paper-cite-num:hover { color: var(--primary); }
+.paper-cite-num:hover { color: var(--primary-600); }
 .paper-table-refs {
   width: 100%;
   max-width: none;
@@ -848,14 +847,15 @@ img[src*="/images/research/"] {
 }
 .paper-bibtex-bar {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 12px;
   width: 100%;
   max-width: none;
   margin: 0 0 10px;
 }
-.paper-bibtex-bar h2 { margin: 0; text-align: left; }
+.paper-bibtex-bar h2 { margin: 0; text-align: center; }
 .paper-bibtex-bar .btn.secondary {
   background: transparent;
   color: var(--heading);
@@ -865,9 +865,9 @@ img[src*="/images/research/"] {
 }
 .paper-bibtex-bar .btn.secondary:hover { background: var(--surface); color: var(--heading); }
 .paper-bibtex {
-  width: 100%;
-  max-width: none;
-  margin: 0;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
   padding: 0;
   overflow: auto;
   border: 0;
@@ -878,9 +878,10 @@ img[src*="/images/research/"] {
   font-size: 12px;
   line-height: 1.45;
   white-space: pre;
+  text-align: left;
   box-shadow: none;
 }
-.paper-copy-status { min-height: 1.2em; max-width: none; margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+.paper-copy-status { min-height: 1.2em; max-width: none; margin: 8px auto 0; color: var(--muted); font-size: 14px; text-align: center; }
 .paper-back { margin: 64px 0 0; text-align: center; }
 @media (max-width: 700px) {
   .paper-hero { padding-top: 8px; }
@@ -893,8 +894,8 @@ img[src*="/images/research/"] {
   .paper-block { margin-top: 40px; }
   .paper-video-block { margin-top: 20px; }
   .paper-block h2 { font-size: 24px; text-align: center; }
-  .paper-bibtex-bar { flex-direction: row; }
-  .paper-bibtex-bar h2 { font-size: 24px; text-align: left; }
+  .paper-bibtex-bar { flex-direction: column; }
+  .paper-bibtex-bar h2 { font-size: 24px; text-align: center; }
   .paper-actions .btn { text-align: center; }
   .paper-actions {
     display: grid;
