@@ -769,6 +769,8 @@ img[src*="/images/research/"] {
   font-size: 14px;
   line-height: 1.65;
 }
+.paper-figure-block .paper-lead { margin: 0 0 10px; }
+.paper-figure-block > figcaption.paper-caption { margin: 0 0 12px; }
 .paper-table-block { width: 100%; max-width: none; margin: 8px 0 28px; padding: 0; border: 0; background: none; box-shadow: none; }
 .paper-table-block .paper-caption { margin: 0 0 12px; }
 .paper-table-scroll {

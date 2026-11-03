@@ -40,7 +40,7 @@ layout: default
       {% assign abstract_heading = 'Abstract' %}
       {% assign method_heading = 'Method' %}
       {% assign results_heading = 'Experimental Results' %}
-      {% assign results_lead = project.results_lead_en | default: project.results_lead %}
+      {% assign results_table_lead = project.results_table_lead_en | default: project.results_table_lead %}
       {% assign bibtex_heading = 'BibTeX' %}
       {% assign copy_label = 'Copy BibTeX' %}
       {% assign copied_label = 'Copied' %}
@@ -62,7 +62,7 @@ layout: default
       {% assign abstract_heading = '摘要' %}
       {% assign method_heading = '方法' %}
       {% assign results_heading = '实验结果' %}
-      {% assign results_lead = project.results_lead_zh | default: project.results_lead_en | default: project.results_lead %}
+      {% assign results_table_lead = project.results_table_lead_zh | default: project.results_table_lead_en | default: project.results_table_lead %}
       {% assign bibtex_heading = 'BibTeX' %}
       {% assign copy_label = '复制 BibTeX' %}
       {% assign copied_label = '已复制' %}
@@ -332,23 +332,26 @@ layout: default
     {% if has_results_figures or project.results_table %}
       <section class="paper-block" id="results">
         <h2>{{ results_heading }}</h2>
-        {% if results_lead %}<p class="paper-lead">{{ results_lead | escape }}</p>{% endif %}
+        {% if results_table_lead %}<p class="paper-lead">{{ results_table_lead | escape }}</p>{% endif %}
         {% if project.results_table %}
           {% include paper-results-table.html %}
         {% endif %}
         <div class="paper-results">
           {% for fig in project.figure_results %}
             {% if lang == 'en' %}
+              {% assign fig_lead = fig.lead_en | default: fig.lead %}
               {% assign fig_alt = fig.alt_en | default: fig.alt | default: fig.caption_en | default: '' %}
               {% assign fig_caption = fig.caption_en | default: fig.caption %}
             {% else %}
+              {% assign fig_lead = fig.lead_zh | default: fig.lead_en | default: fig.lead %}
               {% assign fig_alt = fig.alt_zh | default: fig.alt_en | default: fig.alt | default: fig.caption_zh | default: '' %}
               {% assign fig_caption = fig.caption_zh | default: fig.caption_en | default: fig.caption %}
             {% endif %}
             <figure class="paper-figure-block">
+              {% if fig_lead %}<p class="paper-lead">{{ fig_lead | escape }}</p>{% endif %}
+              {% if fig_caption %}<figcaption class="paper-caption">{{ fig_caption | escape }}</figcaption>{% endif %}
               {% include asset-src.html src=fig.src %}
               {% include img.html src=asset_src class="paper-figure" alt=fig_alt width=fig.width height=fig.height priority="lazy" %}
-              {% if fig_caption %}<figcaption>{{ fig_caption | escape }}</figcaption>{% endif %}
             </figure>
           {% endfor %}
         </div>
