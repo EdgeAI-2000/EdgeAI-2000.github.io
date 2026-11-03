@@ -143,6 +143,8 @@ layout: default
             {% case badge.key %}
               {% when 'paper' %}
                 {% assign badge_href = project.paper | default: project.doi | default: '' %}
+              {% when 'tmc' %}
+                {% assign badge_href = project.doi | default: project.paper | default: badge.href %}
               {% when 'pdf' %}
                 {% assign badge_href = project.pdf | default: '' %}
               {% when 'code' %}

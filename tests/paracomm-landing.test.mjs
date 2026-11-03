@@ -51,6 +51,7 @@ test('ParaComm uses site-styled text badges, and projects without badges keep eq
   assert.match(actions, /paper-badge-value/);
   assert.match(actions, /project\.badges/);
   assert.match(actions, /when 'paper'[\s\S]*project\.paper \| default: project\.doi/);
+  assert.match(actions, /when 'tmc'[\s\S]*project\.doi \| default: project\.paper \| default: badge\.href/);
   assert.match(actions, /when 'pdf'[\s\S]*project\.pdf/);
   assert.match(actions, /when 'code'[\s\S]*project\.code/);
   assert.match(actions, /when 'video'[\s\S]*#paper-demo/);
@@ -74,7 +75,10 @@ test('ParaComm uses site-styled text badges, and projects without badges keep eq
   assert.match(layout, /data\.downloads/);
   assert.match(layout, /stat\.hidden = true/);
   assert.match(layout, /\\u2014/);
+  assert.match(css, /\.paper-badge\s*\{[^}]*background:\s*var\(--surface\)/);
+  assert.match(css, /\.paper-badge\s*\{[^}]*border-top:\s*3px solid var\(--accent\)/);
   assert.match(css, /\.paper-badge:hover\s*\{[^}]*background:\s*var\(--accent-soft\)/);
+  assert.match(css, /\.paper-badge:hover\s*\{[^}]*box-shadow:\s*0 8px 20px/);
   assert.match(css, /\.paper-badge:focus-visible\s*\{[^}]*outline:\s*2px solid var\(--primary\)/);
   assert.match(css, /\.paper-badge-value\s*\{[^}]*color:\s*var\(--primary\)/);
   assert.match(css, /\.paper-badge-stat\[hidden\][^{]*\{[^}]*display:\s*none/);
@@ -83,6 +87,12 @@ test('ParaComm uses site-styled text badges, and projects without badges keep eq
   assert.doesNotMatch(css, /\.paper-actions \.btn:not\(\.secondary\)/);
   assert.match(project, /label_en: Paper/);
   assert.match(project, /label_zh: 论文/);
+  assert.match(project, /key: tmc/);
+  assert.match(project, /label_en: TMC/);
+  assert.match(project, /detail_en: IEEE/);
+  const badgeOrder = project.slice(project.indexOf('badges:'), project.indexOf('demo_caption_zh:'));
+  assert.ok(badgeOrder.indexOf('key: paper') < badgeOrder.indexOf('key: tmc'));
+  assert.ok(badgeOrder.indexOf('key: tmc') < badgeOrder.indexOf('key: pdf'));
   assert.match(project, /label_en: Code/);
   assert.match(project, /label_zh: 代码/);
   assert.match(project, /stat: citations/);
@@ -98,6 +108,12 @@ test('ParaComm uses site-styled text badges, and projects without badges keep eq
   assert.doesNotMatch(badgeBlock, />350×/);
   assert.doesNotMatch(badgeBlock, /stat:\s*downloads/);
   assert.match(project, /value: ">350×"/);
+  const bib = project.slice(project.indexOf('bibtex:'), project.lastIndexOf('---'));
+  assert.match(bib, /@ARTICLE\{11727060,/);
+  assert.match(bib, /author=\{Wei, Quanmin and Dai, Penglin and Li, Wei and Wu, Xiao and Chen, Chao\}/);
+  assert.match(bib, /doi=\{10\.1109\/TMC\.2026\.3741641\}/);
+  assert.match(bib, /pages=\{1-15\}/);
+  assert.doesNotMatch(bib, /Yu, Zhaofei/);
 });
 
 test('PDF, code, and result figures use the lab hosts', () => {
@@ -182,7 +198,7 @@ test('the paper page drops rounded section cards and accent underlines', () => {
   assert.match(paperCss, /\.paper-block h2::after\s*\{\s*content:\s*none/);
   assert.match(paperCss, /\.paper-block\s*\{[^}]*background:\s*transparent/);
   assert.match(paperCss, /\.paper-stats\s*\{[^}]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
-  assert.match(paperCss, /\.paper-actions\s*\{[^}]*margin-top:\s*8px/);
+  assert.match(paperCss, /\.paper-actions\s*\{[^}]*margin-top:\s*14px/);
   assert.match(paperCss, /\.paper-prose\s*\{[^}]*max-width:\s*720px/);
   assert.match(paperCss, /\.paper-prose p,\s*\.paper-lead,\s*\.paper-caption,\s*\.paper-figure-block figcaption\s*\{[^}]*text-align:\s*justify/);
   assert.match(paperCss, /\.paper-block h2\s*\{[^}]*text-align:\s*center/);

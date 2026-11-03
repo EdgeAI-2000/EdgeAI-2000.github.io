@@ -48,6 +48,11 @@ badges:
     label_en: Paper
     label_zh: 论文
     stat: citations
+  - key: tmc
+    label_en: TMC
+    label_zh: TMC
+    detail_en: IEEE
+    detail_zh: IEEE
   - key: pdf
     label_en: PDF
     label_zh: PDF
@@ -141,10 +146,14 @@ abstract_en: "Collaborative perception enhances autonomous driving by allowing a
 method_zh: "ParaComm 是面向协同感知的、以参数为中心的通信流水线。在发送端，共享的通信骨干（Communication Backbone）与空间头（Space Head）、原子头（Atom Head）一起产生空间分数，以及字典原子上的稠密参数。联合空间-原子稀疏化（Joint Space-Atom Sparsification）用空间分数在位置和原子两个维度上稀疏这些参数。可变分块参数共享（Variable-Tile Parameter Sharing）和量化表示（Quantized Representation）再把它们压成待传输参数。接收端用传来的参数和本地字典原子显式重建协同特征。轻量的精炼头（Refinement Head）复用通信骨干，在不再引入第二套骨干网络的情况下提升特征质量。"
 method_en: "ParaComm is a parameter-centric communication pipeline for collaborative perception. On the sender, a shared Communication Backbone, together with the Space Head and the Atom Head, produces a spatial score and dense parameters over dictionary atoms. Joint Space-Atom Sparsification uses that score to thin the parameters across locations and atoms. Variable-Tile Parameter Sharing and Quantized Representation then compact them into the transmitted message. The receiver reconstructs collaborative features from the message and its local dictionary atoms. A lightweight Refinement Head, which reuses the Communication Backbone, improves those features without a second full backbone."
 bibtex: |
-  @article{wei2026paracomm,
-    title = {Rethinking What to Communicate for Collaborative Perception: A Parameter-Centric Perspective},
-    author = {Wei, Quanmin and Dai, Penglin and Li, Wei and Wu, Xiao and Chen, Chao and Yu, Zhaofei},
-    journal = {IEEE Transactions on Mobile Computing},
-    year = {2026}
-  }
+  @ARTICLE{11727060,
+    author={Wei, Quanmin and Dai, Penglin and Li, Wei and Wu, Xiao and Chen, Chao},
+    journal={IEEE Transactions on Mobile Computing}, 
+    title={Rethinking What to Communicate for Collaborative Perception: A Parameter-Centric Perspective}, 
+    year={2026},
+    volume={},
+    number={},
+    pages={1-15},
+    keywords={Atoms;Dictionaries;Collaboration;Tiles;Modeling;Standards;Educational institutions;Conferences;Computers;Receivers;Collaborative perception;communication-efficient collaboration;autonomous driving},
+    doi={10.1109/TMC.2026.3741641}}
 ---
