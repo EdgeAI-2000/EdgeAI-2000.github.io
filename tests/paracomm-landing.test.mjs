@@ -44,13 +44,24 @@ test('abstract follows the hero, then video, concept, method, results, and bibte
   assert.doesNotMatch(layout, /paper-figure-card|paper-stage|paper-demo-pending/);
 });
 
-test('ParaComm uses shields, and projects without badges keep equal buttons', () => {
+test('ParaComm uses site-styled text badges, and projects without badges keep equal buttons', () => {
   const actions = layout.slice(layout.indexOf('class="paper-actions"'), layout.indexOf('</header>'));
   assert.match(actions, /class="paper-badge"/);
+  assert.match(actions, /paper-badge-label/);
+  assert.match(actions, /paper-badge-value/);
   assert.match(actions, /project\.badges/);
+  assert.match(actions, /when 'paper'[\s\S]*project\.paper \| default: project\.doi/);
   assert.match(actions, /when 'pdf'[\s\S]*project\.pdf/);
   assert.match(actions, /when 'code'[\s\S]*project\.code/);
   assert.match(actions, /when 'video'[\s\S]*#paper-demo/);
+  assert.match(actions, /data-paper-stars/);
+  assert.match(actions, /data-paper-citations/);
+  assert.match(actions, /data-paper-downloads/);
+  assert.match(actions, /data-stats-url/);
+  assert.match(actions, /project\.pdf_stats_url/);
+  assert.match(actions, /stat_value = '—'/);
+  assert.doesNotMatch(actions, /<img/);
+  assert.doesNotMatch(actions, /shields\.io/);
   assert.match(actions, /class="btn"/);
   assert.doesNotMatch(actions, /btn secondary/);
   assert.match(layout, /assign paper_label = 'Paper'/);
@@ -58,10 +69,35 @@ test('ParaComm uses shields, and projects without badges keep equal buttons', ()
   assert.match(layout, /assign video_label = 'Video'/);
   assert.match(layout, /assign page_label = 'Project Page'/);
   assert.match(actions, />PDF</);
-  assert.match(css, /\.paper-badge/);
+  assert.match(layout, /api\.github\.com\/repos/);
+  assert.match(layout, /stargazers_count/);
+  assert.match(layout, /data\.downloads/);
+  assert.match(layout, /stat\.hidden = true/);
+  assert.match(layout, /\\u2014/);
+  assert.match(css, /\.paper-badge:hover\s*\{[^}]*background:\s*var\(--accent-soft\)/);
+  assert.match(css, /\.paper-badge:focus-visible\s*\{[^}]*outline:\s*2px solid var\(--primary\)/);
+  assert.match(css, /\.paper-badge-value\s*\{[^}]*color:\s*var\(--primary\)/);
+  assert.match(css, /\.paper-badge-stat\[hidden\][^{]*\{[^}]*display:\s*none/);
   assert.match(css, /\.paper-actions \.btn\s*\{[^}]*background:\s*var\(--button\)/);
   assert.match(css, /\.paper-actions \.btn\s*\{[^}]*box-shadow:\s*none/);
   assert.doesNotMatch(css, /\.paper-actions \.btn:not\(\.secondary\)/);
+  assert.match(project, /label_en: Paper/);
+  assert.match(project, /label_zh: 论文/);
+  assert.match(project, /label_en: Code/);
+  assert.match(project, /label_zh: 代码/);
+  assert.match(project, /stat: citations/);
+  assert.match(project, /stat: stars/);
+  assert.match(project, /detail_en: Download/);
+  assert.match(project, /detail_zh: 下载/);
+  assert.doesNotMatch(project, /img\.shields\.io/);
+  assert.doesNotMatch(project, /^citations:\s*\d+/m);
+  assert.doesNotMatch(project, /stars:\s*\d+/);
+  assert.match(project, /pdf_stats_url:\s*https:\/\/files\.eaislab\.com\/stats\/projects\/paracomm\/paper\.json/);
+  assert.doesNotMatch(project, /^downloads:\s*\d+/m);
+  const badgeBlock = project.slice(project.indexOf('badges:'), project.indexOf('demo_caption_zh:'));
+  assert.doesNotMatch(badgeBlock, />350×/);
+  assert.doesNotMatch(badgeBlock, /stat:\s*downloads/);
+  assert.match(project, /value: ">350×"/);
 });
 
 test('PDF, code, and result figures use the lab hosts', () => {

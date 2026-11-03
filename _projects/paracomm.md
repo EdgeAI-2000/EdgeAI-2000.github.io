@@ -33,32 +33,40 @@ code: https://github.com/EdgeAI-2000/ParaComm
 project_page: https://weiquanmin.github.io/ParaComm/
 demo_video: https://files.eaislab.com/projects/paracomm/demo.mp4
 demo_poster: https://files.eaislab.com/projects/paracomm/demo-poster.jpg
+# Paper badge citation count. Set a non-negative integer from Google Scholar
+# when you refresh it. Leave blank to show an em dash — do not guess a number.
+# The Paper badge still opens the DOI. Stars are not stored here; the Code
+# badge reads them from the public GitHub API for EdgeAI-2000/ParaComm.
+citations:
+# PDF download count. The URL must return CORS-enabled JSON
+# (Access-Control-Allow-Origin: *) with a downloads field that is a
+# non-negative integer. Leave blank to keep the PDF badge as a link with no
+# count. A failed or non-numeric response also hides the number.
+pdf_stats_url: https://files.eaislab.com/stats/projects/paracomm/paper.json
 badges:
   - key: paper
-    src_en: "https://img.shields.io/badge/Paper-IEEE%20TMC-0867b2?style=flat&logo=ieee&logoColor=white"
-    src_zh: "https://img.shields.io/badge/%E8%AE%BA%E6%96%87-IEEE%20TMC-0867b2?style=flat&logo=ieee&logoColor=white"
-    alt_en: Paper
-    alt_zh: 论文
+    label_en: Paper
+    label_zh: 论文
+    stat: citations
   - key: pdf
-    src_en: "https://img.shields.io/badge/PDF-Download-b31b1b?style=flat"
-    src_zh: "https://img.shields.io/badge/PDF-%E4%B8%8B%E8%BD%BD-b31b1b?style=flat"
-    alt_en: PDF
-    alt_zh: PDF
+    label_en: PDF
+    label_zh: PDF
+    detail_en: Download
+    detail_zh: 下载
   - key: code
-    src_en: "https://img.shields.io/badge/Code-GitHub-181717?style=flat&logo=github&logoColor=white"
-    src_zh: "https://img.shields.io/badge/%E4%BB%A3%E7%A0%81-GitHub-181717?style=flat&logo=github&logoColor=white"
-    alt_en: Code
-    alt_zh: 代码
+    label_en: Code
+    label_zh: 代码
+    stat: stars
   - key: video
-    src_en: "https://img.shields.io/badge/Video-Demo-0b6e99?style=flat"
-    src_zh: "https://img.shields.io/badge/%E8%A7%86%E9%A2%91-%E6%BC%94%E7%A4%BA-0b6e99?style=flat"
-    alt_en: Video
-    alt_zh: 视频
+    label_en: Video
+    label_zh: 视频
+    detail_en: Demo
+    detail_zh: 演示
   - key: project
-    src_en: "https://img.shields.io/badge/Project-Page-0e7c66?style=flat"
-    src_zh: "https://img.shields.io/badge/%E9%A1%B9%E7%9B%AE-%E4%B8%BB%E9%A1%B5-0e7c66?style=flat"
-    alt_en: Project page
-    alt_zh: 项目主页
+    label_en: Project
+    label_zh: 项目
+    detail_en: Page
+    detail_zh: 主页
 demo_caption_zh: "共享字典原子留在每辆车上，链路上只传输稀疏参数。这些参数先在空间位置与字典原子上稀疏化，再经参数共享和低比特量化压缩。接收端用收到的参数和本地字典重建协同特征。"
 demo_caption_en: "Shared dictionary atoms stay on each vehicle, and only sparse parameters are sent. Those parameters are sparsified across spatial locations and dictionary atoms, then compacted by parameter sharing and low-bit quantization. The receiver rebuilds collaborative features from the received parameters and its local dictionary."
 key_results:
