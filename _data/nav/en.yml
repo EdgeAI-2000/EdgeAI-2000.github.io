@@ -47,6 +47,9 @@ main:
       - label: Newcomers
         url: /en/newcomers/
         visibility: newcomers
+      - label: NAS / WebDAV
+        url: /zh/resources/nas/
+        visibility: nas
 footer:
   - label: Privacy
     url: /en/privacy/

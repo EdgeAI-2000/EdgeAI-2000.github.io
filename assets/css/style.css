@@ -490,6 +490,8 @@ img[src*="/images/research/"] {
 .newcomers-guide .owner-table-wrap { margin-bottom: 12px; }
 .newcomers-guide .guide-notes { margin: 0; padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
 .newcomers-guide .guide-notes p:last-child { margin-bottom: 0; }
+.newcomers-guide .guide-code { margin: 8px 0 16px; padding: 12px 14px; overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); font-size: 14px; line-height: 1.5; }
+.newcomers-guide .guide-code code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
 @media (max-width: 600px) {
   .owner-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .owner-table, .owner-table tbody, .owner-table tr, .owner-table td { display: block; width: 100%; }

@@ -15,6 +15,18 @@
     {% endif %}
   </section>
   {% endunless %}
+  {% unless site.data.page_visibility.nas == false %}
+  <section class="card resources-newcomer" id="nas" aria-labelledby="nas-title">
+    <h2 id="nas-title">{% if is_english %}Lab NAS / WebDAV{% else %}实验室 NAS（WebDAV）{% endif %}</h2>
+    {% if is_english %}
+    <p>Course materials, datasets, and homework uploads use the lab NAS over HTTPS WebDAV. This public site does not publish passwords; ask your advisor or an admin.</p>
+    <p><a class="link" href="{{ '/zh/resources/nas/' | relative_url }}">Open the Chinese NAS guide</a></p>
+    {% else %}
+    <p>课程材料、数据集和作业提交走实验室 NAS 的 HTTPS WebDAV。公开网站不写账号口令，请向导师或管理员索取。</p>
+    <p><a class="link" href="{{ '/zh/resources/nas/' | relative_url }}">打开 NAS 使用说明</a></p>
+    {% endif %}
+  </section>
+  {% endunless %}
   <nav class="resources-topics" aria-label="{% if is_english %}Resource categories{% else %}资料分类{% endif %}">
     {% for category in resources.categories %}
       <a href="#{{ category.id }}">{% if is_english %}{{ category.title_en | escape }}{% else %}{{ category.title_zh | escape }}{% endif %}</a>

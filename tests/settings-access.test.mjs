@@ -20,7 +20,7 @@ function setup(fetch, endpoint = 'https://worker.example', visibilityFetch = asy
   const visibilityFields = {};
   const visibilityStatus = {};
   const visibilityReload = {};
-  const switches = Object.fromEntries('home about vision contact admissions news themes research projects funding publications patents people resources newcomers openings privacy sitemap'.split(' ').map(name => [name, { checked: false, disabled: false }]));
+  const switches = Object.fromEntries('home about vision contact admissions news themes research projects funding publications patents people resources newcomers nas openings privacy sitemap'.split(' ').map(name => [name, { checked: false, disabled: false }]));
   const visibilityForm = { querySelector: () => visibilityFields, elements: { namedItem: name => switches[name] } };
   const page = { querySelector: selector => ({ '[data-images-form]': form, '[data-status]': status,
     '[data-visibility-form]': visibilityForm, '[data-visibility-status]': visibilityStatus, '[data-visibility-reload]': visibilityReload })[selector] || {} };
@@ -191,7 +191,8 @@ test('inline switches load and publish on the same page even without an image se
   assert.match(atob(payload.content), /^projects: true$/m);
   assert.match(atob(payload.content), /^resources: true$/m);
   assert.match(atob(payload.content), /^newcomers: true$/m);
-  assert.equal(atob(payload.content).trim().split('\n').length, 18);
+  assert.match(atob(payload.content), /^nas: true$/m);
+  assert.equal(atob(payload.content).trim().split('\n').length, 19);
   assert.match(state.visibilityStatus.textContent, /已保存并发布/);
   await state.visibilityForm.onsubmit({ preventDefault() {} });
   assert.equal(JSON.parse(calls[2].options.body).sha, 'new');
@@ -278,8 +279,11 @@ test('all page switches load legacy defaults and parents disable children recurs
   state.visibilityForm.onchange();
   assert.equal(state.switches.openings.disabled, false);
   assert.equal(state.switches.newcomers.disabled, false);
+  assert.equal(state.switches.nas.disabled, false);
   state.switches.resources.checked = false;
   state.visibilityForm.onchange();
   assert.equal(state.switches.newcomers.checked, false);
   assert.equal(state.switches.newcomers.disabled, true);
+  assert.equal(state.switches.nas.checked, false);
+  assert.equal(state.switches.nas.disabled, true);
 });

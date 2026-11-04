@@ -66,6 +66,10 @@ permalink: /zh/newcomers/
     <li>个人 API Key 和用量控制台仍以 <a class="link" href="https://sub2api.eaislab.com/login" target="_blank" rel="noopener noreferrer">Sub2API 登录页</a> 为准。</li>
   </ul>
 
+  <h3>实验室 NAS（WebDAV）</h3>
+  <p>课程材料、数据集和作业提交使用实验室 NAS 的 HTTPS WebDAV。公开网站不写账号口令；口令请向导师或管理员索取。</p>
+  <p>连接入口、目录约定和客户端步骤见 <a class="link" href="{{ '/zh/resources/nas/' | relative_url }}">实验室 NAS（WebDAV）使用说明</a>。</p>
+
   <h3>进数智，以及应急网络</h3>
   <ul>
     <li>日常进数智用 EasyTier。</li>

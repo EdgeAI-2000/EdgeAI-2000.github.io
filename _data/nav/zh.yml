@@ -47,6 +47,9 @@ main:
       - label: 新生指南
         url: /zh/newcomers/
         visibility: newcomers
+      - label: 实验室 NAS
+        url: /zh/resources/nas/
+        visibility: nas
 footer:
   - label: 隐私
     url: /zh/privacy/
